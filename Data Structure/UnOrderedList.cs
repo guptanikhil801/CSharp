@@ -116,5 +116,26 @@
             }
             return false;
         }
+
+        public int Size()
+        {
+            int count = 0;
+            Node t = head;
+            if (head == null)
+            {
+                return 0;
+                throw new NullReferenceException();
+            }
+            else
+            {
+                while (t.next != null)
+                {
+                    count++;
+                    t = t.next;
+                }
+                count = count + 1;
+            }
+            return count;
+        }
     }
 }
