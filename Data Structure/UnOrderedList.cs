@@ -8,19 +8,23 @@
     /// List class created to use generics
     /// </summary>
     /// <typeparam name="T">t type </typeparam>
-    class List <T>
+   public class List <T>
     {
 
         /// <summary>
         /// Node class for making Node data type
         /// </summary>
-        class Node
+       public class Node
         {
-            T data;
-            Node next;
+           public T data;
+            public Node next;
         }
 
-        
+        public void Add(T data)
+        {
+            Node node = new Node();
+            node.
+        }
 
     }
 }
