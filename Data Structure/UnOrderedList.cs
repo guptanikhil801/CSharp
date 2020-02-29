@@ -2,7 +2,11 @@
 {
     using System;
     using System.Text;
-    class UnOrderedList
+    class List <T>
     {
+        class Node
+        {
+            T data;
+        }
     }
 }
