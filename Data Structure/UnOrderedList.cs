@@ -22,6 +22,10 @@
 
         public Node head;      //// Node type head created which refers to first Node
 
+        /// <summary>
+        /// This method inserts data into list.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void Add(T data)
         {
             Node node = new Node();
