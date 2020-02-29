@@ -17,14 +17,9 @@
        public class Node
         {
            public T data;
-            public Node next;
+           public Node next;
         }
 
-        public void Add(T data)
-        {
-            Node node = new Node();
-            node.
-        }
-
+        public Node head;      //// Node type head created which refers to first head
     }
 }
