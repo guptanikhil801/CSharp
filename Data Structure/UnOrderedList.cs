@@ -8,7 +8,7 @@
     /// List class created to use generics
     /// </summary>
     /// <typeparam name="T">t type </typeparam>
-   public class List <T>
+   public class List  <T>
     {
 
         /// <summary>
@@ -55,12 +55,12 @@
         /// It Removes the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
-        public void Remove(T data)
+        public void Remove (T data)
         {
             //// check if list is already empty
             if(head==null)
             {
-                Console.WriteLine("List is already empty");
+               throw new NullReferenceException("list empty");
             }
             if(head.next==null)
             {
@@ -68,17 +68,29 @@
             }
             Node pre = null;     //// declare a variable which will point the previous node of the node the user want to delete
             Node t = head;
-            while(t.next!=null)
+            
+            while (t.next!=null)
             {
                 //// checking if data of temporary variable is equal to the data the user want to delete
-                if(t.data.Equals(data))
+                if (t.data.Equals(data))
                 {
                     pre.next = t.next;       //// assign t next address to prev next 
                 }
-                pre = t.next;
-                t.next = pre.next;
+                
+                pre = t;
+                t = t.next;
             }
 
+        }
+        public void Display()
+        {
+            Node node = head;
+            while(node.next!=null)
+            {
+                Console.WriteLine(node.data);
+                node = node.next;
+            }
+            Console.WriteLine(node.data);
         }
     }
 }
