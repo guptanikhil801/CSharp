@@ -28,22 +28,26 @@
         /// <param name="data">The data.</param>
         public void Add(T data)
         {
-            Node node = new Node();
-            node.data = data;
-            node.next = null;
+            Node node = new Node();        //// create a new node
+            node.data = data;             //// set default values
+            node.next = null;            //// set default values
+            
+            //// check that is the list is empty or not, if empty then node will become head
             if (head == null)
             {
                 head = node;
             }
+            ////   if list is not empty than insert it at last
             else
             {
-                Node t = head;
+                Node t = head;           ////  assign head to a temporary Node type variable
+                ////  this loop will continue till second last node
                 while(t.next!=null)
                 {
-                    t = t.next;
+                    t = t.next;       //// the value of t will keep changing
                 }
 
-                t.next = node;
+                t.next = node;      
             }
         }
     }
