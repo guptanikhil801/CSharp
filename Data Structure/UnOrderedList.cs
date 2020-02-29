@@ -51,6 +51,10 @@
             }
         }
 
+        /// <summary>
+        /// It Removes the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void Remove(T data)
         {
             if(head==null)
