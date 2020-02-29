@@ -50,5 +50,29 @@
                 t.next = node;      
             }
         }
+
+        public void Remove(T data)
+        {
+            if(head==null)
+            {
+                Console.WriteLine("List is already empty");
+            }
+            if(head.next==null)
+            {
+                head = null;
+            }
+            Node pre = null;
+            Node t = head;
+            while(t.next!=null)
+            {
+                if(t.data.Equals(data))
+                {
+                    pre.next = t.next;
+                }
+                pre = t.next;
+                t.next = pre.next;
+            }
+
+        }
     }
 }
