@@ -82,6 +82,10 @@
             }
 
         }
+
+        /// <summary>
+        /// to Displays instance.
+        /// </summary>
         public void Display()
         {
             Node node = head;
