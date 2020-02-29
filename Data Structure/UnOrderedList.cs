@@ -89,12 +89,13 @@
         public void Display()
         {
             Node node = head;
+            //// this loop will continue till the second last node
             while(node.next!=null)
             {
-                Console.WriteLine(node.data);
-                node = node.next;
+                Console.WriteLine(node.data);       //// printing datas
+                node = node.next;                   //// node value will keep changing
             }
-            Console.WriteLine(node.data);
+            Console.WriteLine(node.data);           //// manually print last node
         }
     }
 }
