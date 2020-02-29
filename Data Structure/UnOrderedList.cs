@@ -98,6 +98,11 @@
             Console.WriteLine(node.data);           //// manually print last node
         }
 
+        /// <summary>
+        /// Searches the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns>true or false</returns>
         public bool Search(T data)
         {
             Node t = head;
