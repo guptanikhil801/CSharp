@@ -57,6 +57,7 @@
         /// <param name="data">The data.</param>
         public void Remove(T data)
         {
+            //// check if list is already empty
             if(head==null)
             {
                 Console.WriteLine("List is already empty");
@@ -65,13 +66,14 @@
             {
                 head = null;
             }
-            Node pre = null;
+            Node pre = null;     //// declare a variable which will point the previous node of the node the user want to delete
             Node t = head;
             while(t.next!=null)
             {
+                //// checking if data of temporary variable is equal to the data the user want to delete
                 if(t.data.Equals(data))
                 {
-                    pre.next = t.next;
+                    pre.next = t.next;       //// assign t next address to prev next 
                 }
                 pre = t.next;
                 t.next = pre.next;
