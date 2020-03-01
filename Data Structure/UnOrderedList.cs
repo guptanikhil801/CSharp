@@ -143,6 +143,10 @@
             return count;
         }
 
+        /// <summary>
+        /// it returns whether the list is empty or not
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty()
         {
             if (Size() == 0)
