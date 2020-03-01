@@ -169,6 +169,25 @@
             Add(data);              //// will simply call Add(data) method beacause by default inserts data at last
         }
 
-       
+        public int index(T data)
+        {
+            Node t = head;
+            int count = 0;
+            int size = Size();
+
+            for (int i = 1; i <= size; i++)
+            {
+                count++;
+                if (t.data.Equals(data))
+                {
+                    break;
+                }
+                t = t.next;
+            }
+
+            return count;
+        }
+
+
     }
 }
