@@ -117,6 +117,10 @@
             return false;
         }
 
+        /// <summary>
+        /// This method returns size of list
+        /// </summary>
+        /// <returns>the size</returns>
         public int Size()
         {
             int count = 0;
