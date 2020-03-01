@@ -159,5 +159,16 @@
                 return false;                           //// otherwise false
             }
         }
+
+        /// <summary>
+        /// it inserts list at last
+        /// </summary>
+        /// <param name="data"></param>
+        public void Append(T data)
+        {
+            Add(data);              //// will simply call Add(data) method beacause by default inserts data at last
+        }
+
+       
     }
 }
