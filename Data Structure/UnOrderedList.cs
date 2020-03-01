@@ -121,19 +121,20 @@
         {
             int count = 0;
             Node t = head;
-            if (head == null)
+            if (head == null)          //// if head is null then it will return size 0 
             {
                 return 0;
                 throw new NullReferenceException();
             }
             else
             {
+                //// the loop will continue till the second last node
                 while (t.next != null)
                 {
-                    count++;
+                    count++;                             //// the value of size will increment after every iteration 
                     t = t.next;
                 }
-                count = count + 1;
+                count = count + 1;                       //// count = count+1 because above loop will traverse till second last node
             }
             return count;
         }
