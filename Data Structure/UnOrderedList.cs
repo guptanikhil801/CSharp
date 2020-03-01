@@ -142,5 +142,17 @@
             }
             return count;
         }
+
+        public bool IsEmpty()
+        {
+            if (Size() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
