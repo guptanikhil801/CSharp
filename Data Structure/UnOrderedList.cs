@@ -149,13 +149,14 @@
         /// <returns></returns>
         public bool IsEmpty()
         {
-            if (Size() == 0)
+            //// will call size() method if it returns 0 then it means list is empty and returns true
+            if (Size() == 0)     
             {
                 return true;
             }
             else
             {
-                return false;
+                return false;                           //// otherwise false
             }
         }
     }
