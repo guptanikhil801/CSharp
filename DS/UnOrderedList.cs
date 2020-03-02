@@ -209,6 +209,28 @@
             pre.next = null;
             return data;
         }
+
+        public void Index(int pos, T data)
+        {
+            Node node = new Node();
+            node.data = data;
+            node.next = null;
+            if(pos==1)
+            {
+                head = node;
+            }
+            else
+            {
+                Node t = head;
+             for(int i =1;i<pos-1;i++)
+                {
+                    t = t.next;
+                }
+
+                node.next = t.next;
+                t.next = node;
+            }
+        }
         
     }
 }
