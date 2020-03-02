@@ -10,7 +10,6 @@
     /// <typeparam name="T">t type </typeparam>
     public class List<T>
     {
-
         /// <summary>
         /// Node class for making Node data type
         /// </summary>
@@ -33,14 +32,14 @@
             node.next = null;            //// set default values
 
             //// check that is the list is empty or not, if empty then node will become head
-            if (head == null)
+            if (this.head == null)
             {
-                head = node;
+               this.head = node;
             }
             ////   if list is not empty than insert it at last
             else
             {
-                Node t = head;           ////  assign head to a temporary Node type variable
+                Node t = this.head;           ////  assign head to a temporary Node type variable
                 ////  this loop will continue till second last node
                 while (t.next != null)
                 {
@@ -58,14 +57,16 @@
         public void Remove(T data)
         {
             //// check if list is already empty
-            if (head == null)
+            if (this.head == null)
             {
                 throw new NullReferenceException("list empty");
             }
-            if (head.next == null)
+
+            if (this.head.next == null)
             {
                 head = null;
             }
+
             Node pre = null;     //// declare a variable which will point the previous node of the node the user want to delete
             Node t = head;
 
@@ -80,7 +81,6 @@
                 pre = t;
                 t = t.next;
             }
-
         }
 
         /// <summary>
@@ -95,6 +95,7 @@
                 Console.WriteLine(node.data);       //// printing datas
                 node = node.next;                   //// node value will keep changing
             }
+
             Console.WriteLine(node.data);           //// manually print last node
         }
 
@@ -112,8 +113,10 @@
                 {
                     return true;
                 }
+
                 t = t.next;
             }
+
             return false;
         }
 
@@ -125,7 +128,8 @@
         {
             int count = 0;
             Node t = head;
-            if (head == null)          //// if head is null then it will return size 0 
+            //// if head is null then it will return size 0 
+            if (head == null)          
             {
                 return 0;
                 throw new NullReferenceException();
@@ -138,6 +142,7 @@
                     count++;                             //// the value of size will increment after every iteration 
                     t = t.next;
                 }
+
                 count = count + 1;                       //// count = count+1 because above loop will traverse till second last node
             }
             return count;
@@ -146,11 +151,11 @@
         /// <summary>
         /// it returns whether the list is empty or not
         /// </summary>
-        /// <returns></returns>
+        /// <returns>bool value</returns>
         public bool IsEmpty()
         {
             //// will call size() method if it returns 0 then it means list is empty and returns true
-            if (Size() == 0)     
+            if (Size() == 0)
             {
                 return true;
             }
@@ -163,13 +168,18 @@
         /// <summary>
         /// it inserts list at last
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">The data</param>
         public void Append(T data)
         {
             Add(data);              //// will simply call Add(data) method beacause by default inserts data at last
         }
 
-        public int index(T data)
+        /// <summary>
+        /// It returns the Index of specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
+        public int Index(T data)
         {
             Node t = head;
             int count = 0;
@@ -183,22 +193,25 @@
                 {
                     break;
                 }
+
                 t = t.next;
             }
 
             return count;
         }
 
-       /// <summary>
-       /// this method removes and returns the last index
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// this method removes and returns the last index
+        /// </summary>
+        /// <returns>value of the last node</returns>
         public T Pop()
         {
-            if (head == null)
-             return default;
-            Node t = head, pre = null;
-           
+            if (this.head == null)
+            {
+                return default;
+            }
+            Node t = this.head, pre = null;
+
             while (t.next != null)
             {
                 pre = t;
@@ -220,14 +233,14 @@
             Node node = new Node();
             node.data = data;
             node.next = null;
-            if(pos==1)
+            if (pos == 1)
             {
-                head = node;
+                this.head = node;
             }
             else
             {
                 Node t = head;
-             for(int i =1;i<pos-1;i++)
+                for (int i = 1; i < pos - 1; i++)
                 {
                     t = t.next;
                 }
@@ -236,6 +249,7 @@
                 t.next = node;
             }
         }
+
         /// <summary>
         /// overloaded method of Pop()
         /// </summary>
@@ -243,16 +257,18 @@
         /// <returns>removes and returns specified position</returns>
         public T Pop(int pos)
         {
-            if (head == null)
+            if (this.head == null)
             {
                 return default;
             }
-            Node t = head, pre = null;
+
+            Node t = this.head, pre = null;
             for (int i = 1; i < pos; i++)
             {
                 pre = t;
                 t = t.next;
             }
+
             T data = t.data;
             pre.next = null;
             return data;
