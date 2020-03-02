@@ -236,6 +236,20 @@
                 t.next = node;
             }
         }
-        
+
+        public T Pop(int pos)
+        {
+            if (head == null)
+                return default;
+            Node t = head, pre = null;
+            for (int i = 1; i < pos; i++)
+            {
+                pre = t;
+                t = t.next;
+            }
+            T data = t.data;
+            pre.next = null;
+            return data;
+        }
     }
 }
