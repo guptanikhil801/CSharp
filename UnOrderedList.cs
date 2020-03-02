@@ -189,11 +189,14 @@
             return count;
         }
 
-       
+       /// <summary>
+       /// this method removes and returns the last index
+       /// </summary>
+       /// <returns></returns>
         public T Pop()
         {
             if (head == null)
-                return default;
+             return default;
             Node t = head, pre = null;
            
             while (t.next != null)
@@ -201,12 +204,11 @@
                 pre = t;
                 t = t.next;
             }
+
             T data = t.data;
             pre.next = null;
             return data;
-            
         }
-
-
+        
     }
 }
