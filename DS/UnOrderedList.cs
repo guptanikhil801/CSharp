@@ -236,11 +236,17 @@
                 t.next = node;
             }
         }
-
+        /// <summary>
+        /// overloaded method of Pop()
+        /// </summary>
+        /// <param name="pos">The position.</param>
+        /// <returns>removes and returns specified position</returns>
         public T Pop(int pos)
         {
             if (head == null)
+            {
                 return default;
+            }
             Node t = head, pre = null;
             for (int i = 1; i < pos; i++)
             {
