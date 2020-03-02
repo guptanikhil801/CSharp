@@ -215,7 +215,7 @@
         /// </summary>
         /// <param name="pos">The position.</param>
         /// <param name="data">The data.</param>
-        public void Index(int pos, T data)
+        public void Insert(int pos, T data)
         {
             Node node = new Node();
             node.data = data;
