@@ -44,6 +44,19 @@
             }
         }
 
+        public T Peek()
+        {
+            if (Top == -1)
+            {
+                Console.WriteLine("Stack is Empty");
+                return default;
+            }
+            else
+            {
+                Console.WriteLine("Peeked from stack " + Ele[Top]);
+                return Ele[Top];
+            }
+        }
 
 
     }    
