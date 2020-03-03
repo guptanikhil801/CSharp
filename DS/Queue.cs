@@ -16,6 +16,10 @@
         private int rear;
         private int size;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Queue{T}"/> class.
+        /// </summary>
+        /// <param name="qsize">The qsize.</param>
         public Queue(int qsize)
         {
             this.qsize = qsize;
