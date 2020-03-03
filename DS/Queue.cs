@@ -30,6 +30,14 @@
             rear++;
             size++;
         }
+
+        public void print()
+        {
+            for(int i=front; i<=rear;i++)
+            {
+                Console.WriteLine(queue[i]);
+            }
+        }
     }
 
 
