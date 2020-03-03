@@ -28,6 +28,11 @@
             rear = 0;
             size = 0;
         }
+
+        /// <summary>
+        /// Adds the specified data to queue.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void Enqueue(T data)
         {
             queue[rear] = data;
