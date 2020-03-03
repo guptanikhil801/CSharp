@@ -40,15 +40,11 @@
             size++;
         }
 
-        public void print()
-        {
-            for (int i = front; i <= rear; i++)
-            {
-                Console.WriteLine(queue[i]);
-            }
-        }
-
-        public T Dequeue()
+        /// <summary>
+        /// Dequeues the data.
+        /// </summary>
+        /// <returns>the data</returns>
+/        public T Dequeue()
         {
             if (front == rear)
             {
