@@ -9,9 +9,9 @@
     /// </summary>
     public class Stack<T>
     {
-        T[] Ele;
-        int Top;
-        int Max;
+        T[] Ele;                //// to create a Array
+        int Top;                //// for index
+        int Max;                //// Maximum size 
 
         public Stack(int size)
         {
@@ -70,7 +70,10 @@
             }
         }
 
-
+        public int Size()
+        {
+            return Top + 1;
+        }
 
     }    
 
