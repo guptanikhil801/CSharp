@@ -42,7 +42,7 @@
         /// <returns>Generic type data</returns>
         public T Pop()
         {
-            if(Top==-1)
+            if (Top == -1)
             {
                 Console.WriteLine("Stack is Empty");
                 return default;
@@ -88,12 +88,15 @@
                 return false;
             }
         }
-
+        /// <summary>
+        /// Returns Size of the stack.
+        /// </summary>
+        /// <returns></returns>
         public int Size()
         {
             return Top + 1;
         }
 
-    }    
+    }
 
 }
