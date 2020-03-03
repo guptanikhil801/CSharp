@@ -58,6 +58,19 @@
             }
         }
 
+        public bool IsEmpty()
+        {
+            if (Top == -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
 
     }    
 
