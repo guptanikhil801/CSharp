@@ -71,7 +71,12 @@
                 return Ele[Top];
             }
         }
-
+        /// <summary>
+        /// Determines whether this instance is empty.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsEmpty()
         {
             if (Top == -1)
