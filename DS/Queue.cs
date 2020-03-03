@@ -38,6 +38,28 @@
                 Console.WriteLine(queue[i]);
             }
         }
+
+        public T Dequeue()
+        {
+            if (front == rear)
+            {
+                Console.WriteLine("Queue is Empty");
+                return default;
+            }
+
+            else
+            {
+                T data = queue[front++];
+                size--;
+                return data;
+            }
+        }
+
+        public int Size()
+        {
+            return size;
+        }
+
     }
 
 
