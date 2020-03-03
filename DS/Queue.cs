@@ -8,11 +8,23 @@
     /// /This class contains implementations of queue Adt
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class Queue<T>
+    public class Queue<T>
     {
         T[] queue;
-        int size;
+        int qsize;
         int front;
         int rear;
+        int size;
+
+        public Queue(int qsize)
+        {
+            this.qsize= qsize;
+            queue = new T[qsize];
+            front = 0;
+            rear = 0;
+            size = 0;
+        }
     }
+
+
 }
