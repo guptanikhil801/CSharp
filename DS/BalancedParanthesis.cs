@@ -3,6 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// This class checks a equation has balanced paranthesis or not
+    /// </summary>
     class BalancedParanthesis
     {
         public static void DriverBalanced()
