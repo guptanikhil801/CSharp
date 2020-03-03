@@ -30,6 +30,20 @@
                 Ele[++Top] = data;
             }
         }
+        public T Pop()
+        {
+            if(Top==-1)
+            {
+                Console.WriteLine("Stack is Empty");
+                return default;
+            }
+            else
+            {
+                Console.WriteLine("Popped from stack " + Ele[Top]);
+                return Ele[Top--];
+            }
+        }
+
 
 
     }    
