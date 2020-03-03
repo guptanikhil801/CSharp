@@ -5,11 +5,12 @@
     using System.Text;
 
     /// <summary>
-    /// /This class contains implementations of queue Adt
+    /// /This class contains implementations of queue 
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">the t type data</typeparam>
     public class Queue<T>
     {
+        
         private T[] queue;
         private int qsize;
         private int front;
@@ -23,10 +24,10 @@
         public Queue(int qsize)
         {
             this.qsize = qsize;
-            queue = new T[qsize];
-            front = 0;
-            rear = 0;
-            size = 0;
+            this.queue = new T[qsize];
+            this.front = 0;
+            this.rear = 0;
+            this.size = 0;
         }
 
         /// <summary>
@@ -35,27 +36,26 @@
         /// <param name="data">The data.</param>
         public void Enqueue(T data)
         {
-            queue[rear] = data;
-            rear++;
-            size++;
+            this.queue[this.rear] = data;
+            this.rear++;
+            this.size++;
         }
 
         /// <summary>
         /// Dequeues the data.
         /// </summary>
         /// <returns>the data</returns>
-/        public T Dequeue()
+       public T Dequeue()
         {
-            if (front == rear)
+            if (this.front == this.rear)
             {
                 Console.WriteLine("Queue is Empty");
                 return default;
             }
-
             else
             {
-                T data = queue[front++];
-                size--;
+                T data = this.queue[this.front++];
+                this.size--;
                 return data;
             }
         }
@@ -63,15 +63,21 @@
         /// <summary>
         /// It returns Size of queue 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>size of queue</returns>
         public int Size()
         {
-            return size;
+            return this.size;
         }
 
+        /// <summary>
+        /// Determines whether queue is empty.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsEmpty()
         {
-            if (Size() == 0)
+            if (this.size == 0)
             {
                 return true;
             }
@@ -80,8 +86,5 @@
                 return false;
             }
         }
-
     }
-
-
 }
