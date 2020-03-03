@@ -35,6 +35,11 @@
                 Ele[++Top] = data;
             }
         }
+
+        /// <summary>
+        /// Pops the last data.
+        /// </summary>
+        /// <returns>Generic type data</returns>
         public T Pop()
         {
             if(Top==-1)
