@@ -9,6 +9,9 @@
     /// </summary>
     class BalancedParanthesis
     {
+        /// <summary>
+        /// Drivers method to take data.
+        /// </summary>
         public static void DriverBalanced()
         {
             Console.WriteLine("Enter Arithmetic Equation: ");
@@ -16,7 +19,12 @@
             Console.WriteLine(CheckParenthesis(aeq));
         }
 
-        public static bool CheckParenthesis(string str)
+        /// <summary>
+        /// Checks the parenthesis.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns>bool value</returns>
+/        public static bool CheckParenthesis(string str)
         {
             Stack<char> stack = new Stack<char>(str.Length);
             for(int i=0; i<str.Length; i++)
