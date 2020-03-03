@@ -19,6 +19,11 @@
             Top = -1;
             Max = size;
         }
+
+        /// <summary>
+        /// Pushes the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void Push(T data)
         {
             if (Top == (Max - 1))
