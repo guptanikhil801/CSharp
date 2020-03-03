@@ -10,15 +10,15 @@
     /// <typeparam name="T"></typeparam>
     public class Queue<T>
     {
-        T[] queue;
-        int qsize;
-        int front;
-        int rear;
-        int size;
+        private T[] queue;
+        private int qsize;
+        private int front;
+        private int rear;
+        private int size;
 
         public Queue(int qsize)
         {
-            this.qsize= qsize;
+            this.qsize = qsize;
             queue = new T[qsize];
             front = 0;
             rear = 0;
@@ -33,7 +33,7 @@
 
         public void print()
         {
-            for(int i=front; i<=rear;i++)
+            for (int i = front; i <= rear; i++)
             {
                 Console.WriteLine(queue[i]);
             }
@@ -62,7 +62,7 @@
 
         public bool IsEmpty()
         {
-            if(Size()==0)
+            if (Size() == 0)
             {
                 return true;
             }
