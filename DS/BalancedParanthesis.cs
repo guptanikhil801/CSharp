@@ -5,9 +5,9 @@
     using System.Text;
 
     /// <summary>
-    /// This class checks a equation has balanced paranthesis or not
+    /// This class checks a equation has balanced parentheses or not
     /// </summary>
-    class BalancedParanthesis
+    public class BalancedParentheses
     {
         /// <summary>
         /// Drivers method to take data.
@@ -16,39 +16,39 @@
         {
             Console.WriteLine("Enter Arithmetic Equation: ");
             string aeq = Console.ReadLine();
-            Console.WriteLine(CheckParenthesis(aeq));
+            Console.WriteLine(CheckParentheses(aeq));
         }
 
         /// <summary>
-        /// Checks the parenthesis.
+        /// Checks the parentheses.
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns>bool value</returns>
-/        public static bool CheckParenthesis(string str)
+        public static bool CheckParentheses(string str)
         {
             Stack<char> stack = new Stack<char>(str.Length);
-            for(int i=0; i<str.Length; i++)
+            for (int i = 0; i < str.Length; i++)
             {
                 char ch = str[i];
-                if(ch=='(')
+                if (ch == '(')
                 {
                     stack.Push(ch);
                 }
-                else if (ch==')')
+                else if (ch == ')')
                 {
-                    if(stack.IsEmpty())
+                    if (stack.IsEmpty())
                     {
                         return false;
                     }
 
-                    if(ch==')'&& stack.Pop()!='(')
+                    if (ch == ')' && stack.Pop() != '(')
                     {
                         return false;
                     }
                 }
             }
+         
             return stack.IsEmpty();
-
         }
     }
 }
