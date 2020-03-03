@@ -9,10 +9,14 @@
     /// </summary>
     public class Stack<T>
     {
-        T[] Ele;                //// to create a Array
-        int Top;                //// for index
-        int Max;                //// Maximum size 
+        public T[] Ele;                //// to create a Array
+        public int Top;                //// for index
+       public int Max;                //// Maximum size 
 
+        /// <summary>
+        /// Initialize value instance of class.
+        /// </summary>
+        /// <param name="size">The size.</param>
         public Stack(int size)
         {
             Ele = new T[size];
