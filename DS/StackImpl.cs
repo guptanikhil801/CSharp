@@ -54,6 +54,10 @@
             }
         }
 
+        /// <summary>
+        /// Peeks the data from stack.
+        /// </summary>
+        /// <returns></returns>
         public T Peek()
         {
             if (Top == -1)
