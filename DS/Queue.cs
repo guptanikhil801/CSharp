@@ -60,6 +60,10 @@
             }
         }
 
+        /// <summary>
+        /// It returns Size of queue 
+        /// </summary>
+        /// <returns></returns>
         public int Size()
         {
             return size;
