@@ -9,9 +9,9 @@
     /// </summary>
     public class Stack<T>
     {
-        public T[] Ele;                //// to create a Array
-        public int Top;                //// for index
-       public int Max;                //// Maximum size 
+        private T[] ele;                //// to create a Array
+        private int top;                //// for index
+        private int max;                //// maximum size 
 
         /// <summary>
         /// Initialize value instance of class.
@@ -19,9 +19,9 @@
         /// <param name="size">The size.</param>
         public Stack(int size)
         {
-            Ele = new T[size];
-            Top = -1;
-            Max = size;
+            this.ele = new T[size];
+           this.top = -1;
+            this.max = size;
         }
 
         /// <summary>
@@ -30,13 +30,13 @@
         /// <param name="data">The data.</param>
         public void Push(T data)
         {
-            if (Top == (Max - 1))
+            if (this.top == (this.max - 1))
             {
                 Console.WriteLine("Stack Overflow");
             }
             else
             {
-                Ele[++Top] = data;
+                this.ele[++this.top] = data;
             }
         }
 
@@ -46,35 +46,36 @@
         /// <returns>Generic type data</returns>
         public T Pop()
         {
-            if (Top == -1)
+            if (this.top == -1)
             {
                 Console.WriteLine("Stack is Empty");
                 return default;
             }
             else
             {
-                Console.WriteLine("Popped from stack " + Ele[Top]);
-                return Ele[Top--];
+                Console.WriteLine("Popped from stack " + this.ele[this.top]);
+                return this.ele[this.top--];
             }
         }
 
         /// <summary>
         /// Peeks the data from stack.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the data</returns>
         public T Peek()
         {
-            if (Top == -1)
+            if (this.top == -1)
             {
                 Console.WriteLine("Stack is Empty");
                 return default;
             }
             else
             {
-                Console.WriteLine("Peeked from stack " + Ele[Top]);
-                return Ele[Top];
+                Console.WriteLine("Peeked from stack " + this.ele[this.top]);
+                return this.ele[this.top];
             }
         }
+
         /// <summary>
         /// Determines whether this instance is empty.
         /// </summary>
@@ -83,7 +84,7 @@
         /// </returns>
         public bool IsEmpty()
         {
-            if (Top == -1)
+            if (this.top == -1)
             {
                 return true;
             }
@@ -92,15 +93,14 @@
                 return false;
             }
         }
+
         /// <summary>
         /// Returns Size of the stack.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the size</returns>
         public int Size()
         {
-            return Top + 1;
+            return this.top + 1;
         }
-
     }
-
 }
