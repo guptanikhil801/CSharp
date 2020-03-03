@@ -24,6 +24,12 @@
             rear = 0;
             size = 0;
         }
+        public void Enqueue(T data)
+        {
+            queue[rear] = data;
+            rear++;
+            size++;
+        }
     }
 
 
