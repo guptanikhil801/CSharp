@@ -36,6 +36,12 @@
             }
         }
 
-        
+        public void AddFront(T data)
+        {
+            Node node = new Node();
+            node.Data = data;
+            node.Next = null;
+            this.Head = node;
+        }
     }
 }
