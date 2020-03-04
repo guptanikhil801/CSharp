@@ -118,13 +118,17 @@
         /// <summary>
         /// Removes the front data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>front data</returns>
         public T RemoveFront()
         {
           T rf =  Remove(1);
             return rf;
         }
 
+        /// <summary>
+        /// Removes the rear data.
+        /// </summary>
+        /// <returns></returns>
         public T RemoveRear()
         {
             T rr = Remove(Size());
