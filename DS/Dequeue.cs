@@ -67,5 +67,30 @@
             }
             return count;
         }
+
+        public T Remove(int pos)
+        {
+            if (this.Head == null)
+            {
+                return default;
+            }
+
+            Node t = this.Head, pre = null;
+            for (int i = 1; i < pos; i++)
+            {
+                pre = t;
+                t = t.Next;
+            }
+
+            T Data = t.Data;
+            pre.Next = null;
+            return Data;
+        }
+
+        public T RemoveFront()
+        {
+          T rd =  Remove(1);
+            return rd;
+        }
     }
 }
