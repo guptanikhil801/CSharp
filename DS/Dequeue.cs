@@ -10,6 +10,10 @@
     /// <typeparam name="T"></typeparam>
     class Dequeue<T>
     {
+
+        /// <summary>
+        /// defining the node
+        /// </summary>
         public class Node
         {
             public T Data;
