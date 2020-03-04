@@ -134,6 +134,13 @@
             T rr = Remove(Size());
             return rr;
         }
+
+        /// <summary>
+        /// Determines whether this Dequeue is empty.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is empty; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsEmpty()
         {
             if(Size()==0)
