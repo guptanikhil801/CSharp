@@ -7,10 +7,9 @@
     /// <summary>
     /// This class has code for implementation of Dequeue
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    class Dequeue<T>
+    /// <typeparam name="T">Generic type</typeparam>
+    public class Dequeue<T>
     {
-
         /// <summary>
         /// defining the node
         /// </summary>
@@ -19,6 +18,7 @@
             public T Data;
             public Node Next;
         }
+
         public Node Head;
 
         /// <summary>
@@ -36,7 +36,6 @@
             {
                 this.Head = node;
             }
-            ////   if list is not empty than insert it at last
             else
             {
                 Node t = this.Head;           ////  assign Head to a temporary Node type variable
@@ -70,9 +69,9 @@
         public int Size()
         {
             int count = 0;
-            Node t = Head;
+            Node t = this.Head;
             //// if Head is null then it will return size 0 
-            if (Head == null)
+            if (this.Head == null)
             {
                 return 0;
                 throw new NullReferenceException();
@@ -88,6 +87,7 @@
 
                 count = count + 1;                       //// count = count+1 because above loop will traverse till second last node
             }
+
             return count;
         }
 
@@ -121,17 +121,17 @@
         /// <returns>front data</returns>
         public T RemoveFront()
         {
-          T rf =  Remove(1);
+            T rf = this.Remove(1);
             return rf;
         }
 
         /// <summary>
         /// Removes the rear data.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>last data</returns>
         public T RemoveRear()
         {
-            T rr = Remove(Size());
+            T rr = this.Remove(this.Size());
             return rr;
         }
 
@@ -143,7 +143,7 @@
         /// </returns>
         public bool IsEmpty()
         {
-            if(Size()==0)
+            if (this.Size() == 0)
             {
                 return true;
             }
@@ -151,7 +151,6 @@
             {
                 return false;
             }
-
         }
     }
 }
