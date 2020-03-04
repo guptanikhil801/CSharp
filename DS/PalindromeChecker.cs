@@ -27,5 +27,13 @@
 
             return true;
         }
+
+        public static void DriverPalinChecker()
+        {
+            Console.WriteLine("Enter word to check palindrome");
+            string word = Console.ReadLine();
+            Console.WriteLine(IsPalindrome(word));
+        }
+
     }
 }
