@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataStructure.DS_Programmes
+﻿namespace DataStructure.DS_Programmes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// This class has code to print prime number 0 to 1000 in 2D Array
     /// </summary>
-   public class Prime2dimensional
+    public class Prime2dimensional
     {
+        /// <summary>
+        /// it checks whether a number is prime or not
+        /// </summary>
+        /// <param name="num">the number</param>
+        /// <returns>true or false</returns>
         public static bool CheckPrime(int num)
         {
             int m = num / 2;
@@ -28,13 +33,12 @@ namespace DataStructure.DS_Programmes
         /// <summary>
         /// This method stores prime number to 2d array
         /// </summary>
-        /// <param name="pArray">the array</param>
+        /// <param name="prarr">the array</param>
         /// <returns>after storing prime numbers it returns 2d array</returns>
-        public static int[,] StorePrimeToArray(int[,] pArray)
+        public static int[,] StorePrimeToArray(int[,] prarr)
         {
-            
             int m = 0, n = 100;                //// because range is 100 
-            for (int i = 0; i < pArray.GetLength(0) && n < 1001; i++)
+            for (int i = 0; i < prarr.GetLength(0) && n < 1001; i++)
             {
                 if (i % 2 == 1)
                 {
@@ -43,20 +47,21 @@ namespace DataStructure.DS_Programmes
                         //// checkingg if number is prime or not
                         if (CheckPrime(j))
                         {
-                            pArray[i, k++] = j;           //// if it is prime the number will be stored
+                            prarr[i, k++] = j;           //// if it is prime the number will be stored
                         }
                     }
+
                     m = n;                   //// to change range
                     n = n + 100;
-                 }
+                }
                 else
                 {
-                    pArray[i, 0] = m;            //// it will print on first column
-                    pArray[i, 1] = n;            //// it will print on second column
+                    prarr[i, 0] = m;            //// it will print on first column
+                    prarr[i, 1] = n;            //// it will print on second column
                 }
             }
 
-            return pArray;
+            return prarr;
         }
 
         /// <summary>
@@ -67,9 +72,9 @@ namespace DataStructure.DS_Programmes
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
-                if (i % 2 == 0)     
+                if (i % 2 == 0)
                 {
-                    Console.Write(arr[i, 0] +"-" + arr[i, 1]);  //// this will print Range
+                    Console.Write(arr[i, 0] + "-" + arr[i, 1]);  //// this will print Range
                 }
                 else
                 {
@@ -81,6 +86,7 @@ namespace DataStructure.DS_Programmes
                         }
                     }
                 }
+
                 Console.WriteLine();
             }
         }
@@ -90,10 +96,9 @@ namespace DataStructure.DS_Programmes
         /// </summary>
         public static void DriverPrime2D()
         {
-            int[,] pArray = new int[20, 27];     //// there will be 20(10 for range and 10 for value) rows and 
-                                           //// 27 column because in a range of 100 there is maximum 27 numbers(0-100)
-            DisplayArray(StorePrimeToArray(pArray));
+            int[,] primear = new int[20, 27];     //// there will be 20(10 for range and 10 for value) rows and 
+                                                  //// 27 column because in a range of 100 there is maximum 27 numbers(0-100)
+            DisplayArray(StorePrimeToArray(primear));
         }
-
     }
 }
