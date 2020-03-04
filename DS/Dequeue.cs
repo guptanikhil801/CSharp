@@ -115,6 +115,10 @@
             return Data;
         }
 
+        /// <summary>
+        /// Removes the front data.
+        /// </summary>
+        /// <returns></returns>
         public T RemoveFront()
         {
           T rf =  Remove(1);
