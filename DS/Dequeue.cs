@@ -50,6 +50,10 @@
             }
         }
 
+        /// <summary>
+        /// Adds the data to front.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void AddFront(T data)
         {
             Node node = new Node();
