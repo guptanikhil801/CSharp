@@ -92,11 +92,10 @@
         }
 
         /// <summary>
-        /// Removes the data of specified position.
+        /// Removes the rear data.
         /// </summary>
-        /// <param name="pos">The position.</param>
-        /// <returns>the data of specified position</returns>
-        public T Remove(int pos)
+        /// <returns>last data</returns>
+        public T RemoveRear()
         {
             if (this.Head == null)
             {
@@ -104,15 +103,16 @@
             }
 
             Node t = this.Head, pre = null;
-            for (int i = 1; i < pos; i++)
+
+            while (t.Next != null)
             {
                 pre = t;
                 t = t.Next;
             }
 
-            T Data = t.Data;
+            T data = t.Data;
             pre.Next = null;
-            return Data;
+            return data;
         }
 
         /// <summary>
@@ -121,18 +121,15 @@
         /// <returns>front data</returns>
         public T RemoveFront()
         {
-            T rf = this.Remove(1);
-            return rf;
-        }
+            if (this.Head == null)
+            {
+                Console.WriteLine("que is Empty");
+                return default;
+            }
 
-        /// <summary>
-        /// Removes the rear data.
-        /// </summary>
-        /// <returns>last data</returns>
-        public T RemoveRear()
-        {
-            T rr = this.Remove(this.Size());
-            return rr;
+            T data = this.Head.Data;
+            this.Head = this.Head.Next;
+            return data;
         }
 
         /// <summary>
