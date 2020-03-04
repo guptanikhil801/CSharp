@@ -20,6 +20,11 @@
             public Node Next;
         }
         public Node Head;
+
+        /// <summary>
+        /// Adds the data to rear position.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public void AddRear(T data)
         {
             Node node = new Node();        //// create a new node
