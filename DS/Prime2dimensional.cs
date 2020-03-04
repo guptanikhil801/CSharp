@@ -22,25 +22,9 @@ namespace DataStructure.DS_Programmes
             return true;       //// otherwise if not divisible then true
         }
 
-        public static int CountPrime()
+        public static int[,] StorePrimeToArray(int[,] pArray)
         {
-            int range1 = 0;
-            int range2 = 100;
-            int count = 0;
-            for (int i = range1; i < range2; i++)
-            {
-                if (CheckPrime(i))
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-
-        public int[,] StorePrimeToArray()
-        {
-            int[,] pArray = new int[20, 30];
+            
             int m = 0, n = 100;
             for (int i = 0; i < pArray.GetLength(0) && n < 1001; i++)
             {
@@ -64,6 +48,34 @@ namespace DataStructure.DS_Programmes
             }
 
             return pArray;
+        }
+
+        public static void DisplayArray(int[,] arr)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.Write(arr[i, 0] +"-" + arr[i, 1]);
+                }
+                else
+                {
+                    for (int j = 0; j < arr.GetLength(1); j++)
+                    {
+                        if (arr[i, j] != 0)
+                        {
+                            Console.Write(arr[i, j] + " ");
+                        }
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void DriverPrime2D()
+        {
+            int[,] pArray = new int[20, 27];  
+            DisplayArray(StorePrimeToArray(pArray));
         }
 
     }
