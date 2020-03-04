@@ -62,6 +62,11 @@
             this.Head = node;
         }
 
+        /// <summary>
+        /// Returns the Size 
+        /// </summary>
+        /// <returns>total size</returns>
+        /// <exception cref="NullReferenceException">if head is null</exception>
         public int Size()
         {
             int count = 0;
