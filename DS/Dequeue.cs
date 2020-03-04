@@ -43,5 +43,29 @@
             node.Next = null;
             this.Head = node;
         }
+
+        public int Size()
+        {
+            int count = 0;
+            Node t = Head;
+            //// if Head is null then it will return size 0 
+            if (Head == null)
+            {
+                return 0;
+                throw new NullReferenceException();
+            }
+            else
+            {
+                //// the loop will continue till the second last node
+                while (t.Next != null)
+                {
+                    count++;                             //// the value of size will increment after every iteration 
+                    t = t.Next;
+                }
+
+                count = count + 1;                       //// count = count+1 because above loop will traverse till second last node
+            }
+            return count;
+        }
     }
 }
