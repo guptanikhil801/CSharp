@@ -89,8 +89,14 @@
 
         public T RemoveFront()
         {
-          T rd =  Remove(1);
-            return rd;
+          T rf =  Remove(1);
+            return rf;
+        }
+
+        public T RemoveRear()
+        {
+            T rr = Remove(Size());
+            return rr;
         }
     }
 }
