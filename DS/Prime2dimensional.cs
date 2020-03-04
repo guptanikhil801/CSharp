@@ -33,25 +33,26 @@ namespace DataStructure.DS_Programmes
         public static int[,] StorePrimeToArray(int[,] pArray)
         {
             
-            int m = 0, n = 100;
+            int m = 0, n = 100;                //// because range is 100 
             for (int i = 0; i < pArray.GetLength(0) && n < 1001; i++)
             {
                 if (i % 2 == 1)
                 {
                     for (int j = m, k = 0; j < n; j++)
                     {
+                        //// checkingg if number is prime or not
                         if (CheckPrime(j))
                         {
-                            pArray[i, k++] = j;
+                            pArray[i, k++] = j;           //// if it is prime the number will be stored
                         }
                     }
-                    m = n;
+                    m = n;                   //// to change range
                     n = n + 100;
-                }
+                 }
                 else
                 {
-                    pArray[i, 0] = m;
-                    pArray[i, 1] = n;
+                    pArray[i, 0] = m;            //// it will print on first column
+                    pArray[i, 1] = n;            //// it will print on second column
                 }
             }
 
@@ -66,9 +67,9 @@ namespace DataStructure.DS_Programmes
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
-                if (i % 2 == 0)
+                if (i % 2 == 0)     
                 {
-                    Console.Write(arr[i, 0] +"-" + arr[i, 1]);
+                    Console.Write(arr[i, 0] +"-" + arr[i, 1]);  //// this will print Range
                 }
                 else
                 {
@@ -76,7 +77,7 @@ namespace DataStructure.DS_Programmes
                     {
                         if (arr[i, j] != 0)
                         {
-                            Console.Write(arr[i, j] + " ");
+                            Console.Write(arr[i, j] + " ");         //// for printing value
                         }
                     }
                 }
@@ -89,7 +90,8 @@ namespace DataStructure.DS_Programmes
         /// </summary>
         public static void DriverPrime2D()
         {
-            int[,] pArray = new int[20, 27];  
+            int[,] pArray = new int[20, 27];     //// there will be 20(10 for range and 10 for value) rows and 
+                                           //// 27 column because in a range of 100 there is maximum 27 numbers(0-100)
             DisplayArray(StorePrimeToArray(pArray));
         }
 
