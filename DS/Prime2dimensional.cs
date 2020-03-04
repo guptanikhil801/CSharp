@@ -25,6 +25,11 @@ namespace DataStructure.DS_Programmes
             return true;       //// otherwise if not divisible then true
         }
 
+        /// <summary>
+        /// This method stores prime number to 2d array
+        /// </summary>
+        /// <param name="pArray">the array</param>
+        /// <returns>after storing prime numbers it returns 2d array</returns>
         public static int[,] StorePrimeToArray(int[,] pArray)
         {
             
