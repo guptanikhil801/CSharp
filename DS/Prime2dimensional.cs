@@ -84,6 +84,9 @@ namespace DataStructure.DS_Programmes
             }
         }
 
+        /// <summary>
+        /// this method prints the result by calling methods
+        /// </summary>
         public static void DriverPrime2D()
         {
             int[,] pArray = new int[20, 27];  
