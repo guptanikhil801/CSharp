@@ -3,6 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// This class has code for implementation of Dequeue
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     class Dequeue<T>
     {
         public class Node
