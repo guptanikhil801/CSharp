@@ -58,6 +58,10 @@ namespace DataStructure.DS_Programmes
             return pArray;
         }
 
+        /// <summary>
+        /// it displays the 2D Array
+        /// </summary>
+        /// <param name="arr">2d array</param>
         public static void DisplayArray(int[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
