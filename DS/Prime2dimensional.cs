@@ -4,7 +4,10 @@ using System.Text;
 
 namespace DataStructure.DS_Programmes
 {
-    class Prime2dimensional
+    /// <summary>
+    /// This class has code to print prime number 0 to 1000 in 2D Array
+    /// </summary>
+   public class Prime2dimensional
     {
         public static bool CheckPrime(int num)
         {
