@@ -91,6 +91,11 @@
             return count;
         }
 
+        /// <summary>
+        /// Removes the data of specified position.
+        /// </summary>
+        /// <param name="pos">The position.</param>
+        /// <returns>the data of specified position</returns>
         public T Remove(int pos)
         {
             if (this.Head == null)
