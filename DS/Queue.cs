@@ -1,16 +1,15 @@
-﻿namespace DataStructure.DS_Programmes
+﻿namespace DataStructure
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
-
     /// <summary>
     /// /This class contains implementations of queue 
     /// </summary>
     /// <typeparam name="T">the t type data</typeparam>
+   
     public class Queue<T>
     {
-        
         private T[] queue;
         private int qsize;
         private int front;
@@ -45,7 +44,7 @@
         /// Dequeues the data.
         /// </summary>
         /// <returns>the data</returns>
-       public T Dequeue()
+        public T Dequeue()
         {
             if (this.front == this.rear)
             {
@@ -85,6 +84,16 @@
             {
                 return false;
             }
+        }
+        public override string ToString()
+        {
+            String s = "";
+            for (int i = front; i <rear && front != -1; i++)
+            {
+                s = s + queue[i] + " ";
+
+            }
+            return s;
         }
     }
 }
