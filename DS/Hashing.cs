@@ -125,6 +125,11 @@
                 }
             }
         }
+        /// <summary>
+        /// this method searches the data
+        /// </summary>
+        /// <param name="hashTable">the hashtable</param>
+        /// <param name="search">the item to be searched</param>
         private static void Searching(Node<int>[] hashTable, int search)
         {
             int key = search % (Size + 1);
