@@ -179,6 +179,9 @@
             Display(hashTable);
         }
 
+        /// <summary>
+        /// This is driver method of hashing
+        /// </summary>
         public static void HashingDriver()
         {
             string numbers = File.ReadAllText(@"C:\Users\yempc69\Desktop\HashNumbers.txt");
