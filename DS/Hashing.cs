@@ -64,5 +64,33 @@
                 }
             }
         }
+
+        private static void Remove(int item, Node<int>[] hashTable)
+        {
+            int key = item % (Size + 1);
+            if(hashTable[key].Data==item && hashTable[key].Next==null)
+            {
+                hashTable[key] = null;
+            }
+            else
+            {
+                Node<int> head = hashTable[key];
+                Node<int> prev = hashTable[key];
+                while(head.Data!=item)
+                {
+                    prev = head;
+                    head = head.Next;
+                }
+                if(head.Data==item && head == hashTable[key])
+                {
+                    prev = head.Next;
+                    hashTable[key] = prev;
+                }
+                else if (head.Data == item)
+                {
+                    prev.Next = head.Next;
+                }
+            }
+        }
     }
 }
