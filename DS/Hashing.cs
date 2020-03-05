@@ -3,6 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// This class has code for hash based search
+    /// </summary>
     class Hashing
     {
         public const int Size = 10;
@@ -12,6 +16,11 @@
             public Node<T> Next;
         }
 
+        /// <summary>
+        /// This method adds data to hashtable
+        /// </summary>
+        /// <param name="hashTable">The hashtable</param>
+        /// <param name="item">the data</param>
         private static void AddData(Node<int>[] hashTable, int item)
         {
             Node<int> node = new Node<int>();
