@@ -36,9 +36,9 @@
                 Node<int> head = hashTable[temp];
                 Node<int> prev = hashTable[temp];
                 Node<int> t = hashTable[temp];
-                while(t.Next!=null)
+                while (t.Next != null)
                 {
-                    if(node.Data<head.Data)
+                    if (node.Data < head.Data)
                     {
                         node.Next = head;
                         hashTable[temp] = node;
@@ -53,11 +53,11 @@
                     t = t.Next;
                 }
 
-                if(t.Next == null && head.Data<node.Data)
+                if (t.Next == null && head.Data < node.Data)
                 {
                     head.Next = node;
                 }
-                else if (t.Next == null && head.Data>node.Data)
+                else if (t.Next == null && head.Data > node.Data)
                 {
                     node.Next = prev;
                     hashTable[temp] = node;
@@ -68,7 +68,7 @@
         private static void Remove(int item, Node<int>[] hashTable)
         {
             int key = item % (Size + 1);
-            if(hashTable[key].Data==item && hashTable[key].Next==null)
+            if (hashTable[key].Data == item && hashTable[key].Next == null)
             {
                 hashTable[key] = null;
             }
@@ -76,12 +76,12 @@
             {
                 Node<int> head = hashTable[key];
                 Node<int> prev = hashTable[key];
-                while(head.Data!=item)
+                while (head.Data != item)
                 {
                     prev = head;
                     head = head.Next;
                 }
-                if(head.Data==item && head == hashTable[key])
+                if (head.Data == item && head == hashTable[key])
                 {
                     prev = head.Next;
                     hashTable[key] = prev;
@@ -114,6 +114,54 @@
                     Console.WriteLine(items.Data);
                 }
             }
+        }
+        private static void Searching(Node<int>[] hashTable, int search)
+        {
+            int key = search % (Size + 1);
+            if (hashTable[key].Next == null)
+            {
+                if (hashTable[key].Data == search)
+                {
+                    Console.WriteLine("Item Found");
+                    Remove(search, hashTable);
+                }
+                else
+                {
+                    Console.WriteLine(" Item Not Found");
+                    AddData(hashTable, search);
+                }
+            }
+            else
+            {
+                Node<int> head = hashTable[key];
+                Node<int> prev = hashTable[key];
+                Node<int> t = hashTable[key];
+
+                while (head.Next != null)
+                {
+                    if (head.Data == search)
+                    {
+                        Console.WriteLine("Item Found");
+                        Remove(search, hashTable);
+                        break;
+                    }
+
+                    head = head.Next;
+                }
+
+                if (head.Next == null && head.Data == search)
+                {
+                    Console.WriteLine("Item Found");
+                    Remove(search, hashTable);
+                }
+                else if (head.Next == null)
+                {
+                    Console.WriteLine(" Item Not Found");
+                    AddData(hashTable, search);
+                }
+            }
+            Console.WriteLine("After Searching the HashTable will be");
+            Display(hashTable);
         }
     }
 }
