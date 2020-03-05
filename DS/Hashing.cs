@@ -18,7 +18,7 @@
         }
 
         /// <summary>
-        /// This method adds data to hashtable
+        /// This method adds data to hashtable if data entered by user not found in list
         /// </summary>
         /// <param name="hashTable">The hashtable</param>
         /// <param name="item">the data</param>
@@ -66,6 +66,11 @@
             }
         }
 
+        /// <summary>
+        /// This method removes the searched data if found in hashtable
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="hashTable"></param>
         private static void Remove(int item, Node<int>[] hashTable)
         {
             int key = item % (Size + 1);
