@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.IO;
 
     /// <summary>
     /// This class has code for hash based search
@@ -162,6 +163,23 @@
             }
             Console.WriteLine("After Searching the HashTable will be");
             Display(hashTable);
+        }
+
+        public static void HashingDriver()
+        {
+            string numbers = File.ReadAllText(@"C:\Users\yempc69\Desktop\HashNumbers.txt");
+            string[] hashnum = numbers.Split(' ');
+            int[] hnum = Array.ConvertAll(hashnum, int.Parse);
+            Node<int>[] hashTable = new Node<int>[Size + 1];
+            foreach (int item in hnum)
+            {
+                AddData(hashTable, item);
+            }
+
+            Display(hashTable);
+            Console.WriteLine("Enter the number to search");
+            int search = Convert.ToInt32(Console.ReadLine());
+            Searching(hashTable, search);
         }
     }
 }
