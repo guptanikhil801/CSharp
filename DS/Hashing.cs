@@ -99,6 +99,10 @@
             }
         }
 
+        /// <summary>
+        /// this methode displays the hashtable
+        /// </summary>
+        /// <param name="hashTable">the hashtable</param>
         private static void Display(Node<int>[] hashTable)
         {
             foreach (Node<int> item in hashTable)
