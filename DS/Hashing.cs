@@ -92,5 +92,28 @@
                 }
             }
         }
+
+        private static void Display(Node<int>[] hashTable)
+        {
+            foreach (Node<int> item in hashTable)
+            {
+                Node<int> items = item;
+                if (items == null)
+                {
+                    Console.WriteLine(" ");
+                }
+
+                else
+                {
+                    while (items.Next != null)
+                    {
+                        Console.WriteLine(items.Data);
+                        items = items.Next;
+                    }
+
+                    Console.WriteLine(items.Data);
+                }
+            }
+        }
     }
 }
