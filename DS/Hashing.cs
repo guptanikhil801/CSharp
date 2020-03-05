@@ -8,9 +8,10 @@
     /// <summary>
     /// This class has code for hash based search
     /// </summary>
-    class Hashing
+    public class Hashing
     {
         public const int Size = 10;
+
         public class Node<T>
         {
             public T Data;
@@ -18,9 +19,9 @@
         }
 
         /// <summary>
-        /// This method adds data to hashtable if data entered by user not found in list
+        /// This method adds data to hashTable if data entered by user not found in list
         /// </summary>
-        /// <param name="hashTable">The hashtable</param>
+        /// <param name="hashTable">The hashTable</param>
         /// <param name="item">the data</param>
         private static void AddData(Node<int>[] hashTable, int item)
         {
@@ -67,10 +68,10 @@
         }
 
         /// <summary>
-        /// This method removes the searched data if found in hashtable
+        /// This method removes the searched data if found in hashTable
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="hashTable"></param>
+        /// <param name="item">integer type data</param>
+        /// <param name="hashTable">the hashTable</param>
         private static void Remove(int item, Node<int>[] hashTable)
         {
             int key = item % (Size + 1);
@@ -87,11 +88,13 @@
                     prev = head;
                     head = head.Next;
                 }
+
                 if (head.Data == item && head == hashTable[key])
                 {
                     prev = head.Next;
                     hashTable[key] = prev;
                 }
+
                 else if (head.Data == item)
                 {
                     prev.Next = head.Next;
@@ -100,9 +103,9 @@
         }
 
         /// <summary>
-        /// this methode displays the hashtable
+        /// this method displays the hashTable
         /// </summary>
-        /// <param name="hashTable">the hashtable</param>
+        /// <param name="hashTable">the hashTable</param>
         private static void Display(Node<int>[] hashTable)
         {
             foreach (Node<int> item in hashTable)
@@ -112,7 +115,6 @@
                 {
                     Console.WriteLine(" ");
                 }
-
                 else
                 {
                     while (items.Next != null)
@@ -125,10 +127,11 @@
                 }
             }
         }
+
         /// <summary>
         /// this method searches the data
         /// </summary>
-        /// <param name="hashTable">the hashtable</param>
+        /// <param name="hashTable">the hashTable</param>
         /// <param name="search">the item to be searched</param>
         private static void Searching(Node<int>[] hashTable, int search)
         {
@@ -175,6 +178,7 @@
                     AddData(hashTable, search);
                 }
             }
+
             Console.WriteLine("After Searching the HashTable will be");
             Display(hashTable);
         }
