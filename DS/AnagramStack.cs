@@ -46,16 +46,16 @@
         {
             if (this.Top == null)
             {
-                Console.WriteLine("Stack underflow");
+                Console.WriteLine("Stack underflow");     //// if top is null
                 return;
             }
             else
             {
-                Node temp = this.Top;
+                Node temp = this.Top;         //// assigning top to temp variable
                 while (temp != null)
                 {
-                    Console.Write(temp.Data + " ");
-                    temp = temp.Next;
+                    Console.Write(temp.Data + " ");    //// print data
+                    temp = temp.Next;   ////temp next will keep changing
                 }
             }
         }
