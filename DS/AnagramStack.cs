@@ -1,11 +1,11 @@
 ﻿namespace DataStructure
 {
-
     using System;
     using System.Collections.Generic;
     using System.Text;
+
     /// <summary>
-    /// this class contains stack implemetation required for Anagram number storing 
+    /// this class contains stack implementation required for Anagram number storing 
     /// </summary>
     public class Stackll
     {
@@ -17,12 +17,13 @@
             public int Data;
             public Node Next;
         }
+
         public Node Top;
 
         /// <summary>
         /// This method adds data to stack
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">the data to be added</param>
         public void Push(int data)
         {
             Node node = new Node();
@@ -34,8 +35,8 @@
             }
 
             node.Data = data;
-            node.Next = Top;
-            Top = node;
+            node.Next = this.Top;
+            this.Top = node;
         }
 
         /// <summary>
@@ -43,15 +44,15 @@
         /// </summary>
         public void Display()
         {
-            if(Top==null)
+            if (this.Top == null)
             {
                 Console.WriteLine("Stack underflow");
                 return;
             }
             else
             {
-                Node temp = Top;
-                while(temp!=null)
+                Node temp = this.Top;
+                while (temp != null)
                 {
                     Console.Write(temp.Data + " ");
                     temp = temp.Next;
@@ -77,7 +78,7 @@
             {
                 if (Anagram2DArray.CheckPrime(i))
                 {
-                   for (int j = i +1; j <1001; j++)
+                    for (int j = i + 1; j < 1001; j++)
                     {
                         if (Anagram2DArray.CheckPrime(j) && Anagram2DArray.CheckAnagramInteger(i, j))
                         {
@@ -91,6 +92,5 @@
 
             sl.Display();
         }
-
     }
 }
