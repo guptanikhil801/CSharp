@@ -9,7 +9,7 @@
     /// </summary>
     public class Calender
     {
-        public static string[] month = { "", "january", "Febuary", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December" };
+        public static string[] monthstr = { "", "january", "Febuary", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December" };
 
         /// <summary>
         /// This method checks a year is leap year or not
@@ -42,83 +42,120 @@
             return d0;
         }
 
+
+        public static int MonthLength(int month, int year)
+        {
+            
+            int monthdays=0;
+            if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+            {
+                monthdays = 31;
+            }
+            else if (month == 4 || month == 6 || month == 8 || month == 11)
+            {
+                monthdays = 30;
+            }
+            else if (IsLeap(year))
+            {
+                if (month == 2)
+                {
+                    monthdays = 29;
+                }
+            }
+            else if (month == 2)
+            {
+                monthdays = 28;
+            }
+            return monthdays;
+        }
+
         /// <summary>
         /// Thid method make a whole month calender 
         /// </summary>
         /// <param name="m">the month</param>
         /// <param name="y">the yea</param>
         /// <returns>whole calender</returns>
-        public static int[,] MakeCalender(int m, int y)
+        public static int[,] MakeCalender(int mon, int ye)
         {
-            int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };        ////first value is 0 beacause month range is 1 to 12, jan has 31 days and so on
 
-            if (IsLeap(y))
+            int md = MonthLength(mon, ye);
+
+            int [,] cal = new int[1, md];
+            for (int k = 1; k <= md; k++)
             {
-                daysinmonth[2] = 29;  //// this will replace 28 to 29 in Feb month
-            }
-            int[,] cal = new int[2, daysinmonth[m] + 1];
-            for (int i = 0; i < 2; i++)
-            {
-                for (int j = 1; j < cal.GetLength(1); j++)
+                for (int i = 0; i < cal.GetLength(0); i++)
                 {
-                    if (i == 0 && j <= 6)
+                    for (int j = 0; j < cal.GetLength(1); j++)
                     {
-                        cal[i, j] = j;
-                    }
-                    if (i == 1)
-                    {
-                        cal[i, j] = j;
+                        cal[i, j] = k;
+                        k++;
                     }
                 }
             }
+
             return cal;
         }
 
-        public static void DisplayCalender(int m, int y)
+        public static void DisplayArray(int[,] arr, int mo, int yea)
         {
-            char[] week = { 'S', 'M', 'T', 'W', 'T', 'F', 'S' };
-            int d = DayOffWeek(1, m, y);
-            int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };        ////first value is 0 beacause month range is 1 to 12, jan has 31 days and so on
-
-            if (IsLeap(y))
-            {
-                daysinmonth[2] = 29;  //// this will replace 28 to 29 in Feb month
-            }
-            Console.WriteLine(month[m] + "  " + y);
-
-            for (int i = 0; i < week.Length; i++)
-            {
-                Console.Write(week[i] + "  ");
-            }
-            Console.WriteLine();
-            for (int i = 0; i < d; i++)
-            {
-                Console.Write("{0}  ", ' ');
-            }
-
-            for (int i = 1; i <= daysinmonth[m]; i++)
-            {
-                Console.Write("{0,2} ", i);
-                if ((i + d) % 7 == 0)
-                {
-                    Console.WriteLine();
-                }
-            }
-        }
-        
-        public static void DisplayArray(int[,] arr)
-        {
-            for (int i = 0; i < 2; i++)
+            int ml = MonthLength(mo, yea);
+            for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    if (arr[i, j] != 0 && j != 0) Console.Write(arr[i, j] + " ");
-                    if (i != 1 && j == 0) Console.Write(arr[i, j] + " ");
+                    if (arr[i, j] != 0&& arr[i,j]<=ml)
+                    {
+                        if(j%6==0)
+                        {
+                            Console.WriteLine();
+                        }
+                        if (arr[i, j] < 10)
+                        {
+                            Console.Write(arr[i, j] + "  ");
+                        }
+                        else
+                        {
+                            Console.Write(arr[i, j] + " ");
+                        }
+                                                                             //// for printing value
+                    }
                 }
-                Console.WriteLine();
+
+                
             }
         }
 
+        public static void DriverCalender()
+        {
+            Console.WriteLine("Enter month");
+            int month = int.Parse(Console.ReadLine());
+            Console.Write("Enter Year ");
+            int year = int.Parse(Console.ReadLine());
+            int sp = DayOffWeek(1, month, year);
+            Console.Clear();
+           
+            char[] week = { 'S', 'M', 'T', 'W', 'T', 'F', 'S' };
+
+            
+            int[,] ar = MakeCalender(month, year);
+            Console.WriteLine(monthstr[month] + "   " + year);
+            for (int i = 0; i < week.Length; i++)
+            {
+                Console.Write(week[i] + " ");
+            }
+            Console.WriteLine();
+            
+            for (int a = 0;a<sp;a++)
+            {
+                Console.Write("  ");
+            }
+            
+            DisplayArray(ar,month,year);
+
+        }
 
     }
+
+
 }
+
