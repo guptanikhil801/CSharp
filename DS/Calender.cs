@@ -48,7 +48,7 @@
         /// <param name="m">the month</param>
         /// <param name="y">the yea</param>
         /// <returns>whole calender</returns>
-        public static int[,] MakeCaleneder(int m, int y)
+        public static int[,] MakeCalender(int m, int y)
         {
             int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };        ////first value is 0 beacause month range is 1 to 12, jan has 31 days and so on
 
@@ -103,6 +103,19 @@
                 {
                     Console.WriteLine();
                 }
+            }
+        }
+        
+        public static void DisplayArray(int[,] arr)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    if (arr[i, j] != 0 && j != 0) Console.Write(arr[i, j] + " ");
+                    if (i != 1 && j == 0) Console.Write(arr[i, j] + " ");
+                }
+                Console.WriteLine();
             }
         }
 
