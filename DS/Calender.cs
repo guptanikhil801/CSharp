@@ -25,6 +25,14 @@
 
             return false;
         }
+
+        /// <summary>
+        /// it returns day of week in number like 0 for sunday
+        /// </summary>
+        /// <param name="d">the date</param>
+        /// <param name="m">the month</param>
+        /// <param name="y">the year</param>
+        /// <returns>the day number</returns>
         public static int DayOffWeek(int d, int m, int y)
         {
             int y0 = y - (14 - m) / 12;
@@ -33,6 +41,13 @@
             int d0 = (d + x + 31 * m0 / 12) % 7;
             return d0;
         }
+
+        /// <summary>
+        /// Thid method make a whole month calender 
+        /// </summary>
+        /// <param name="m">the month</param>
+        /// <param name="y">the yea</param>
+        /// <returns>whole calender</returns>
         public static int[,] MakeCaleneder(int m, int y)
         {
             int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
