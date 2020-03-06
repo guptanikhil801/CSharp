@@ -74,11 +74,11 @@
             Stackll sl = new Stackll();
             Console.WriteLine("Prime as well as Anagrams Numbers from 0 to 1000 using Stack in reverse order");
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 1000; i > 1; i--)
             {
                 if (Anagram2DArray.CheckPrime(i))
                 {
-                    for (int j = i + 1; j < 1001; j++)
+                    for (int j = i - 1; j > 0; j--)
                     {
                         if (Anagram2DArray.CheckPrime(j) && Anagram2DArray.CheckAnagramInteger(i, j))
                         {
