@@ -12,6 +12,19 @@
         }
         public Node Top;
 
-        
+        public void Push(int data)
+        {
+            Node node = new Node();
+            node.Next = null;
+            if (node == null)
+            {
+                Console.WriteLine(" stack Overflow");
+                return;
+            }
+
+            node.Data = data;
+            node.Next = Top;
+            Top = node;
+        }
     }
 }
