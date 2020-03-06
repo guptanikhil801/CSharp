@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Text;
     /// <summary>
-    /// This class contains code to print prime anagram number in reverse order using stack
+    /// this class contains stack implemetation required for Anagram number storing 
     /// </summary>
     public class Stackll
     {
@@ -58,5 +58,13 @@
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// This class contains code to print prime anagram number in reverse order using stack
+    /// </summary>
+    public class AnagramStack
+    {
+
     }
 }
