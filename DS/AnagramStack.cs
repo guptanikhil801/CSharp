@@ -65,6 +65,32 @@
     /// </summary>
     public class AnagramStack
     {
+        /// <summary>
+        /// main driver method 
+        /// </summary>
+        public static void DriverAngramStack()
+        {
+            Stackll sl = new Stackll();
+            Console.WriteLine("Prime as well as Anagrams Numbers from 0 to 1000 using Stack in reverse order");
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (Anagram2DArray.CheckPrime(i))
+                {
+                   for (int j = i +1; j <1001; j++)
+                    {
+                        if (Anagram2DArray.CheckPrime(j) && Anagram2DArray.CheckAnagramInteger(i, j))
+                        {
+                            sl.Push(i);
+                            sl.Push(j);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            sl.Display();
+        }
 
     }
 }
