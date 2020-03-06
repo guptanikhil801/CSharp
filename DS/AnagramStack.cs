@@ -1,10 +1,17 @@
 ﻿namespace DataStructure
 {
+
     using System;
     using System.Collections.Generic;
     using System.Text;
+    /// <summary>
+    /// This class contains code to print prime anagram number in reverse order using stack
+    /// </summary>
     public class AnagramStack
     {
+        /// <summary>
+        /// class for making Node data type
+        /// </summary>
         public class Node
         {
             public int Data;
