@@ -10,7 +10,7 @@
     public class Calender
     {
         public static string[] month = { "", "january", "Febuary", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December" };
-       
+
         /// <summary>
         /// This method checks a year is leap year or not
         /// </summary>
@@ -50,10 +50,11 @@
         /// <returns>whole calender</returns>
         public static int[,] MakeCaleneder(int m, int y)
         {
-            int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };        ////first value is 0 beacause month range is 1 to 12, jan has 31 days and so on
+
             if (IsLeap(y))
             {
-                daysinmonth[2] = 29;
+                daysinmonth[2] = 29;  //// this will replace 28 to 29 in Feb month
             }
             int[,] cal = new int[2, daysinmonth[m] + 1];
             for (int i = 0; i < 2; i++)
@@ -72,6 +73,39 @@
             }
             return cal;
         }
-    }
 
+        public static void DisplayCalender(int m, int y)
+        {
+            char[] week = { 'S', 'M', 'T', 'W', 'T', 'F', 'S' };
+            int d = DayOffWeek(1, m, y);
+            int[] daysinmonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };        ////first value is 0 beacause month range is 1 to 12, jan has 31 days and so on
+
+            if (IsLeap(y))
+            {
+                daysinmonth[2] = 29;  //// this will replace 28 to 29 in Feb month
+            }
+            Console.WriteLine(month[m] + "  " + y);
+
+            for (int i = 0; i < week.Length; i++)
+            {
+                Console.Write(week[i] + "  ");
+            }
+            Console.WriteLine();
+            for (int i = 0; i < d; i++)
+            {
+                Console.Write("{0}  ", ' ');
+            }
+
+            for (int i = 1; i <= daysinmonth[m]; i++)
+            {
+                Console.Write("{0,2} ", i);
+                if ((i + d) % 7 == 0)
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
+
+
+    }
 }
