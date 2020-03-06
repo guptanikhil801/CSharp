@@ -1,4 +1,4 @@
-﻿namespace DataStructure
+﻿ namespace DataStructure
 {
     using System;
     using System.Collections.Generic;
@@ -68,12 +68,13 @@
         public static void Driver()
         {
             Queuell qi = new Queuell();
+            Console.WriteLine("Prime and Anagrams Numbers from 0 to 1000 using queue");
 
             for (int i = 0; i < 1000; i++)
             {
                 if (Anagram2DArray.CheckPrime(i))
                 {
-                    for (int j = i + 1; j < 1001; j++)
+                    for (int j = i +1; j <1001; j++)
                     {
                         if (Anagram2DArray.CheckPrime(j) && Anagram2DArray.CheckAnagramInteger(i, j))
                         {
