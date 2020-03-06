@@ -7,7 +7,7 @@
     /// <summary>
     /// This class contains code to print prime anagram number in reverse order using stack
     /// </summary>
-    public class AnagramStack
+    public class Stackll
     {
         /// <summary>
         /// class for making Node data type
@@ -19,6 +19,10 @@
         }
         public Node Top;
 
+        /// <summary>
+        /// This method adds data to stack
+        /// </summary>
+        /// <param name="data"></param>
         public void Push(int data)
         {
             Node node = new Node();
@@ -34,6 +38,9 @@
             Top = node;
         }
 
+        /// <summary>
+        /// this method displays stacks
+        /// </summary>
         public void Display()
         {
             if(Top==null)
