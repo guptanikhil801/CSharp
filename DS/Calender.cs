@@ -3,9 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// This class contains code to print a calender using 2D Array
+    /// </summary>
     public class Calender
     {
         public static string[] month = { "", "january", "Febuary", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December" };
+       
+        /// <summary>
+        /// This method checks a year is leap year or not
+        /// </summary>
+        /// <param name="year">year to be checked</param>
+        /// <returns></returns>
         public static bool IsLeap(int year)
         {
             if ((year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0)))
