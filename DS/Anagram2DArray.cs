@@ -3,7 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    class Anagram2DArray
+
+    /// <summary>
+    /// This class contains code to print the number which is prime as well as Anagram
+    /// </summary>
+     public class Anagram2DArray
     {
         public static bool CheckPrime(int num)
         {
@@ -19,6 +23,42 @@
             return true;
         }
 
+        /// <summary>
+        /// it returns two numbers are anagram or not
+        /// </summary>
+        /// <param name="a">first number</param>
+        /// <param name="b">second number</param>
+        /// <returns>boolean value</returns>
+        public static bool CheckAnagramInteger(int a, int b)
+        {
+            string str1 = a.ToString();
+            string str2 = b.ToString();
+            if (AnagramDetectionString(str1, str2))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// driver method 
+        /// </summary>
+        public static void DriverPrime2D()
+        {
+            Console.WriteLine("These are prime as well as Anagram numbers Stored in a two D Array: ");
+            int[,] da = StoreAnagramToArray();
+            DisplayArray(da);
+        }
+
+        /// <summary>
+        /// This method returns two string is Anagram or not
+        /// </summary>
+        /// <param name="str1">first string</param>
+        /// <param name="str2">second string</param>
+        /// <returns>boolean value</returns>
         private static bool AnagramDetectionString(string str1, string str2)
         {
             //// check the length of both string
@@ -45,23 +85,12 @@
             return true;                            //// if value is same return true
         }
 
-        public static bool CheckAnagramInteger(int a, int b)
-        {
-            string str1 = a.ToString();
-            string str2 = b.ToString();
-            if (AnagramDetectionString(str1, str2))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+        /// <summary>
+        /// it returns the prime as well as anagram number in 2d array
+        /// </summary>
+        /// <returns>2d array</returns>
         private static int[,] StoreAnagramToArray()
         {
-
             int[] pr = new int[168];
             int j = 0;
 
@@ -82,20 +111,21 @@
                 {
                     if (CheckAnagramInteger(pr[i], pr[k]))
                     {
-                        anapr[a] = pr[i];
-                        a++;
+                        anapr[a] = pr[i];                                 //// storing anagram numbers
+                        a++;                                 
                         anapr[a] = pr[k];
                         a++;
                         break;
                     }
                 }
             }
+
             int x = 0;
             int[,] anagram2d = new int[20, 20];
 
             for (int e = 0; e < anagram2d.GetLength(0); e++)
             {
-                for (int f = 0; f < anagram2d.GetLength(1); f++)  // int f = 0; 
+                for (int f = 0; f < anagram2d.GetLength(1); f++)   
                 {
                     anagram2d[e, f] = anapr[x];
 
@@ -106,6 +136,10 @@
             return anagram2d;
         }
 
+        /// <summary>
+        /// displays the array
+        /// </summary>
+        /// <param name="arr">2d array</param>
         private static void DisplayArray(int[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
@@ -121,14 +155,5 @@
                 Console.WriteLine();
             }
         }
-
-        public static void DriverPrime2D()
-        {
-            Console.WriteLine("These are prime as well as Anagram numbers Stored in a two D Array: ");
-            int[,] da = StoreAnagramToArray();
-            DisplayArray(da);
-
-        }
-
     }
 }
