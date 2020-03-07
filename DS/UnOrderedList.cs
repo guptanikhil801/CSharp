@@ -1,9 +1,9 @@
-﻿namespace DataStructure.DS_Programmes
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
+namespace DataStructure
+{
     /// <summary>
     /// List class created to use generics
     /// </summary>
@@ -34,7 +34,7 @@
             //// check that is the list is empty or not, if empty then node will become head
             if (this.head == null)
             {
-               this.head = node;
+                this.head = node;
             }
             ////   if list is not empty than insert it at last
             else
@@ -88,15 +88,16 @@
         /// </summary>
         public void Display()
         {
+
             Node node = head;
             //// this loop will continue till the second last node
             while (node.next != null)
             {
-                Console.WriteLine(node.data);       //// printing datas
+                Console.Write(node.data+" ");       //// printing datas
                 node = node.next;                   //// node value will keep changing
             }
 
-            Console.WriteLine(node.data);           //// manually print last node
+            Console.Write(node.data);           //// manually print last node
         }
 
         /// <summary>
@@ -129,7 +130,7 @@
             int count = 0;
             Node t = head;
             //// if head is null then it will return size 0 
-            if (head == null)          
+            if (head == null)
             {
                 return 0;
                 throw new NullReferenceException();
@@ -272,6 +273,22 @@
             T data = t.data;
             pre.next = null;
             return data;
+        }
+
+        public string DisplayInString()
+        {
+            string str = string.Empty;
+            Node node = head;
+            while (node.next != null)
+            {
+                // Console.Write(node.data + " ");   
+                str = str + node.data + " ";
+
+                node = node.next;                   //// node value will keep changing
+            }
+            str = str + node.data;
+            return str;
+            ////  Console.Write(node.data);           
         }
     }
 }
