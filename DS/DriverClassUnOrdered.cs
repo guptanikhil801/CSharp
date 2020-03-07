@@ -1,13 +1,13 @@
 ﻿namespace DataStructure
 {
     using System;
-    using System.Text;
     using System.IO;
-    
+    using System.Text;
+
     /// <summary>
     /// This is Driver class of UnOrderedList
     /// </summary>
-   public class DriverClassUnOrdered
+    public class DriverClassUnOrdered
     {
         /// <summary>
         /// driver method
@@ -15,17 +15,18 @@
         public static void DriverMethod()
         {
             Console.Write("Enter your File Path : ");
-            String filest = Path.GetFullPath(Console.ReadLine());
-            String[] strarr = File.ReadAllText(filest).Split(" ");
+            string filest = Path.GetFullPath(Console.ReadLine());
+            string[] strarr = File.ReadAllText(filest).Split(" ");
             List<string> ls = new List<string>();
-            for(int i=0;i<strarr.Length;i++)
+            for (int i = 0; i < strarr.Length; i++)
             {
                 string wd = strarr[i];
                 ls.Append(wd);                             //// adding string array into list
             }
+
             string origfile = File.ReadAllText(filest);
-           Console.WriteLine("Your original file");
-           Console.WriteLine(origfile);
+            Console.WriteLine("Your original file");
+            Console.WriteLine(origfile);
 
             Console.WriteLine("Enter word to be searched");
             string word = Console.ReadLine();
@@ -46,6 +47,5 @@
             string filecontent = ls.DisplayInString();
             File.WriteAllText(filest, filecontent);
         }
-        }
     }
-
+}
