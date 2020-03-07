@@ -4,8 +4,14 @@
     using System.Text;
     using System.IO;
     
+    /// <summary>
+    /// This is Driver class of UnOrderedList
+    /// </summary>
    public class DriverClassUnOrdered
     {
+        /// <summary>
+        /// driver method
+        /// </summary>
         public static void DriverMethod()
         {
             Console.Write("Enter your File Path : ");
@@ -15,7 +21,7 @@
             for(int i=0;i<strarr.Length;i++)
             {
                 string wd = strarr[i];
-                ls.Append(wd);
+                ls.Append(wd);                             //// adding string array into list
             }
             string origfile = File.ReadAllText(filest);
            Console.WriteLine("Your original file");
