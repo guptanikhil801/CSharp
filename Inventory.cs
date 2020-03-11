@@ -24,15 +24,27 @@
             /// Gets or sets the weight of Rice
             /// </summary>
             public int Weight { get; set; }
+
             /// <summary>
-            /// Gets or sets the Name of Rice
+            /// Gets or sets the price of Rice
             /// </summary>
             public double Price { get; set; }
         }
         public class Pulses
         {
+            /// <summary>
+            ///Gets or sets the Name of Pulses
+            /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// Gets or sets the weight of Pulses
+            /// </summary>
             public int Weight { get; set; }
+
+            /// <summary>
+            /// Gets or sets the price of Pulses
+            /// </summary>
             public double Price { get; set; }
         }
 
