@@ -4,12 +4,29 @@
     using System.Collections.Generic;
     using System.Text;
     using Newtonsoft.Json.Linq;
+
+    /// <summary>
+    /// this class contains code for creating inventory json file
+    /// </summary>
     public class Inventory
     {
-       public class Rice
+        /// <summary>
+        /// Rice class 
+        /// </summary>
+        public class Rice
         {
+            /// <summary>
+            ///Gets or sets the Name of Rice
+            /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// Gets or sets the weight of Rice
+            /// </summary>
             public int Weight { get; set; }
+            /// <summary>
+            /// Gets or sets the Name of Rice
+            /// </summary>
             public double Price { get; set; }
         }
         public class Pulses
