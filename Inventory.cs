@@ -1,4 +1,10 @@
-﻿namespace OopsPrograms.InventoryManagement
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Inventory.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------------------- 
+namespace OopsPrograms.InventoryManagement
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +12,7 @@
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// this class contains code for creating inventory json file
+    /// this class contains code for creating inventory Json file
     /// </summary>
     public class Inventory
     {
@@ -16,7 +22,7 @@
         public class Rice
         {
             /// <summary>
-            ///Gets or sets the Name of Rice
+            /// Gets or sets the Name of Rice
             /// </summary>
             public string Name { get; set; }
 
@@ -30,13 +36,14 @@
             /// </summary>
             public double Price { get; set; }
         }
+       
         /// <summary>
         /// class for Pulses
         /// </summary>
         public class Pulses
         {
             /// <summary>
-            ///Gets or sets the Name of Pulses
+            /// Gets or sets the Name of Pulses
             /// </summary>
             public string Name { get; set; }
 
@@ -54,10 +61,10 @@
         /// <summary>
         /// class for Wheat
         /// </summary>
-      public  class Wheat
+      public class Wheat
         {
             /// <summary>
-            ///Gets or sets the Name of Wheat
+            /// Gets or sets the Name of Wheat
             /// </summary>
             public string Name { get; set; }
 
@@ -71,6 +78,5 @@
             /// </summary>
             public double Price { get; set; }
         }
-
     }
 }
