@@ -30,6 +30,9 @@
             /// </summary>
             public double Price { get; set; }
         }
+        /// <summary>
+        /// class for Pulses
+        /// </summary>
         public class Pulses
         {
             /// <summary>
@@ -48,20 +51,23 @@
             public double Price { get; set; }
         }
 
-      public  class Wheats
+        /// <summary>
+        /// class for Wheat
+        /// </summary>
+      public  class Wheat
         {
             /// <summary>
-            ///Gets or sets the Name of Wheats
+            ///Gets or sets the Name of Wheat
             /// </summary>
             public string Name { get; set; }
 
             /// <summary>
-            /// Gets or sets the weight of Wheats
+            /// Gets or sets the weight of Wheat
             /// </summary>
             public int Weight { get; set; }
 
             /// <summary>
-            /// Gets or sets the price of Wheats
+            /// Gets or sets the price of Wheat
             /// </summary>
             public double Price { get; set; }
         }
