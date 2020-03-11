@@ -50,8 +50,19 @@
 
       public  class Wheats
         {
+            /// <summary>
+            ///Gets or sets the Name of Wheats
+            /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// Gets or sets the weight of Wheats
+            /// </summary>
             public int Weight { get; set; }
+
+            /// <summary>
+            /// Gets or sets the price of Wheats
+            /// </summary>
             public double Price { get; set; }
         }
 
