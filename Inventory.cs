@@ -4,7 +4,7 @@
 // </copyright>
 // <creator name="Nikhil Gupta"/>
 // -------------------------------------------------------------------------------------------------------------------- 
-namespace OopsPrograms.InventoryManagement
+namespace OopsPrograms.InventoryData
 {
     using System;
     using System.Collections.Generic;
@@ -14,69 +14,36 @@ namespace OopsPrograms.InventoryManagement
     /// <summary>
     /// this class contains code for creating inventory Json file
     /// </summary>
-    public class Inventory
+    public class FoodItems
     {
         /// <summary>
-        /// Rice class 
+        /// Gets or sets the Name of Rice
         /// </summary>
-        public class Rice
-        {
-            /// <summary>
-            /// Gets or sets the Name of Rice
-            /// </summary>
-            public string Name { get; set; }
-
-            /// <summary>
-            /// Gets or sets the weight of Rice
-            /// </summary>
-            public int Weight { get; set; }
-
-            /// <summary>
-            /// Gets or sets the price of Rice
-            /// </summary>
-            public double Price { get; set; }
-        }
-       
-        /// <summary>
-        /// class for Pulses
-        /// </summary>
-        public class Pulses
-        {
-            /// <summary>
-            /// Gets or sets the Name of Pulses
-            /// </summary>
-            public string Name { get; set; }
-
-            /// <summary>
-            /// Gets or sets the weight of Pulses
-            /// </summary>
-            public int Weight { get; set; }
-
-            /// <summary>
-            /// Gets or sets the price of Pulses
-            /// </summary>
-            public double Price { get; set; }
-        }
+        public string Name { get; set; }
 
         /// <summary>
-        /// class for Wheat
+        /// Gets or sets the weight of Rice
         /// </summary>
-      public class Wheat
+        public int Weight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price of Rice
+        /// </summary>
+        public double Price { get; set; }
+        public override string ToString()
         {
-            /// <summary>
-            /// Gets or sets the Name of Wheat
-            /// </summary>
-            public string Name { get; set; }
-
-            /// <summary>
-            /// Gets or sets the weight of Wheat
-            /// </summary>
-            public int Weight { get; set; }
-
-            /// <summary>
-            /// Gets or sets the price of Wheat
-            /// </summary>
-            public double Price { get; set; }
+            return string.Format("name:\t{0}\nPrice per KG:\t{1}\nWeight:\t{2}", this.Name, this.Price, this.Weight);
         }
     }
+
+
+public class Inventory
+{
+    public List<FoodItems> Rice;
+    public List<FoodItems> Pulses;
+    public List<FoodItems> Weights;
+
 }
+   
+}
+
