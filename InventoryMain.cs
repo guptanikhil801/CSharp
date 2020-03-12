@@ -1,4 +1,10 @@
-﻿namespace OopsPrograms.InventoryData
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="InventoryMain.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// --------------------------------------------------------------------------------------------------------------------
+namespace OopsPrograms.InventoryData
 {
     using System;
     using System.Collections.Generic;
