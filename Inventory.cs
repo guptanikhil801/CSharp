@@ -45,7 +45,7 @@ namespace OopsPrograms.InventoryData
         /// <summary>
         /// Gets or sets the weight of Rice
         /// </summary>
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         /// <summary>
         /// Gets or sets the price of Rice
