@@ -12,6 +12,10 @@
     /// </summary>
     public class InventoryMain
     {
+        /// <summary>
+        /// to serialize object 
+        /// </summary>
+        /// <returns>string</returns>
         public static string SerializationInventory()
         {
             Inventory ivt = new Inventory();
