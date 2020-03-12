@@ -6,6 +6,10 @@
     using Newtonsoft.Json;
     using System.Text.Json.Serialization;
     using System.IO;
+
+    /// <summary>
+    /// This is the main class of InventoryData
+    /// </summary>
     public class InventoryMain
     {
         public static string SerializationInventory()
