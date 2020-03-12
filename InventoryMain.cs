@@ -37,9 +37,26 @@
             File.WriteAllText(filepath, jsonstr);
             return filepath;
         }
-       
+        public static void DeserilizationInventory(string filepath)
+        {
+            string filestr = File.ReadAllText(filepath);
+            Inventory ivf = JsonConvert.DeserializeObject<Inventory>(filestr);
+            Console.WriteLine(" after Deserialization data is :");
+            foreach (FoodItems fr in ivf.Rice)
+            {
+                Console.WriteLine(fr);
+            }
+            foreach (FoodItems fp in ivf.Pulses)
+            {
+                Console.WriteLine(fp);
+            }
+            foreach (FoodItems fw in ivf.Weights)
+            {
+                Console.WriteLine(fw);
+            }
+        }
 
-        
+
     }
 }
 
