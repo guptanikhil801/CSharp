@@ -36,14 +36,15 @@ namespace OopsPrograms.InventoryData
         }
     }
 
+    /// <summary>
+    /// to create datas of inventory
+    /// </summary>
+    public class Inventory
+    {
+        public List<FoodItems> Rice;
+        public List<FoodItems> Pulses;
+        public List<FoodItems> Weights;
+    }
 
-public class Inventory
-{
-    public List<FoodItems> Rice;
-    public List<FoodItems> Pulses;
-    public List<FoodItems> Weights;
-
-}
-   
 }
 
