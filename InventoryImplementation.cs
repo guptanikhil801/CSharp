@@ -7,11 +7,11 @@
     using Newtonsoft.Json;
     public class InventoryM : InventoryData.Inventory
     {
-        public int Sum { get; set; }
+        public double Sum { get; set; }
     }
     public class FoodItemsM : InventoryData.FoodItems
     {
-        public int TotalPrice;
+        public double TotalPrice;
         public override string ToString()
         {
             return string.Format("name:\t{0}\nPrice per KG:\t{1}\nWeight:\t{2}\nTotalPrice:\t{3}", this.Name, this.Price, this.Weight, this.TotalPrice);
@@ -27,12 +27,11 @@
             {
                 im = new InventoryM();
             }
-          int sum = 0;
+          double sum = 0;
             if(im!=null)
             {
                 sum = im.Sum;
             }
-
             FoodItemsM item = new FoodItemsM();
             Console.WriteLine("Enter your choice :");
             Console.WriteLine("1:  Rice,    2: pulses,    3: Weights");
@@ -40,13 +39,14 @@
             Console.WriteLine("Enter Name");
             item.Name = Console.ReadLine();
             Console.WriteLine("Enter Price");
-            item.Price = int.Parse(Console.ReadLine());
+            item.Price = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter Weight");
-            item.Weight = int.Parse(Console.ReadLine());
-
-
-
-
+            item.Weight = double.Parse(Console.ReadLine());
+            item.TotalPrice = item.Price * item.Weight;
+            if(im==null)
+            {
+                sum = item.TotalPrice;
+            }
         }
     }
 }
