@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Text;
+    using Newtonsoft.Json;
     public class InventoryM : InventoryData.Inventory
     {
         public int Sum { get; set; }
@@ -17,6 +19,34 @@
     }
     public class InventoryImplementation
     {
+        public void Add(string filepath)
+        {
+            string strjason = File.ReadAllText(filepath);
+            InventoryM im = JsonConvert.DeserializeObject<InventoryM>(strjason);
+            if(im==null)
+            {
+                im = new InventoryM();
+            }
+          int sum = 0;
+            if(im!=null)
+            {
+                sum = im.Sum;
+            }
 
+            FoodItemsM item = new FoodItemsM();
+            Console.WriteLine("Enter your choice :");
+            Console.WriteLine("1:  Rice,    2: pulses,    3: Weights");
+            int choice = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Name");
+            item.Name = Console.ReadLine();
+            Console.WriteLine("Enter Price");
+            item.Price = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Weight");
+            item.Weight = int.Parse(Console.ReadLine());
+
+
+
+
+        }
     }
 }
