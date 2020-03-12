@@ -8,11 +8,11 @@ namespace OopsPrograms.InventoryData
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
-    using Newtonsoft.Json;
-    using System.Text.Json.Serialization;
     using System.IO;
-
+    using System.Text;
+    using System.Text.Json.Serialization;
+    using Newtonsoft.Json;
+    
     /// <summary>
     /// This is the main class of InventoryData
     /// </summary>
@@ -21,7 +21,7 @@ namespace OopsPrograms.InventoryData
         /// <summary>
         /// to serialize object 
         /// </summary>
-        /// <returns>string</returns>
+        /// <returns>string type path of file</returns>
         public static string SerializationInventory()
         {
             Inventory ivt = new Inventory();
@@ -65,17 +65,16 @@ namespace OopsPrograms.InventoryData
             {
                 Console.WriteLine(fr);
             }
+
             foreach (FoodItems fp in ivf.Pulses)
             {
                 Console.WriteLine(fp);
             }
+
             foreach (FoodItems fw in ivf.Weights)
             {
                 Console.WriteLine(fw);
             }
         }
-
-
     }
 }
-
