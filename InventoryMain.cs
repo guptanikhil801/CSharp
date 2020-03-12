@@ -45,6 +45,11 @@
             File.WriteAllText(filepath, jsonstr);
             return filepath;
         }
+
+        /// <summary>
+        /// to Deserialize object
+        /// </summary>
+        /// <param name="filepath">the filepath </param>
         public static void DeserilizationInventory(string filepath)
         {
             string filestr = File.ReadAllText(filepath);
