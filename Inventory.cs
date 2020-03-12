@@ -12,6 +12,27 @@ namespace OopsPrograms.InventoryData
     using Newtonsoft.Json.Linq;
 
     /// <summary>
+    /// to create data of inventory
+    /// </summary>
+    public class Inventory
+    {
+        /// <summary>
+        /// data of Rice
+        /// </summary> 
+        public List<FoodItems> Rice;
+
+        /// <summary>
+        /// data of Pulses
+        /// </summary>
+       public List<FoodItems> Pulses;
+
+        /// <summary>
+        /// data of weight
+        /// </summary>
+        public List<FoodItems> Weights;
+    }
+
+    /// <summary>
     /// this class contains code for creating inventory Json file
     /// </summary>
     public class FoodItems
@@ -30,21 +51,14 @@ namespace OopsPrograms.InventoryData
         /// Gets or sets the price of Rice
         /// </summary>
         public double Price { get; set; }
+
+        /// <summary>
+        /// to override object 
+        /// </summary>
+        /// <returns>the string</returns>
         public override string ToString()
         {
             return string.Format("name:\t{0}\nPrice per KG:\t{1}\nWeight:\t{2}", this.Name, this.Price, this.Weight);
         }
     }
-
-    /// <summary>
-    /// to create datas of inventory
-    /// </summary>
-    public class Inventory
-    {
-        public List<FoodItems> Rice;
-        public List<FoodItems> Pulses;
-        public List<FoodItems> Weights;
-    }
-
 }
-
