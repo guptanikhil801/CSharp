@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Text;
+    using Newtonsoft.Json;
     
     public class Contact
     {
@@ -26,7 +28,19 @@
     {
         public void Add(string filepath)
         {
+            string jsonstr = File.ReadAllText(filepath);
+            List<Contact> cont;
+            if(jsonstr.Length!=0)
+            {
+                cont = (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(jsonstr);
+            }
+            else
+            {
+                cont = new List<Contact>();
+            }
 
         }
+        
+
     }
 }
