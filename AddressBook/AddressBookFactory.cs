@@ -29,8 +29,6 @@
         public void Add(string filepath)
         {
             string jsonstr = File.ReadAllText(filepath);
-
-
             List<Contact> cont;
             if (jsonstr.Length != 0)
             {
@@ -40,7 +38,6 @@
             {
                 cont = new List<Contact>();
             }
-
             Console.WriteLine("Enter your first Name");
             string firstName = Console.ReadLine();
             foreach (Contact c in cont)
@@ -51,7 +48,6 @@
                     return;
                 }
             }
-
             Console.WriteLine("Enter your Last Name");
             string lastName = Console.ReadLine();
             Console.WriteLine("Enter Phone Number");
@@ -64,6 +60,20 @@
             string state = Console.ReadLine();
             Console.WriteLine("Enter Zip Code");
             string zip = Console.ReadLine();
+            Contact ct = new Contact()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                PhoneNumber = phonenumber,
+                Address = address,
+                City = city,
+                State = state,
+                Zip = zip
+            };
+            cont.Add(ct);
+            Console.WriteLine("Contact Successfully added");
+            string jsoncontact = JsonConvert.SerializeObject(cont, Formatting.Indented);
+            File.WriteAllText(filepath, jsoncontact);
         }
     }
 }
