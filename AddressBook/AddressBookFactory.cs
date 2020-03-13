@@ -5,7 +5,7 @@
     using System.IO;
     using System.Text;
     using Newtonsoft.Json;
-    
+
     public class Contact
     {
         public string FirstName { get; set; }
@@ -29,8 +29,10 @@
         public void Add(string filepath)
         {
             string jsonstr = File.ReadAllText(filepath);
+
+
             List<Contact> cont;
-            if(jsonstr.Length!=0)
+            if (jsonstr.Length != 0)
             {
                 cont = (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(jsonstr);
             }
@@ -39,8 +41,29 @@
                 cont = new List<Contact>();
             }
 
-        }
-        
+            Console.WriteLine("Enter your first Name");
+            string firstName = Console.ReadLine();
+            foreach (Contact c in cont)
+            {
+                if (c.FirstName.Equals(firstName))
+                {
+                    Console.WriteLine("This contact already exist...Enter with some difference or a new one");
+                    return;
+                }
+            }
 
+            Console.WriteLine("Enter your Last Name");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("Enter Phone Number");
+            string phonenumber = Console.ReadLine();
+            Console.WriteLine("Enter Address");
+            string address = Console.ReadLine();
+            Console.WriteLine("Enter City");
+            string city = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            string state = Console.ReadLine();
+            Console.WriteLine("Enter Zip Code");
+            string zip = Console.ReadLine();
+        }
     }
 }
