@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
     
-    public class Person
+    public class Contact
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
