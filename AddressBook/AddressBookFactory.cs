@@ -38,42 +38,35 @@
             {
                 cont = new List<Contact>();
             }
+            Contact ct = new Contact();
             Console.WriteLine("Enter your first Name");
-            string firstName = Console.ReadLine();
+            ct.FirstName = Console.ReadLine();
             foreach (Contact c in cont)
             {
-                if (c.FirstName.Equals(firstName))
+                if (c.FirstName.Equals(ct.FirstName))
                 {
                     Console.WriteLine("This contact already exist...Enter with some difference or a new one");
                     return;
                 }
             }
             Console.WriteLine("Enter your Last Name");
-            string lastName = Console.ReadLine();
+            ct.LastName = Console.ReadLine();
             Console.WriteLine("Enter Phone Number");
-            string phonenumber = Console.ReadLine();
+            ct.PhoneNumber = Console.ReadLine();
             Console.WriteLine("Enter Address");
-            string address = Console.ReadLine();
+            ct.Address = Console.ReadLine();
             Console.WriteLine("Enter City");
-            string city = Console.ReadLine();
+            ct.City = Console.ReadLine();
             Console.WriteLine("Enter State");
-            string state = Console.ReadLine();
+            ct.State = Console.ReadLine();
             Console.WriteLine("Enter Zip Code");
-            string zip = Console.ReadLine();
-            Contact ct = new Contact()
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                PhoneNumber = phonenumber,
-                Address = address,
-                City = city,
-                State = state,
-                Zip = zip
-            };
+            ct.Zip = Console.ReadLine();
             cont.Add(ct);
             Console.WriteLine("Contact Successfully added");
             string jsoncontact = JsonConvert.SerializeObject(cont, Formatting.Indented);
             File.WriteAllText(filepath, jsoncontact);
         }
+        //public void Delete
+
     }
 }
