@@ -24,5 +24,9 @@
 
     public class AddressBookFactory
     {
+        public void Add(string filepath)
+        {
+
+        }
     }
 }
