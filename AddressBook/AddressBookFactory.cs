@@ -132,9 +132,9 @@
                     }
                 }
             }
-
-
-
+            Console.WriteLine("contact edited successfully");
+            string editedjson = JsonConvert.SerializeObject(cl,Formatting.Indented);
+            File.WriteAllText(filepath, editedjson);
         }
     }
 }
