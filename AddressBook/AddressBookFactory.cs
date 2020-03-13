@@ -99,12 +99,40 @@
             Console.WriteLine("which one you want to Edit enter First Name(case sensitive)");
             string first = Console.ReadLine();
             Console.WriteLine("which field you want to edit enter choice (case sensitive)");
-            Console.WriteLine("F:   First Name,    L:    Last Name,   A:   Address,   C:     City,    S:    State,    Z:     Zip");
+            Console.WriteLine(" L:    Last Name,   P:    Phone Number,    A:   Address,   C:     City,    S:    State,    Z:     Zip");
             char choice = char.Parse(Console.ReadLine());
-            switch (choice)
+            foreach (Contact co in cl)
             {
-
+                if(co.FirstName.Equals(first))
+                {
+                    Console.WriteLine("Enter New detail");
+                    string newdetail = Console.ReadLine();
+                    switch(choice)
+                    {
+                        case 'L':
+                            co.LastName = newdetail;
+                            break;
+                        case 'P':
+                            co.PhoneNumber = newdetail;
+                            break;
+                        case 'A':
+                            co.Address = newdetail;
+                            break;
+                        case 'C':
+                            co.City = newdetail;
+                            break;
+                        case 'S':
+                            co.State = newdetail;
+                            break;
+                        case 'Z':
+                            co.Zip = newdetail;
+                            break;
+                        default: Console.WriteLine("invalid choice");
+                            break;
+                    }
+                }
             }
+
 
 
         }
