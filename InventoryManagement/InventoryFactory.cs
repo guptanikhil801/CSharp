@@ -1,4 +1,10 @@
-﻿namespace OopsPrograms.InventoryManagement
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="InventoryFactory.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// --------------------------------------------------------------------------------------------------------------------
+namespace OopsPrograms.InventoryManagement
 {
     using System;
     using System.Collections.Generic;
@@ -23,24 +29,31 @@
         /// </summary>
         public List<FoodItemsM> Wheat;
 
+        /// <summary>
+        /// Gets or sets sum of inventory
+        /// </summary>
         public double Sum { get; set; }
     }
     public class FoodItemsM
     {
         /// <summary>
-        /// Gets or sets the Name of Rice
+        /// Gets or sets the Name of inventory
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the weight of Rice
+        /// Gets or sets the weight of inventory
         /// </summary>
         public double Weight { get; set; }
 
         /// <summary>
-        /// Gets or sets the price of Rice
+        /// Gets or sets the price of inventory
         /// </summary>
         public double Price { get; set; }
+
+        /// <summary>
+        /// total price of inventory
+        /// </summary>
         public double TotalPrice;
 
         /// <summary>
@@ -52,8 +65,15 @@
             return string.Format("name:\t{0}\nPrice per KG:\t{1}\nWeight:\t{2}\nTotalPrice:\t{3}", this.Name, this.Price, this.Weight, this.TotalPrice);
         }
     }
+    /// <summary>
+    /// Factory class for Inventory
+    /// </summary>
     public class InventoryFactory
     {
+        /// <summary>
+        /// adds the data to file
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void Add(string filepath)
         {
             string strjason = File.ReadAllText(filepath);
@@ -124,6 +144,11 @@
                 Console.WriteLine("New Data Added to the Inventory");
             }
         }
+
+        /// <summary>
+        /// deletes the data
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void Delete(string filepath)
         {
             string jsonstr = File.ReadAllText(filepath);
@@ -187,6 +212,10 @@
 
         }
 
+        /// <summary>
+        /// it displays the data in file
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void DisplayInventory(string filepath)
         {
             string jsonstr = File.ReadAllText(filepath);
