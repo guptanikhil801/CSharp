@@ -90,7 +90,7 @@
         public void Edit(string filepath)
         {
             string jsoncontact = File.ReadAllText(filepath);
-            List<Contact> cl =  (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(jsoncontact);
+            List<Contact> cl = (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(jsoncontact);
             Console.WriteLine("Available contacts(first name)");
             foreach (Contact co in cl)
             {
@@ -103,11 +103,11 @@
             char choice = char.Parse(Console.ReadLine());
             foreach (Contact co in cl)
             {
-                if(co.FirstName.Equals(first))
+                if (co.FirstName.Equals(first))
                 {
                     Console.WriteLine("Enter New detail");
                     string newdetail = Console.ReadLine();
-                    switch(choice)
+                    switch (choice)
                     {
                         case 'L':
                             co.LastName = newdetail;
@@ -127,14 +127,27 @@
                         case 'Z':
                             co.Zip = newdetail;
                             break;
-                        default: Console.WriteLine("invalid choice");
+                        default:
+                            Console.WriteLine("invalid choice");
                             break;
                     }
                 }
             }
             Console.WriteLine("contact edited successfully");
-            string editedjson = JsonConvert.SerializeObject(cl,Formatting.Indented);
+            string editedjson = JsonConvert.SerializeObject(cl, Formatting.Indented);
             File.WriteAllText(filepath, editedjson);
+        }
+
+        public void DisplayContact(string filepath)
+        {
+            string contactjson = File.ReadAllText(filepath);
+            List<Contact> cj = (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(contactjson);
+            foreach (Contact co in cj)
+            {
+                Console.WriteLine(co);
+                Console.WriteLine();
+            }
+
         }
     }
 }
