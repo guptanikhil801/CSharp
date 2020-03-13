@@ -66,7 +66,7 @@
             string jsoncontact = JsonConvert.SerializeObject(cont, Formatting.Indented);
             File.WriteAllText(filepath, jsoncontact);
         }
-        
+
         public void Delete(string filepath)
         {
             Console.WriteLine("Enter First name");
@@ -74,9 +74,9 @@
             string jsoncont = File.ReadAllText(filepath);
             List<Contact> ctlist;
             ctlist = (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(jsoncont);
-            foreach(Contact co in ctlist)
+            foreach (Contact co in ctlist)
             {
-                if(co.FirstName.Equals(first))
+                if (co.FirstName.Equals(first))
                 {
                     ctlist.Remove(co);
                     break;
@@ -85,6 +85,28 @@
             string contactlist = JsonConvert.SerializeObject(ctlist, Formatting.Indented);
             File.WriteAllText(filepath, contactlist);
             Console.WriteLine("Contact deleted successfully");
+        }
+
+        public void Edit(string filepath)
+        {
+            string jsoncontact = File.ReadAllText(filepath);
+            List<Contact> cl =  (List<Contact>)JsonConvert.DeserializeObject<List<Contact>>(jsoncontact);
+            Console.WriteLine("Available contacts(first name)");
+            foreach (Contact co in cl)
+            {
+                Console.Write(co.FirstName + "      ");
+            }
+            Console.WriteLine("which one you want to Edit enter First Name(case sensitive)");
+            string first = Console.ReadLine();
+            Console.WriteLine("which field you want to edit enter choice (case sensitive)");
+            Console.WriteLine("F:   First Name,    L:    Last Name,   A:   Address,   C:     City,    S:    State,    Z:     Zip");
+            char choice = char.Parse(Console.ReadLine());
+            switch (choice)
+            {
+
+            }
+
+
         }
     }
 }
