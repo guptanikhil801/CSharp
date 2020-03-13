@@ -11,6 +11,10 @@ namespace OopsPrograms.InventoryManagement
     using System.IO;
     using System.Text;
     using Newtonsoft.Json;
+
+    /// <summary>
+    /// this class has code to store data of inventory
+    /// </summary>
     public class InventoryM
     {
 
@@ -34,6 +38,10 @@ namespace OopsPrograms.InventoryManagement
         /// </summary>
         public double Sum { get; set; }
     }
+
+    /// <summary>
+    /// this class contains details like name, weight,price, total price
+    /// </summary>
     public class FoodItemsM
     {
         /// <summary>
