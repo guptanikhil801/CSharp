@@ -17,7 +17,6 @@ namespace OopsPrograms.InventoryManagement
     /// </summary>
     public class InventoryM
     {
-
         /// <summary>
         /// data of Rice
         /// </summary> 
@@ -45,6 +44,11 @@ namespace OopsPrograms.InventoryManagement
     public class FoodItemsM
     {
         /// <summary>
+        /// total price of inventory
+        /// </summary>
+        public double TotalPrice;
+
+        /// <summary>
         /// Gets or sets the Name of inventory
         /// </summary>
         public string Name { get; set; }
@@ -60,11 +64,6 @@ namespace OopsPrograms.InventoryManagement
         public double Price { get; set; }
 
         /// <summary>
-        /// total price of inventory
-        /// </summary>
-        public double TotalPrice;
-
-        /// <summary>
         /// to override object 
         /// </summary>
         /// <returns>the string</returns>
@@ -73,6 +72,7 @@ namespace OopsPrograms.InventoryManagement
             return string.Format("name:\t{0}\nPrice per KG:\t{1}\nWeight:\t{2}\nTotalPrice:\t{3}", this.Name, this.Price, this.Weight, this.TotalPrice);
         }
     }
+
     /// <summary>
     /// Factory class for Inventory
     /// </summary>
@@ -90,11 +90,13 @@ namespace OopsPrograms.InventoryManagement
             {
                 im = new InventoryM();
             }
+
             double sum = 0;
             if (im != null)
             {
                 sum = im.Sum;
             }
+
             FoodItemsM item = new FoodItemsM();
             Console.WriteLine("Enter your choice :");
             Console.WriteLine("1:  Rice,    2: pulses,    3: Wheat");
@@ -110,7 +112,6 @@ namespace OopsPrograms.InventoryManagement
             {
                 sum = item.TotalPrice;
             }
-
             else
             {
                 sum += item.TotalPrice;
@@ -123,6 +124,7 @@ namespace OopsPrograms.InventoryManagement
                     {
                         im.Rice = new List<FoodItemsM>();
                     }
+
                     im.Rice.Add(item);
                     break;
                 case 2:
@@ -130,6 +132,7 @@ namespace OopsPrograms.InventoryManagement
                     {
                         im.Pulses = new List<FoodItemsM>();
                     }
+
                     im.Pulses.Add(item);
                     break;
                 case 3:
@@ -137,6 +140,7 @@ namespace OopsPrograms.InventoryManagement
                     {
                         im.Wheat = new List<FoodItemsM>();
                     }
+
                     im.Wheat.Add(item);
                     break;
                 default:
@@ -217,7 +221,6 @@ namespace OopsPrograms.InventoryManagement
                 serializer.Serialize(writer, im);
                 Console.WriteLine("Data removed from the Inventory");
             }
-
         }
 
         /// <summary>
@@ -228,11 +231,9 @@ namespace OopsPrograms.InventoryManagement
         {
             string jsonstr = File.ReadAllText(filepath);
             InventoryM im = JsonConvert.DeserializeObject<InventoryM>(jsonstr);
-            //Console.WriteLine("Enter your choice");
             Console.WriteLine("json file as a String:");
             Console.WriteLine(jsonstr);
             Console.WriteLine("Total Inventory cost : " + im.Sum);
         }
-
     }
 }
