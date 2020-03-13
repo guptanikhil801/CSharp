@@ -140,14 +140,45 @@ namespace OopsPrograms.AddressBook
     }
     public class Contact
     {
+        /// <summary>
+        /// Gets or sets FirstName
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets FirstName
+        /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets PhoneNumber
+        /// </summary>
         public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets Address
+        /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// Gets or sets city
+        /// </summary>
         public string City { get; set; }
+
+        /// <summary>
+        /// Gets or sets State
+        /// </summary>
         public string State { get; set; }
+
+        /// <summary>
+        /// Gets or sets zip
+        /// </summary>
         public string Zip { get; set; }
 
+        /// <summary>
+        /// to override object to string
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format("FirtsName:   {0}\nlastName:    {1}\n" +
