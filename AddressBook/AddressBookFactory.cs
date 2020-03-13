@@ -33,6 +33,7 @@ namespace OopsPrograms.AddressBook
             {
                 cont = new List<Contact>();
             }
+
             Contact ct = new Contact();
             Console.WriteLine("Enter your first Name");
             ct.FirstName = Console.ReadLine();
@@ -44,6 +45,7 @@ namespace OopsPrograms.AddressBook
                     return;
                 }
             }
+
             Console.WriteLine("Enter your Last Name");
             ct.LastName = Console.ReadLine();
             Console.WriteLine("Enter Phone Number");
@@ -81,6 +83,7 @@ namespace OopsPrograms.AddressBook
                     break;
                 }
             }
+
             string contactlist = JsonConvert.SerializeObject(ctlist, Formatting.Indented);
             File.WriteAllText(filepath, contactlist);
             Console.WriteLine("Contact deleted successfully");
@@ -99,6 +102,7 @@ namespace OopsPrograms.AddressBook
             {
                 Console.Write(co.FirstName + "      ");
             }
+
             Console.WriteLine("which one you want to Edit enter First Name(case sensitive)");
             string first = Console.ReadLine();
             Console.WriteLine("which field you want to edit enter choice (case sensitive)");
@@ -136,6 +140,7 @@ namespace OopsPrograms.AddressBook
                     }
                 }
             }
+
             Console.WriteLine("contact edited successfully");
             string editedjson = JsonConvert.SerializeObject(cl, Formatting.Indented);
             File.WriteAllText(filepath, editedjson);
@@ -154,7 +159,6 @@ namespace OopsPrograms.AddressBook
                 Console.WriteLine(co);
                 Console.WriteLine();
             }
-
         }
     }
 
@@ -205,8 +209,8 @@ namespace OopsPrograms.AddressBook
         public override string ToString()
         {
             return string.Format("FirtsName:   {0}\nlastName:    {1}\n" +
-                "phoneNumber: {2}\ncity:        {3}\nstate:       {4}\nzip:         {5}\naddress:     {6}"
-                , FirstName, LastName, PhoneNumber, City, State, Zip, Address);
+                "phoneNumber: {2}\ncity:        {3}\nstate:       {4}\nzip:         {5}\naddress:     {6}",
+                 this.FirstName, this.LastName, this.PhoneNumber, this.City, this.State, this.Zip, this.Address);
         }
     }
 }
