@@ -12,8 +12,15 @@ namespace OopsPrograms.AddressBook
     using System.Text;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// this class has all method to add, delete and edit
+    /// </summary>
     public class AddressBookFactory
     {
+        /// <summary>
+        /// it adds contact to contact list
+        /// </summary>
+        /// <param name="filepath"> path of file</param>
         public void Add(string filepath)
         {
             string jsonstr = File.ReadAllText(filepath);
@@ -55,6 +62,10 @@ namespace OopsPrograms.AddressBook
             File.WriteAllText(filepath, jsoncontact);
         }
 
+        /// <summary>
+        /// to delete a contact from contact list
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void Delete(string filepath)
         {
             Console.WriteLine("Enter First name");
@@ -75,6 +86,10 @@ namespace OopsPrograms.AddressBook
             Console.WriteLine("Contact deleted successfully");
         }
 
+        /// <summary>
+        /// it modifies the data according to user
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void Edit(string filepath)
         {
             string jsoncontact = File.ReadAllText(filepath);
@@ -126,6 +141,10 @@ namespace OopsPrograms.AddressBook
             File.WriteAllText(filepath, editedjson);
         }
 
+        /// <summary>
+        /// it displays all the contact in console
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void DisplayContact(string filepath)
         {
             string contactjson = File.ReadAllText(filepath);
@@ -138,6 +157,10 @@ namespace OopsPrograms.AddressBook
 
         }
     }
+
+    /// <summary>
+    /// it has code for details
+    /// </summary>
     public class Contact
     {
         /// <summary>
@@ -178,7 +201,7 @@ namespace OopsPrograms.AddressBook
         /// <summary>
         /// to override object to string
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the string</returns>
         public override string ToString()
         {
             return string.Format("FirtsName:   {0}\nlastName:    {1}\n" +
