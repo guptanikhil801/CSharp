@@ -9,7 +9,7 @@
 
     }
 
-   public class deckOfCard
+   public class DeckOfCard
     {
 
     }
