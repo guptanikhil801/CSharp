@@ -1,4 +1,10 @@
-﻿namespace OopsPrograms.Stock
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StockPortfolio.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// --------------------------------------------------------------------------------------------------------------------
+namespace OopsPrograms.Stock
 {
     using System;
     using System.Collections.Generic;
@@ -59,17 +65,17 @@
             Stock sk = new Stock();
             foreach (Stock c in po.Portfoliodata)
             {
-                    Console.Write(c.ShareName+",      ");
+                Console.Write(c.ShareName + ",      ");
             }
 
             Console.WriteLine("Enter share name to get stock value  : ");
             string sharen = Console.ReadLine();
-            
+
             foreach (Stock c in po.Portfoliodata)
             {
                 if (c.ShareName.Equals(sharen))
                 {
-                    Console.WriteLine("stock value is : "+c.Stockvalue);
+                    Console.WriteLine("stock value is : " + c.Stockvalue);
                     break;
                 }
             }
