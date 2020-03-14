@@ -3,6 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// class to create object of type stock
+    /// </summary>
     public class Stock
     {
         public string ShareName { get; set; }
@@ -15,6 +19,9 @@
         }
     }
 
+    /// <summary>
+    /// class to create list of stock
+    /// </summary>
     public class Portfolio
     {
         public List<Stock> Portfoliodata;
