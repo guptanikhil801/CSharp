@@ -15,4 +15,10 @@
         }
     }
 
+    public class Portfolio
+    {
+        public List<Stock> Portfoliodata;
+        public double Portfoliovalue { get; set; }
+
+    }
 }
