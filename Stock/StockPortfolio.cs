@@ -17,19 +17,25 @@ namespace OopsPrograms.Stock
     /// </summary>
     public class StockPortfolio
     {
+        /// <summary>
+        /// it adds stock details to json file
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void Addstock(string filepath)
         {
             string strjason = File.ReadAllText(filepath);
-            Portfolio po = JsonConvert.DeserializeObject<Portfolio>(strjason);
+            Portfolio po = JsonConvert.DeserializeObject<Portfolio>(strjason);               //// deserialization
             if (po == null)
             {
-                po = new Portfolio();
+                po = new Portfolio();              //// if null create a new object
             }
-            double PortfolioValue = 0;
+
+            double PortfolioValue = 0;             ////initializing PortfolioValue
             if (po != null)
             {
                 PortfolioValue = po.Portfoliovalue;
             }
+
             Stock st = new Stock();
 
             Console.WriteLine("Enter Share Name");
@@ -43,15 +49,16 @@ namespace OopsPrograms.Stock
             {
                 PortfolioValue = st.Stockvalue;
             }
-
             else
             {
                 PortfolioValue += st.Stockvalue;
             }
+
             if (po.Portfoliodata == null)
             {
                 po.Portfoliodata = new List<Stock>();
             }
+
             po.Portfoliodata.Add(st);
             po.Portfoliovalue = PortfolioValue;
             Console.WriteLine("stock details Successfully added");
@@ -59,6 +66,10 @@ namespace OopsPrograms.Stock
             File.WriteAllText(filepath, jsoncontact);
         }
 
+        /// <summary>
+        /// displays total value of a share and whole portfolio value
+        /// </summary>
+        /// <param name="filepath">path of file</param>
         public void GetValueOfStockAndPortfolio(string filepath)
         {
             string strjason = File.ReadAllText(filepath);
@@ -84,6 +95,9 @@ namespace OopsPrograms.Stock
             }
         }
 
+        /// <summary>
+        /// driver method to take user from input and perform operation
+        /// </summary>
         public static void DriverStock()
         {
             Console.WriteLine("Enter file path");
@@ -97,7 +111,7 @@ namespace OopsPrograms.Stock
                 case 'A':
                     sp.Addstock(filepath);
                     break;
-                case 'D':
+                case 'G':
                     sp.GetValueOfStockAndPortfolio(filepath);
                     break;
                 default:
