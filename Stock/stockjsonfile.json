@@ -1,0 +1,17 @@
+{
+  "Portfoliodata": [
+    {
+      "ShareName": "tcs",
+      "Numberofshare": 59,
+      "SharePrice": 2345.0,
+      "Stockvalue": 138355.0
+    },
+    {
+      "ShareName": "itc",
+      "Numberofshare": 78,
+      "SharePrice": 1389.0,
+      "Stockvalue": 108342.0
+    }
+  ],
+  "Portfoliovalue": 246697.0
+}
