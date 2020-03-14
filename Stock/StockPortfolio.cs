@@ -11,9 +11,13 @@ namespace OopsPrograms.Stock
     using System.IO;
     using System.Text;
     using Newtonsoft.Json;
+
+    /// <summary>
+    /// main class of stock
+    /// </summary>
     public class StockPortfolio
     {
-        public void Add(string filepath)
+        public void Addstock(string filepath)
         {
             string strjason = File.ReadAllText(filepath);
             Portfolio po = JsonConvert.DeserializeObject<Portfolio>(strjason);
@@ -50,7 +54,6 @@ namespace OopsPrograms.Stock
             }
             po.Portfoliodata.Add(st);
             po.Portfoliovalue = PortfolioValue;
-
             Console.WriteLine("stock details Successfully added");
             string jsoncontact = JsonConvert.SerializeObject(po, Formatting.Indented);
             File.WriteAllText(filepath, jsoncontact);
@@ -79,7 +82,28 @@ namespace OopsPrograms.Stock
                     break;
                 }
             }
+        }
 
+        public static void DriverStock()
+        {
+            Console.WriteLine("Enter file path");
+            string filepath = Console.ReadLine();
+            StockPortfolio sp = new StockPortfolio();
+            Console.WriteLine("Enter your choice (case sensitive)");
+            Console.WriteLine("A:     Add stock,     G:    GetValueOfStockAndPortfolio");
+            char choice = char.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 'A':
+                    sp.Addstock(filepath);
+                    break;
+                case 'D':
+                    sp.GetValueOfStockAndPortfolio(filepath);
+                    break;
+                default:
+                    Console.WriteLine("invalid choice");
+                    break;
+            }
         }
     }
 }
