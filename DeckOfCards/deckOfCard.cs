@@ -17,6 +17,10 @@
             return Rank + " Of " + Suit;
         }
     }
+
+    /// <summary>
+    ///main class of cards 
+    /// </summary>
     public class DeckOfCards
     {
         private Card[] deck;
