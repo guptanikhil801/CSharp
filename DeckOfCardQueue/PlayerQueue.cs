@@ -16,7 +16,14 @@ namespace OopsPrograms.DeckOfCardQueue
     /// </summary>
     public class Player
     {
+        /// <summary>
+        /// queue type cards
+        /// </summary>
         public Queue<string> cards;
+
+        /// <summary>
+        /// queue type sorted cards
+        /// </summary>
         public Queue<string> sortedcards;
     }
     /// <summary>
@@ -24,6 +31,10 @@ namespace OopsPrograms.DeckOfCardQueue
     /// </summary>
     public class CardsPlayersInQueue
     {
+        /// <summary>
+        /// to create 9 cards in random order
+        /// </summary>
+        /// <returns>Random cards in string array</returns>
         private static string[] RandomCards()
         {
             DeckOfCard dc = new DeckOfCard();
@@ -38,6 +49,10 @@ namespace OopsPrograms.DeckOfCardQueue
             }
             return strarr;
         }
+        /// <summary>
+        /// to create 9 cards in sorted order according to rank
+        /// </summary>
+        /// <returns>sorted cards in string array</returns>
         private static string[] SortedCardRanking()
         {
             string[] aftersort = new string[9];
@@ -66,6 +81,10 @@ namespace OopsPrograms.DeckOfCardQueue
             }
             return aftersort;
         }
+        
+        /// <summary>
+        /// driver method to generate cards for all players using queue
+        /// </summary>
         public static void DriverMethodsCardsQueue()
         {
             Queue<Player> playerlist = new Queue<Player>();
