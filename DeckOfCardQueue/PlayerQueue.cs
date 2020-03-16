@@ -19,13 +19,14 @@ namespace OopsPrograms.DeckOfCardQueue
         /// <summary>
         /// queue type cards
         /// </summary>
-        public Queue<string> cards;
+        public Queue<string> Cards;
 
         /// <summary>
         /// queue type sorted cards
         /// </summary>
-        public Queue<string> sortedcards;
+        public Queue<string> Sortedcards;
     }
+
     /// <summary>
     /// contains implementation of players
     /// </summary>
@@ -47,8 +48,10 @@ namespace OopsPrograms.DeckOfCardQueue
                 string strc = cardarr[j].ToString();
                 strarr[j] = strc;                           //// storing cards in string array
             }
+
             return strarr;
         }
+
         /// <summary>
         /// to create 9 cards in sorted order according to rank
         /// </summary>
@@ -56,14 +59,14 @@ namespace OopsPrograms.DeckOfCardQueue
         private static string[] SortedCardRanking()
         {
             string[] aftersort = new string[9];
-
-            string[] sortcards = { "Clubs Of Ace", "Diamonds Of Ace", "Hearts Of Ace", "Spades Of Ace" , "Clubs of king",
-                                 "Diamonds Of king","Hearts Of king","Spades Of king","Clubs Of queen","Diamonds Of queen", "Hearts Of queen",
+            string[] sortcards = { "Clubs Of Ace","Diamonds Of Ace","Hearts Of Ace","Spades Of Ace","Clubs of king",     //// storing ranks in a string array
+                "Diamonds Of king","Hearts Of king","Spades Of king","Clubs Of queen","Diamonds Of queen","Hearts Of queen",
                                    "Spades Of queen","Clubs Of jack","Diamonds Of jack","Hearts Of jack","Spades Of jack",
                             "Clubs Of 10","Diamonds Of 10","Hearts Of 10","Spades Of 10","Clubs Of 9","Diamonds Of 9","Hearts Of 9","Spades Of 9",
                             "Clubs Of 8","Diamonds Of 8","Hearts Of 8","Spades Of 8","Clubs Of 7","Diamonds Of 7","Hearts Of 7","Spades Of 7",
                             "Clubs Of 6","Diamonds Of 6","Hearts Of 6","Spades Of 6","Clubs Of 5","Diamonds Of 5","Hearts Of 5","Spades Of 5","Clubs Of 4",
-          "Diamonds Of 4","Hearts Of 4","Spades Of 4","Clubs Of 3","Diamonds Of 3","Hearts Of 3","Spades Of 3","Clubs Of 2","Diamonds Of 2","Hearts Of 2","Spades Of 2"};
+                "Diamonds Of 4","Hearts Of 4","Spades Of 4","Clubs Of 3","Diamonds Of 3",
+                "Hearts Of 3","Spades Of 3","Clubs Of 2","Diamonds Of 2","Hearts Of 2","Spades Of 2"};
             string[] cts = RandomCards();
             int l = 0;
             for (int i = 0; i < sortcards.Length; i++)
@@ -79,6 +82,7 @@ namespace OopsPrograms.DeckOfCardQueue
                     }
                 }
             }
+
             return aftersort;
         }
         
@@ -88,17 +92,19 @@ namespace OopsPrograms.DeckOfCardQueue
         public static void DriverMethodsCardsQueue()
         {
             Queue<Player> playerlist = new Queue<Player>();
+            //// loop for players
             for (int j = 0; j < 4; j++)
             {
                 Player p = new Player();
                 Queue<string> ls = new Queue<string>();
                 string[] cardpp = RandomCards();
+                //// loop for storing cards
                 for (int i = 0; i < cardpp.Length; i++)
                 {
                     ls.Enqueue(cardpp[i].ToString());
-                    //  p.cards.Enqueue(cardpp[0]);
                 }
-                p.cards = ls;
+
+                p.Cards = ls;
                 Queue<string> so = new Queue<string>();
                 string[] cardso = SortedCardRanking();
 
@@ -106,7 +112,8 @@ namespace OopsPrograms.DeckOfCardQueue
                 {
                     so.Enqueue(cardso[k].ToString());
                 }
-                p.sortedcards = so;
+
+                p.Sortedcards = so;
                 playerlist.Enqueue(p);
             }
 
@@ -117,13 +124,14 @@ namespace OopsPrograms.DeckOfCardQueue
                 Console.WriteLine("   Player " + i + " Cards in Random order");
                 for (int j = 1; j <= 9; j++)
                 {
-                    Console.Write(string.Format("\t{0}", pa.cards.Dequeue()));
+                    Console.Write(string.Format("\t{0}", pa.Cards.Dequeue()));
                 }
+
                 Console.WriteLine();
                 Console.WriteLine("   Player " + i + " Cards in sorted order");
                 for (int j = 1; j <= 9; j++)
                 {
-                    Console.Write(string.Format("\t{0}", pa.sortedcards.Dequeue()));
+                    Console.Write(string.Format("\t{0}", pa.Sortedcards.Dequeue()));
                 }
             }
         }
