@@ -1,15 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OopsPrograms.DeckOfCards;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PlayerQueue.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// --------------------------------------------------------------------------------------------------------------------
 namespace OopsPrograms.DeckOfCardQueue
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using OopsPrograms.DeckOfCards;
+
+    /// <summary>
+    /// to define player type
+    /// </summary>
     public class Player
     {
         public Queue<string> cards;
         public Queue<string> sortedcards;
     }
+    /// <summary>
+    /// contains implementation of players
+    /// </summary>
     public class CardsPlayersInQueue
     {
         private static string[] RandomCards()
@@ -26,7 +38,7 @@ namespace OopsPrograms.DeckOfCardQueue
             }
             return strarr;
         }
-        public static string[] SortedCardRanking()
+        private static string[] SortedCardRanking()
         {
             string[] aftersort = new string[9];
 
