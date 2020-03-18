@@ -9,5 +9,13 @@
         {
             Console.WriteLine("Singleton class created using Lazy Initialization ");
         }
+        private static readonly Lazy<LazySingleton> LSInstance = new Lazy<LazySingleton>(() => new LazySingleton());
+        public static LazySingleton getInstanceOfLazySingleton
+        {
+            get
+            {
+                return LSInstance.Value;
+            }
+        }
     }
 }
