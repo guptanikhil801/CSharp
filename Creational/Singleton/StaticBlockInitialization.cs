@@ -7,7 +7,11 @@ namespace DesignPattern.Creational.Singleton
 
     public class StaticBlockInitialization
     {
-
+        private static StaticBlockInitialization sInstance;
+        private StaticBlockInitialization()
+        {
+            Console.WriteLine("singleton design pattern using static block");
+        }
     }
 
 }
