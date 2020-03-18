@@ -5,6 +5,9 @@
     using System.Text;
     public sealed class LazySingleton
     {
-
+        private LazySingleton()
+        {
+            Console.WriteLine("Singleton class created using Lazy Initialization ");
+        }
     }
 }
