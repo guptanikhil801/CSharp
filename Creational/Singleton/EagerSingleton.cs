@@ -9,6 +9,10 @@ namespace DesignPattern.Creational.Singleton
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// Example of singleton class using Eager initialization
+    /// </summary>
     public sealed class EagerSingleton
     {
         private EagerSingleton()
