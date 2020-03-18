@@ -9,5 +9,13 @@
         {
             Console.WriteLine("Singleton class created using Eager Initialization ");
         }
+        private static EagerSingleton ESInstance = new EagerSingleton();
+        public static EagerSingleton getInstanceOfEagerSingleton
+        {
+            get
+            {
+                return ESInstance;
+            }
+        }
     }
 }
