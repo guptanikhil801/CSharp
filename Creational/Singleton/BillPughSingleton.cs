@@ -1,4 +1,10 @@
-﻿namespace DesignPattern.Creational.Singleton
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BillPughSingleton.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------------------- 
+namespace DesignPattern.Creational.Singleton
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +21,7 @@
         }
         public static BillPughSingleton GetInstanceOfBillPugh()
         {
-            
+
             {
                 return BillPughSingleton.InnerClassBillPugh.InstanceOfBillPugh;
             }
