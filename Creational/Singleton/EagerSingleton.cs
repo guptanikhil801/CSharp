@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Card.cs" company="Bridgelabz">
+// <copyright file="EagerSingleton.cs" company="Bridgelabz">
 //   Copyright © 2020 Company="BridgeLabz"
 // </copyright>
 // <creator name="Nikhil Gupta"/>
@@ -15,16 +15,30 @@ namespace DesignPattern.Creational.Singleton
     /// </summary>
     public sealed class EagerSingleton
     {
+        /// <summary>
+        /// Prevents a default instance of the <see cref="EagerSingleton"/> class from being created.
+        /// </summary>
         private EagerSingleton()
         {
             Console.WriteLine("Singleton class created using Eager Initialization ");
         }
-        private static EagerSingleton ESInstance = new EagerSingleton();
-        public static EagerSingleton getInstanceOfEagerSingleton
+
+        /// <summary>
+        /// To create instance
+        /// </summary>
+        private static EagerSingleton esinstance = new EagerSingleton();
+       
+        /// <summary>
+        /// Gets the instance of eager singleton.
+        /// </summary>
+        /// <value>
+        /// instance
+        /// </value>
+        public static EagerSingleton GetInstanceOfEagerSingleton
         {
             get
             {
-                return ESInstance;
+                return esinstance;
             }
         }
     }
