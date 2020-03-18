@@ -5,6 +5,9 @@
     using System.Text;
     public sealed class EagerSingleton
     {
-        
+        private EagerSingleton()
+        {
+            Console.WriteLine("Singleton class created using Eager Initialization ");
+        }
     }
 }
