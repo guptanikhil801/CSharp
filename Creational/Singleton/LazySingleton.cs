@@ -1,4 +1,10 @@
-﻿namespace DesignPattern.Creational.Singleton
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LazySingleton.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------------------- 
+namespace DesignPattern.Creational.Singleton
 {
     using System;
     using System.Collections.Generic;
@@ -26,9 +32,9 @@
         /// Gets the instance of lazy singleton.
         /// </summary>
         /// <value>
-        /// instance of lazysingleton.
+        /// instance of lazySingleton.
         /// </value>
-        public static LazySingleton getInstanceOfLazySingleton
+        public static LazySingleton GetInstanceOfLazySingleton
         {
             get
             {
