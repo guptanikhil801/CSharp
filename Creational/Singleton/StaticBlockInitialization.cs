@@ -12,6 +12,14 @@ namespace DesignPattern.Creational.Singleton
         {
             Console.WriteLine("singleton design pattern using static block");
         }
+        static StaticBlockInitialization()
+        {
+            sInstance = new StaticBlockInitialization();
+        }
+        public static StaticBlockInitialization GetInstance()
+        {
+            return sInstance;
+        }
     }
 
 }
