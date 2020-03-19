@@ -1,14 +1,30 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Management.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------
 namespace OopsPrograms.CommercialData
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// main class
+    /// </summary>
     public class Management
     {
+        /// <summary>
+        /// object  commericial data
+        /// </summary>
         CommercialData cd = new CommercialData();
+
+        /// <summary>
+        /// Driver method.
+        /// </summary>
         public void DriverMethod()
         {
             Console.WriteLine("Enter customer name");
@@ -34,8 +50,12 @@ namespace OopsPrograms.CommercialData
                     break;
             }
         }
-        
-        public void AddAccount(string file)
+
+        /// <summary>
+        /// Adds the account.
+        /// </summary>
+        /// <param name="file">The file.</param>
+       public void AddAccount(string file)
         {
             List<StockAccount> ls;
             if (file.Length < 1)
@@ -60,6 +80,12 @@ namespace OopsPrograms.CommercialData
             }
             Console.WriteLine("Successfully added");
         }
+
+        /// <summary>
+        /// Removes the account.
+        /// </summary>
+        /// <param name="custname">The custname.</param>
+        /// <param name="file">The file.</param>
         public void RemoveAccount(string custname, string file)
         {
             string jfile = File.ReadAllText(file);
@@ -91,16 +117,20 @@ namespace OopsPrograms.CommercialData
             }
             Console.WriteLine("removed successfully");
         }
+
+        /// <summary>
+        /// Displays the Report of specified customer name.
+        /// </summary>
+        /// <param name="custname">The customer name.</param>
         public void Display(string custname)
         {
-
             List<StockAccount> ls;
             ls = JsonConvert.DeserializeObject<List<StockAccount>>(custname);
             for (int i = 0; i < ls.Count; i++)
             {
                 if (ls[i].customerName.Equals(custname))
                 {
-                    cd.PrintReport(custname);
+                    this.cd.PrintReport(custname);
                     break;
                 }
             }
