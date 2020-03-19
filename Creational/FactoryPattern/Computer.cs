@@ -5,5 +5,9 @@
     using System.Text;
     interface Computer
     {
+        int ramcapacity();
+        int hddcapacity();
+        string cpu();
+        string manufacturer();
     }
 }
