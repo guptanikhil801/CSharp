@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Management.cs" company="Bridgelabz">
+// <copyright file="CommercialData.cs" company="Bridgelabz">
 //   Copyright © 2020 Company="BridgeLabz"
 // </copyright>
 // <creator name="Nikhil Gupta"/>
@@ -9,16 +9,25 @@ namespace OopsPrograms.CommercialData
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// commercial data class
+    /// </summary>
     public class CommercialData
     {
         StockAccount sa = new StockAccount();
+
+        /// <summary>
+        /// Takes the data.
+        /// </summary>
+        /// <param name="customername">The customer name.</param>
         public void TakeData(string customername)
         {
-            sa.customerName = customername;
+            this.sa.customerName = customername;
             Console.WriteLine("In How many company's stock u want to do transaction");
             int numo = int.Parse(Console.ReadLine());
-            sa.numberofStocks = numo;
-            sa.transactiontime = DateTime.Now;
+            this.sa.numberofStocks = numo;
+            this.sa.transactiontime = DateTime.Now;
             for (int i = 0; i < sa.numberofStocks; i++)
             {
                 List<string> sn = new List<string>();//sa.shareName 
@@ -47,39 +56,43 @@ namespace OopsPrograms.CommercialData
                 int c = int.Parse(Console.ReadLine());
                 sp.Add(c);
                 arramt[i] = (c * b);
-                sa.shareName = sn;
-                sa.sharePrice = sp;
-                sa.numberofshare = nus;
-               sa.shareamountindollar = arramt;
-                sa.transactiontype = tt;
+                this.sa.shareName = sn;
+                this.sa.sharePrice = sp;
+                this.sa.numberofshare = nus;
+                this.sa.shareamountindollar = arramt;
+                this.sa.transactiontype = tt;
             }
             double totalvalue = 0;
-            for (int i = 0; i < sa.numberofStocks; i++)
+            for (int i = 0; i < this.sa.numberofStocks; i++)
             {
-                if (sa.transactiontype[i].ToString().Equals("Buy"))
+                if (this.sa.transactiontype[i].ToString().Equals("Buy"))
                 {
-                    totalvalue += sa.shareamountindollar[i];
+                    totalvalue += this.sa.shareamountindollar[i];
                 }
                 else
                 {
-                    totalvalue -= sa.shareamountindollar[i];
+                    totalvalue -= this.sa.shareamountindollar[i];
                 }
             }
-            sa.valueof = totalvalue;
+            this.sa.valueof = totalvalue;
         }
 
+        /// <summary>
+        ///to Print the report.
+        /// </summary>
+        /// <param name="custname">The custname.</param>
         public void PrintReport(string custname)
         {
-            if (sa.customerName.Equals(custname))
+            if (this.sa.customerName.Equals(custname))
             {
-                Console.WriteLine("customer name " + sa.customerName.ToString());
-                Console.WriteLine("Transation Time " + sa.transactiontime.ToString());
-                Console.WriteLine("Total number of stocks " + sa.numberofStocks.ToString());
-                Console.WriteLine("Total value of Stock: " + string.Format((sa.valueof).ToString()));
+                Console.WriteLine("customer name " + this.sa.customerName.ToString());
+                Console.WriteLine("Transation Time " + this.sa.transactiontime.ToString());
+                Console.WriteLine("Total number of stocks " + this.sa.numberofStocks.ToString());
+                Console.WriteLine("Total value of Stock: " + string.Format((this.sa.valueof).ToString()));
                 for (int i = 0; i < sa.numberofStocks; i++)
                 {
-                    Console.WriteLine("Share Name: " + sa.shareName[i]);
-                    Console.WriteLine("Number of Share: " + sa.numberofshare[i]);
+                    Console.WriteLine("Share Name: " + this.sa.shareName[i]);
+                    Console.WriteLine("Number of Share: " + this.sa.numberofshare[i]);
                     Console.WriteLine("Price of Share: " + sa.sharePrice[i]);
                     Console.WriteLine("amount of Share in dollar: " + sa.shareamountindollar[i]);
                     Console.WriteLine("Transaction Type : " + sa.transactiontype[i]);
