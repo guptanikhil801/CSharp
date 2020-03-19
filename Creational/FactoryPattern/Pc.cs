@@ -5,24 +5,32 @@
     using System.Text;
     public class Pc : Computer
     {
+        private int ram;
+        private int hdd;
+        private string cpu;
+        private string manuf;
+       public Pc (int ram, int hdd, string cpu, string manuf)
+        {
+            this.ram = ram;
+            this.hdd = hdd;
+            this.cpu = cpu;
+            this.manuf = manuf;
+        }
         public string cpuname()
         {
-            throw new NotImplementedException();
+            return this.cpu;
         }
-
         public int hddcapacity()
         {
-            throw new NotImplementedException();
+            return this.hdd;
         }
-
         public string manufacturer()
         {
-            throw new NotImplementedException();
+            return this.manuf;
         }
-
         public int ramcapacity()
         {
-            throw new NotImplementedException();
+            return this.ram;
         }
     }
 }
