@@ -88,7 +88,7 @@ namespace DesignPattern.Creational.FactoryPattern
         /// </returns>
         public override string ToString()
         {
-            return ("Manufactured by: " + this.manuf + " Ram : " + this.ram + " Hard Disk: " + this.hdd + " Cpu: " + this.cpu);
+            return "Manufactured by: " + this.manuf + " Ram : " + this.ram + " Hard Disk: " + this.hdd + " Cpu: " + this.cpu;
         }
     }
 }
