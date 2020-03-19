@@ -1,11 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="RunnerClass.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
 namespace DesignPattern.Creational.FactoryPattern
 {
-    class Runnerclass
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    /// <summary>
+    /// main class to test factory pattern
+    /// </summary>
+    public class Runnerclass
     {
+        /// <summary>
+        /// Driver method.
+        /// </summary>
         public static void DriverMethod()
         {
             Console.WriteLine("Enter Instance type");
