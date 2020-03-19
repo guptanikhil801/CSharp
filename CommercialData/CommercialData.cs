@@ -1,4 +1,10 @@
-﻿namespace OopsPrograms.CommercialData
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Management.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------
+namespace OopsPrograms.CommercialData
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +14,6 @@
         StockAccount sa = new StockAccount();
         public void TakeData(string customername)
         {
-
             sa.customerName = customername;
             Console.WriteLine("In How many company's stock u want to do transaction");
             int numo = int.Parse(Console.ReadLine());
@@ -51,24 +56,34 @@
             double totalvalue = 0;
             for (int i = 0; i < sa.numberofStocks; i++)
             {
-                totalvalue += sa.shareamountindollar[i];
+                if (sa.transactiontype[i].ToString().Equals("Buy"))
+                {
+                    totalvalue += sa.shareamountindollar[i];
+                }
+                else
+                {
+                    totalvalue -= sa.shareamountindollar[i];
+                }
             }
             sa.valueof = totalvalue;
         }
 
-        public void PrintReport()
+        public void PrintReport(string custname)
         {
-            Console.WriteLine("customer name " + sa.customerName.ToString());
-            Console.WriteLine("Transation Time " + sa.transactiontime.ToString());
-            Console.WriteLine("Total number of stocks " + sa.numberofStocks.ToString());
-            Console.WriteLine("Total value of Stock: " + string.Format((sa.valueof).ToString()));
-            for (int i = 0; i < sa.numberofStocks; i++)
+            if (sa.customerName.Equals(custname))
             {
-                Console.WriteLine("Share Name: " + sa.shareName[i]);
-                Console.WriteLine("Number of Share: " + sa.numberofshare[i]);
-                Console.WriteLine("Price of Share: " + sa.sharePrice[i]);
-                Console.WriteLine("amount of Share in dollar: " + sa.shareamountindollar[i]);
-                Console.WriteLine("Transaction Type : " + sa.transactiontype[i]);
+                Console.WriteLine("customer name " + sa.customerName.ToString());
+                Console.WriteLine("Transation Time " + sa.transactiontime.ToString());
+                Console.WriteLine("Total number of stocks " + sa.numberofStocks.ToString());
+                Console.WriteLine("Total value of Stock: " + string.Format((sa.valueof).ToString()));
+                for (int i = 0; i < sa.numberofStocks; i++)
+                {
+                    Console.WriteLine("Share Name: " + sa.shareName[i]);
+                    Console.WriteLine("Number of Share: " + sa.numberofshare[i]);
+                    Console.WriteLine("Price of Share: " + sa.sharePrice[i]);
+                    Console.WriteLine("amount of Share in dollar: " + sa.shareamountindollar[i]);
+                    Console.WriteLine("Transaction Type : " + sa.transactiontype[i]);
+                }
             }
         }
     }
