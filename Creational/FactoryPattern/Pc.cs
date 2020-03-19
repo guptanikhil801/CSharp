@@ -1,9 +1,20 @@
-﻿namespace DesignPattern.Creational.FactoryPattern
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="Pc.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
+namespace DesignPattern.Creational.FactoryPattern
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
-    public class Pc : Computer
+
+    /// <summary>
+    /// pc class
+    /// </summary>
+    /// <seealso cref="DesignPattern.Creational.FactoryPattern.IComputer" />
+    public class Pc : IComputer
     {
         private int ram;
         private int hdd;
@@ -16,21 +27,25 @@
             this.cpu = cpu;
             this.manuf = manuf;
         }
-        public string cpuname()
+        public string Cpuname()
         {
             return this.cpu;
         }
-        public int hddcapacity()
+        public int Hddcapacity()
         {
             return this.hdd;
         }
-        public string manufacturer()
+        public string Manufacturer()
         {
             return this.manuf;
         }
-        public int ramcapacity()
+        public int Ramcapacity()
         {
             return this.ram;
+        }
+        public override string ToString()
+        {
+            return ("Manufactured by: " + this.manuf + " Ram : " + this.ram + " Hard Disk: " + this.hdd + " Cpu: " + this.cpu);
         }
     }
 }
