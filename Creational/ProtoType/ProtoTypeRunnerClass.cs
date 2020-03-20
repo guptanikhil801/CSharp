@@ -1,11 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// -----------------------------------------------------------------------------------------
+// <copyright file="ProtoTypeRunnerClass.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------
 namespace DesignPattern.Creational.ProtoType
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    /// <summary>
+    /// Runner class of proto type
+    /// </summary>
     public class ProtoTypeRunnerClass
     {
+        /// <summary>
+        /// Driver method.
+        /// </summary>
         public static void DriverMethod()
         {
             DistributorShallowCloning sc = new DistributorShallowCloning();
@@ -26,7 +38,6 @@ namespace DesignPattern.Creational.ProtoType
             cloneddeep.Location = "Hyderabad";
             Console.WriteLine("Cloned object using deep cloning");
             Console.WriteLine(cloneddeep);
-
         }
     }
 }
