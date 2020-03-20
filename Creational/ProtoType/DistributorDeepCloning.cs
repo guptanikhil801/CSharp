@@ -1,14 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// -----------------------------------------------------------------------------------------
+// <copyright file="DistributorDeepCloning.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------
 namespace DesignPattern.Creational.ProtoType
 {
-   public class DistributorDeepCloning:DistributorShallowCloning
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    /// <summary>
+    /// class for deep cloning
+    /// </summary>
+    /// <seealso cref="DesignPattern.Creational.ProtoType.DistributorShallowCloning" />
+    public class DistributorDeepCloning : DistributorShallowCloning
     {
-        public new Object Clone()
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// copy of this instance.
+        /// </returns>
+        public new object Clone()
         {
-            DistributorDeepCloning dpc =(DistributorDeepCloning)this.MemberwiseClone();
+            DistributorDeepCloning dpc = (DistributorDeepCloning)this.MemberwiseClone();
             dpc.vehicle = (Vehicle)this.vehicle.Clone();
             return dpc;
         }
