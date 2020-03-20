@@ -32,7 +32,10 @@
             v.Brand = "Triumph";
             v.Price = 400000;
             vehicle.Add(vc);
-
+        }
+        public override string ToString()
+        {
+            return "Distributor Location : " + Location + ",\n Vehicle : " + vehicle;
         }
     }
 }
