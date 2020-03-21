@@ -5,5 +5,9 @@
     using System.Text;
     interface ITransaction
     {
+        void Withdraw();
+        void Deposit();
+        void PinChange();
+        void Statement();
     }
 }
