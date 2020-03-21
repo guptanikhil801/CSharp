@@ -16,5 +16,21 @@
             editContact = new EditContact();
             displayContact = new DisplayContact();
         }
+        public void DoAddContact(string file)
+        {
+            addContact.DoOperation(file);
+        }
+        public void DoEditContact(string file)
+        {
+            editContact.DoOperation(file);
+        }
+        public void DoDeleteContact(string file)
+        {
+            deleteContact.DoOperation(file);
+        }
+        public void DoDisplayContact(string file)
+        {
+            displayContact.DoOperation(file);
+        }
     }
 }
