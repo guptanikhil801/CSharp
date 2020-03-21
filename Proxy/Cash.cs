@@ -9,6 +9,11 @@ namespace DesignPattern.Structural.Proxy
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// main class which has funtionality
+    /// </summary>
+    /// <seealso cref="DesignPattern.Structural.Proxy.ITransaction" />
     public class Cash : ITransaction
     {
         public void Deposit()
