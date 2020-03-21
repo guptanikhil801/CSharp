@@ -11,7 +11,7 @@ namespace DesignPattern.Structural.Proxy
     using System.Text;
 
     /// <summary>
-    /// main class which has funtionality and implements ITransaction
+    /// main class which has functionality and implements ITransaction
     /// </summary>
     /// <seealso cref="DesignPattern.Structural.Proxy.ITransaction" />
     public class Cash : ITransaction
@@ -23,7 +23,7 @@ namespace DesignPattern.Structural.Proxy
         {
             Console.WriteLine("Enter amount to deposit");
             int dep = int.Parse(Console.ReadLine());
-            Console.WriteLine(dep+"  deposited ");
+            Console.WriteLine(dep + "  deposited ");
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace DesignPattern.Structural.Proxy
         {
             Console.WriteLine("Enter New pin ");
             int pin = int.Parse(Console.ReadLine());
-            Console.WriteLine("pin changed to "+pin);
+            Console.WriteLine("pin changed to " + pin);
         }
 
         /// <summary>
