@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------------
-// <copyright file="ProxyCardClass.cs" company="Bridgelabz">
+// <copyright file="ProxyTestCustomer.cs" company="Bridgelabz">
 //   Copyright © 2020 Company="BridgeLabz"
 // </copyright>
 // <creator name="Nikhil Gupta"/>
@@ -10,10 +10,15 @@ namespace DesignPattern.Structural.Proxy
     using System.Collections.Generic;
     using System.Text;
 
-   public class ProxyTestCustomer
+    /// <summary>
+    /// Customer class to test Proxy design pattern
+    /// </summary>
+    public class ProxyTestCustomer
     {
-        
-       public static void DriverProxydp()
+        /// <summary>
+        /// Driver method
+        /// </summary>
+        public static void DriverProxydp()
         {
             ProxyCardClass test = new ProxyCardClass();
             Console.WriteLine("Enter Card Type");
