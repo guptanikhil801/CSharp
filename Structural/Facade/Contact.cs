@@ -1,9 +1,19 @@
-﻿namespace DesignPattern.Structural.Facade
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="Contact.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
+namespace DesignPattern.Structural.Facade
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
-    public  class Contact
+
+    /// <summary>
+    /// To Create Contact
+    /// </summary>
+    public class Contact
     {
         /// <summary>
         /// Gets or sets FirstName

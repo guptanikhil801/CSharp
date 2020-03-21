@@ -1,15 +1,29 @@
-﻿namespace DesignPattern.Structural.Facade
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="DeleteContact.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
+namespace DesignPattern.Structural.Facade
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// class to create delete contact
+    /// </summary>
+    /// <seealso cref="DesignPattern.Structural.Facade.IAddressBook" />
     public class DeleteContact : IAddressBook
     {
+        /// <summary>
+        /// Does the operation of deleting contact
+        /// </summary>
+        /// <param name="filepath">The file path.</param>
         public void DoOperation(string filepath)
         {
-
             Console.WriteLine("Enter First name");
             string first = Console.ReadLine();
             string jsoncont = File.ReadAllText(filepath);
