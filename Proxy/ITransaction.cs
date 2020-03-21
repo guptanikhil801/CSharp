@@ -11,13 +11,28 @@ namespace DesignPattern.Structural.Proxy
     using System.Text;
 
     /// <summary>
-    /// Transation interface
+    /// Transaction interface
     /// </summary>
-    interface ITransaction
+    public interface ITransaction
     {
+        /// <summary>
+        /// Withdraws method declaration
+        /// </summary>
         void Withdraw();
+
+        /// <summary>
+        /// Deposits  method declaration
+        /// </summary>
         void Deposit();
+
+        /// <summary>
+        /// Pinchange method declaration
+        /// </summary>
         void PinChange();
+
+        /// <summary>
+        /// Statements method declaration.
+        /// </summary>
         void Statement();
     }
 }
