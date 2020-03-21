@@ -21,6 +21,10 @@
                 cash.Withdraw();
                 cash.PinChange();
             }
+            else
+            {
+                Console.WriteLine("Invalid Card type");
+            }
         }
     }
 }

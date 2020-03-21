@@ -1,4 +1,10 @@
-﻿namespace DesignPattern.Structural.Proxy
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="Cash.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
+namespace DesignPattern.Structural.Proxy
 {
     using System;
     using System.Collections.Generic;
