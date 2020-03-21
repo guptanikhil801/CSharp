@@ -9,11 +9,19 @@ namespace DesignPattern.Structural.Proxy
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// class to hold object of cash class
+    /// </summary>
     public class ProxyCardClass
     {
-        private Cash cash = new Cash();
         private static List<string> eligiblecards;
+        private Cash cash = new Cash();
 
+        /// <summary>
+        /// Starts the transaction.
+        /// </summary>
+        /// <param name="cardtype">The card type.</param>
         public void StartTransaction(string cardtype)
         {
             eligiblecards = new List<string>();
@@ -22,10 +30,10 @@ namespace DesignPattern.Structural.Proxy
             eligiblecards.Add("master");
             if (eligiblecards.Contains(cardtype.ToLower()))
             {
-                cash.Statement();
-                cash.Deposit();
-                cash.Withdraw();
-                cash.PinChange();
+                this.cash.Statement();
+                this.cash.Deposit();
+                this.cash.Withdraw();
+                this.cash.PinChange();
             }
             else
             {
@@ -34,5 +42,3 @@ namespace DesignPattern.Structural.Proxy
         }
     }
 }
-
-
