@@ -1,12 +1,27 @@
-﻿namespace DesignPattern.Structural.Facade
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="EditContact.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
+namespace DesignPattern.Structural.Facade
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// class to edit contact
+    /// </summary>
+    /// <seealso cref="DesignPattern.Structural.Facade.IAddressBook" />
     public class EditContact : IAddressBook
     {
+        /// <summary>
+        /// Does the operation of editing of contact
+        /// </summary>
+        /// <param name="filepath">The filepath.</param>
         public void DoOperation(string filepath)
         {
             string jsoncontact = File.ReadAllText(filepath);
