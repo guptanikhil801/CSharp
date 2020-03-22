@@ -9,8 +9,15 @@ namespace DesignPattern.Behavioral.Observor
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// To test observer Design pattern
+    /// </summary>
     public class ObservorDpTest
     {
+        /// <summary>
+        /// driver method.
+        /// </summary>
         public static void ObservorDpDriverMethod()
         {
             MakeMyTrip test = new MakeMyTrip();
