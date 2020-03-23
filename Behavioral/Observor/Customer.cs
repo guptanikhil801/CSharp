@@ -13,7 +13,7 @@ namespace DesignPattern.Behavioral.Observor
     /// <summary>
     /// class for observing customer
     /// </summary>
-    public class Customer
+    public class Customer:IObservor
     {
         /// <summary>
         /// The name of customer

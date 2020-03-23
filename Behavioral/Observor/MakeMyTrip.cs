@@ -14,7 +14,7 @@ namespace DesignPattern.Behavioral.Observor
     /// subject implementation class
     /// </summary>
     /// <seealso cref="DesignPattern.Behavioral.Observor.Subject" />
-    public class MakeMyTrip : Subject
+    public class MakeMyTrip : ISubject
     {
         /// <summary>
         /// The list of customer
