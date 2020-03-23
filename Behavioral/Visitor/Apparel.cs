@@ -15,9 +15,21 @@ namespace DesignPattern.Behavioral.Visitor
             this.price = price;
             this.quantity = quantity;
         }
+        public string GetBrandName()
+        {
+            return this.brandName;
+        }
+        public int GetPrice()
+        {
+            return this.price;
+        }
+        public int GetQuantity()
+        {
+            return this.quantity;
+        }
         public int Accept(ShoppingCartVisitor visitor)
         {
-
+            return visitor.Visit(this);
         }
     }
 }
