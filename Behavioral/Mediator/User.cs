@@ -1,4 +1,9 @@
-﻿
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="User.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace DesignPattern.Behavioral.Mediator
 {
     using System;
