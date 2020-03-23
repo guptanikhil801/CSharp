@@ -9,15 +9,15 @@ namespace DesignPattern.Behavioral.Visitor
         public int Visit(Mobile mobile)
         {
             int value = 0;
-            if(mobile.GetPrice()>10000)
+            if(mobile.GetPrice()>20000)
             {
-                value = (mobile.GetPrice() - 500)*mobile.GetQuantity();   //// 500 discount in each if price is over 10000
+                value = (mobile.GetPrice() - 1000)*mobile.GetQuantity();   //// 1000 discount in each if price is over 20000
             }
             else
             {
                value =  mobile.GetPrice() * mobile.GetQuantity();   //// else no discount
             }
-            Console.WriteLine("Total Price of Mobile : " + mobile.GetModelName() + " is " + value + " and quantity is " + mobile.GetQuantity());
+            Console.WriteLine("Total Price of Mobile : " + mobile.GetModelName() + " is " + value + " and quantity is " + mobile.GetQuantity()+", discount : "+1000*mobile.GetQuantity());
             return value;
         }
 
@@ -32,6 +32,7 @@ namespace DesignPattern.Behavioral.Visitor
             {
                 value = apparel.GetPrice() * apparel.GetQuantity();  //// else no discount
             }
+            Console.WriteLine("Total Price of Apparel : " + apparel.GetBrandName() + " is " + value + " and quantity is " +apparel.GetQuantity());
             return value; 
         }
     }
