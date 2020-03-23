@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesignPattern.Behavioral.Mediator
 {
-   public class ChatMediator
+   public interface IChatMediator
     {
     }
 }
