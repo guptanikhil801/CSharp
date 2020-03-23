@@ -1,4 +1,9 @@
-﻿
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="UserImpl.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace DesignPattern.Behavioral.Mediator
 {
     using System;
@@ -12,13 +17,13 @@ namespace DesignPattern.Behavioral.Mediator
         }
         public override void Receive(string msg)
         {
-            Console.WriteLine(this.name + " Received Message : " + msg);
+            Console.WriteLine(this.name + " [Received Message] : " + msg);
 
         }
 
         public override void Send(string msg)
         {
-            Console.WriteLine(this.name + " Sending Message : " + msg);
+            Console.WriteLine(this.name + " [Sending Message] : " + msg);
             mediator.SendMessage(msg, this);
         }
     }
