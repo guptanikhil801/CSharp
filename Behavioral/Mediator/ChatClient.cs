@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="Apparel.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace DesignPattern.Behavioral.Mediator
 {
-   public class ChatClient
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public class ChatClient
     {
         public static void DriverMethodMediator()
         {
