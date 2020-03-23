@@ -28,7 +28,7 @@ namespace DesignPattern.Behavioral.Visitor
         /// <param name="quantity">The quantity.</param>
         public Apparel(string brand, int price, int quantity)
         {
-            brandName = brand;
+            this.brandName = brand;
             this.price = price;
             this.quantity = quantity;
         }
@@ -36,7 +36,7 @@ namespace DesignPattern.Behavioral.Visitor
         /// <summary>
         /// Gets the name of the brand.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>brand name</returns>
         public string GetBrandName()
         {
             return this.brandName;
@@ -45,7 +45,7 @@ namespace DesignPattern.Behavioral.Visitor
         /// <summary>
         /// Gets the price of Apparel.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the price</returns>
         public int GetPrice()
         {
             return this.price;
@@ -54,7 +54,7 @@ namespace DesignPattern.Behavioral.Visitor
         /// <summary>
         /// Gets the quantity of Apparel.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>quantity of apparels</returns>
         public int GetQuantity()
         {
             return this.quantity;
@@ -64,7 +64,7 @@ namespace DesignPattern.Behavioral.Visitor
         /// Accepts the specified visitor.
         /// </summary>
         /// <param name="visitor">The visitor.</param>
-        /// <returns></returns>
+        /// <returns>the visitor</returns>
         public int Accept(ShoppingCartVisitor visitor)
         {
             return visitor.Visit(this);
