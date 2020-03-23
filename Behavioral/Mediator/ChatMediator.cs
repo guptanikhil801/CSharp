@@ -6,5 +6,7 @@ namespace DesignPattern.Behavioral.Mediator
 {
    public interface IChatMediator
     {
+        void AddUser(User user);
+        void SendMessage(string msg, User user);
     }
 }
