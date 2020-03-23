@@ -10,6 +10,16 @@ namespace DesignPattern.Behavioral.Mediator
         {
             
         }
-      
+        public override void Receive(string msg)
+        {
+            Console.WriteLine(this.name + " Received Message : " + msg);
+
+        }
+
+        public override void Send(string msg)
+        {
+            Console.WriteLine(this.name + " Sending Message : " + msg);
+            mediator.SendMessage(msg, this);
+        }
     }
 }
