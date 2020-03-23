@@ -13,5 +13,7 @@ namespace DesignPattern.Behavioral.Mediator
             mediator = med;
             this.name = name;
         }
+        public abstract void Send(string msg);
+        public abstract void Receive(string msg);
     }
 }
