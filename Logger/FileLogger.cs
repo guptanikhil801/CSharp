@@ -1,4 +1,9 @@
-﻿
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="FileLogger.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
 namespace DesignPattern.Logger
 {
     using System;
@@ -7,7 +12,7 @@ namespace DesignPattern.Logger
     using System.Text;
     public class FileLogger : LogBase
     {
-        public string filepath = @"C:\Users\Nikhil Gupta\source\repos\CSharp\DesignPattern\Logger\LogFile.txt";
+        public string filepath = @"C:\Users\Nikhil Gupta\source\repos\CSharp\DesignPattern\Logger\Logfile.txt";
         public override void Log(string message)
         {
             lock (lockobj)
