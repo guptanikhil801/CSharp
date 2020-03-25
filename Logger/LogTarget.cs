@@ -6,6 +6,6 @@ namespace DesignPattern.Logger
     using System.Text;
     public enum LogTarget
     {
-        File, DataBase, EventLog
+        File
     }
 }
