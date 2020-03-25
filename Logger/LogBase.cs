@@ -9,9 +9,21 @@ namespace DesignPattern.Logger
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// abstract LogBase class
+    /// </summary>
     public abstract class LogBase
     {
-        protected readonly object lockobj = new object();
+        /// <summary>
+        /// The lock object to synchronize
+        /// </summary>
+        protected readonly object Lockobj = new object();
+
+        /// <summary>
+        /// Logs the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public abstract void Log(string message);
     }
 }
