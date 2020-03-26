@@ -1,12 +1,24 @@
-﻿
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="Client.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
 namespace DesignPattern.DependencyInjection.AutoFac
 {
-    using Autofac;
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Autofac;
+
+    /// <summary>
+    /// main class of DI Through Autofac
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Driver method.
+        /// </summary>
         public static void DriverMethod()
         {
             var builder = new ContainerBuilder();
