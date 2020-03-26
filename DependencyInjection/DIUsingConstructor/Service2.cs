@@ -9,8 +9,16 @@ namespace DesignPattern.DependencyInjection.DIUsingConstructor
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// 2nd dependency class
+    /// </summary>
+    /// <seealso cref="DesignPattern.DependencyInjection.DIUsingConstructor.IService" />
     public class Service2 : IService
     {
+        /// <summary>
+        /// method of this class
+        /// </summary>
         public void Serve()
         {
             Console.WriteLine("Service2 called");
