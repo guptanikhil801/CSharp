@@ -1,4 +1,9 @@
-﻿
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="TestClass.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
 namespace DesignPattern.DependencyInjection.DIUsingConstructor
 {
     using System;
@@ -10,8 +15,10 @@ namespace DesignPattern.DependencyInjection.DIUsingConstructor
         {
             Service1 s1 = new Service1();     //// creating object of dependecy 
             Client c1 = new Client(s1);        /// passing dependency
+            c1.ServeMethod();
             Service2 s2 = new Service2();
             Client c2 = new Client(s2);
+            c2.ServeMethod();
         }
     }
 }
