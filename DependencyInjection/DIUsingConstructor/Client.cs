@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="FileLogger.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
+
 
 namespace DesignPattern.DependencyInjection.DIUsingConstructor
 {
-   public class Client
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public class Client
     {
         private IService service;
         public Client(IService service)
