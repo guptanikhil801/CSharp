@@ -9,8 +9,15 @@ namespace DesignPattern.DependencyInjection.DIUsingConstructor
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// interface for dependent class
+    /// </summary>
     public interface IService
     {
+        /// <summary>
+        /// Serves this instance.
+        /// </summary>
         void Serve();
     }
 }
