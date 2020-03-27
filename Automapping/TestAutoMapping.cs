@@ -10,8 +10,15 @@ namespace DesignPattern.Automapping
     using System.Collections.Generic;
     using System.Text;
     using AutoMapper;
-   public class TestAutoMapping
+
+    /// <summary>
+    /// class for automapping data
+    /// </summary>
+    public class TestAutoMapping
     {
+        /// <summary>
+        /// Driver method.
+        /// </summary>
         public static void DriverMethod()
         {
             var config = new MapperConfiguration(cfg =>                  //// configuring mapper
