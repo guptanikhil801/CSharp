@@ -1,10 +1,23 @@
-﻿using System;
-
+﻿// -----------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -----------------------------------------------------------------------------------------------------------
 namespace DesignPattern
 {
-    class Program
+    using System;
+
+    /// <summary>
+    /// program.cs of Design pattern
+    /// </summary>
+   public class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        public static void Main(string[] args)
         {
             Console.WriteLine("Enter your choice ");
             Console.WriteLine("AutoMapping  - am,         Mediator -    mb,        Observor  -  or,           visitor  -  vt");
@@ -15,37 +28,51 @@ namespace DesignPattern
             Console.WriteLine();
             switch (choice)
             {
-                case "am": Automapping.TestAutoMapping.DriverMethod();
+                case "am":
+                    Automapping.TestAutoMapping.DriverMethod();
                     break;
-                case "mb": Behavioral.Mediator.ChatClient.DriverMethodMediator();
+                case "mb":
+                    Behavioral.Mediator.ChatClient.DriverMethodMediator();
                     break;
-                case "or": Behavioral.Observor.ObservorDpTest.ObservorDpDriverMethod();
+                case "or":
+                    Behavioral.Observor.ObservorDpTest.ObservorDpDriverMethod();
                     break;
-                case "vt": Behavioral.Visitor.ShoppingCartClient.DriverMethodVisitor();
+                case "vt":
+                    Behavioral.Visitor.ShoppingCartClient.DriverMethodVisitor();
                     break;
-                case "fp": Creational.FactoryPattern.Runnerclass.DriverMethod();
+                case "fp":
+                    Creational.FactoryPattern.Runnerclass.DriverMethod();
                     break;
-                case "pt": Creational.ProtoType.ProtoTypeRunnerClass.DriverMethod();
+                case "pt":
+                    Creational.ProtoType.ProtoTypeRunnerClass.DriverMethod();
                     break;
-                case "lg": Logger.LogTest.DriverMethod();
+                case "lg":
+                    Logger.LogTest.DriverMethod();
                     break;
-                case "af": DependencyInjection.AutoFac.Client.DriverMethod();
+                case "af":
+                    DependencyInjection.AutoFac.Client.DriverMethod();
                     break;
-                case "dip": DependencyInjection.DIThroughProperty.Testpro.DriverMethod();
+                case "dip":
+                    DependencyInjection.DIThroughProperty.Testpro.DriverMethod();
                     break;
-                case "dic": DependencyInjection.DIUsingConstructor.TestClass.DriverMethod();
+                case "dic":
+                    DependencyInjection.DIUsingConstructor.TestClass.DriverMethod();
                     break;
-                case "dim": DependencyInjection.DIUsingMethod.DITest.DriverMethod();
+                case "dim":
+                    DependencyInjection.DIUsingMethod.DITest.DriverMethod();
                     break;
-                case "at": Structural.Adaptor.EcommerceCompany.DriverMethod();
+                case "at":
+                    Structural.Adaptor.EcommerceCompany.DriverMethod();
                     break;
-                case "fd": Structural.Facade.FacadeTest.FacadeDriverMethod();
+                case "fd":
+                    Structural.Facade.FacadeTest.FacadeDriverMethod();
                     break;
-                case "px": Structural.Proxy.ProxyTestCustomer.DriverProxydp();
+                case "px":
+                    Structural.Proxy.ProxyTestCustomer.DriverProxydp();
                     break;
-                default: Console.WriteLine("Invalid choice");
+                default:
+                    Console.WriteLine("Invalid choice");
                     break;
-
             }
         }
     }
