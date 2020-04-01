@@ -1,16 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
+// -------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace EmployeeManagementSystem
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
+
+    /// <summary>
+    /// main class of EmployeeManagementSystem
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
