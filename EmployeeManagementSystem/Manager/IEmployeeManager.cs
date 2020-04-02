@@ -11,12 +11,17 @@ namespace EmployeeManagementSystem.Manager
     using System.Linq;
     using System.Threading.Tasks;
     using EmployeeManagementSystem.Common;
-
     /// <summary>
     /// interface for EmployeeManager
     /// </summary>
     public interface IEmployeeManager
     {
+        /// <summary>
+        /// Logins the specified Employee's email and password
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        public void Login(string email, string password);
         /// <summary>
         /// Adds the specified employee.
         /// </summary>
