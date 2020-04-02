@@ -22,7 +22,7 @@ namespace EmployeeManagementSystem.Repository
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
-        void EmployeeLogin(String email, string password);
+        bool EmployeeLogin(String email, string password);
 
         /// <summary>
         /// Gets all employee.
