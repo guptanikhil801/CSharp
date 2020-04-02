@@ -27,6 +27,25 @@ namespace EmployeeManagementSystem.Repository
         private string connectionString = ConnectionString.CName;
 
         /// <summary>
+        /// implementation method of EmployeeLogin
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        public void EmployeeLogin(string email, string password)
+        {
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spLogin", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        /// <summary>
         /// it Adds the employee to database.
         /// </summary>
         /// <param name="employee">The employee.</param>
@@ -63,6 +82,8 @@ namespace EmployeeManagementSystem.Repository
                 con.Close();
             }
         }
+
+       
 
         /// <summary>
         /// it shows all employee.
