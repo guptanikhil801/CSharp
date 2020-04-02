@@ -38,9 +38,9 @@ namespace EmployeeManagementSystem.Manager
         /// </summary>
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
-        public void Login(string email, string password)
+        public bool Login(string email, string password)
         {
-            this.emprepo.EmployeeLogin(email, password);
+           return this.emprepo.EmployeeLogin(email, password);
         }
 
         /// <summary>
