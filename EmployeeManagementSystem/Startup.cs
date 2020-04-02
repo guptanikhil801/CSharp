@@ -30,6 +30,7 @@ namespace EmployeeManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerDocument();
             services.AddSingleton<IEmployeeManager, EmployeeManager>();
             services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
         }
@@ -48,6 +49,8 @@ namespace EmployeeManagementSystem
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
