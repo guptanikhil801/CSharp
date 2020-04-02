@@ -13,18 +13,37 @@ namespace EmployeeManagementSystem.Controllers
     using EmployeeManagementSystem.Manager;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
+
+    /// <summary>
+    /// Login controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
+        /// <summary>
+        /// login manager instance variable 
+        /// </summary>
         private IEmployeeManager loginmanager;
+
+        /// <summary>
+        /// constructor initialization
+        /// </summary>
+        /// <param name="loginmanager">the instance variable</param>
         public LoginController(IEmployeeManager loginmanager)
         {
             this.loginmanager = loginmanager;
         }
-        public bool Login(string email,string password)
+
+        /// <summary>
+        /// method for login authentication
+        /// </summary>
+        /// <param name="email">email of employee</param>
+        /// <param name="password">email of password</param>
+        /// <returns>true or false</returns>
+        public bool Login(string email, string password)
         {
-           return this.loginmanager.Login(email, password);
+            return this.loginmanager.Login(email, password);
         }
     }
 }
