@@ -34,6 +34,16 @@ namespace EmployeeManagementSystem.Manager
         }
 
         /// <summary>
+        /// Logins the specified Employee by using email and password
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        public void Login(string email, string password)
+        {
+            this.emprepo.EmployeeLogin(email, password);
+        }
+
+        /// <summary>
         /// Adds the specified employee.
         /// </summary>
         /// <param name="employee">The employee.</param>
