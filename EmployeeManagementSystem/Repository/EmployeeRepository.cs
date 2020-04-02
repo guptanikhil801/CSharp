@@ -14,7 +14,7 @@ namespace EmployeeManagementSystem.Repository
     using System.Threading.Tasks;
     using EmployeeManagementSystem.Common;
     using EmployeeManagementSystem.Utility;
-    
+
     /// <summary>
     /// implementation class of IEmployeeRepository
     /// </summary>
@@ -31,8 +31,9 @@ namespace EmployeeManagementSystem.Repository
         /// </summary>
         /// <param name="email"></param>
         /// <param name="password"></param>
-        public void EmployeeLogin(string email, string password)
+        public bool EmployeeLogin(string email, string password)
         {
+            Employee employee = new Employee();
             using (SqlConnection con = new SqlConnection(this.connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spLogin", con);
@@ -40,8 +41,15 @@ namespace EmployeeManagementSystem.Repository
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Password", password);
                 con.Open();
-                cmd.ExecuteNonQuery();
+                SqlDataReader sdr = cmd.ExecuteReader();
+                if (sdr.HasRows)
+                {
+                    con.Close();
+                    return true;
+                }
+
                 con.Close();
+                return false;
             }
         }
 
@@ -82,8 +90,6 @@ namespace EmployeeManagementSystem.Repository
                 con.Close();
             }
         }
-
-       
 
         /// <summary>
         /// it shows all employee.
