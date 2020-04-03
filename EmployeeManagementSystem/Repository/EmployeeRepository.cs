@@ -41,11 +41,13 @@ namespace EmployeeManagementSystem.Repository
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Password", password);
                 con.Open();
-                SqlDataReader sdr = cmd.ExecuteReader();
-                if (sdr.HasRows)
+                using (SqlDataReader sdr = cmd.ExecuteReader())
                 {
-                    con.Close();
-                    return true;
+                    if (sdr.HasRows)
+                    {
+                        con.Close();
+                        return true;
+                    }
                 }
 
                 con.Close();

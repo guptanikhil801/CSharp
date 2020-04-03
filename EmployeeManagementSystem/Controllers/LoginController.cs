@@ -41,9 +41,10 @@ namespace EmployeeManagementSystem.Controllers
         /// <param name="email">email of employee</param>
         /// <param name="password">email of password</param>
         /// <returns>true or false</returns>
-        public bool Login(string email, string password)
+        [HttpPost]
+        public bool Post(string email, string password)
         {
-            return this.loginmanager.Login(email, password);
+            return loginmanager.Login(email, password);
         }
     }
 }
