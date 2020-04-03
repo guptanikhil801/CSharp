@@ -19,7 +19,7 @@ namespace EmployeeManagementSystem.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class LoginController : Controller
     {
         /// <summary>
         /// login manager instance variable 
@@ -41,10 +41,18 @@ namespace EmployeeManagementSystem.Controllers
         /// <param name="email">email of employee</param>
         /// <param name="password">email of password</param>
         /// <returns>true or false</returns>
-        [HttpPost]
-        public bool Post(string email, string password)
+        [HttpGet]
+        public  IActionResult Get(string email, string password)
         {
-            return loginmanager.Login(email, password);
+            var checklogin = this.loginmanager.Login(email, password);
+            if(checklogin)
+            {
+                return this.Ok();
+            }
+            else
+            {
+                return this.BadRequest();
+            }
         }
     }
 }
