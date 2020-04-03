@@ -43,9 +43,10 @@ namespace EmployeeManagementSystem.Controllers
         /// <returns>all employee</returns>
         //// GET: api/Employee
         [HttpGet]
-        public IEnumerable<Employee> Get()
+        public IActionResult Get()
         {
-            return this.employeemanager.GetAllEmployeeData();
+            var allemployee = this.employeemanager.GetAllEmployeeData();
+            return this.Ok(allemployee);
         }
 
         /// <summary>
@@ -55,9 +56,10 @@ namespace EmployeeManagementSystem.Controllers
         /// <returns> the employee</returns>
         //// GET: api/Employee/5
         [HttpGet("{id}", Name = "Get")]
-        public Employee Get(int id)
+        public IActionResult Get(int id)
         {
-            return this.employeemanager.GetEmployeeDataById(id);
+            var detailsbyid = this.employeemanager.GetEmployeeDataById(id);
+            return this.Ok(detailsbyid);
         }
 
         /// <summary>
@@ -66,9 +68,10 @@ namespace EmployeeManagementSystem.Controllers
         /// <param name="employee">employee details</param>
         //// POST: api/Employee
         [HttpPost]
-        public void Post(Employee employee)
+        public IActionResult Post(Employee employee)
         {
-            this.employeemanager.Add(employee);
+             this.employeemanager.Add(employee);
+            return this.Ok();
         }
 
         /// <summary>
@@ -77,9 +80,10 @@ namespace EmployeeManagementSystem.Controllers
         /// <param name="employee">employee details</param>
         //// PUT: api/Employee/5
         [HttpPut("{employee}")]
-        public void Put(Employee employee)
+        public IActionResult Put(Employee employee)
         {
             this.employeemanager.Update(employee);
+            return this.Ok();
         }
 
         /// <summary>
@@ -88,9 +92,10 @@ namespace EmployeeManagementSystem.Controllers
         /// <param name="id"></param>
         //// DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             this.employeemanager.Delete(id);
+            return this.Ok();
         }
     }
 }
