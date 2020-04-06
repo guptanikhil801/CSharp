@@ -3,8 +3,47 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Suceessful</h1>
+    <div class="container" >
+        <h1>Employee Details</h1>
+        <table class="table table-bordered" id="allEmpTable">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script type="text/javascript">
+           $.ajax({
+               type: "GET",
+               url: "/api/Employee",
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               success: function (data) {
+                   $.each(data, function (key, value) {
+                       var eid = value.empid;
+                       var fname = value.firstName;
+                       var lname = value.lastName;
+                       var mail = value.email;
+                       var pw = value.password;
+                       $('<tr><td>' + eid + '</td><td>' + fname +
+                              '</td><td>' + lname + '</td><td>'
+                          + mail + '</td><td>'+ pw + '</td></tr>').appendTo('#allEmpTable');
+                   });
+               },
+      });
+    </script>
+
 </body>
+
 </html>
