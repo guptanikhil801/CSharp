@@ -33,7 +33,6 @@ namespace EmployeeManagementSystem.Repository
         /// <param name="password"></param>
         public bool EmployeeLogin(string email, string password)
         {
-            Employee employee = new Employee();
             using (SqlConnection con = new SqlConnection(this.connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spLogin", con);
@@ -99,7 +98,7 @@ namespace EmployeeManagementSystem.Repository
         /// <returns>list of employee</returns>
         public IEnumerable<Employee> GetAllEmployee()
         {
-            List<Employee> lstemp = new List<Employee>();
+            List<Employee> LstEmp = new List<Employee>();
             using (SqlConnection con = new SqlConnection(this.connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spGetEmployee", con);
@@ -114,13 +113,13 @@ namespace EmployeeManagementSystem.Repository
                     employee.LastName = rdr["LastName"].ToString();
                     employee.Email = rdr["Email"].ToString();
                     employee.Password = rdr["Password"].ToString();
-                    lstemp.Add(employee);
+                    LstEmp.Add(employee);
                 }
 
                 con.Close();
             }
 
-            return lstemp;
+            return LstEmp;
         }
 
         /// <summary>

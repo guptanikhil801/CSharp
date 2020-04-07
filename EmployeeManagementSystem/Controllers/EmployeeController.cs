@@ -68,7 +68,7 @@ namespace EmployeeManagementSystem.Controllers
         /// <param name="employee">employee details</param>
         //// POST: api/Employee
         [HttpPost]
-        public IActionResult Post(Employee employee)
+        public IActionResult Post([FromBody] Employee employee)
         {
              this.employeemanager.Add(employee);
             return this.Ok();
@@ -79,8 +79,8 @@ namespace EmployeeManagementSystem.Controllers
         /// </summary>
         /// <param name="employee">employee details</param>
         //// PUT: api/Employee/5
-        [HttpPut("{employee}")]
-        public IActionResult Put(Employee employee)
+        [HttpPut]
+        public IActionResult Put([FromBody] Employee employee)
         {
             this.employeemanager.Update(employee);
             return this.Ok();
