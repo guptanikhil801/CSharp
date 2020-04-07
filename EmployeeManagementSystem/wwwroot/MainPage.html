@@ -9,7 +9,76 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container" >
+    <br />
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Add
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <label for="ei">Emp Id:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <input type="text" id="ei" placeholder="Enter Employee Id"><br><br>
+                </li>
+                <li>
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" placeholder="Enter First Name"><br><br>
+                </li>
+                <li>
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" placeholder="Enter Last Name"><br><br>
+                </li>
+                <li>
+                    <label for="addemail">Email:</label>
+                    <input type="text" id="addemail" placeholder="Enter Email"><br><br>
+                </li>
+                <li>
+                    <label for="addpwd">Password:</label>
+                    <input type="text" id="addpwd" placeholder="Enter Password"><br><br>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-primary" id="adddatabtn">Add Data</button>
+                </li>
+            </ul>
+        </div>
+    </div>&nbsp&nbsp&nbsp;
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Update
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <label for="uei">Emp Id:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <input type="text" id="uei" placeholder="Enter Employee Id"><br><br>
+                </li>
+                <li>
+                    <label for="ufname">First Name:</label>
+                    <input type="text" id="ufname" placeholder="Enter First Name"><br><br>
+                </li>
+                <li>
+                    <label for="ulname">Last Name:</label>
+                    <input type="text" id="ulname" placeholder="Enter Last Name"><br><br>
+                </li>
+                <li>
+                    <label for="uaddemail">Email:</label>
+                    <input type="text" id="uaddemail" placeholder="Enter Email"><br><br>
+                </li>
+                <li>
+                    <label for="uaddpwd">Password:</label>
+                    <input type="text" id="uaddpwd" placeholder="Enter Password"><br><br>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-primary" id="updatebtn">Update</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <br />
+    <div class="container">
         <h1>Employee Details</h1>
         <table class="table table-bordered" id="allEmpTable">
             <thead>
@@ -24,26 +93,75 @@
         </table>
     </div>
     <script type="text/javascript">
-           $.ajax({
-               type: "GET",
-               url: "/api/Employee",
-               contentType: "application/json; charset=utf-8",
-               dataType: "json",
-               success: function (data) {
-                   $.each(data, function (key, value) {
-                       var eid = value.empid;
-                       var fname = value.firstName;
-                       var lname = value.lastName;
-                       var mail = value.email;
-                       var pw = value.password;
-                       $('<tr><td>' + eid + '</td><td>' + fname +
-                              '</td><td>' + lname + '</td><td>'
-                          + mail + '</td><td>'+ pw + '</td></tr>').appendTo('#allEmpTable');
-                   });
-               },
-      });
+        $.ajax({
+            type: "GET",
+            url: "/api/Employee",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    var eid = value.empid;
+                    var fname = value.firstName;
+                    var lname = value.lastName;
+                    var mail = value.email;
+                    var pw = value.password;
+                    $('<tr><td>' + eid + '</td><td>' + fname +
+                        '</td><td>' + lname + '</td><td>'
+                        + mail + '</td><td>' + pw + '</td></tr>').appendTo('#allEmpTable');
+                });
+            },
+        });
     </script>
-
+    <script type="text/javascript">
+        $('#adddatabtn').click(function () {
+            var employee = {};
+            employee.Empid = parseInt($('#ei').val());
+            employee.FirstName = $('#fname').val();
+            employee.LastName = $('#lname').val();
+            employee.Email = $('#addemail').val();
+            employee.Password = $('#addpwd').val();
+            console.log(JSON.stringify(employee))
+            $.ajax({
+                type: "POST",
+                url: "/api/Employee",
+                data: JSON.stringify(employee),
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                processData: true,
+                success: function (data) {
+                    alert("Employee Added Successfully" + data);
+                },
+                error: function (data) {
+                    alert("fill all details");
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $('#updatebtn').click(function () {
+            var uemployee = {};
+            uemployee.Empid = parseInt($('#uei').val());
+            uemployee.FirstName = $('#ufname').val();
+            uemployee.LastName = $('#ulname').val();
+            uemployee.Email = $('#uaddemail').val();
+            uemployee.Password = $('#uaddpwd').val();
+            console.log(JSON.stringify(uemployee))
+            $.ajax({
+                type: "PUT",
+                url: "/api/Employee",
+                data: JSON.stringify(uemployee),
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                processData: true,
+                success: function (data) {
+                    alert("Employee Details Updated" + data);
+                },
+                error: function (data) {
+                    alert("fill all details correctly");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
