@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Main Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -13,12 +13,13 @@
     <div class="container">
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                Add
+                &emsp;
+                Add Employee
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <label for="ei">Emp Id:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <label for="ei">Emp Id: &emsp;&nbsp;&nbsp;</label>
                     <input type="text" id="ei" placeholder="Enter Employee Id"><br><br>
                 </li>
                 <li>
@@ -30,7 +31,7 @@
                     <input type="text" id="lname" placeholder="Enter Last Name"><br><br>
                 </li>
                 <li>
-                    <label for="addemail">Email:</label>
+                    <label for="addemail">Email: &emsp;&nbsp;&nbsp;</label>
                     <input type="text" id="addemail" placeholder="Enter Email"><br><br>
                 </li>
                 <li>
@@ -38,20 +39,21 @@
                     <input type="text" id="addpwd" placeholder="Enter Password"><br><br>
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-primary" id="adddatabtn">Add Data</button>
+                    &emsp;&nbsp;<button type="submit" class="btn btn-primary" id="adddatabtn">Add Data</button>
                 </li>
             </ul>
         </div>
-    </div>&nbsp&nbsp&nbsp;
+    </div>
+    <br />
     <div class="container">
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                Update
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">&emsp;&emsp;&nbsp;
+                Update  &emsp;&nbsp;&nbsp;
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <label for="uei">Emp Id:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <label for="uei">Emp Id:&emsp;&nbsp;&nbsp;</label>
                     <input type="text" id="uei" placeholder="Enter Employee Id"><br><br>
                 </li>
                 <li>
@@ -71,13 +73,52 @@
                     <input type="text" id="uaddpwd" placeholder="Enter Password"><br><br>
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-primary" id="updatebtn">Update</button>
+                    &emsp;&nbsp;<button type="submit" class="btn btn-primary" id="updatebtn">Update Detail</button>
+                </li>
+            </ul>
+        </div>
+    </div>&nbsp&nbsp&nbsp;
+    <br />
+
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Employee By Id &nbsp;
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <label for="iei">Emp Id:&emsp;&nbsp;&nbsp;</label>
+                    <input type="text" id="iei" placeholder="Enter Employee Id"><br><br>
+                </li>
+                <li>
+                    &emsp;&nbsp;<button type="submit" class="btn btn-primary" id="ebyidbtn">Get Details</button>
                 </li>
             </ul>
         </div>
     </div>
-
     <br />
+    <div class="container">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                &emsp;&emsp;
+                Delete &emsp;&emsp;
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <label for="dei">Emp Id:&emsp;&nbsp;&nbsp;</label>
+                    <input type="text" id="dei" placeholder="Enter Employee Id"><br><br>
+
+                </li>
+                <li>
+                    &emsp;&nbsp;<button type="submit" class="btn btn-primary" id="deletebtn">Delete Employee</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br />
+
     <div class="container">
         <h1>Employee Details</h1>
         <table class="table table-bordered" id="allEmpTable">
@@ -92,7 +133,24 @@
             </thead>
         </table>
     </div>
+    <br />
+
+    <div class="container">
+        <table class="table table-bordered" id="EmpTablebyid">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
     <script type="text/javascript">
+        $("#EmpTablebyid").hide();
         $.ajax({
             type: "GET",
             url: "/api/Employee",
@@ -112,6 +170,32 @@
             },
         });
     </script>
+
+    <script type="text/javascript">
+        $('#ebyidbtn').click(function () {
+            $("#allEmpTable").hide();
+            $("#EmpTablebyid").show();
+            var ge = parseInt($('#iei').val());
+            console.log(ge);
+            $.ajax({
+                type: "GET",
+                url: "/api/Employee/"+ ge,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    var cid = data.empid;
+                    var cfname = data.firstName;
+                    var clname = data.lastName;
+                    var cemail = data.email;
+                    var cpsw = data.password;
+                    $('<tr><td>' + cid + '</td><td>' + cfname +
+                        '</td><td>' + clname + '</td><td>'
+                        + cemail + '</td><td>' + cpsw + '</td></tr>').appendTo('#EmpTablebyid');
+                },
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         $('#adddatabtn').click(function () {
             var employee = {};
@@ -148,7 +232,7 @@
             console.log(JSON.stringify(uemployee))
             $.ajax({
                 type: "PUT",
-                url: "/api/Employee",
+                url: "/api/Employee/",
                 data: JSON.stringify(uemployee),
                 contentType: "application/json; charset=utf-8",
                 dataType: "text",
@@ -158,6 +242,22 @@
                 },
                 error: function (data) {
                     alert("fill all details correctly");
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#deletebtn').click(function () {
+            var a = $('#dei').val();
+            $.ajax({
+                type: "DELETE",
+                url: "/api/Employee/" + a,
+                dataType: "json",
+                success: function (data) {
+                    alert("Data Deleted " + data);
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
                 }
             });
         });
