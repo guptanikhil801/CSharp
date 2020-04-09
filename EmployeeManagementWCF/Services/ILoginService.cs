@@ -11,8 +11,8 @@ namespace EmployeeManagementWCF
     [ServiceContract]
     public interface ILoginService
     {
-
-      
+        [OperationContract]
+        bool LoginAuthentication(String email, string password);
     }
  
 }
