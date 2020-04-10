@@ -73,7 +73,15 @@ namespace EmployeeManagementWCF.Services
 
         public DataSet GetEmployeeDetails()
         {
-            throw new NotImplementedException();
+            DataSet dset = new DataSet();
+            SqlCommand cmd = new SqlCommand("spGetEmployeeWcf", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(dset);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            return dset;
         }
 
         public string UpdateEmployee(Employee emp)
