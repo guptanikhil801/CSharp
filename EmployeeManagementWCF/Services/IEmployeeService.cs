@@ -7,11 +7,27 @@ using System.Text;
 
 namespace EmployeeManagementWCF.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IEmployeeService" in both code and config file together.
     [ServiceContract]
     public interface IEmployeeService
     {
-        [OperationContract]
-        void DoWork();
+                
+    }
+
+    [DataContract]
+public class Employee
+    {
+        [DataMember]
+        public int EmpId { get; set; }
+        [DataMember]
+        public string FirstName { get; set; }
+        [DataMember]
+        public string LastName { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Password { get; set; }
+        [DataMember]
+        public int DeptId { get; set; }
     }
 }
+
