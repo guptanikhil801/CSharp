@@ -4,15 +4,59 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 
 namespace EmployeeManagementWCF.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "EmployeeService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select EmployeeService.svc or EmployeeService.svc.cs at the Solution Explorer and start debugging.
     public class EmployeeService : IEmployeeService
     {
-        public void DoWork()
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        public string AddEmployee(Employee emp)
         {
+            string result = string.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spAddEmployeeWcf", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", emp.LastName);
+                cmd.Parameters.AddWithValue("@Email", emp.Email);
+                cmd.Parameters.AddWithValue("@Password", emp.Password);
+                cmd.Parameters.AddWithValue("@DeptId", emp.DeptId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                result = "Employee Data added Successsfully";
+            }
+            catch (Exception)
+            {
+                result = "Error occured";
+            }
+            return result;
+        }
+
+        public string DeleteEmployee(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        public Employee EmployeeDetailsById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Employee GetEmployeeDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string UpdateEmployee(Employee emp)
+        {
+            throw new NotImplementedException();
         }
     }
 }
