@@ -59,7 +59,28 @@ namespace EmployeeManagementWCF.Services
 
         public Employee EmployeeDetailsById(int id)
         {
-            throw new NotImplementedException();
+            Employee employee = new Employee();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spGetEmployeeByIdWcf", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    employee.EmpId = Convert.ToInt32(rdr["EmpId"]);
+                    employee.FirstName = rdr["FirstName"].ToString();
+                    employee.LastName = rdr["LastName"].ToString();
+                    employee.Email = rdr["Email"].ToString();
+                    employee.Password = rdr["Password"].ToString();
+                }
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error:  " + ex);
+            }
+            return employee;
         }
 
         public Employee GetEmployeeDetails()
