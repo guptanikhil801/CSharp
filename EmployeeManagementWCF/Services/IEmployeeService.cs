@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data;
 
 namespace EmployeeManagementWCF.Services
 {
@@ -13,9 +14,9 @@ namespace EmployeeManagementWCF.Services
         [OperationContract]
         string AddEmployee(Employee emp);
         [OperationContract]
-        Employee GetEmployeeDetails();
+        DataSet GetEmployeeDetails();
         [OperationContract]
-        Employee EmployeeDetailsById(int id);
+        DataSet EmployeeDetailsById(int id);
         [OperationContract]
         string DeleteEmployee(int id);
         [OperationContract]
