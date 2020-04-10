@@ -39,10 +39,23 @@ namespace EmployeeManagementWCF.Services
 
         public string DeleteEmployee(int id)
         {
-            throw new NotImplementedException();
+            string result = string.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteEmployeeWcf", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Empid", id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                result = "Employee Record deleted successfully";
+            }
+            catch(Exception)
+            {
+                result = "Invalid Employee Id";
+            }
+            return result;
         }
-
-       
 
         public Employee EmployeeDetailsById(int id)
         {
