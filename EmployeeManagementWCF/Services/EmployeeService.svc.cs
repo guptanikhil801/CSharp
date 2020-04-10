@@ -57,40 +57,49 @@ namespace EmployeeManagementWCF.Services
             return result;
         }
 
-        public Employee EmployeeDetailsById(int id)
+        public DataSet EmployeeDetailsById(int id)
         {
-            Employee employee = new Employee();
-            try
-            {
+                DataSet dset = new DataSet();
                 SqlCommand cmd = new SqlCommand("spGetEmployeeByIdWcf", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmpId", id);
                 con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    employee.EmpId = Convert.ToInt32(rdr["EmpId"]);
-                    employee.FirstName = rdr["FirstName"].ToString();
-                    employee.LastName = rdr["LastName"].ToString();
-                    employee.Email = rdr["Email"].ToString();
-                    employee.Password = rdr["Password"].ToString();
-                }
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                sda.Fill(dset);
+                cmd.ExecuteNonQuery();
                 con.Close();
-            }
-            catch(Exception ex)
-            {
-                throw new Exception("Error:  " + ex);
-            }
-            return employee;
+                return dset;
         }
 
-        public Employee GetEmployeeDetails()
+        public DataSet GetEmployeeDetails()
         {
             throw new NotImplementedException();
         }
 
         public string UpdateEmployee(Employee emp)
         {
-            throw new NotImplementedException();
+            string result = string.Empty;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteEmployeeWcf", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmpId", emp.EmpId);
+                cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", emp.LastName);
+                cmd.Parameters.AddWithValue("@Email", emp.Email);
+                cmd.Parameters.AddWithValue("@Password", emp.Password);
+                cmd.Parameters.AddWithValue("@DeptId", emp.DeptId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                result = "Employee Data updated successfully";
+            }
+            catch(Exception)
+            {
+                result = "Invalid data entered";
+            }
+
+            return result;
         }
     }
 }
