@@ -10,7 +10,17 @@ namespace EmployeeManagementWCF.Services
     [ServiceContract]
     public interface IEmployeeService
     {
-                
+        [OperationContract]
+        string AddEmployee(Employee emp);
+        [OperationContract]
+        Employee GetEmployeeDetails();
+        [OperationContract]
+        Employee EmployeeDetailsById(int id);
+        [OperationContract]
+        string DeleteEmployee(int id);
+        [OperationContract]
+        string UpdateEmployee(Employee emp);
+        
     }
 
     [DataContract]
