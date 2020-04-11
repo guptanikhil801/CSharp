@@ -23,7 +23,15 @@
             <td></td>  
             <td></td>  
         </tr>
-
+            <tr>  
+            <td>  
+                <asp:Label ID="PasswordLabel" runat="server" Text="Password"></asp:Label>
+            </td>  
+            <td> </td> 
+            <td>  
+                <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password"></asp:TextBox>
+            </td>  
+           </tr>  
 
         </table>
     </form>
