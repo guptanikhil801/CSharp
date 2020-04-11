@@ -1,17 +1,22 @@
-﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using EmployeeManagementWCFClient.LoginReference;
-using EmployeeManagementWCFClient.EmployeeReference;
-
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="LoginForm.aspx.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace EmployeeManagementWCFClient
 {
+    using System;
+    using System.Configuration;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.UI;
+    using System.Web.UI.WebControls;
+    using EmployeeManagementWCFClient.LoginReference;
+    using EmployeeManagementWCFClient.EmployeeReference;
     public partial class LoginForm : System.Web.UI.Page
     {
         LoginReference.LoginClient client = new LoginReference.LoginClient();
