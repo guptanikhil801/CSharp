@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
-
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="EmployeeService.svc.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace EmployeeManagementWCF.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel;
+    using System.Text;
+    using System.Data.SqlClient;
+    using System.Configuration;
+    using System.Data;
     public class EmployeeService : IEmployeeService
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
@@ -44,7 +49,7 @@ namespace EmployeeManagementWCF.Services
             {
                 SqlCommand cmd = new SqlCommand("spDeleteEmployeeWcf", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Empid", id);
+                cmd.Parameters.AddWithValue("@EmpId", id);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -89,7 +94,7 @@ namespace EmployeeManagementWCF.Services
             string result = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("spDeleteEmployeeWcf", con);
+                SqlCommand cmd = new SqlCommand("spUpdateEmployeeWcf", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@EmpId", emp.EmpId);
                 cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
