@@ -39,7 +39,7 @@
             <td>  
                 <asp:Label ID="EmailLabel" runat="server" Text="Email&emsp;"></asp:Label>
             </td>  
-            <td></td>  
+            <td></td> 
             <td>  
                 <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
             </td>
@@ -67,6 +67,15 @@
                 <asp:TextBox ID="DeptIdTextBox" runat="server"></asp:TextBox>
             </td>  
         </tr>
+              <tr>
+            <td>  
+                <asp:Button ID="AddButton" runat="server" Text="Add Employee" />
+            </td> 
+              <td></td>
+                  <td> &emsp;&emsp; 
+                <asp:Button ID="UpdateButton" runat="server" Text="Update Details" />
+            </td>    
+         </tr>
             
       </table>
     </form>
