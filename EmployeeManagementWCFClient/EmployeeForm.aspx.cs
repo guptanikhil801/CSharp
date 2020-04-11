@@ -43,5 +43,10 @@ namespace EmployeeManagementWCFClient
             employee.DeptId = Convert.ToInt32(DeptIdTextBox.Text.ToString());
             ResponseLabel.Text = client.UpdateEmployee(employee);
         }
+        protected void Delete_Button_Click(object sender, EventArgs e)
+        {
+          int id = int.Parse(EmpTextBox.Text.ToString());
+          ResponseLabel.Text = client.DeleteEmployee(id);
+        }
     }
 }
