@@ -115,7 +115,19 @@
                 <asp:Button class="button button1" ID="EmployeeByIdButton" runat="server" Text="Search Employee" />
             </td> 
          </tr>
+            <tr>
+            <td></td>  
+            <td>  
+                <asp:Label ID="ResponseLabel" runat="server"></asp:Label></td>  
+            <td></td>
+            </tr>
       </table>
+        <br />
+        <br />
+        <asp:GridView ID="grdAllEmployees" runat="server">  
+       <AlternatingRowStyle BackColor="White" />  
+       <HeaderStyle BackColor="#003300" Font-Bold="True" ForeColor="white" />  
+   </asp:GridView>
     </form>
 </body>
 </html>
