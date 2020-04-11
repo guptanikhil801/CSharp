@@ -8,9 +8,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h1>hello</h1>
-        </div>
+        <table style="font-family:Arial">
+        <tr>  
+            <td>  
+                <asp:Label ID="EmailLabel" runat="server" Text="Email"></asp:Label>
+            </td>  
+            <td></td>  
+            <td>  
+                <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
+            </td>  
+        </tr>  
+        <tr>  
+            <td></td>  
+            <td></td>  
+            <td></td>  
+        </tr>
+
+
+        </table>
     </form>
 </body>
 </html>
