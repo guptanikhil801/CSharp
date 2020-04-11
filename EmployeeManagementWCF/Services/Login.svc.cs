@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Data;
-
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="Login.svc.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace EmployeeManagementWCF.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel;
+    using System.Text;
     public class Login : ILogin
     {
         public bool LoginAuthentication(string email, string password)
