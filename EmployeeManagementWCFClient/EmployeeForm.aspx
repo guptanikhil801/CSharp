@@ -7,18 +7,31 @@
 <body>
     <h1 style="color:#069">Employee Management WCF Service</h1>
     <form id="form1" runat="server">
-        <div>
-            <tr>  
+        <table style="font-family:Arial">
+              <tr>
+            <td>  
+                <asp:Label ID="EmployeeIdLabel" runat="server" Text="Employee Id"></asp:Label>
+            </td>  
+            <td> </td> 
+            <td>  
+                <asp:TextBox ID="EmployeeIDTextBox" runat="server"></asp:TextBox>
+            </td>  
+        </tr>
+                <tr>   
             <td>  
                 <asp:Label ID="EmailLabel" runat="server" Text="Email&emsp;"></asp:Label>
             </td>  
             <td></td>  
             <td>  
                 <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
-            </td>  
-      </div>
-        <br />
-        <div>
+            </td>
+                </tr>
+            <tr>
+            <td></td>  
+            <td></td>  
+            <td></td> 
+            </tr>
+        <tr>
             <td>  
                 <asp:Label ID="PasswordLabel" runat="server" Text="Password"></asp:Label>
             </td>  
@@ -26,9 +39,9 @@
             <td>  
                 <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password"></asp:TextBox>
             </td>  
-           </tr>  
-        
-        </div>
+        </tr> 
+            
+      </table>
     </form>
 </body>
 </html>
