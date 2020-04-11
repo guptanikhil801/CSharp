@@ -5,9 +5,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Login Page</title>
+    <style>
+        .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 2px 1px;
+  cursor: pointer;
+  width: 100px
+}
+    </style>
 </head>
 <body>
-    <h1 style="color:#069">Login</h1>
+    <h1 style="color:#069" >Login To Employee Management</h1>
     <form id="form1" runat="server">
         <table style="font-family:Arial">
         <tr>  
@@ -40,7 +55,7 @@
         </tr>
          <tr>
             <td>  
-                <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="Login_Button_Click" />
+                <asp:Button CssClass ="button" ID="LoginButton" runat="server" Text="Login" OnClick="Login_Button_Click" />
             </td>  
          </tr>
             <tr>  
