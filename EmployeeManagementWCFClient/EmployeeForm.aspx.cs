@@ -48,5 +48,14 @@ namespace EmployeeManagementWCFClient
           int id = int.Parse(EmpTextBox.Text.ToString());
           ResponseLabel.Text = client.DeleteEmployee(id);
         }
+        protected void EmployeeById_Button_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(EmpTextBox.Text.ToString());
+            DataSet ds = new DataSet();
+            ds = client.EmployeeDetailsById(id);
+            grdAllEmployees.DataSource = ds;
+            grdAllEmployees.DataBind();
+        }
+        
     }
 }
