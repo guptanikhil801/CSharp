@@ -3,6 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Employee Management Home Page</title>
+    <style>
+        .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+  .button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+  .button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+    </style>
 </head>
 <body>
     <h1 style="color:#069">Employee Management WCF Service</h1>
@@ -76,21 +101,20 @@
         </tr>
               <tr>
             <td>  
-                <asp:Button ID="AddButton" runat="server" Text="Add Employee" />
+                <asp:Button class="button button1" ID="AddButton" runat="server" Text="Add Employee" />
             </td> 
               <td></td>
-            <td> &emsp;&emsp;&emsp;&emsp;
-                <asp:Button ID="UpdateButton" runat="server" Text="Update Details" />
+            <td> &emsp;&emsp;&emsp;
+                <asp:Button class="button button1" ID="UpdateButton" runat="server" Text="Update Details" />
             </td>
                  <td></td>
              <td> &emsp;&emsp; 
-                <asp:Button ID="DeleteButton" runat="server" Text="Delete" />
+                <asp:Button class="button button1" ID="DeleteButton" runat="server" Text="Delete" />
             </td>
-             <td> &emsp;&emsp;
-                <asp:Button ID="EmployeeByIdButton" runat="server" Text="Search Employee" />
+             <td> &emsp;
+                <asp:Button class="button button1" ID="EmployeeByIdButton" runat="server" Text="Search Employee" />
             </td> 
          </tr>
-        <tr>
       </table>
     </form>
 </body>
