@@ -7,6 +7,7 @@
     <title>Login Page</title>
 </head>
 <body>
+    <h1 style="color:#069">Employee Management System WCF Service</h1>
     <form id="form1" runat="server">
         <table style="font-family:Arial">
         <tr>  
@@ -32,7 +33,26 @@
                 <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password"></asp:TextBox>
             </td>  
            </tr>  
-
+        <tr>  
+            <td></td>  
+            <td></td>  
+            <td></td>  
+        </tr>
+         <tr>
+            <td>  
+                <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="Login_Button_Click" />
+            </td>  
+         </tr>
+            <tr>  
+            <td></td>  
+            <td></td>  
+            <td></td>  
+        </tr>  
+        <tr>  
+            <td></td>  
+            <td>  
+                <asp:Label ID="ResponseLabel" runat="server"></asp:Label></td>  
+            <td></td>
         </table>
     </form>
 </body>
