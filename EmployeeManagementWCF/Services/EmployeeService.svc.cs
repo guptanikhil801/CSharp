@@ -8,93 +8,125 @@ namespace EmployeeManagementWCF.Services
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data;
+    using System.Data.SqlClient;
     using System.Linq;
     using System.Runtime.Serialization;
     using System.ServiceModel;
     using System.Text;
-    using System.Data.SqlClient;
-    using System.Configuration;
-    using System.Data;
+
+    /// <summary>
+    /// implementation class of IEmployeeService
+    /// </summary>
+    /// <seealso cref="EmployeeManagementWCF.Services.IEmployeeService" />
     public class EmployeeService : IEmployeeService
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+       private SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+
+        /// <summary>
+        /// Adds the employee.
+        /// </summary>
+        /// <param name="emp">The emp.</param>
+        /// <returns>The response</returns>
         public string AddEmployee(Employee emp)
         {
             string result = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("spAddEmployeeWcf", con);
+                SqlCommand cmd = new SqlCommand("spAddEmployeeWcf", this.con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", emp.LastName);
                 cmd.Parameters.AddWithValue("@Email", emp.Email);
                 cmd.Parameters.AddWithValue("@Password", emp.Password);
                 cmd.Parameters.AddWithValue("@DeptId", emp.DeptId);
-                con.Open();
+                this.con.Open();
                 cmd.ExecuteNonQuery();
-                con.Close();
+                this.con.Close();
                 result = "Employee Data added Successsfully";
             }
             catch (Exception)
             {
                 result = "Error occured";
             }
+
             return result;
         }
 
+        /// <summary>
+        /// Deletes the employee.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>the response</returns>
         public string DeleteEmployee(int id)
         {
             string result = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("spDeleteEmployeeWcf", con);
+                SqlCommand cmd = new SqlCommand("spDeleteEmployeeWcf", this.con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@EmpId", id);
-                con.Open();
+                this.con.Open();
                 cmd.ExecuteNonQuery();
-                con.Close();
+                this.con.Close();
                 result = "Employee Record deleted successfully";
             }
-            catch(Exception)
+            catch (Exception)
             {
                 result = "Invalid Employee Id";
             }
+
             return result;
         }
 
+        /// <summary>
+        /// returns Employees details by id.
+        /// </summary>
+        /// <param name="id">The Employee id.</param>
+        /// <returns> Employee Details By Id</returns>
         public DataSet EmployeeDetailsById(int id)
         {
-                DataSet dset = new DataSet();
-                SqlCommand cmd = new SqlCommand("spGetEmployeeByIdWcf", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@EmpId", id);
-                con.Open();
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                sda.Fill(dset);
-                cmd.ExecuteNonQuery();
-                con.Close();
-                return dset;
-        }
-
-        public DataSet GetEmployeeDetails()
-        {
             DataSet dset = new DataSet();
-            SqlCommand cmd = new SqlCommand("spGetEmployeeWcf", con);
+            SqlCommand cmd = new SqlCommand("spGetEmployeeByIdWcf", this.con);
             cmd.CommandType = CommandType.StoredProcedure;
-            con.Open();
+            cmd.Parameters.AddWithValue("@EmpId", id);
+            this.con.Open();
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             sda.Fill(dset);
             cmd.ExecuteNonQuery();
-            con.Close();
+            this.con.Close();
             return dset;
         }
 
+        /// <summary>
+        /// Gets the employee details of all employee.
+        /// </summary>
+        /// <returns>the employee details</returns>
+        public DataSet GetEmployeeDetails()
+        {
+            DataSet dset = new DataSet();
+            SqlCommand cmd = new SqlCommand("spGetEmployeeWcf", this.con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            this.con.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            sda.Fill(dset);
+            cmd.ExecuteNonQuery();
+            this.con.Close();
+            return dset;
+        }
+
+        /// <summary>
+        /// Updates the employee.
+        /// </summary>
+        /// <param name="emp">The employee.</param>
+        /// <returns>the response</returns>
         public string UpdateEmployee(Employee emp)
         {
             string result = string.Empty;
             try
             {
-                SqlCommand cmd = new SqlCommand("spUpdateEmployeeWcf", con);
+                SqlCommand cmd = new SqlCommand("spUpdateEmployeeWcf", this.con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@EmpId", emp.EmpId);
                 cmd.Parameters.AddWithValue("@FirstName", emp.FirstName);
@@ -102,12 +134,12 @@ namespace EmployeeManagementWCF.Services
                 cmd.Parameters.AddWithValue("@Email", emp.Email);
                 cmd.Parameters.AddWithValue("@Password", emp.Password);
                 cmd.Parameters.AddWithValue("@DeptId", emp.DeptId);
-                con.Open();
+                this.con.Open();
                 cmd.ExecuteNonQuery();
-                con.Close();
+                this.con.Close();
                 result = "Employee Data updated successfully";
             }
-            catch(Exception)
+            catch (Exception)
             {
                 result = "Invalid data entered";
             }
