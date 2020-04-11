@@ -101,7 +101,7 @@
         </tr>
               <tr>
             <td>  
-                <asp:Button class="button button1" ID="AddButton" runat="server" Text="Add Employee" />
+                <asp:Button class="button button1" ID="AddButton" runat="server" Text="Add Employee" OnClick="Add_Button_Click" />
             </td> 
               <td></td>
             <td> &emsp;&emsp;&emsp;
