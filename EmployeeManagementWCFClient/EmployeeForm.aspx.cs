@@ -1,4 +1,10 @@
-﻿using System;
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="EmployeeForm.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------s
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -56,6 +62,5 @@ namespace EmployeeManagementWCFClient
             grdAllEmployees.DataSource = ds;
             grdAllEmployees.DataBind();
         }
-        
     }
 }
