@@ -8,7 +8,7 @@
     <h1 style="color:#069">Employee Management WCF Service</h1>
     <form id="form1" runat="server">
         <table style="font-family:Arial">
-              <tr>
+       <tr>
             <td>  
                 <asp:Label ID="EmployeeIdLabel" runat="server" Text="Employee Id"></asp:Label>
             </td>  
@@ -17,7 +17,25 @@
                 <asp:TextBox ID="EmployeeIDTextBox" runat="server"></asp:TextBox>
             </td>  
         </tr>
-                <tr>   
+            <tr>
+              <td>  
+                <asp:Label ID="FirstNameLabel" runat="server" Text="First Name"></asp:Label>
+            </td>  
+            <td> </td> 
+            <td>  
+                <asp:TextBox ID="FirstNameTextBox" runat="server"></asp:TextBox>
+            </td>  
+        </tr>
+         <tr>   
+            <td>  
+                <asp:Label ID="LastNameLabel" runat="server" Text="Last Name"></asp:Label>
+            </td>  
+            <td></td>  
+            <td>  
+                <asp:TextBox ID="LastNameTextBox" runat="server"></asp:TextBox>
+            </td>
+         </tr>
+         <tr>   
             <td>  
                 <asp:Label ID="EmailLabel" runat="server" Text="Email&emsp;"></asp:Label>
             </td>  
@@ -25,8 +43,8 @@
             <td>  
                 <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
             </td>
-                </tr>
-            <tr>
+         </tr>
+        <tr>
             <td></td>  
             <td></td>  
             <td></td> 
@@ -40,6 +58,15 @@
                 <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password"></asp:TextBox>
             </td>  
         </tr> 
+            <tr>
+              <td>  
+                <asp:Label ID="DeptIdLabel" runat="server" Text="Department Id"></asp:Label>
+            </td>  
+            <td> </td> 
+            <td>  
+                <asp:TextBox ID="DeptIdTextBox" runat="server"></asp:TextBox>
+            </td>  
+        </tr>
             
       </table>
     </form>
