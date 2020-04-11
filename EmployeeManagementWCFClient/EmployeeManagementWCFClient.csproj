@@ -96,6 +96,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="EmployeeForm.aspx" />
     <Content Include="LoginForm.aspx" />
     <Content Include="Web.config" />
     <None Include="Connected Services\LoginReference\Login.wsdl" />
@@ -117,6 +118,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeForm.aspx.cs">
+      <DependentUpon>EmployeeForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmployeeForm.aspx.designer.cs">
+      <DependentUpon>EmployeeForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>

@@ -9,8 +9,6 @@
 
 namespace EmployeeManagementWCFClient
 {
-
-
     public partial class EmployeeForm
     {
 
