@@ -105,14 +105,14 @@
             </td> 
               <td></td>
             <td> &emsp;&emsp;&emsp;
-                <asp:Button class="button button1" ID="UpdateButton" runat="server" Text="Update Details" />
+                <asp:Button class="button button1" ID="UpdateButton" runat="server" Text="Update Details" OnClick="Update_Button_Click" />
             </td>
                  <td></td>
              <td> &emsp;&emsp; 
-                <asp:Button class="button button1" ID="DeleteButton" runat="server" Text="Delete" />
+                <asp:Button class="button button1" ID="DeleteButton" runat="server" Text="Delete" OnClick="Delete_Button_Click" />
             </td>
              <td> &emsp;
-                <asp:Button class="button button1" ID="EmployeeByIdButton" runat="server" Text="Search Employee" />
+                <asp:Button class="button button1" ID="EmployeeByIdButton" runat="server" Text="Search Employee" OnClick="EmployeeById_Button_Click" />
             </td> 
          </tr>
             <tr>
