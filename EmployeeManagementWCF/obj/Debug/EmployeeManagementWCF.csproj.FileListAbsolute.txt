@@ -1,0 +1,7 @@
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\bin\EmployeeManagementWCF.dll.config
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\bin\EmployeeManagementWCF.dll
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\bin\EmployeeManagementWCF.pdb
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\obj\Debug\EmployeeManagementWCF.csprojAssemblyReference.cache
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\obj\Debug\EmployeeManagementWCF.csproj.CoreCompileInputs.cache
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\obj\Debug\EmployeeManagementWCF.dll
+C:\Users\Nikhil Gupta\source\repos\Projects\EmployeeManagementWCF\obj\Debug\EmployeeManagementWCF.pdb
