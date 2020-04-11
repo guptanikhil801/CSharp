@@ -26,9 +26,10 @@ namespace EmployeeManagementWCFClient
                 if (client.LoginAuthentication(email,password))
                 {
                     ResponseLabel.Text = "Login Successfull";
-                }
+                Server.Transfer("EmployeeForm.aspx");
+            }
             else 
-                ResponseLabel.Text = "unsucessfull";
+                ResponseLabel.Text = "Invalid Email and Password combination";
         }
     }
 }
