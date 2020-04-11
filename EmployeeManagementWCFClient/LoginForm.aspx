@@ -7,7 +7,7 @@
     <title>Login Page</title>
 </head>
 <body>
-    <h1 style="color:#069">Employee Management System WCF Service</h1>
+    <h1 style="color:#069">Login</h1>
     <form id="form1" runat="server">
         <table style="font-family:Arial">
         <tr>  
@@ -53,6 +53,7 @@
             <td>  
                 <asp:Label ID="ResponseLabel" runat="server"></asp:Label></td>  
             <td></td>
+            </tr>
         </table>
     </form>
 </body>
