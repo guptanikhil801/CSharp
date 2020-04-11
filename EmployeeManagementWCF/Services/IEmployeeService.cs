@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-using System.Data;
-
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="IEmployeeService.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
 namespace EmployeeManagementWCF.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Runtime.Serialization;
+    using System.ServiceModel;
+    using System.Text;
+
     [ServiceContract]
     public interface IEmployeeService
     {
@@ -21,7 +27,6 @@ namespace EmployeeManagementWCF.Services
         string DeleteEmployee(int id);
         [OperationContract]
         string UpdateEmployee(Employee emp);
-        
     }
 
     [DataContract]
