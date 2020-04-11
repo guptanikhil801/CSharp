@@ -59,24 +59,38 @@
             </td>  
         </tr> 
             <tr>
-              <td>  
+            <td>  
                 <asp:Label ID="DeptIdLabel" runat="server" Text="Department Id"></asp:Label>
             </td>  
             <td> </td> 
             <td>  
                 <asp:TextBox ID="DeptIdTextBox" runat="server"></asp:TextBox>
-            </td>  
+            </td> 
+              <td> </td>
+            <td> &emsp;&emsp; 
+                <asp:Label ID="EmpLabel" runat="server" Text="Employee Id"></asp:Label>
+            </td>
+                 <td>  
+                <asp:TextBox ID="EmpTextBox" runat="server"></asp:TextBox>
+            </td> 
         </tr>
               <tr>
             <td>  
                 <asp:Button ID="AddButton" runat="server" Text="Add Employee" />
             </td> 
               <td></td>
-                  <td> &emsp;&emsp; 
+            <td> &emsp;&emsp;&emsp;&emsp;
                 <asp:Button ID="UpdateButton" runat="server" Text="Update Details" />
-            </td>    
+            </td>
+                 <td></td>
+             <td> &emsp;&emsp; 
+                <asp:Button ID="DeleteButton" runat="server" Text="Delete" />
+            </td>
+             <td> &emsp;&emsp;
+                <asp:Button ID="EmployeeByIdButton" runat="server" Text="Search Employee" />
+            </td> 
          </tr>
-            
+        <tr>
       </table>
     </form>
 </body>
