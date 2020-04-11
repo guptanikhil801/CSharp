@@ -30,7 +30,18 @@ namespace EmployeeManagementWCFClient
             employee.Email = EmailTextBox.Text.ToString();
             employee.Password = PasswordTextBox.Text.ToString();
             employee.DeptId = Convert.ToInt32(DeptIdTextBox.Text.ToString());
-            client.AddEmployee(employee);
+            ResponseLabel.Text = client.AddEmployee(employee);
+        }
+        protected void Update_Button_Click(object sender, EventArgs e)
+        {
+            Employee employee = new Employee();
+            employee.EmpId = Convert.ToInt32(EmployeeIDTextBox.Text.ToString());
+            employee.FirstName = FirstNameTextBox.Text.ToString();
+            employee.LastName = LastNameTextBox.Text.ToString();
+            employee.Email = EmailTextBox.Text.ToString();
+            employee.Password = PasswordTextBox.Text.ToString();
+            employee.DeptId = Convert.ToInt32(DeptIdTextBox.Text.ToString());
+            ResponseLabel.Text = client.UpdateEmployee(employee);
         }
     }
 }
