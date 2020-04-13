@@ -30,6 +30,7 @@ namespace EmployeeManagementWCF.Services
         private Regex emailval = new Regex("^[A-Za-z]{1,30}[0-9]{0,20}@[A-Za-z]{1,10}.[A-Za-z]{1,10}$");
         private Regex passval = new Regex("^[A-Za-z0-9]{4,12}$");
         private Regex DepIdval = new Regex("^[0-9]{1}$");
+        
         /// <summary>
         /// Adds the employee.
         /// </summary>
@@ -79,9 +80,8 @@ namespace EmployeeManagementWCF.Services
             }
             catch (Exception)
             {
-                result = "Invalid Employee Id";
+                result = "emp id not found";
             }
-
             return result;
         }
 
@@ -129,7 +129,7 @@ namespace EmployeeManagementWCF.Services
         public string UpdateEmployee(Employee emp)
         {
             string result = string.Empty;
-            try
+            if (EmpIdval.IsMatch(emp.EmpId.ToString()) && FirstNameval.IsMatch(emp.FirstName) && LastNameval.IsMatch(emp.LastName) && emailval.IsMatch(emp.Email) && passval.IsMatch(emp.Password) && DepIdval.IsMatch(emp.DeptId.ToString()))
             {
                 SqlCommand cmd = new SqlCommand("spUpdateEmployeeWcf", this.con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -144,11 +144,10 @@ namespace EmployeeManagementWCF.Services
                 this.con.Close();
                 result = "Employee Data updated successfully";
             }
-            catch (Exception)
+            else
             {
                 result = "Invalid data entered";
             }
-
             return result;
         }
     }
