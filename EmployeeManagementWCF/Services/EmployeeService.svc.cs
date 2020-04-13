@@ -15,6 +15,7 @@ namespace EmployeeManagementWCF.Services
     using System.Runtime.Serialization;
     using System.ServiceModel;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// implementation class of IEmployeeService
@@ -22,8 +23,13 @@ namespace EmployeeManagementWCF.Services
     /// <seealso cref="EmployeeManagementWCF.Services.IEmployeeService" />
     public class EmployeeService : IEmployeeService
     {
-       private SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-
+        private SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+        private Regex EmpIdval = new Regex("^[0-9]{1,3}$");
+        private Regex FirstNameval = new Regex("^[A-Z]{1}[a-z]{1,29}$");
+        private Regex LastNameval = new Regex("^[A-Z]{1}[a-z]{1,29}$");
+        private Regex emailval = new Regex("^[A-Za-z]{1,30}[0-9]{0,20}@[A-Za-z]{1,10}.[A-Za-z]{1,10}$");
+        private Regex passval = new Regex("^[A-Za-z0-9]{4,12}$");
+        private Regex DepIdval = new Regex("^[0-9]{1}$");
         /// <summary>
         /// Adds the employee.
         /// </summary>
@@ -32,7 +38,7 @@ namespace EmployeeManagementWCF.Services
         public string AddEmployee(Employee emp)
         {
             string result = string.Empty;
-            try
+            if (FirstNameval.IsMatch(emp.FirstName) && LastNameval.IsMatch(emp.LastName) && emailval.IsMatch(emp.Email) && passval.IsMatch(emp.Password) && DepIdval.IsMatch(emp.DeptId.ToString()))
             {
                 SqlCommand cmd = new SqlCommand("spAddEmployeeWcf", this.con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -46,11 +52,10 @@ namespace EmployeeManagementWCF.Services
                 this.con.Close();
                 result = "Employee Data added Successsfully";
             }
-            catch (Exception)
+            else
             {
-                result = "Error occured";
+                result = "Invalid data entered, please enter in correct form";
             }
-
             return result;
         }
 
