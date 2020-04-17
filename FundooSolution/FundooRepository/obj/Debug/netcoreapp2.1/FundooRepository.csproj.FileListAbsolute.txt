@@ -6,3 +6,10 @@ C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\net
 C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.AssemblyInfo.cs
 C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.dll
 C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.pdb
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\bin\Debug\netcoreapp2.1\Common.dll
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\bin\Debug\netcoreapp2.1\Common.pdb
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.csproj.CopyComplete
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.csproj.CoreCompileInputs.cache
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\bin\Debug\netcoreapp2.1\FundooRepository.runtimeconfig.json
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\bin\Debug\netcoreapp2.1\FundooRepository.runtimeconfig.dev.json
+C:\Users\Nikhil Gupta\source\repos\FundooSolution\FundooRepository\obj\Debug\netcoreapp2.1\FundooRepository.genruntimeconfig.cache
