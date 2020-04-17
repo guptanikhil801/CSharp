@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Common;
+    using Common.UserModel;
    public interface IAccount
     {
-        bool DoLogin();
-        bool DoRegistration();
-        bool ForgotPasswordUser();
-        bool ResetPasswordUser();
+        bool DoLogin(Login loginmodel);
+        void DoRegistration(User usermodel);
+        string ForgotPasswordUser(ForgotPassword forgotmodel);
+        bool ResetPasswordUser(string email,ResetPassword resetmodel);
     }
 }
