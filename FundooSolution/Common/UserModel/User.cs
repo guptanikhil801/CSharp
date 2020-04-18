@@ -1,4 +1,5 @@
-﻿namespace Common.UserModel
+﻿
+namespace Common.UserModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +7,14 @@
     using System.Linq;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Microsoft.AspNetCore.Identity;
 
-    [Table("UserTable")]
-    public class User
+    public class User : IdentityUser
     {
-        [MaxLength(50)]
+        [Required]
         public string FirstName { get; set; }
-        [MaxLength(50)]
         public string LastName { get; set; }
-        public int MobileNumber { get; set; }
-        [Key]
-        public string Email { get; set; }
-        [MaxLength(8), MinLength(4)]
-        public string Password { get; set; }
+        [Key,Required]
+        public override string Email { get; set; }
     }
 }

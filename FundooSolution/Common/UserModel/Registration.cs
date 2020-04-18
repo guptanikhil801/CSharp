@@ -5,17 +5,23 @@ using System.Text;
 
 namespace Common.UserModel
 {
-   public class Registration
+   public class RegistrationModel
     {
-        [MaxLength(50)]
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
-        [MaxLength(50)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        public int MobileNumber { get; set; }
+        public int PhoneNumber { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
-        [MaxLength(8), MinLength(4), Required]
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-       
+        [DataType(DataType.Password)]
+        [Display(Name ="Confirm password")]
+        [Compare("Password", 
+            ErrorMessage ="Password and confirmation password do not match")]
+        public string ConfirmPassword { get; set; }
     }
 }
