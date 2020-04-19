@@ -40,11 +40,13 @@ namespace FundooApi.Controllers
                 return this.BadRequest();
             }
         }
+
         [HttpPost]
         [Route("api/Account/Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var user = await this.userManager.FindByEmailAsync(model.Email);
+            var result = await this.signInManager.PasswordSignInAsync(user, model.Password, false, false);
             if (result.Succeeded)
             {
                 return this.Ok();
@@ -55,5 +57,44 @@ namespace FundooApi.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/Account/ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPassword model)
+        {
+            var currentuser = await userManager.FindByEmailAsync(model.Email);
+            if (currentuser == null)
+            {
+                return this.BadRequest();
+            }
+            var Code = await userManager.GeneratePasswordResetTokenAsync(currentuser);
+            model.Code = Code;
+            var result = await userManager.ResetPasswordAsync(currentuser, model.Code, model.NewPassword);
+            if (result.Succeeded)
+            {
+                return this.Ok();
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Account/ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword model, string url)
+        {
+            var currentuser = await userManager.FindByEmailAsync(model.Email);
+            if(currentuser != null && await userManager.IsEmailConfirmedAsync(currentuser))
+            {
+                var _token = await userManager.GeneratePasswordResetTokenAsync(currentuser);
+                var resetlink = Url.Action("ResetPassword", "AccountController",
+                    new { email = model.Email, token = _token }, Request.Scheme);
+               if(this.manager.ForgotPasswordUser(model, url))
+                {
+                    return this.Ok();
+                }
+            }
+            return this.BadRequest();
+        }
     }
 }
