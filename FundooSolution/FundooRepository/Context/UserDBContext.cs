@@ -5,15 +5,20 @@ using System.Linq;
 using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Common.UserModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FundooRepository.Context
 {
-   public class UserDBContext : DbContext
+   public class UserDBContext : IdentityDbContext<User>
     {
         public UserDBContext(DbContextOptions<UserDBContext> options) : base(options)
         {
 
         }
-        public DbSet<User> Users { get; set; }
+        public new DbSet<User> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }
