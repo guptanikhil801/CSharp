@@ -7,22 +7,30 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Common.UserModel;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace FundooApi.Controllers
 {
-    [ApiController]
+    [ApiController]//[Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
         private readonly IAccountManager manager;
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IConfiguration configuration;
 
         public AccountController(IAccountManager manager, UserManager<User> userManager
-            , SignInManager<User> signInManager)
+            , SignInManager<User> signInManager, IConfiguration configuration)
         {
             this.manager = manager;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.configuration = configuration;
         }
         // POST: api/Account
         [HttpPost]
@@ -44,23 +52,25 @@ namespace FundooApi.Controllers
         [Route("api/Account/Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            //var currentuser =  userManager.Users.FirstOrDefault(x => x.Email == model.Email);
-          // User currentuser = await this.userManager.FindByEmailAsync(model.Email);
-            var currentuser = this.manager.DoLogin(model);
-            if (currentuser != null)
+            var currentuser = await userManager.FindByEmailAsync(model.Email);
+            if (currentuser != null && await userManager.CheckPasswordAsync(currentuser, model.Password))
             {
-                var result = await this.signInManager.PasswordSignInAsync(currentuser, model.Password, isPersistent:false, false);
-                if (result.Succeeded)
-                {
-                    return this.Ok();
-                }
-
-                return this.BadRequest();
+                var claim = new [] { new Claim(JwtRegisteredClaimNames.Sub, currentuser.UserName) };
+                var signkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Signingkey"]));
+                int expiryminutes = Convert.ToInt32(configuration["Jwt:ExpiryInMinutes"]);
+                var token = new JwtSecurityToken(
+                    issuer: configuration["Jwt:Site"],
+                    audience: configuration["Jwt:Site"],
+                    expires: DateTime.UtcNow.AddMinutes(expiryminutes),
+                    signingCredentials: new SigningCredentials(signkey,SecurityAlgorithms.HmacSha256)
+                    );
+                return Ok(
+                    new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                    });
             }
-            else
-            {
-                return this.BadRequest();
-            }
+            return this.Unauthorized();
         }
 
         [HttpPost]
@@ -87,17 +97,17 @@ namespace FundooApi.Controllers
 
         [HttpPost]
         [Route("api/Account/ForgotPassword")]
-        public async Task<IActionResult> ForgotPassword([FromBody] string uemail) //, string url)
+        public async Task<IActionResult> ForgotPassword([FromBody]string uemail)
         {
             var currentuser = await userManager.FindByEmailAsync(uemail);
-            if(currentuser != null && await userManager.IsEmailConfirmedAsync(currentuser))
+            if (currentuser != null && await userManager.IsEmailConfirmedAsync(currentuser))
             {
                 var _token = await userManager.GeneratePasswordResetTokenAsync(currentuser);
                 var resetlink = Url.Action("ResetPassword", "AccountController",
                     new { email = uemail, token = _token }, Request.Scheme);
                if(manager.ForgotPasswordUser(uemail, resetlink))
                 {
-                    return this.Ok();
+                    return this.Ok("A link has been sent to your email to reset your password");
                 }
             }
             return this.BadRequest();
