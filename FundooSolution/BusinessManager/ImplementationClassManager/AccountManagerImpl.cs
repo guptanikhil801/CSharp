@@ -11,12 +11,12 @@ namespace BusinessManager.ImplementationClassManager
     {
         private readonly IAccount accountrepo;
 
-        AccountManagerImpl(IAccount accountrepo)
+      public  AccountManagerImpl(IAccount accountrepo)
         {
             this.accountrepo = accountrepo;
         }
 
-        public LoginModel DoLogin(LoginModel manager)
+        public User DoLogin(LoginModel manager)
         {
             return this.accountrepo.DoLogin(manager);
         }
@@ -26,14 +26,14 @@ namespace BusinessManager.ImplementationClassManager
             return this.accountrepo.DoRegistration(manager);
         }
 
-        public ForgotPassword ForgotPasswordUser(ForgotPassword manager)
+        public bool ForgotPasswordUser(string email, string url)
         {
-            return this.accountrepo.ForgotPasswordUser(manager);
+            return this.accountrepo.ForgotPasswordUser(email,url);
         }
 
-        public ResetPassword ResetPasswordUser(ResetPassword manager)
+       /* public ResetPassword ResetPasswordUser(ResetPassword manager)
         {
             return this.accountrepo.ResetPasswordUser(manager);
-        }
+        }*/
     }
 }
