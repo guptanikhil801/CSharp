@@ -7,9 +7,9 @@ namespace BusinessManager.InterfaceManager
 {
    public interface IAccountManager
     {
-        LoginModel DoLogin(LoginModel manager);
+        User DoLogin(LoginModel manager);
         User DoRegistration(RegistrationModel manager);
-        ForgotPassword ForgotPasswordUser(ForgotPassword manager);
-        ResetPassword ResetPasswordUser(ResetPassword manager);
+        bool ForgotPasswordUser(string email, string url);
+       // ResetPassword ResetPasswordUser(ResetPassword manager);
     }
 }
