@@ -15,10 +15,22 @@
 
     public class AccountImplClass : IAccount
     {
+        private readonly UserDBContext dbcontext;
+
+        public AccountImplClass(UserDBContext dbcontext)
+        {
+            this.dbcontext = dbcontext;
+        }
 
         public User DoLogin(LoginModel loginmodel)
         {
-            return new User { Email = loginmodel.Email, PasswordHash = loginmodel.Password };   
+            // return new User { Email = loginmodel.Email, PasswordHash = loginmodel.Password };   
+            var result = this.dbcontext.Users.FirstOrDefault(o => o.Email == loginmodel.Email);
+            if (result != null)
+            {
+                return result;
+            }
+            return null;
         }
 
         public User DoRegistration(RegistrationModel model)
@@ -34,7 +46,7 @@
             return createuser;
         }
 
-        public bool ForgotPasswordUser(ForgotPassword forgotmodel, string url)
+        public bool ForgotPasswordUser(string email, string url)
         {
             //// for sending message in MSMQ
             try
@@ -67,7 +79,7 @@
                 MailMessage mailmessage = new MailMessage();
                 SmtpClient smtp = new SmtpClient();
                 mailmessage.From = new MailAddress("guptanikhil20007@gmail.com");
-                mailmessage.To.Add(new MailAddress(forgotmodel.Email.ToString()));
+                mailmessage.To.Add(new MailAddress(email));
                 mailmessage.Subject = "Link to reset your passord";
                 mailmessage.IsBodyHtml = false;
                 mailmessage.Body = linktobesend;
