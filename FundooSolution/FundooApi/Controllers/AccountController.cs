@@ -10,7 +10,6 @@ using Common.UserModel;
 
 namespace FundooApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -18,7 +17,7 @@ namespace FundooApi.Controllers
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
 
-        AccountController(IAccountManager manager, UserManager<User> userManager
+        public AccountController(IAccountManager manager, UserManager<User> userManager
             , SignInManager<User> signInManager)
         {
             this.manager = manager;
@@ -45,11 +44,18 @@ namespace FundooApi.Controllers
         [Route("api/Account/Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await this.userManager.FindByEmailAsync(model.Email);
-            var result = await this.signInManager.PasswordSignInAsync(user, model.Password, false, false);
-            if (result.Succeeded)
+            //var currentuser =  userManager.Users.FirstOrDefault(x => x.Email == model.Email);
+          // User currentuser = await this.userManager.FindByEmailAsync(model.Email);
+            var currentuser = this.manager.DoLogin(model);
+            if (currentuser != null)
             {
-                return this.Ok();
+                var result = await this.signInManager.PasswordSignInAsync(currentuser, model.Password, isPersistent:false, false);
+                if (result.Succeeded)
+                {
+                    return this.Ok();
+                }
+
+                return this.BadRequest();
             }
             else
             {
@@ -81,15 +87,15 @@ namespace FundooApi.Controllers
 
         [HttpPost]
         [Route("api/Account/ForgotPassword")]
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword model, string url)
+        public async Task<IActionResult> ForgotPassword([FromBody] string uemail) //, string url)
         {
-            var currentuser = await userManager.FindByEmailAsync(model.Email);
+            var currentuser = await userManager.FindByEmailAsync(uemail);
             if(currentuser != null && await userManager.IsEmailConfirmedAsync(currentuser))
             {
                 var _token = await userManager.GeneratePasswordResetTokenAsync(currentuser);
                 var resetlink = Url.Action("ResetPassword", "AccountController",
-                    new { email = model.Email, token = _token }, Request.Scheme);
-               if(this.manager.ForgotPasswordUser(model, url))
+                    new { email = uemail, token = _token }, Request.Scheme);
+               if(manager.ForgotPasswordUser(uemail, resetlink))
                 {
                     return this.Ok();
                 }
