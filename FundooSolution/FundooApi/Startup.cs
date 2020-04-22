@@ -36,11 +36,11 @@ namespace FundooApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-           
+
             services.AddDbContextPool<UserDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("UserDBConnection"));
-              
+
             });
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<UserDBContext>().AddDefaultTokenProviders();
             services.AddTransient<IAccount, AccountImplClass>();
@@ -71,6 +71,7 @@ namespace FundooApi
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Signingkey"]))
                 };
             });
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +89,8 @@ namespace FundooApi
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
         }
     }
 }
