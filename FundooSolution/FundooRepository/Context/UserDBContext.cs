@@ -12,6 +12,7 @@ namespace FundooRepository.Context
     using System.Linq;
     using System.Text;
     using Common.UserModel;
+    using Common.ModelsOfNotes;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,8 @@ namespace FundooRepository.Context
         /// Gets or sets the DbSet of Users.
         /// </summary>
         public new DbSet<User> Users { get; set; }
+
+        public DbSet<NotesModel> Notes { get; set; }
 
         /// <summary>
         /// Configures the schema needed for the identity framework.
