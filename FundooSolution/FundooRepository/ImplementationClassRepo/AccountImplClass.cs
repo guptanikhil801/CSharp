@@ -1,38 +1,67 @@
-﻿namespace FundooRepository.ImplementationClassRepo
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="AccountImplClass.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// -------------------------------------------------------------------------------------------------------
+
+namespace FundooRepository.ImplementationClassRepo
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Mail;
+    using System.Text;
+    using System.Threading.Tasks;
     using Common.UserModel;
     using Experimental.System.Messaging;
     using FundooRepository.Context;
     using FundooRepository.InterfaceRepo;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Identity;
-    using System.Net.Mail;
-    using System.Net;
 
+    /// <summary>
+    /// implementation class of IAccount
+    /// </summary>
+    /// <seealso cref="FundooRepository.InterfaceRepo.IAccount" />
     public class AccountImplClass : IAccount
     {
         private readonly UserDBContext dbcontext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountImplClass"/> class.
+        /// </summary>
+        /// <param name="dbcontext">The dbcontext.</param>
         public AccountImplClass(UserDBContext dbcontext)
         {
             this.dbcontext = dbcontext;
         }
 
+        /// <summary>
+        /// implementation method for login.
+        /// </summary>
+        /// <param name="loginmodel">The loginmodel.</param>
+        /// <returns>
+        /// the user
+        /// </returns>
         public User DoLogin(LoginModel loginmodel)
         {
-            // return new User { Email = loginmodel.Email, PasswordHash = loginmodel.Password };   
             var result = this.dbcontext.Users.FirstOrDefault(o => o.Email == loginmodel.Email);
             if (result != null)
             {
                 return result;
             }
+
             return null;
         }
 
+        /// <summary>
+        /// Does the registration.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// new user
+        /// </returns>
         public User DoRegistration(RegistrationModel model)
         {
             User createuser = new User
@@ -46,6 +75,14 @@
             return createuser;
         }
 
+        /// <summary>
+        /// implementation method for Forgot password
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns>
+        /// boolean value
+        /// </returns>
         public bool ForgotPasswordUser(string email, string url)
         {
             //// for sending message in MSMQ
@@ -92,24 +129,10 @@
                 smtp.Send(mailmessage);
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
-
         }
-
-        /* public ResetPassword ResetPasswordUser(ResetPassword resetmodel)
-         {
-             return new ResetPassword
-             {
-                 Email = resetmodel.Email,
-                 NewPassword = resetmodel.NewPassword,
-                 ConfirmPassword = resetmodel.ConfirmPassword,
-                 Code = resetmodel.Code
-             };
-         }*/
-
-
     }
 }
