@@ -84,7 +84,8 @@
 
         public List<NotesModel> RetreiveDataFromCache(string key)
         {
-
+            var CacheString = this.distributedcache.GetString(key);
+            return JsonConvert.DeserializeObject<IEnumerable<NotesModel>>(CacheString).ToList();
         }
     }
 }
