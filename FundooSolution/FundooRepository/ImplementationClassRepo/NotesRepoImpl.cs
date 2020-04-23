@@ -18,7 +18,7 @@
         private readonly UserDBContext dbcontext;
         private readonly IDistributedCache distributedcache;
 
-        public NotesRepoImpl( UserDBContext dbcontext, IDistributedCache distributedcache)
+        public NotesRepoImpl(UserDBContext dbcontext, IDistributedCache distributedcache)
         {
             this.dbcontext = dbcontext;
             this.distributedcache = distributedcache;
@@ -44,10 +44,10 @@
             };
 
             var result = this.dbcontext.Notes.FirstOrDefault(o => o.NoteId == note.NoteId);
-            if(result == null)
+            if (result == null)
             {
                 this.dbcontext.Notes.Add(note);
-                if(this.dbcontext.SaveChanges() == 1)
+                if (this.dbcontext.SaveChanges() == 1)
                 {
                     return true;
                 }
@@ -73,12 +73,29 @@
             return uploadresult.Uri.ToString();
         }
 
+        public NotesModel GetNote(string email, int id)
+        {
+            var cachestring = distributedcache.GetString("notelist");
+            if (cachestring == null)
+            {
+                var tempdata = PutDataToCache(email);
+                return tempdata.Find(option => option.Email == email && option.Id == id &&
+                option.IsArchive == false && option.IsTrash == false);
+            }
+            else
+            {
+                var tempdata = RetreiveDataFromCache("notelist");
+                return tempdata.Find(option => option.Email == email && option.Id == id &&
+                option.IsArchive == false && option.IsTrash == false);
+            }
+        }
+
         public List<NotesModel> PutDataToCache(string email)
         {
             var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(90));
             var data = this.dbcontext.Notes.Where(op => op.Email == email);
             var jsondata = JsonConvert.SerializeObject(data);
-            distributedcache.SetString("notelist",jsondata,options);
+            distributedcache.SetString("notelist", jsondata, options);
             return data.ToList();
         }
 
