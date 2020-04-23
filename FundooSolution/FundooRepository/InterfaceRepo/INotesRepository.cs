@@ -13,5 +13,6 @@
         List<NotesModel> RetreiveDataFromCache(string key);
         NotesModel GetNote(string email, int id);
         IEnumerable<NotesModel> GetAllNotes(string email);
+        bool UpdateNote(NotesModel note);
     }
 }
