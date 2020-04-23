@@ -41,7 +41,7 @@ namespace FundooApi
         /// <param name="configuration">The configuration.</param>
         public Startup(IConfiguration configuration)
         {
-           this.Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -93,6 +93,13 @@ namespace FundooApi
 
             ////Adding Swagger service
             services.AddSwaggerDocument();
+
+            services.AddDistributedRedisCache(Options =>
+           {
+               Options.Configuration = "localhost:6379";
+               Options.InstanceName = "Fundoocache";
+
+           });
         }
 
         /// <summary>
