@@ -10,14 +10,18 @@
     using Common.ModelsOfNotes;
     using FundooRepository.Context;
     using System.Linq;
+    using Microsoft.Extensions.Caching.Distributed;
+    using Newtonsoft.Json;
 
     public class NotesRepoImpl : INotesRepository
     {
         private readonly UserDBContext dbcontext;
+        private readonly IDistributedCache distributedcache;
 
-        public NotesRepoImpl( UserDBContext dbcontext)
+        public NotesRepoImpl( UserDBContext dbcontext, IDistributedCache distributedcache)
         {
             this.dbcontext = dbcontext;
+            this.distributedcache = distributedcache;
         }
 
         public bool AddNote(string email, NewNote notemodel, IFormFile file)
@@ -67,6 +71,20 @@
             };
             var uploadresult = cloud.Upload(uploadparam);
             return uploadresult.Uri.ToString();
+        }
+
+        public List<NotesModel> PutDataToCache(string email)
+        {
+            var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(90));
+            var data = this.dbcontext.Notes.Where(op => op.Email == email);
+            var jsondata = JsonConvert.SerializeObject(data);
+            distributedcache.SetString("notelist",jsondata,options);
+            return data.ToList();
+        }
+
+        public List<NotesModel> RetreiveDataFromCache(string key)
+        {
+
         }
     }
 }
