@@ -73,6 +73,21 @@
             return uploadresult.Uri.ToString();
         }
 
+        public IEnumerable<NotesModel> GetAllNotes(string email)
+        {
+            var cachestring = distributedcache.GetString("notelist");
+            if (cachestring == null)
+            {
+                var tempdata = PutDataToCache(email);
+                return tempdata.Where(option => option.IsArchive == false && option.IsTrash == false);
+            }
+            else
+            {
+                var tempdata = RetreiveDataFromCache("notelist");
+                return tempdata.Where(option => option.IsArchive == false && option.IsTrash == false);
+            }
+        }
+
         public NotesModel GetNote(string email, int id)
         {
             var cachestring = distributedcache.GetString("notelist");
@@ -103,6 +118,28 @@
         {
             var CacheString = this.distributedcache.GetString(key);
             return JsonConvert.DeserializeObject<IEnumerable<NotesModel>>(CacheString).ToList();
+        }
+
+        public bool UpdateNote(NotesModel note)
+        {
+            var record = dbcontext.Notes.FirstOrDefault(option => option.NoteId == note.NoteId);
+            if (record != null)
+            {
+                record.ModifiedDate = DateTime.Now;
+                record.Colour = note.Colour ?? record.Colour;
+                record.Description = note.Description ?? record.Description;
+                record.Image = note.Image ?? record.Image;
+                record.Title = note.Title ?? record.Title;
+                record.Reminder = note.Reminder ?? record.Reminder;
+                this.dbcontext.Update(record);
+               var result = this.dbcontext.SaveChanges();
+                if(result == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
