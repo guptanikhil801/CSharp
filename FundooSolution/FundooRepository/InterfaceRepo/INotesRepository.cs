@@ -9,7 +9,9 @@
     {
         string CloudImage(IFormFile file);
         bool AddNote(string email, NewNote notemodel, IFormFile file);
-        List<NotesModel> PutDataTocache(string email);
+        List<NotesModel> PutDataToCache(string email);
         List<NotesModel> RetreiveDataFromCache(string key);
+        NotesModel GetNote(string email, int id);
+        IEnumerable<NotesModel> GetAllNotes(string email);
     }
 }
