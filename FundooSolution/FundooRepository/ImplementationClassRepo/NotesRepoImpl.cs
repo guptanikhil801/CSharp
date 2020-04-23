@@ -73,6 +73,22 @@
             return uploadresult.Uri.ToString();
         }
 
+        public bool DeleteNote(string email, int id)
+        {
+            var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
+            if (note != null)
+            {
+                dbcontext.Notes.Remove(note);
+                var result = dbcontext.SaveChanges();
+                if (result == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public IEnumerable<NotesModel> GetAllNotes(string email)
         {
             var cachestring = distributedcache.GetString("notelist");
@@ -94,13 +110,13 @@
             if (cachestring == null)
             {
                 var tempdata = PutDataToCache(email);
-                return tempdata.Find(option => option.Email == email && option.Id == id &&
+                return tempdata.Find(option => option.Email == email && option.NoteId == id &&
                 option.IsArchive == false && option.IsTrash == false);
             }
             else
             {
                 var tempdata = RetreiveDataFromCache("notelist");
-                return tempdata.Find(option => option.Email == email && option.Id == id &&
+                return tempdata.Find(option => option.Email == email && option.NoteId == id &&
                 option.IsArchive == false && option.IsTrash == false);
             }
         }
@@ -132,8 +148,8 @@
                 record.Title = note.Title ?? record.Title;
                 record.Reminder = note.Reminder ?? record.Reminder;
                 this.dbcontext.Update(record);
-               var result = this.dbcontext.SaveChanges();
-                if(result == 1)
+                var result = this.dbcontext.SaveChanges();
+                if (result == 1)
                 {
                     return true;
                 }
