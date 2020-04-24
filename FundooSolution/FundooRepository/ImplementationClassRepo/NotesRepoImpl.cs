@@ -148,6 +148,27 @@
             }
         }
 
+        public bool Pin(string email, int id)
+        {
+            var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
+            if(note!=null)
+            {
+                if(note.IsPin == true)
+                {
+                    note.IsPin = false;
+                }
+                else
+                {
+                    note.IsPin = true;
+                }
+                dbcontext.Notes.Update(note);
+                dbcontext.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+
         public List<NotesModel> PutDataToCache(string email)
         {
             var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(90));
