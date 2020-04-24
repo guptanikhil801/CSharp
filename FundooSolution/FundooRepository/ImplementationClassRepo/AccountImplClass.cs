@@ -86,8 +86,6 @@ namespace FundooRepository.ImplementationClassRepo
         public bool ForgotPasswordUser(string email, string url)
         {
             //// for sending message in MSMQ
-            try
-            {
                 MessageQueue msgqueue;
                 if (MessageQueue.Exists(@".\Private$\MyQueue"))
                 {
@@ -102,37 +100,39 @@ namespace FundooRepository.ImplementationClassRepo
 
                 message.Formatter = new BinaryMessageFormatter();
                 message.Body = url;
-                message.Label = "url link";
+                msgqueue.Label = "url link";
                 msgqueue.Send(message);
 
                 //// for reading message from MSMQ
-                MessageQueue receivequeue = new MessageQueue(@".\Private$\MyQueue");
-                Message receivemsg = receivequeue.Receive();
+                var receivequeue = new MessageQueue(@".\Private$\MyQueue");
+                var receivemsg = receivequeue.Receive();
                 receivemsg.Formatter = new BinaryMessageFormatter();
 
                 string linktobesend = receivemsg.Body.ToString();
-
-                //// for sending a link to user from SMTP server
-                MailMessage mailmessage = new MailMessage();
-                SmtpClient smtp = new SmtpClient();
-                mailmessage.From = new MailAddress("guptanikhil20007@gmail.com");
-                mailmessage.To.Add(new MailAddress(email));
-                mailmessage.Subject = "Link to reset your passord";
-                mailmessage.IsBodyHtml = false;
-                mailmessage.Body = linktobesend;
-                smtp.Port = 587;
-                smtp.Host = "smtp.gmail.com";
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("guptanikhil20007@gmail.com", "nikhil20007");
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(mailmessage);
+            if (Sendmail(email, linktobesend))
+            {
                 return true;
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
+
+        private bool Sendmail(string email, string message)
+        {
+            MailMessage mailmessage = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            mailmessage.From = new MailAddress("guptanikhil20007@gmail.com");
+            mailmessage.To.Add(new MailAddress(email));
+            mailmessage.Subject = "Link to reset your passord for Fundoo Application";
+            mailmessage.IsBodyHtml = true;
+            mailmessage.Body = message;
+            smtp.Port = 587;
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            smtp.Credentials = new NetworkCredential("guptanikhil20007@gmail.com", "nikhil20007");
+            smtp.Send(mailmessage);
+            return true;
+        }
+
+     
     }
 }
