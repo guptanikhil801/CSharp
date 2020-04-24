@@ -24,18 +24,18 @@
             this.distributedcache = distributedcache;
         }
 
-        public bool AddNote(string email, NewNote notemodel, IFormFile file)
+        public bool AddNote(string email, NewNote note, IFormFile file)
         {
             var imagelink = CloudImage(file);
-            var note = new NotesModel
+            var createnote = new NotesModel
             {
                 Email = email,
                 Image = imagelink,
-                Description = notemodel.Description,
-                NoteId = notemodel.NoteId,
-                Reminder = notemodel.Reminder,
-                Title = notemodel.Title,
-                Colour = notemodel.Colour,
+                Description = note.Description,
+                NoteId = note.NoteId,
+                Reminder = note.Reminder,
+                Title = note.Title,
+                Colour = note.Colour,
                 CreatedDate = DateTime.UtcNow,
                 ModifiedDate = DateTime.UtcNow,
                 IsArchive = false,
@@ -46,7 +46,7 @@
             var result = this.dbcontext.Notes.FirstOrDefault(o => o.NoteId == note.NoteId);
             if (result == null)
             {
-                this.dbcontext.Notes.Add(note);
+                this.dbcontext.Notes.Add(createnote);
                 if (this.dbcontext.SaveChanges() == 1)
                 {
                     return true;
@@ -136,7 +136,7 @@
             return JsonConvert.DeserializeObject<IEnumerable<NotesModel>>(CacheString).ToList();
         }
 
-        public bool UpdateNote(NotesModel note)
+        public bool UpdateNote(NewNote note)
         {
             var record = dbcontext.Notes.FirstOrDefault(option => option.NoteId == note.NoteId);
             if (record != null)
@@ -144,7 +144,7 @@
                 record.ModifiedDate = DateTime.Now;
                 record.Colour = note.Colour ?? record.Colour;
                 record.Description = note.Description ?? record.Description;
-                record.Image = note.Image ?? record.Image;
+                record.Image = record.Image;
                 record.Title = note.Title ?? record.Title;
                 record.Reminder = note.Reminder ?? record.Reminder;
                 this.dbcontext.Update(record);
@@ -155,6 +155,23 @@
                 }
             }
 
+            return false;
+        }
+
+        public bool UpdateNoteImage(int noteid, IFormFile imagefile)
+        {
+            var imagelink = CloudImage(imagefile);
+            var record = dbcontext.Notes.FirstOrDefault(option => option.NoteId == noteid);
+            if (record != null)
+            {
+                record.Image = imagelink;
+                this.dbcontext.Update(record);
+                var result = this.dbcontext.SaveChanges();
+                if (result == 1)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }
