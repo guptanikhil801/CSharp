@@ -7,21 +7,21 @@
     using System.Text;
     public interface INotesRepository
     {
-        string CloudImage(IFormFile file);
-        bool AddNote(string email, NewNote notemodel, IFormFile file);
-        List<NotesModel> PutDataToCache(string email);
-        List<NotesModel> RetreiveDataFromCache(string key);
-        NotesModel GetNote(string email, int id);
-        IEnumerable<NotesModel> GetAllNotes(string email);
-        bool UpdateNote(string email, NewNote note);
-        bool DeleteNote(string email, int id);
-        bool UpdateNoteImage(string email, int noteid, IFormFile imagefile);
-        bool Archive(string email, int id);
-        IEnumerable<NotesModel> ArchivedNoteList(String email);
-        bool Pin(string email, int id);
-        IEnumerable<NotesModel> PinnedNoteList(String email);
-        bool Trash(string email, int noteid);
-        IEnumerable<NotesModel> TrashNoteList(string email);
-        bool Restore(string email, int noteid);
+        string MakeCloudImage(IFormFile file);
+        bool DoAddNote(string email, NewNote notemodel, IFormFile file);
+        List<NotesModel> DoPutDataToCache(string email);
+        List<NotesModel> DoRetreiveDataFromCache(string key);
+        NotesModel DoGetNote(string email, int id);
+        IEnumerable<NotesModel> DoGetAllNotes(string email);
+        bool DoUpdateNote(string email, NewNote note);
+        bool DoDeleteNote(string email, int id);
+        bool DoUpdateNoteImage(string email, int noteid, IFormFile imagefile);
+        bool DoArchive(string email, int id);
+        IEnumerable<NotesModel> GetArchivedNoteList(String email);
+        bool DoPin(string email, int id);
+        IEnumerable<NotesModel> GetPinnedNoteList(String email);
+        bool DoTrash(string email, int noteid);
+        IEnumerable<NotesModel> GetTrashNoteList(string email);
+        bool DoRestore(string email, int noteid);
     }
 }
