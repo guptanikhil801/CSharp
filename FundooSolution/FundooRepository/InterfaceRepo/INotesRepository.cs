@@ -20,5 +20,6 @@
         IEnumerable<NotesModel> ArchivedNoteList(String email);
         bool Pin(string email, int id);
         IEnumerable<NotesModel> PinnedNoteList(String email);
+        bool Trash(string email, int noteid);
     }
 }
