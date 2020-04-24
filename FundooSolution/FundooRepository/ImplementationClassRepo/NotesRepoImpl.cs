@@ -43,7 +43,7 @@
                 IsTrash = false,
             };
 
-            var result = this.dbcontext.Notes.FirstOrDefault(o => o.NoteId == note.NoteId);
+            var result = this.dbcontext.Notes.FirstOrDefault(o => o.Email== email && o.NoteId == note.NoteId);
             if (result == null)
             {
                 this.dbcontext.Notes.Add(createnote);
@@ -167,6 +167,12 @@
             }
 
             return false;
+        }
+
+        public IEnumerable<NotesModel> PinnedNoteList(string email)
+        {
+            var pinnednotes = dbcontext.Notes.Where(option => option.Email == email && option.IsPin == true);
+            return pinnednotes;
         }
 
         public List<NotesModel> PutDataToCache(string email)
