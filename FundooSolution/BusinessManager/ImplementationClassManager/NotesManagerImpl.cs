@@ -20,62 +20,62 @@
 
         public bool AddNote(string email, NewNote notemodel, IFormFile file)
         {
-            throw new NotImplementedException();
+            return this.repository.DoAddNote(email,notemodel,file);
         }
 
         public bool Archive(string email, int id)
         {
-            throw new NotImplementedException();
+            return this.repository.DoArchive(email, id);
         }
 
         public IEnumerable<NotesModel> ArchivedNoteList(string email)
         {
-            throw new NotImplementedException();
+            return this.repository.GetArchivedNoteList(email);
         }
 
         public string CloudImage(IFormFile file)
         {
-            throw new NotImplementedException();
+            return this.repository.MakeCloudImage(file);
         }
 
         public bool DeleteNote(string email, int id)
         {
-            throw new NotImplementedException();
+           return this.repository.DoDeleteNote(email, id);
         }
 
         public IEnumerable<NotesModel> GetAllNotes(string email)
         {
-            throw new NotImplementedException();
+            return this.repository.DoGetAllNotes(email);
         }
 
         public NotesModel GetNote(string email, int id)
         {
-            throw new NotImplementedException();
+            return this.repository.DoGetNote(email, id);
         }
 
         public bool Pin(string email, int id)
         {
-            throw new NotImplementedException();
+            return this.repository.DoPin(email, id);
         }
 
         public IEnumerable<NotesModel> PinnedNoteList(string email)
         {
-            throw new NotImplementedException();
+            return this.repository.GetPinnedNoteList(email);
         }
 
         public List<NotesModel> PutDataToCache(string email)
         {
-            throw new NotImplementedException();
+            return this.repository.DoPutDataToCache(email);
         }
 
         public bool Restore(string email, int noteid)
         {
-            throw new NotImplementedException();
+            return this.repository.DoRestore(email, noteid);
         }
 
         public List<NotesModel> RetreiveDataFromCache(string key)
         {
-            throw new NotImplementedException();
+            return this.repository.DoRetreiveDataFromCache(key);
         }
 
         public bool Trash(string email, int noteid)
