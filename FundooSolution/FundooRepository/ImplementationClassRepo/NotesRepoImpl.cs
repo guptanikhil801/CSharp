@@ -190,6 +190,27 @@
             return JsonConvert.DeserializeObject<IEnumerable<NotesModel>>(CacheString).ToList();
         }
 
+        public bool Trash(string email, int noteid)
+        {
+            var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
+            if(note!=null)
+            {
+               if(note.IsTrash == true)
+                {
+                    note.IsTrash = false;
+                }
+                else
+                {
+                    note.IsTrash = true;
+                }
+                this.dbcontext.Notes.Update(note);
+                this.dbcontext.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+
         public bool UpdateNote(NewNote note)
         {
             var record = dbcontext.Notes.FirstOrDefault(option => option.NoteId == note.NoteId);
