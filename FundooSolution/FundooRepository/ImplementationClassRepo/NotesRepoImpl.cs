@@ -76,6 +76,12 @@
             return false;
         }
 
+        public IEnumerable<NotesModel> ArchivedNoteList(string email)
+        {
+            var result = this.dbcontext.Notes.Where(option => option.Email == email && option.IsArchive == true);
+            return result;
+        }
+
         public string CloudImage(IFormFile file)
         {
             if (file == null)
