@@ -18,5 +18,6 @@
         bool UpdateNoteImage(int noteid, IFormFile imagefile);
         bool Archive(string email, int id);
         IEnumerable<NotesModel> ArchivedNoteList(String email);
+        bool Pin(string email, int id);
     }
 }
