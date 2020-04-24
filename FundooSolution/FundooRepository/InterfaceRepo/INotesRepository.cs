@@ -13,13 +13,14 @@
         List<NotesModel> RetreiveDataFromCache(string key);
         NotesModel GetNote(string email, int id);
         IEnumerable<NotesModel> GetAllNotes(string email);
-        bool UpdateNote(NewNote note);
+        bool UpdateNote(string email, NewNote note);
         bool DeleteNote(string email, int id);
-        bool UpdateNoteImage(int noteid, IFormFile imagefile);
+        bool UpdateNoteImage(string email, int noteid, IFormFile imagefile);
         bool Archive(string email, int id);
         IEnumerable<NotesModel> ArchivedNoteList(String email);
         bool Pin(string email, int id);
         IEnumerable<NotesModel> PinnedNoteList(String email);
         bool Trash(string email, int noteid);
+        IEnumerable<NotesModel> TrashNoteList(string email);
     }
 }
