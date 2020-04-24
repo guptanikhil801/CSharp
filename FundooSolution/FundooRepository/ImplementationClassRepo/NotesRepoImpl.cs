@@ -55,6 +55,27 @@
             return false;
         }
 
+        public bool Archive(string email, int id)
+        {
+            var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
+            if (note != null)
+            {
+                if (note.IsArchive == true)
+                {
+                    note.IsArchive = false;
+                }
+                else
+                {
+                    note.IsArchive = true;
+                }
+                this.dbcontext.Notes.Update(note);
+                this.dbcontext.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+
         public string CloudImage(IFormFile file)
         {
             if (file == null)
