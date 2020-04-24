@@ -207,13 +207,18 @@
                 this.dbcontext.SaveChanges();
                 return true;
             }
-
+            
             return false;
         }
 
-        public bool UpdateNote(NewNote note)
+        public IEnumerable<NotesModel> TrashNoteList(string email)
         {
-            var record = dbcontext.Notes.FirstOrDefault(option => option.NoteId == note.NoteId);
+            return dbcontext.Notes.Where(option => option.Email == email && option.IsTrash == true);
+        }
+
+        public bool UpdateNote(string email,NewNote note)
+        {
+            var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == note.NoteId);
             if (record != null)
             {
                 record.ModifiedDate = DateTime.Now;
@@ -233,10 +238,10 @@
             return false;
         }
 
-        public bool UpdateNoteImage(int noteid, IFormFile imagefile)
+        public bool UpdateNoteImage( string email, int noteid, IFormFile imagefile)
         {
             var imagelink = CloudImage(imagefile);
-            var record = dbcontext.Notes.FirstOrDefault(option => option.NoteId == noteid);
+            var record = dbcontext.Notes.FirstOrDefault(option => option.Email== email && option.NoteId == noteid);
             if (record != null)
             {
                 record.Image = imagelink;
