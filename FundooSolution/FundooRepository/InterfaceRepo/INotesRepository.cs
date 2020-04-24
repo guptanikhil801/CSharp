@@ -22,5 +22,6 @@
         IEnumerable<NotesModel> PinnedNoteList(String email);
         bool Trash(string email, int noteid);
         IEnumerable<NotesModel> TrashNoteList(string email);
+        bool Restore(string email, int noteid);
     }
 }
