@@ -80,22 +80,22 @@
 
         public bool Trash(string email, int noteid)
         {
-            throw new NotImplementedException();
+            return this.repository.DoTrash(email, noteid);
         }
 
         public IEnumerable<NotesModel> TrashNoteList(string email)
         {
-            throw new NotImplementedException();
+            return this.repository.GetTrashNoteList(email);
         }
 
         public bool UpdateNote(string email, NewNote note)
         {
-            throw new NotImplementedException();
+            return this.repository.DoUpdateNote(email, note);
         }
 
         public bool UpdateNoteImage(string email, int noteid, IFormFile imagefile)
         {
-            throw new NotImplementedException();
+            return this.repository.DoUpdateNoteImage(email, noteid, imagefile);
         }
     }
 }
