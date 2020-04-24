@@ -43,7 +43,7 @@
                 IsTrash = false,
             };
 
-            var result = this.dbcontext.Notes.FirstOrDefault(o => o.Email== email && o.NoteId == note.NoteId);
+            var result = this.dbcontext.Notes.FirstOrDefault(o => o.Email== email && o.NoteId == createnote.NoteId);
             if (result == null)
             {
                 this.dbcontext.Notes.Add(createnote);
@@ -184,6 +184,23 @@
             return data.ToList();
         }
 
+        public bool Restore(string email, int noteid)
+        {
+            var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
+            if (note != null)
+            {
+                if (note.IsTrash == true)
+                {
+                    note.IsTrash = false;
+                }
+
+                this.dbcontext.Notes.Update(note);
+                this.dbcontext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public List<NotesModel> RetreiveDataFromCache(string key)
         {
             var CacheString = this.distributedcache.GetString(key);
@@ -195,14 +212,11 @@
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
             if(note!=null)
             {
-               if(note.IsTrash == true)
-                {
-                    note.IsTrash = false;
-                }
-                else
+               if(note.IsTrash == false)
                 {
                     note.IsTrash = true;
                 }
+                
                 this.dbcontext.Notes.Update(note);
                 this.dbcontext.SaveChanges();
                 return true;
@@ -252,6 +266,7 @@
                     return true;
                 }
             }
+
             return false;
         }
     }
