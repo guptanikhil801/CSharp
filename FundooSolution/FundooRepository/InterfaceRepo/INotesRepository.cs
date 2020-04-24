@@ -17,5 +17,6 @@
         bool DeleteNote(string email, int id);
         bool UpdateNoteImage(int noteid, IFormFile imagefile);
         bool Archive(string email, int id);
+        IEnumerable<NotesModel> ArchivedNoteList(String email);
     }
 }
