@@ -24,9 +24,9 @@
             this.distributedcache = distributedcache;
         }
 
-        public bool AddNote(string email, NewNote note, IFormFile file)
+        public bool DoAddNote(string email, NewNote note, IFormFile file)
         {
-            var imagelink = CloudImage(file);
+            var imagelink = MakeCloudImage(file);
             var createnote = new NotesModel
             {
                 Email = email,
@@ -55,7 +55,7 @@
             return false;
         }
 
-        public bool Archive(string email, int id)
+        public bool DoArchive(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
             if (note != null)
@@ -76,13 +76,13 @@
             return false;
         }
 
-        public IEnumerable<NotesModel> ArchivedNoteList(string email)
+        public IEnumerable<NotesModel> GetArchivedNoteList(string email)
         {
             var result = this.dbcontext.Notes.Where(option => option.Email == email && option.IsArchive == true);
             return result;
         }
 
-        public string CloudImage(IFormFile file)
+        public string MakeCloudImage(IFormFile file)
         {
             if (file == null)
             {
@@ -100,7 +100,7 @@
             return uploadresult.Uri.ToString();
         }
 
-        public bool DeleteNote(string email, int id)
+        public bool DoDeleteNote(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
             if (note != null)
@@ -116,39 +116,39 @@
             return false;
         }
 
-        public IEnumerable<NotesModel> GetAllNotes(string email)
+        public IEnumerable<NotesModel> DoGetAllNotes(string email)
         {
             var cachestring = distributedcache.GetString("notelist");
             if (cachestring == null)
             {
-                var tempdata = PutDataToCache(email);
+                var tempdata = DoPutDataToCache(email);
                 return tempdata.Where(option => option.IsArchive == false && option.IsTrash == false);
             }
             else
             {
-                var tempdata = RetreiveDataFromCache("notelist");
+                var tempdata = DoRetreiveDataFromCache("notelist");
                 return tempdata.Where(option => option.IsArchive == false && option.IsTrash == false);
             }
         }
 
-        public NotesModel GetNote(string email, int id)
+        public NotesModel DoGetNote(string email, int id)
         {
             var cachestring = distributedcache.GetString("notelist");
             if (cachestring == null)
             {
-                var tempdata = PutDataToCache(email);
+                var tempdata = DoPutDataToCache(email);
                 return tempdata.Find(option => option.Email == email && option.NoteId == id &&
                 option.IsArchive == false && option.IsTrash == false);
             }
             else
             {
-                var tempdata = RetreiveDataFromCache("notelist");
+                var tempdata = DoRetreiveDataFromCache("notelist");
                 return tempdata.Find(option => option.Email == email && option.NoteId == id &&
                 option.IsArchive == false && option.IsTrash == false);
             }
         }
 
-        public bool Pin(string email, int id)
+        public bool DoPin(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
             if(note!=null)
@@ -169,13 +169,13 @@
             return false;
         }
 
-        public IEnumerable<NotesModel> PinnedNoteList(string email)
+        public IEnumerable<NotesModel> GetPinnedNoteList(string email)
         {
             var pinnednotes = dbcontext.Notes.Where(option => option.Email == email && option.IsPin == true);
             return pinnednotes;
         }
 
-        public List<NotesModel> PutDataToCache(string email)
+        public List<NotesModel> DoPutDataToCache(string email)
         {
             var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(90));
             var data = this.dbcontext.Notes.Where(op => op.Email == email);
@@ -184,7 +184,7 @@
             return data.ToList();
         }
 
-        public bool Restore(string email, int noteid)
+        public bool DoRestore(string email, int noteid)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
             if (note != null)
@@ -201,13 +201,13 @@
             return false;
         }
 
-        public List<NotesModel> RetreiveDataFromCache(string key)
+        public List<NotesModel> DoRetreiveDataFromCache(string key)
         {
             var CacheString = this.distributedcache.GetString(key);
             return JsonConvert.DeserializeObject<IEnumerable<NotesModel>>(CacheString).ToList();
         }
 
-        public bool Trash(string email, int noteid)
+        public bool DoTrash(string email, int noteid)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
             if(note!=null)
@@ -225,12 +225,12 @@
             return false;
         }
 
-        public IEnumerable<NotesModel> TrashNoteList(string email)
+        public IEnumerable<NotesModel> GetTrashNoteList(string email)
         {
             return dbcontext.Notes.Where(option => option.Email == email && option.IsTrash == true);
         }
 
-        public bool UpdateNote(string email,NewNote note)
+        public bool DoUpdateNote(string email,NewNote note)
         {
             var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == note.NoteId);
             if (record != null)
@@ -252,9 +252,9 @@
             return false;
         }
 
-        public bool UpdateNoteImage( string email, int noteid, IFormFile imagefile)
+        public bool DoUpdateNoteImage( string email, int noteid, IFormFile imagefile)
         {
-            var imagelink = CloudImage(imagefile);
+            var imagelink = MakeCloudImage(imagefile);
             var record = dbcontext.Notes.FirstOrDefault(option => option.Email== email && option.NoteId == noteid);
             if (record != null)
             {
