@@ -5,6 +5,7 @@
     using FundooRepository.InterfaceRepo;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
 
     public class LabelRepoImpl : ILabelRepository
@@ -33,9 +34,20 @@
             return false;
         }
 
-        public bool Delete(string email, int labelid)
+        public bool DeleteLabel(string email, int labelid)
         {
-            throw new NotImplementedException();
+            var label = dbcontext.Labels.FirstOrDefault(option => option.Email == email && option.LabelId == id);
+            if (label != null)
+            {
+                dbcontext.Notes.Remove(label);
+                var result = dbcontext.SaveChanges();
+                if (result == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public IEnumerable<LabelModel> GetAllLabels(string email)
