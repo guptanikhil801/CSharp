@@ -10,8 +10,8 @@
         bool AddLabel(string email, string details);
         LabelModel GetLabel(string email, int labelid);
         IEnumerable<LabelModel> GetAllLabels(string email);
-        bool Update(string email, int labelid);
-        bool Delete(string email, int labelid);
+        bool UpdateLabel(string email, int labelid, string details);
+        bool DeleteLabel(string email, int labelid);
 
     }
 }
