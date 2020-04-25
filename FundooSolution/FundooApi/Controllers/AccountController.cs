@@ -16,6 +16,7 @@ namespace FundooApi.Controllers
     using System.Threading.Tasks;
     using BusinessManager.InterfaceManager;
     using Common.UserModel;
+    using FundooRepository.Context;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,7 @@ namespace FundooApi.Controllers
         /// Dependency of IConfiguration
         /// </summary>
         private readonly IConfiguration configuration;
+        private readonly UserDBContext dbcontext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -56,12 +58,13 @@ namespace FundooApi.Controllers
         /// <param name="userManager">The user manager.</param>
         /// <param name="signinmanager">The sign in manager.</param>
         /// <param name="configuration">The configuration.</param>
-        public AccountController(IAccountManager manager, UserManager<User> userManager, SignInManager<User> signinmanager, IConfiguration configuration)
+        public AccountController(IAccountManager manager, UserManager<User> userManager, SignInManager<User> signinmanager, IConfiguration configuration, UserDBContext dbcontext)
         {
             this.manager = manager;
             this.userManager = userManager;
             this.signinmanager = signinmanager;
             this.configuration = configuration;
+            this.dbcontext = dbcontext;
         }
 
         /// <summary>
@@ -73,6 +76,7 @@ namespace FundooApi.Controllers
         [Route("api/Account/Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationModel model)
         {
+           
             var result = await this.userManager.CreateAsync(this.manager.DoRegistration(model), model.Password);
             if (result.Succeeded)
             {
@@ -96,7 +100,7 @@ namespace FundooApi.Controllers
             var currentuser = await this.userManager.FindByEmailAsync(model.Email);
             if (currentuser != null && await this.userManager.CheckPasswordAsync(currentuser, model.Password))
             {
-                var claim = new[] { new Claim(JwtRegisteredClaimNames.Sub, currentuser.UserName) };
+                var claim = new[] { new Claim(JwtRegisteredClaimNames.UniqueName, currentuser.UserName) };
                 var signkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["Jwt:Signingkey"]));
                 int expiryminutes = Convert.ToInt32(this.configuration["Jwt:ExpiryInMinutes"]);
                 var token = new JwtSecurityToken(
@@ -151,11 +155,12 @@ namespace FundooApi.Controllers
         [Route("api/Account/ForgotPassword")]
         public async Task<IActionResult> ForgotPassword([FromBody]string uemail)
         {
-            var currentuser = await this.userManager.FindByEmailAsync(uemail);
+           // var currentuser = await this.userManager.FindByEmailAsync(uemail);
+           var currentuser = this.dbcontext.Users.FirstOrDefault(o => o.Email == uemail);
             if (currentuser != null && await this.userManager.IsEmailConfirmedAsync(currentuser))
             {
                 var _token = await this.userManager.GeneratePasswordResetTokenAsync(currentuser);
-                var resetlink = Url.Action("ResetPassword", "AccountController", new { email = uemail, token = _token }, Request.Scheme);
+                var resetlink = Url.Action("ResetPassword", "Account", new { email = uemail, token = _token }, Request.Scheme);
                 if (this.manager.ForgotPasswordUser(uemail, resetlink))
                 {
                     return this.Ok("A link has been sent to your email to reset your password");
