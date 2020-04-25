@@ -76,7 +76,7 @@
         }
 
         [HttpPut]
-        [Route("api/Notes/GetAllNotes")]
+        [Route("api/Notes/UpdateNote")]
         public IActionResult UpdateNote([FromBody] NewNote note, int id)
         {
             string useremail = this.User.Identity.Name;
@@ -85,6 +85,22 @@
                 if(this.manager.UpdateNote(useremail, note, id))
                 {
                     return this.Ok("Note has been updated successfully");
+                }
+            }
+
+            return this.BadRequest();
+        }
+
+        [HttpPut]
+        [Route("api/Notes/UpdateNoteImage")]
+        public IActionResult UpdateNoteImage([FromBody] IFormFile imgfile, int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                if (this.manager.UpdateNoteImage(useremail,id, imgfile))
+                {
+                    return this.Ok("Note Image updated successfully");
                 }
             }
 
@@ -106,6 +122,8 @@
 
             return this.BadRequest();
         }
+
+
 
     }
 }
