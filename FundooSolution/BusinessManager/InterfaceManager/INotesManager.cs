@@ -14,7 +14,7 @@
         //List<NotesModel> RetreiveDataFromCache(string key);
         NotesModel GetNote(string email, int id);
         IEnumerable<NotesModel> GetAllNotes(string email);
-        bool UpdateNote(string email, NewNote note);
+        bool UpdateNote(string email, NewNote note, int id);
         bool DeleteNote(string email, int id);
         bool UpdateNoteImage(string email, int noteid, IFormFile imagefile);
         bool Archive(string email, int id);
