@@ -188,6 +188,22 @@
         }
 
         [HttpPut]
+        [Route("api/Notes/Restore")]
+        public IActionResult Restore([FromBody] int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                if (this.manager.Restore(useremail,id))
+                {
+                    return this.Ok("Note Restored");
+                }
+            }
+
+            return this.BadRequest();
+        }
+
+        [HttpPut]
         [Route("api/Notes/Trash")]
         public IActionResult Trash([FromBody] int id)
         {
