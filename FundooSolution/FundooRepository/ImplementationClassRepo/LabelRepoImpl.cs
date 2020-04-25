@@ -65,12 +65,14 @@
         public bool UpdateLabel(string email, int labelid, string details)
         {
             var label = dbcontext.Labels.FirstOrDefault(option => option.Email == email && option.LabelId == labelid);
-            if(label!=null)
+            if(label!=null && details!=null)
             {
                 label.Details = details;
                 this.dbcontext.Labels.Update(label);
-                this.dbcontext.SaveChanges();
-                return true;
+                if (this.dbcontext.SaveChanges() == 1)
+                {
+                    return true;
+                }
             }
             return false;
         }
