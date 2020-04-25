@@ -1,6 +1,7 @@
 ﻿namespace FundooRepository.ImplementationClassRepo
 {
     using Common.ModelsOfLabel;
+    using FundooRepository.Context;
     using FundooRepository.InterfaceRepo;
     using System;
     using System.Collections.Generic;
@@ -8,9 +9,28 @@
 
     public class LabelRepoImpl : ILabelRepository
     {
+        private readonly UserDBContext dbcontext;
+
+        public LabelRepoImpl(UserDBContext dbcontext)
+        {
+            this.dbcontext = dbcontext;
+        }
+
         public bool AddLabel(string email, string details)
         {
-            throw new NotImplementedException();
+            if (email != null && details != null)
+            {
+                var newlabel = new LabelModel
+                {
+                    Email = email,
+                    Details = details
+                };
+                this.dbcontext.Labels.Add(newlabel);
+                this.dbcontext.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
 
         public bool Delete(string email, int labelid)
