@@ -15,6 +15,7 @@ namespace FundooRepository.Context
     using Common.ModelsOfNotes;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Common.ModelsOfLabel;
 
     /// <summary>
     /// defining userdbcontext
@@ -36,6 +37,8 @@ namespace FundooRepository.Context
         public new DbSet<User> Users { get; set; }
 
         public DbSet<NotesModel> Notes { get; set; }
+        
+        public DbSet<LabelModel> Labels { get; set; }
 
         /// <summary>
         /// Configures the schema needed for the identity framework.
