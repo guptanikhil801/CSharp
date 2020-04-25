@@ -63,20 +63,20 @@
             return this.repository.GetPinnedNoteList(email);
         }
 
-        public List<NotesModel> PutDataToCache(string email)
+      /*  public List<NotesModel> PutDataToCache(string email)
         {
             return this.repository.DoPutDataToCache(email);
-        }
+        }*/
 
         public bool Restore(string email, int noteid)
         {
             return this.repository.DoRestore(email, noteid);
         }
 
-        public List<NotesModel> RetreiveDataFromCache(string key)
+       /* public List<NotesModel> RetreiveDataFromCache(string key)
         {
             return this.repository.DoRetreiveDataFromCache(key);
-        }
+        }*/
 
         public bool Trash(string email, int noteid)
         {
