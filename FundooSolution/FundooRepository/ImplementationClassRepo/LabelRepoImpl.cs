@@ -36,10 +36,10 @@
 
         public bool DeleteLabel(string email, int labelid)
         {
-            var label = dbcontext.Labels.FirstOrDefault(option => option.Email == email && option.LabelId == id);
+            var label = dbcontext.Labels.FirstOrDefault(option => option.Email == email && option.LabelId == labelid);
             if (label != null)
             {
-                dbcontext.Notes.Remove(label);
+                dbcontext.Labels.Remove(label);
                 var result = dbcontext.SaveChanges();
                 if (result == 1)
                 {
@@ -52,17 +52,27 @@
 
         public IEnumerable<LabelModel> GetAllLabels(string email)
         {
-            throw new NotImplementedException();
+            var labels = dbcontext.Labels.Where(option => option.Email == email);
+            return labels;
         }
 
         public LabelModel GetLabel(string email, int labelid)
         {
-            throw new NotImplementedException();
+            var label = dbcontext.Labels.FirstOrDefault(option => option.Email == email && option.LabelId == labelid);
+            return label;
         }
 
-        public bool Update(string email, int labelid)
+        public bool UpdateLabel(string email, int labelid, string details)
         {
-            throw new NotImplementedException();
+            var label = dbcontext.Labels.FirstOrDefault(option => option.Email == email && option.LabelId == labelid);
+            if(label!=null)
+            {
+                label.Details = details;
+                this.dbcontext.Labels.Update(label);
+                this.dbcontext.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
