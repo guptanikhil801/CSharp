@@ -140,7 +140,7 @@
         }
 
         [HttpGet]
-        [Route("api/Notes/GetAllNotes")]
+        [Route("api/Notes/ArchivedNotes")]
         public IActionResult ArchivedNotes()
         {
             string useremail = this.User.Identity.Name;
@@ -154,5 +154,24 @@
 
             return this.BadRequest();
         }
+
+        [HttpPut]
+        [Route("api/Notes/Pin")]
+        public IActionResult Pin([FromBody] int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                if (this.manager.Pin(useremail,id))
+                {
+                    return this.Ok("Note Pinned/Unpinned");
+                }
+            }
+
+            return this.BadRequest();
+        }
+
+
+
     }
 }
