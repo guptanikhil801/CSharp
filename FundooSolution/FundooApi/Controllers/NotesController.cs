@@ -171,6 +171,21 @@
             return this.BadRequest();
         }
 
+        [HttpGet]
+        [Route("api/Notes/PinnedNotes")]
+        public IActionResult PinnedNotes()
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                var note = manager.PinnedNoteList(useremail);
+                {
+                    return this.Ok(note);
+                }
+            }
+
+            return this.BadRequest();
+        }
 
 
     }
