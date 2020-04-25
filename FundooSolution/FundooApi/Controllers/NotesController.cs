@@ -42,5 +42,21 @@
 
             return this.BadRequest();
         }
+
+        [HttpGet]
+        [Route("api/Notes/GetNote")]
+        public IActionResult GetNote([FromBody] int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+               var note = manager.GetNote(useremail, id);
+                {
+                    return this.Ok(note);
+                }
+            }
+
+            return this.BadRequest();
+        }
     }
 }
