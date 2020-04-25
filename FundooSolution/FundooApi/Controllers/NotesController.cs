@@ -203,7 +203,21 @@
             return this.BadRequest();
         }
 
+        [HttpGet]
+        [Route("api/Notes/TrashedNotes")]
+        public IActionResult TrashedNotes()
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                var notes = manager.TrashNoteList(useremail);
+                {
+                    return this.Ok(notes);
+                }
+            }
 
+            return this.BadRequest();
+        }
 
     }
 }
