@@ -88,9 +88,9 @@
             return this.repository.GetTrashNoteList(email);
         }
 
-        public bool UpdateNote(string email, NewNote note)
+        public bool UpdateNote(string email, NewNote note,int id)
         {
-            return this.repository.DoUpdateNote(email, note);
+            return this.repository.DoUpdateNote(email, note,id);
         }
 
         public bool UpdateNoteImage(string email, int noteid, IFormFile imagefile)
