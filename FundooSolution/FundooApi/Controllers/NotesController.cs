@@ -82,9 +82,25 @@
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var updatednote = this.manager.UpdateNote(useremail, note, id);
+                if(this.manager.UpdateNote(useremail, note, id))
                 {
-                    return this.Ok(updatednote);
+                    return this.Ok("Note has been updated successfully");
+                }
+            }
+
+            return this.BadRequest();
+        }
+
+        [HttpDelete]
+        [Route("api/Notes/DeleteNote")]
+        public IActionResult DeleteNote([FromBody] NewNote note, int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                if(this.manager.DeleteNote(useremail, id))
+                {
+                    return this.Ok("Note deleted Successfully");
                 }
             }
 
