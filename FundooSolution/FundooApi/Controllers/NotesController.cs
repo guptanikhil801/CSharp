@@ -123,7 +123,21 @@
             return this.BadRequest();
         }
 
+        [HttpPut]
+        [Route("api/Notes/Archive")]
+        public IActionResult Archive([FromBody] int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                if (this.manager.Archive(useremail, id))
+                {
+                    return this.Ok("Note Archived/UnArchived");
+                }
+            }
 
+            return this.BadRequest();
+        }
 
     }
 }
