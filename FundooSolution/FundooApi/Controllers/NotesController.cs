@@ -58,5 +58,38 @@
 
             return this.BadRequest();
         }
+
+        [HttpGet]
+        [Route("api/Notes/GetAllNotes")]
+        public IActionResult GetAllNotes()
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                var note = manager.GetAllNotes(useremail);
+                {
+                    return this.Ok(note);
+                }
+            }
+
+            return this.BadRequest();
+        }
+
+        [HttpPut]
+        [Route("api/Notes/GetAllNotes")]
+        public IActionResult UpdateNote([FromBody] NewNote note, int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                var updatednote = this.manager.UpdateNote(useremail, note, id);
+                {
+                    return this.Ok(updatednote);
+                }
+            }
+
+            return this.BadRequest();
+        }
+
     }
 }
