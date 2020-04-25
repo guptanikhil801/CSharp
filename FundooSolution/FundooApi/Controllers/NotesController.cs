@@ -139,5 +139,20 @@
             return this.BadRequest();
         }
 
+        [HttpGet]
+        [Route("api/Notes/GetAllNotes")]
+        public IActionResult ArchivedNotes()
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                var note = manager.ArchivedNoteList(useremail);
+                {
+                    return this.Ok(note);
+                }
+            }
+
+            return this.BadRequest();
+        }
     }
 }
