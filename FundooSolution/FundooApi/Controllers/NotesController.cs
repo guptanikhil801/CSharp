@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using BusinessManager.InterfaceManager;
+    using Common.ModelsOfNotes;
     using Common.UserModel;
     using FundooRepository.Context;
     using Microsoft.AspNetCore.Http;
@@ -24,6 +25,22 @@
             this.userManager = userManager;
             this.dbcontext = dbcontext;
             this.manager = manager;
+        }
+
+        [HttpPost]
+        [Route("api/Notes/AddNote")]
+        public  IActionResult AddNote([FromBody]  NewNote notemodel, IFormFile file)
+        {
+            string useremail = this.User.Identity.Name;
+            if(useremail!=null)
+            {
+                if(manager.AddNote(useremail,notemodel,file))
+                {
+                    return this.Ok("Note created");
+                }
+            }
+
+            return this.BadRequest();
         }
     }
 }
