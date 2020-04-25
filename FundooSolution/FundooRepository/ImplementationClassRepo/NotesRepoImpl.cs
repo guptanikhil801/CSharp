@@ -32,7 +32,6 @@
                 Email = email,
                 Image = imagelink,
                 Description = note.Description,
-                NoteId = note.NoteId,
                 Reminder = note.Reminder,
                 Title = note.Title,
                 Colour = note.Colour,
@@ -42,16 +41,12 @@
                 IsPin = false,
                 IsTrash = false,
             };
-
-            var result = this.dbcontext.Notes.FirstOrDefault(o => o.Email== email && o.NoteId == createnote.NoteId);
-            if (result == null)
+            this.dbcontext.Notes.Add(createnote);
+            if (this.dbcontext.SaveChanges() == 1)
             {
-                this.dbcontext.Notes.Add(createnote);
-                if (this.dbcontext.SaveChanges() == 1)
-                {
-                    return true;
-                }
+                return true;
             }
+
             return false;
         }
 
@@ -151,9 +146,9 @@
         public bool DoPin(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
-            if(note!=null)
+            if (note != null)
             {
-                if(note.IsPin == true)
+                if (note.IsPin == true)
                 {
                     note.IsPin = false;
                 }
@@ -210,18 +205,18 @@
         public bool DoTrash(string email, int noteid)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
-            if(note!=null)
+            if (note != null)
             {
-               if(note.IsTrash == false)
+                if (note.IsTrash == false)
                 {
                     note.IsTrash = true;
                 }
-                
+
                 this.dbcontext.Notes.Update(note);
                 this.dbcontext.SaveChanges();
                 return true;
             }
-            
+
             return false;
         }
 
@@ -230,7 +225,7 @@
             return dbcontext.Notes.Where(option => option.Email == email && option.IsTrash == true);
         }
 
-        public bool DoUpdateNote(string email,NewNote note)
+        public bool DoUpdateNote(string email, NewNote note)
         {
             var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == note.NoteId);
             if (record != null)
@@ -252,10 +247,10 @@
             return false;
         }
 
-        public bool DoUpdateNoteImage( string email, int noteid, IFormFile imagefile)
+        public bool DoUpdateNoteImage(string email, int noteid, IFormFile imagefile)
         {
             var imagelink = MakeCloudImage(imagefile);
-            var record = dbcontext.Notes.FirstOrDefault(option => option.Email== email && option.NoteId == noteid);
+            var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
             if (record != null)
             {
                 record.Image = imagelink;
