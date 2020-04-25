@@ -29,12 +29,12 @@
 
         [HttpPost]
         [Route("api/Notes/AddNote")]
-        public  IActionResult AddNote([FromBody]  NewNote notemodel, IFormFile file)
+        public IActionResult AddNote([FromBody]  NewNote notemodel, IFormFile file)
         {
             string useremail = this.User.Identity.Name;
-            if(useremail!=null)
+            if (useremail != null)
             {
-                if(manager.AddNote(useremail,notemodel,file))
+                if (manager.AddNote(useremail, notemodel, file))
                 {
                     return this.Ok("Note created");
                 }
@@ -50,7 +50,7 @@
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-               var note = manager.GetNote(useremail, id);
+                var note = manager.GetNote(useremail, id);
                 {
                     return this.Ok(note);
                 }
@@ -82,7 +82,7 @@
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if(this.manager.UpdateNote(useremail, note, id))
+                if (this.manager.UpdateNote(useremail, note, id))
                 {
                     return this.Ok("Note has been updated successfully");
                 }
@@ -98,7 +98,7 @@
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.UpdateNoteImage(useremail,id, imgfile))
+                if (this.manager.UpdateNoteImage(useremail, id, imgfile))
                 {
                     return this.Ok("Note Image updated successfully");
                 }
@@ -114,7 +114,7 @@
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if(this.manager.DeleteNote(useremail, id))
+                if (this.manager.DeleteNote(useremail, id))
                 {
                     return this.Ok("Note deleted Successfully");
                 }
@@ -162,7 +162,7 @@
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.Pin(useremail,id))
+                if (this.manager.Pin(useremail, id))
                 {
                     return this.Ok("Note Pinned/Unpinned");
                 }
@@ -186,6 +186,23 @@
 
             return this.BadRequest();
         }
+
+        [HttpPut]
+        [Route("api/Notes/Trash")]
+        public IActionResult Trash([FromBody] int id)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                if (this.manager.Trash(useremail, id))
+                {
+                    return this.Ok("Note put into Trash");
+                }
+            }
+
+            return this.BadRequest();
+        }
+
 
 
     }
