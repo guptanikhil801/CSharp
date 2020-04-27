@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BusinessManager.InterfaceManager;
-using Common.UserModel;
-using FundooRepository.Context;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FundooApi.Controllers
+﻿namespace FundooApi.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using BusinessManager.InterfaceManager;
+    using Common.UserModel;
+    using FundooRepository.Context;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    
     //[Route("api/[controller]")]
     [ApiController]
     public class LabelController : ControllerBase
@@ -44,7 +44,7 @@ namespace FundooApi.Controllers
 
         [HttpDelete]
         [Route("api/Labels/DeleteLabel")]
-        public IActionResult DeleteNote([FromBody] int id)
+        public IActionResult DeleteLabel([FromBody] int id)
         {
             string useremail = this.User.Identity.Name;
             if (useremail != null)
@@ -60,7 +60,7 @@ namespace FundooApi.Controllers
 
         [HttpGet]
         [Route("api/Labels/GetLabel")]
-        public IActionResult GetNote([FromBody] int id)
+        public IActionResult GetLabel([FromBody] int id)
         {
             string useremail = this.User.Identity.Name;
             if (useremail != null)
@@ -75,7 +75,7 @@ namespace FundooApi.Controllers
         }
 
         [HttpGet]
-        [Route("api/Notes/GetAllLabels")]
+        [Route("api/Labels/GetAllLabels")]
         public IActionResult GetAllLabelss()
         {
             string useremail = this.User.Identity.Name;
@@ -91,8 +91,8 @@ namespace FundooApi.Controllers
         }
 
         [HttpPut]
-        [Route("api/Notes/UpdateNote")]
-        public IActionResult UpdateNote([FromBody] String newdetail, int id)
+        [Route("api/Labels/UpdateLabel")]
+        public IActionResult UpdateLabel([FromBody] String newdetail, int id)
         {
             string useremail = this.User.Identity.Name;
             if (useremail != null)
