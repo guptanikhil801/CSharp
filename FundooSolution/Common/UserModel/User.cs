@@ -26,7 +26,7 @@ namespace Common.UserModel
         /// <value>
         /// The first name.
         /// </value>
-        [Required]
+        
         public string FirstName { get; set; }
 
         /// <summary>
@@ -36,6 +36,8 @@ namespace Common.UserModel
         /// The last name.
         /// </value>
         public string LastName { get; set; }
+
+        public string ProfilePicture { get; set; }
 
         /// <summary>
         /// Gets or sets the email address for this user.

@@ -94,11 +94,11 @@ namespace FundooApi
             ////Adding Swagger service
             services.AddSwaggerDocument();
 
+            //// Adding Radish cache configuration
             services.AddDistributedRedisCache(Options =>
            {
                Options.Configuration = "localhost:6379";
                Options.InstanceName = "Fundoocache";
-
            });
         }
 

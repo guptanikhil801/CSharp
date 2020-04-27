@@ -13,7 +13,7 @@
         List<NotesModel> DoRetreiveDataFromCache(string key);
         NotesModel DoGetNote(string email, int id);
         IEnumerable<NotesModel> DoGetAllNotes(string email);
-        bool DoUpdateNote(string email, NewNote note);
+        bool DoUpdateNote(string email, NewNote note, int id);
         bool DoDeleteNote(string email, int id);
         bool DoUpdateNoteImage(string email, int noteid, IFormFile imagefile);
         bool DoArchive(string email, int id);

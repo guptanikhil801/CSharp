@@ -7,7 +7,6 @@
     public class NotesModel
     {
         [Key]
-        public int Id { get; set; }
         public int NoteId { get; set; }
         public string Email { get; set; }
         public string Title { get; set; }

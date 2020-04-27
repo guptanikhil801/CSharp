@@ -225,9 +225,9 @@
             return dbcontext.Notes.Where(option => option.Email == email && option.IsTrash == true);
         }
 
-        public bool DoUpdateNote(string email, NewNote note)
+        public bool DoUpdateNote(string email, NewNote note, int id)
         {
-            var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == note.NoteId);
+            var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
             if (record != null)
             {
                 record.ModifiedDate = DateTime.Now;
