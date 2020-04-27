@@ -109,7 +109,7 @@
 
         [HttpDelete]
         [Route("api/Notes/DeleteNote")]
-        public IActionResult DeleteNote([FromBody] NewNote note, int id)
+        public IActionResult DeleteNote([FromBody]  int id)
         {
             string useremail = this.User.Identity.Name;
             if (useremail != null)
