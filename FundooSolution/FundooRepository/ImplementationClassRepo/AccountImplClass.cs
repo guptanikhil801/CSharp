@@ -14,10 +14,13 @@ namespace FundooRepository.ImplementationClassRepo
     using System.Net.Mail;
     using System.Text;
     using System.Threading.Tasks;
+    using CloudinaryDotNet;
+    using CloudinaryDotNet.Actions;
     using Common.UserModel;
     using Experimental.System.Messaging;
     using FundooRepository.Context;
     using FundooRepository.InterfaceRepo;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
 
     /// <summary>
@@ -133,6 +136,46 @@ namespace FundooRepository.ImplementationClassRepo
             return true;
         }
 
-     
+        private string ImageLink(IFormFile file)
+        {
+            if (file == null)
+            {
+                return null;
+            }
+            var filepath = file.OpenReadStream();
+            string uniquename = Guid.NewGuid().ToString() + "_" + file.FileName;
+            Account account = new Account("nikhilcloud007", "857761978269428", "Dp0h4mHl84o2zDL8HwINokEe6hM");
+            Cloudinary cloud = new Cloudinary(account);
+            var uploadparam = new ImageUploadParams()
+            {
+                File = new FileDescription(uniquename, filepath)
+            };
+            var uploadresult = cloud.Upload(uploadparam);
+            return uploadresult.Uri.ToString();
+        }
+
+        /// <summary>
+        /// return true if profile picture upload successfull else false.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="imagefile">The imagefile.</param>
+        /// <returns></returns>
+        public bool ProfilePicture(string email, IFormFile imagefile)
+        {
+            var imagelink = ImageLink(imagefile);
+            var record = dbcontext.Users.FirstOrDefault(option => option.Email == email);
+            if (record != null)
+            {
+                record.ProfilePicture = imagelink;
+                this.dbcontext.Users.Update(record);
+                var result = this.dbcontext.SaveChanges();
+                if (result == 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
