@@ -11,6 +11,7 @@ namespace FundooRepository.InterfaceRepo
     using System.Text;
     using System.Threading.Tasks;
     using Common.UserModel;
+    using Microsoft.AspNetCore.Http;
 
     /// <summary>
     /// Interface for operations in Account
@@ -39,6 +40,12 @@ namespace FundooRepository.InterfaceRepo
         /// <returns>boolean value</returns>
         bool ForgotPasswordUser(string email, string url);
 
-        // ResetPassword ResetPasswordUser(ResetPassword resetmodel);
+        /// <summary>
+        /// return true if profile picture upload successfull else false.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="imagefile">The imagefile.</param>
+        /// <returns></returns>
+       bool ProfilePicture(string email, IFormFile imagefile);
     }
 }
