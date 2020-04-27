@@ -76,7 +76,7 @@ namespace FundooApi.Controllers
         [Route("api/Account/Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationModel model)
         {
-           
+
             var result = await this.userManager.CreateAsync(this.manager.DoRegistration(model), model.Password);
             if (result.Succeeded)
             {
@@ -155,8 +155,8 @@ namespace FundooApi.Controllers
         [Route("api/Account/ForgotPassword")]
         public async Task<IActionResult> ForgotPassword([FromBody]string uemail)
         {
-           // var currentuser = await this.userManager.FindByEmailAsync(uemail);
-           var currentuser = this.dbcontext.Users.FirstOrDefault(o => o.Email == uemail);
+            // var currentuser = await this.userManager.FindByEmailAsync(uemail);
+            var currentuser = this.dbcontext.Users.FirstOrDefault(o => o.Email == uemail);
             if (currentuser != null && await this.userManager.IsEmailConfirmedAsync(currentuser))
             {
                 var _token = await this.userManager.GeneratePasswordResetTokenAsync(currentuser);
@@ -164,6 +164,27 @@ namespace FundooApi.Controllers
                 if (this.manager.ForgotPasswordUser(uemail, resetlink))
                 {
                     return this.Ok("A link has been sent to your email to reset your password");
+                }
+            }
+
+            return this.BadRequest();
+        }
+
+        /// <summary>
+        /// action for adding/update Profile picture.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="imgfile">The imgfile.</param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("api/Account/ProfilePicture")]
+        public IActionResult ProfilePicture([FromBody]string email, IFormFile imgfile)
+        {
+            if (email != null)
+            {
+                if (this.manager.ProfilePicture(email, imgfile))
+                {
+                    return this.Ok("Profile picture Added or updated successfully");
                 }
             }
 
