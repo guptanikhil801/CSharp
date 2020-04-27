@@ -1,0 +1,10 @@
+﻿namespace BusinessManager.ImplementationClassManager
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    public class LabelManagerImpl
+    {
+    }
+}
