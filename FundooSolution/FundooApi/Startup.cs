@@ -91,6 +91,13 @@ namespace FundooApi
                 };
             });
 
+            services.AddAuthentication()
+                .AddGoogle(Options =>
+                {
+                    Options.ClientId = "888788110843 - bbr72p19g9o09400pfkh0qsihub5gpg5.apps.googleusercontent.com";
+                    Options.ClientSecret = "1vdcLplCSYra_OwGiKKj9K5o";
+                });
+
             ////Adding Swagger service
             services.AddSwaggerDocument();
 
