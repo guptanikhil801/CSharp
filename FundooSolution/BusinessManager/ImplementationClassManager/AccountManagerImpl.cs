@@ -12,6 +12,7 @@ namespace BusinessManager.ImplementationClassManager
     using BusinessManager.InterfaceManager;
     using Common.UserModel;
     using FundooRepository.InterfaceRepo;
+    using Microsoft.AspNetCore.Http;
 
     /// <summary>
     /// implementation class of IAccountManager
@@ -65,6 +66,17 @@ namespace BusinessManager.ImplementationClassManager
         public bool ForgotPasswordUser(string email, string url)
         {
             return this.accountrepo.ForgotPasswordUser(email, url);
+        }
+
+        /// <summary>
+        /// returns true if Profile picture upload sucessfull
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="imagefile">The imagefile.</param>
+        /// <returns></returns>
+        public bool ProfilePicture(string email, IFormFile imagefile)
+        {
+            return this.accountrepo.ProfilePicture(email, imagefile);
         }
     }
 }
