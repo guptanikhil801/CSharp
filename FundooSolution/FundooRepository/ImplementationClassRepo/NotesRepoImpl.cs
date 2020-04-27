@@ -236,7 +236,7 @@
                 record.Image = record.Image;
                 record.Title = note.Title ?? record.Title;
                 record.Reminder = note.Reminder ?? record.Reminder;
-                this.dbcontext.Update(record);
+                this.dbcontext.Notes.Update(record);
                 var result = this.dbcontext.SaveChanges();
                 if (result == 1)
                 {
@@ -254,7 +254,7 @@
             if (record != null)
             {
                 record.Image = imagelink;
-                this.dbcontext.Update(record);
+                this.dbcontext.Notes.Update(record);
                 var result = this.dbcontext.SaveChanges();
                 if (result == 1)
                 {
