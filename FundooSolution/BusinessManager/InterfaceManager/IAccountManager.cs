@@ -10,6 +10,7 @@ namespace BusinessManager.InterfaceManager
     using System.Collections.Generic;
     using System.Text;
     using Common.UserModel;
+    using Microsoft.AspNetCore.Http;
 
     /// <summary>
     /// Account manager interface
@@ -37,5 +38,13 @@ namespace BusinessManager.InterfaceManager
         /// <param name="url">The URL.</param>
         /// <returns>boolean value</returns>
         bool ForgotPasswordUser(string email, string url);
+
+        /// <summary>
+        /// Profiles the picture.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="IFormFile">The i form file.</param>
+        /// <returns></returns>
+        bool ProfilePicture(string email, IFormFile imgfile);
     }
 }
