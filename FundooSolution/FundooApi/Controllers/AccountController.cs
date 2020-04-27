@@ -17,6 +17,7 @@ namespace FundooApi.Controllers
     using BusinessManager.InterfaceManager;
     using Common.UserModel;
     using FundooRepository.Context;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -189,6 +190,17 @@ namespace FundooApi.Controllers
             }
 
             return this.BadRequest();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> SocialLogin(string returnurl)
+        {
+            var providerlist = (await signinmanager.GetExternalAuthenticationSchemesAsync()).ToList();
+            var redirecturl = Url.Action("SocialLoginCallBack", "Account",
+                new { ReturnUrl = returnurl });
+            var properties = signinmanager.ConfigureExternalAuthenticationProperties(providerlist[0].DisplayName, redirecturl);
+            return new ChallengeResult(providerlist[0].DisplayName, properties);
         }
     }
 }
