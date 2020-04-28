@@ -8,12 +8,13 @@
     using Common.ModelsOfNotes;
     using Common.UserModel;
     using FundooRepository.Context;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    //[Route("api/[controller]")]
-    [ApiController]
+   
+    [ApiController][Authorize]
     public class NotesController : ControllerBase
     {
         private readonly UserManager<User> userManager;
