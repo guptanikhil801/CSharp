@@ -175,11 +175,11 @@ namespace FundooApi.Controllers
         /// action for adding/update Profile picture.
         /// </summary>
         /// <param name="email">The email.</param>
-        /// <param name="imgfile">The imgfile.</param>
+        /// <param name="imgfile">The image file.</param>
         /// <returns></returns>
         [HttpPut]
         [Route("api/Account/ProfilePicture")]
-        public IActionResult ProfilePicture([FromBody]string email, IFormFile imgfile)
+        public IActionResult ProfilePicture(string email, IFormFile imgfile)
         {
             if (email != null)
             {
@@ -194,6 +194,7 @@ namespace FundooApi.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [Route("api/Account/SocialLogin")]
         public async Task<IActionResult> SocialLogin(string returnurl)
         {
             var providerlist = (await signinmanager.GetExternalAuthenticationSchemesAsync()).ToList();
