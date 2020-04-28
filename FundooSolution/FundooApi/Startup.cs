@@ -62,6 +62,10 @@ namespace FundooApi
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<UserDBContext>().AddDefaultTokenProviders();
             services.AddTransient<IAccount, AccountImplClass>();
             services.AddTransient<IAccountManager, AccountManagerImpl>();
+            services.AddTransient<INotesRepository, NotesRepoImpl>();
+            services.AddTransient<INotesManager, NotesManagerImpl>();
+            services.AddTransient<ILabelRepository, LabelRepoImpl>();
+            services.AddTransient<ILabelManager, LabelManagerImpl>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 4;
