@@ -7,12 +7,12 @@
     using BusinessManager.InterfaceManager;
     using Common.UserModel;
     using FundooRepository.Context;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     
-    //[Route("api/[controller]")]
-    [ApiController]
+    [ApiController][Authorize]
     public class LabelController : ControllerBase
     {
         private readonly UserManager<User> userManager;
