@@ -39,6 +39,7 @@ namespace FundooRepository.Context
         public DbSet<NotesModel> Notes { get; set; }
         
         public DbSet<LabelModel> Labels { get; set; }
+        public DbSet<CollabModel> Collabrators { get; set; }
 
         /// <summary>
         /// Configures the schema needed for the identity framework.
