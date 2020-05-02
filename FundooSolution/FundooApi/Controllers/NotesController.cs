@@ -53,12 +53,12 @@
 
         [HttpGet]
         [Route("api/Notes/GetNote")]
-        public IActionResult GetNote([FromBody] int id)
+        public IActionResult GetNote([FromBody] int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = manager.GetNote(useremail, id);
+                var note = @object.GetNote(useremail, id);
                 {
                     return this.Ok(note);
                 }
@@ -85,12 +85,12 @@
 
         [HttpPut]
         [Route("api/Notes/UpdateNote")]
-        public IActionResult UpdateNote([FromBody] NewNote note, int id)
+        public IActionResult UpdateNote([FromBody] NewNote note, int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.UpdateNote(useremail, note, id))
+                if (this.@object.UpdateNote(useremail, note, id))
                 {
                     return this.Ok("Note has been updated successfully");
                 }
