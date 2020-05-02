@@ -69,12 +69,13 @@
 
         [HttpGet]
         [Route("api/Labels/GetLabel")]
-        public IActionResult GetLabel([FromBody] int id)
+        public IActionResult GetLabel([FromBody] int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var label = manager.GetLabel(useremail, id);
+                // var label = manager.GetLabel(useremail, id);
+                var label = @object.GetLabel(useremail, id);
                 {
                     return this.Ok(label);
                 }
