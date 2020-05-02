@@ -231,12 +231,13 @@
 
         [HttpGet]
         [Route("api/Notes/TrashedNotes")]
-        public IActionResult TrashedNotes()
+        public IActionResult TrashedNotes(string useremail)
         {
-            string useremail = this.User.Identity.Name;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var notes = manager.TrashNoteList(useremail);
+                // var notes = manager.TrashNoteList(useremail);
+                var notes = @object.TrashNoteList(useremail);
                 {
                     return this.Ok(notes);
                 }
