@@ -181,12 +181,12 @@
 
         [HttpGet]
         [Route("api/Notes/PinnedNotes")]
-        public IActionResult PinnedNotes()
+        public IActionResult PinnedNotes(string useremail)
         {
-            string useremail = this.User.Identity.Name;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = manager.PinnedNoteList(useremail);
+                var note = @object.PinnedNoteList(useremail);
                 {
                     return this.Ok(note);
                 }
@@ -197,12 +197,13 @@
 
         [HttpPut]
         [Route("api/Notes/Restore")]
-        public IActionResult Restore([FromBody] int id)
+        public IActionResult Restore([FromBody] int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.Restore(useremail,id))
+                // if (this.manager.Restore(useremail,id))
+                if (this.@object.Restore(useremail, id))
                 {
                     return this.Ok("Note Restored");
                 }
@@ -213,12 +214,13 @@
 
         [HttpPut]
         [Route("api/Notes/Trash")]
-        public IActionResult Trash([FromBody] int id)
+        public IActionResult Trash([FromBody] int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.Trash(useremail, id))
+                //if (this.manager.Trash(useremail, id))
+                if (@object.Trash(useremail, id))
                 {
                     return this.Ok("Note put into Trash");
                 }
