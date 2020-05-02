@@ -11,13 +11,15 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    
-    [ApiController][Authorize]
+
+    [ApiController]
+    [Authorize]
     public class LabelController : ControllerBase
     {
         private readonly UserManager<User> userManager;
         private readonly UserDBContext dbcontext;
         private readonly ILabelManager manager;
+        private ILabelManager @object;
 
         public LabelController(UserManager<User> userManager, UserDBContext dbcontext, ILabelManager manager)
         {
@@ -26,14 +28,20 @@
             this.manager = manager;
         }
 
+        public LabelController(ILabelManager @object)
+        {
+            this.@object = @object;
+        }
+
         [HttpPost]
         [Route("api/Labels/AddLabel")]
-        public IActionResult AddLabel([FromBody]  string details)
+        public IActionResult AddLabel([FromBody]  string details, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (manager.AddLabel(useremail, details))
+                // if (manager.AddLabel(useremail, details))
+                if (this.@object.AddLabel(useremail, details))
                 {
                     return this.Ok("Label created");
                 }
