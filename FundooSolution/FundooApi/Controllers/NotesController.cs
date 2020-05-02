@@ -101,12 +101,12 @@
 
         [HttpPut]
         [Route("api/Notes/UpdateNoteImage")]
-        public IActionResult UpdateNoteImage([FromBody] IFormFile imgfile, int id)
+        public IActionResult UpdateNoteImage([FromBody] IFormFile imgfile, int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.UpdateNoteImage(useremail, id, imgfile))
+                if (this.@object.UpdateNoteImage(useremail, id, imgfile))
                 {
                     return this.Ok("Note Image updated successfully");
                 }
@@ -117,12 +117,12 @@
 
         [HttpDelete]
         [Route("api/Notes/DeleteNote")]
-        public IActionResult DeleteNote([FromBody]  int id)
+        public IActionResult DeleteNote([FromBody]  int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.DeleteNote(useremail, id))
+                if (this.@object.DeleteNote(useremail, id))
                 {
                     return this.Ok("Note deleted Successfully");
                 }
