@@ -52,12 +52,13 @@
 
         [HttpDelete]
         [Route("api/Labels/DeleteLabel")]
-        public IActionResult DeleteLabel([FromBody] int id)
+        public IActionResult DeleteLabel([FromBody] int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.DeleteLabel(useremail, id))
+                //if (this.manager.DeleteLabel(useremail, id))
+                if (this.@object.DeleteLabel(useremail, id))
                 {
                     return this.Ok("Label deleted Successfully");
                 }
