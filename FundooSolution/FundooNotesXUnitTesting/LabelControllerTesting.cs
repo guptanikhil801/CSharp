@@ -19,7 +19,7 @@ namespace FundooNotesXUnitTesting
             var controller = new LabelController(service.Object);
 
             //// Act
-            var result = controller.AddLabel("new label","newgmail801@gmail.com");
+            var result = controller.AddLabel("new label");
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -32,7 +32,7 @@ namespace FundooNotesXUnitTesting
             var controller = new LabelController(service.Object);
 
             //// Act
-            var result = controller.DeleteLabel(01,"newgmail801@gmail.com");
+            var result = controller.DeleteLabel(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -45,7 +45,7 @@ namespace FundooNotesXUnitTesting
             var controller = new LabelController(service.Object);
 
             //// Act
-            var result = controller.GetAllLabels("newgmail801@gmail.com");
+            var result = controller.GetAllLabels();
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -58,7 +58,7 @@ namespace FundooNotesXUnitTesting
             var controller = new LabelController(service.Object);
 
             //// Act
-            var result = controller.UpdateLabel("newgmail801@gmail.com","updated label",01);
+            var result = controller.UpdateLabel("updated label",01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
