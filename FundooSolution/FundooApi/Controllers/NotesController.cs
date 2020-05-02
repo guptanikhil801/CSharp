@@ -133,12 +133,12 @@
 
         [HttpPut]
         [Route("api/Notes/Archive")]
-        public IActionResult Archive([FromBody] int id)
+        public IActionResult Archive([FromBody] int id, string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.Archive(useremail, id))
+                if (this.@object.Archive(useremail, id))
                 {
                     return this.Ok("Note Archived/UnArchived");
                 }
