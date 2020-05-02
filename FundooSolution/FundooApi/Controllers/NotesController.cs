@@ -69,12 +69,12 @@
 
         [HttpGet]
         [Route("api/Notes/GetAllNotes")]
-        public IActionResult GetAllNotes()
+        public IActionResult GetAllNotes(string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = manager.GetAllNotes(useremail);
+                var note = @object.GetAllNotes(useremail);
                 {
                     return this.Ok(note);
                 }
