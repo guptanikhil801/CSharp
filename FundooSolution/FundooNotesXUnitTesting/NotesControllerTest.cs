@@ -34,7 +34,7 @@ namespace FundooNotesXUnitTesting
             Assert.IsAssignableFrom<IActionResult>(result);
         }
 
-      /*  [Fact]
+        [Fact]
         public void UpdateNote_Returns_OkResult()
         {
             //// Arrange
@@ -50,9 +50,9 @@ namespace FundooNotesXUnitTesting
             };
             
             //// Act
-            var result = controller.UpdateNote(model, 01);
+            var result = controller.UpdateNote(model, 01,"newgmail801@gmail.com");
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
-        }*/
+        }
     }
 }
