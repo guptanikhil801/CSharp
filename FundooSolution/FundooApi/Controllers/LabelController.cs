@@ -86,12 +86,13 @@
 
         [HttpGet]
         [Route("api/Labels/GetAllLabels")]
-        public IActionResult GetAllLabelss()
+        public IActionResult GetAllLabels(string useremail)
         {
-            string useremail = this.User.Identity.Name;
+            //string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var alllabels = manager.GetAllLabels(useremail);
+                // var alllabels = manager.GetAllLabels(useremail);
+                var alllabels = @object.GetAllLabels(useremail);
                 {
                     return this.Ok(alllabels);
                 }
@@ -102,12 +103,13 @@
 
         [HttpPut]
         [Route("api/Labels/UpdateLabel")]
-        public IActionResult UpdateLabel([FromBody] String newdetail, int id)
+        public IActionResult UpdateLabel([FromBody]string useremail, String newdetail, int id)
         {
-            string useremail = this.User.Identity.Name;
+          //  string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.manager.UpdateLabel(useremail, id, newdetail))
+                // if (this.manager.UpdateLabel(useremail, id, newdetail))
+                if (this.@object.UpdateLabel(useremail, id, newdetail))
                 {
                     return this.Ok("label has been updated successfully");
                 }
