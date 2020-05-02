@@ -14,12 +14,13 @@
     using Microsoft.AspNetCore.Mvc;
 
    
-    [ApiController][Authorize]
+    [ApiController] [Authorize]
     public class NotesController : ControllerBase
     {
         private readonly UserManager<User> userManager;
         private readonly UserDBContext dbcontext;
         private readonly INotesManager manager;
+        private INotesManager @object;
 
         public NotesController(UserManager<User> userManager, UserDBContext dbcontext, INotesManager manager)
         {
@@ -28,14 +29,20 @@
             this.manager = manager;
         }
 
+        public NotesController(INotesManager @object)
+        {
+            this.@object = @object;
+        }
+
         [HttpPost]
         [Route("api/Notes/AddNote")]
-        public IActionResult AddNote([FromBody]  NewNote notemodel, IFormFile file)
+        public IActionResult AddNote([FromBody] NewNote notemodel, string useremail )
         {
-            string useremail = this.User.Identity.Name;
+            IFormFile file = null;
+           // string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (manager.AddNote(useremail, notemodel, file))
+                if (@object.AddNote(useremail, notemodel, file))
                 {
                     return this.Ok("Note created");
                 }
