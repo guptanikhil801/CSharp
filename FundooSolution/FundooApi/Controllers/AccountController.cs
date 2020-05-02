@@ -51,6 +51,10 @@ namespace FundooApi.Controllers
         /// </summary>
         private readonly IConfiguration configuration;
         private readonly UserDBContext dbcontext;
+        private IAccountManager @object;
+        private UserManager<User> object2;
+        private SignInManager<User> object3;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -66,6 +70,13 @@ namespace FundooApi.Controllers
             this.signinmanager = signinmanager;
             this.configuration = configuration;
             this.dbcontext = dbcontext;
+        }
+
+        public AccountController(IAccountManager @object, UserManager<User> object2, SignInManager<User> object3)
+        {
+            this.@object = @object;
+            this.object2 = object2;
+            this.object3 = object3;
         }
 
         /// <summary>
@@ -156,7 +167,6 @@ namespace FundooApi.Controllers
         [Route("api/Account/ForgotPassword")]
         public async Task<IActionResult> ForgotPassword([FromBody]string uemail)
         {
-            // var currentuser = await this.userManager.FindByEmailAsync(uemail);
             var currentuser = this.dbcontext.Users.FirstOrDefault(o => o.Email == uemail);
             if (currentuser != null && await this.userManager.IsEmailConfirmedAsync(currentuser))
             {

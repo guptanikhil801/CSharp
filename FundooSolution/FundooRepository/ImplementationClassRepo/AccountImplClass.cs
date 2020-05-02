@@ -162,8 +162,10 @@ namespace FundooRepository.ImplementationClassRepo
         /// <returns></returns>
         public bool ProfilePicture(string email, IFormFile imagefile)
         {
+            LoginModel model = new LoginModel();
+            model.Email = email;
+            var record = this.dbcontext.Users.FirstOrDefault(o => o.Email == model.Email);
             var imagelink = ImageLink(imagefile);
-            var record = dbcontext.Users.FirstOrDefault(option => option.Email == email);
             if (record != null)
             {
                 record.ProfilePicture = imagelink;

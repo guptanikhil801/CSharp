@@ -33,7 +33,7 @@ namespace FundooApi.Controllers
             string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (manager.AddCollabrator(useremail, collabemail, noteid));
+                if (manager.AddCollabrator(useremail, collabemail, noteid))
                 {
                     return this.Ok("Collabrator Added");
                 }

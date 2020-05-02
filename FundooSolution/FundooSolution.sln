@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooApi", "FundooApi\FundooApi.csproj", "{AA741A7E-9CBC-4DAE-9F81-29C5A9F5BD9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessManager", "BusinessManager\BusinessManager.csproj", "{63F78715-D3E0-4724-9048-535DD7FA5A69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessManager", "BusinessManager\BusinessManager.csproj", "{63F78715-D3E0-4724-9048-535DD7FA5A69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooRepository", "FundooRepository\FundooRepository.csproj", "{FFF8D148-77ED-4A5C-82B1-470C987C196F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooRepository", "FundooRepository\FundooRepository.csproj", "{FFF8D148-77ED-4A5C-82B1-470C987C196F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{02DCC4B1-8BD3-48FB-945A-FCBCD856A9AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{02DCC4B1-8BD3-48FB-945A-FCBCD856A9AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooNotesXUnitTesting", "FundooNotesXUnitTesting\FundooNotesXUnitTesting.csproj", "{34FF6563-289C-4EA6-87CB-2559D8BDC389}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{02DCC4B1-8BD3-48FB-945A-FCBCD856A9AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02DCC4B1-8BD3-48FB-945A-FCBCD856A9AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02DCC4B1-8BD3-48FB-945A-FCBCD856A9AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34FF6563-289C-4EA6-87CB-2559D8BDC389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FF6563-289C-4EA6-87CB-2559D8BDC389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FF6563-289C-4EA6-87CB-2559D8BDC389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FF6563-289C-4EA6-87CB-2559D8BDC389}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

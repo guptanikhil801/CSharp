@@ -27,9 +27,8 @@ namespace FundooNotesXUnitTesting
                 Reminder = "empty"
             };
 
-
             //// Act
-            var result = controller.AddNote(model, "newgmail801@gmail.com");
+            var result = controller.AddNote(model);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -50,7 +49,7 @@ namespace FundooNotesXUnitTesting
             };
             
             //// Act
-            var result = controller.UpdateNote(model, 01,"newgmail801@gmail.com");
+            var result = controller.UpdateNote(model, 01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -63,7 +62,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.GetNote(01, "newgmail801@gmail.com");
+            var result = controller.GetNote(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -76,7 +75,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.GetAllNotes("newgmail801@gmail.com");
+            var result = controller.GetAllNotes();
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -89,7 +88,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.UpdateNoteImage(null, 01, "newgmail801@gmail.com");
+            var result = controller.UpdateNoteImage(null, 01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -102,7 +101,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.DeleteNote(01, "newgmail801@gmail.com");
+            var result = controller.DeleteNote(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -115,7 +114,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.Archive(01, "newgmail801@gmail.com");
+            var result = controller.Archive(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -128,7 +127,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.ArchivedNotes("newgmail801@gmail.com");
+            var result = controller.ArchivedNotes();
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -141,7 +140,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.Pin(01,"newgmail801@gmail.com");
+            var result = controller.Pin(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -154,7 +153,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.Restore(01, "newgmail801@gmail.com");
+            var result = controller.Restore(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -167,7 +166,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.Trash(01, "newgmail801@gmail.com");
+            var result = controller.Trash(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -180,7 +179,7 @@ namespace FundooNotesXUnitTesting
             var controller = new NotesController(service.Object);
 
             //// Act
-            var result = controller.TrashedNotes("newgmail801@gmail.com");
+            var result = controller.TrashedNotes();
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
