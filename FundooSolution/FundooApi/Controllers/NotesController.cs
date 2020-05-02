@@ -36,13 +36,13 @@
 
         [HttpPost]
         [Route("api/Notes/AddNote")]
-        public IActionResult AddNote([FromBody] NewNote notemodel, string useremail )
+        public IActionResult AddNote([FromBody] NewNote notemodel)
         {
             IFormFile file = null;
-           // string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (@object.AddNote(useremail, notemodel, file))
+                if (this.manager.AddNote(useremail, notemodel, file))
                 {
                     return this.Ok("Note created");
                 }
@@ -53,12 +53,12 @@
 
         [HttpGet]
         [Route("api/Notes/GetNote")]
-        public IActionResult GetNote([FromBody] int id, string useremail)
+        public IActionResult GetNote([FromBody] int id)
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = @object.GetNote(useremail, id);
+                var note = this.manager.GetNote(useremail, id);
                 {
                     return this.Ok(note);
                 }
@@ -69,12 +69,12 @@
 
         [HttpGet]
         [Route("api/Notes/GetAllNotes")]
-        public IActionResult GetAllNotes(string useremail)
+        public IActionResult GetAllNotes()
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = @object.GetAllNotes(useremail);
+                var note = this.manager.GetAllNotes(useremail);
                 {
                     return this.Ok(note);
                 }
@@ -85,12 +85,12 @@
 
         [HttpPut]
         [Route("api/Notes/UpdateNote")]
-        public IActionResult UpdateNote([FromBody] NewNote note, int id, string useremail)
+        public IActionResult UpdateNote([FromBody] NewNote note, int id)
         {
-           // string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.@object.UpdateNote(useremail, note, id))
+                if (this.manager.UpdateNote(useremail, note, id))
                 {
                     return this.Ok("Note has been updated successfully");
                 }
@@ -101,12 +101,12 @@
 
         [HttpPut]
         [Route("api/Notes/UpdateNoteImage")]
-        public IActionResult UpdateNoteImage([FromBody] IFormFile imgfile, int id, string useremail)
+        public IActionResult UpdateNoteImage([FromBody] IFormFile imgfile, int id)
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.@object.UpdateNoteImage(useremail, id, imgfile))
+                if (this.manager.UpdateNoteImage(useremail, id, imgfile))
                 {
                     return this.Ok("Note Image updated successfully");
                 }
@@ -117,12 +117,12 @@
 
         [HttpDelete]
         [Route("api/Notes/DeleteNote")]
-        public IActionResult DeleteNote([FromBody]  int id, string useremail)
+        public IActionResult DeleteNote([FromBody]  int id)
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.@object.DeleteNote(useremail, id))
+                if (this.manager.DeleteNote(useremail, id))
                 {
                     return this.Ok("Note deleted Successfully");
                 }
@@ -133,12 +133,12 @@
 
         [HttpPut]
         [Route("api/Notes/Archive")]
-        public IActionResult Archive([FromBody] int id, string useremail)
+        public IActionResult Archive([FromBody] int id)
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.@object.Archive(useremail, id))
+                if (this.manager.Archive(useremail, id))
                 {
                     return this.Ok("Note Archived/UnArchived");
                 }
@@ -149,12 +149,12 @@
 
         [HttpGet]
         [Route("api/Notes/ArchivedNotes")]
-        public IActionResult ArchivedNotes(string useremail)
+        public IActionResult ArchivedNotes()
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = @object.ArchivedNoteList(useremail);
+                var note = this.manager.ArchivedNoteList(useremail);
                 {
                     return this.Ok(note);
                 }
@@ -165,12 +165,12 @@
 
         [HttpPut]
         [Route("api/Notes/Pin")]
-        public IActionResult Pin([FromBody] int id, string useremail)
+        public IActionResult Pin([FromBody] int id)
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                if (this.@object.Pin(useremail, id))
+                if (this.manager.Pin(useremail, id))
                 {
                     return this.Ok("Note Pinned/Unpinned");
                 }
@@ -181,12 +181,12 @@
 
         [HttpGet]
         [Route("api/Notes/PinnedNotes")]
-        public IActionResult PinnedNotes(string useremail)
+        public IActionResult PinnedNotes()
         {
-           // string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                var note = @object.PinnedNoteList(useremail);
+                var note = this.manager.PinnedNoteList(useremail);
                 {
                     return this.Ok(note);
                 }
@@ -197,13 +197,12 @@
 
         [HttpPut]
         [Route("api/Notes/Restore")]
-        public IActionResult Restore([FromBody] int id, string useremail)
+        public IActionResult Restore([FromBody] int id)
         {
-           // string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                // if (this.manager.Restore(useremail,id))
-                if (this.@object.Restore(useremail, id))
+                if (this.manager.Restore(useremail,id))
                 {
                     return this.Ok("Note Restored");
                 }
@@ -214,13 +213,12 @@
 
         [HttpPut]
         [Route("api/Notes/Trash")]
-        public IActionResult Trash([FromBody] int id, string useremail)
+        public IActionResult Trash([FromBody] int id)
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                //if (this.manager.Trash(useremail, id))
-                if (@object.Trash(useremail, id))
+                if (this.manager.Trash(useremail, id))
                 {
                     return this.Ok("Note put into Trash");
                 }
@@ -231,13 +229,12 @@
 
         [HttpGet]
         [Route("api/Notes/TrashedNotes")]
-        public IActionResult TrashedNotes(string useremail)
+        public IActionResult TrashedNotes()
         {
-           // string useremail = this.User.Identity.Name;
+           string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                // var notes = manager.TrashNoteList(useremail);
-                var notes = @object.TrashNoteList(useremail);
+                var notes = manager.TrashNoteList(useremail);
                 {
                     return this.Ok(notes);
                 }
