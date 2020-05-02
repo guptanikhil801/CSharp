@@ -54,5 +54,31 @@ namespace FundooNotesXUnitTesting
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
+
+        [Fact]
+        public void GetNote_Returns_OkResult()
+        {
+            //// Arrange
+            var service = new Mock<INotesManager>();
+            var controller = new NotesController(service.Object);
+
+            //// Act
+            var result = controller.GetNote(01, "newgmail801@gmail.com");
+            //// Assert
+            Assert.IsAssignableFrom<IActionResult>(result);
+        }
+
+        [Fact]
+        public void GetAllNotes_Returns_OkResult()
+        {
+            //// Arrange
+            var service = new Mock<INotesManager>();
+            var controller = new NotesController(service.Object);
+
+            //// Act
+            var result = controller.GetAllNotes("newgmail801@gmail.com");
+            //// Assert
+            Assert.IsAssignableFrom<IActionResult>(result);
+        }
     }
 }
