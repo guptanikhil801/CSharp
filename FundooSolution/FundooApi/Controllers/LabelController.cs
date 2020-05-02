@@ -35,13 +35,12 @@
 
         [HttpPost]
         [Route("api/Labels/AddLabel")]
-        public IActionResult AddLabel([FromBody]  string details, string useremail)
+        public IActionResult AddLabel([FromBody]  string details)
         {
-            // string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                // if (manager.AddLabel(useremail, details))
-                if (this.@object.AddLabel(useremail, details))
+                 if (manager.AddLabel(useremail, details))
                 {
                     return this.Ok("Label created");
                 }
@@ -52,13 +51,12 @@
 
         [HttpDelete]
         [Route("api/Labels/DeleteLabel")]
-        public IActionResult DeleteLabel([FromBody] int id, string useremail)
+        public IActionResult DeleteLabel([FromBody] int id)
         {
-           // string useremail = this.User.Identity.Name;
+           string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                //if (this.manager.DeleteLabel(useremail, id))
-                if (this.@object.DeleteLabel(useremail, id))
+                if (this.manager.DeleteLabel(useremail, id))
                 {
                     return this.Ok("Label deleted Successfully");
                 }
@@ -69,13 +67,12 @@
 
         [HttpGet]
         [Route("api/Labels/GetLabel")]
-        public IActionResult GetLabel([FromBody] int id, string useremail)
+        public IActionResult GetLabel([FromBody] int id)
         {
-           // string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                // var label = manager.GetLabel(useremail, id);
-                var label = @object.GetLabel(useremail, id);
+                var label = manager.GetLabel(useremail, id);
                 {
                     return this.Ok(label);
                 }
@@ -86,13 +83,12 @@
 
         [HttpGet]
         [Route("api/Labels/GetAllLabels")]
-        public IActionResult GetAllLabels(string useremail)
+        public IActionResult GetAllLabels()
         {
-            //string useremail = this.User.Identity.Name;
+            string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
-                // var alllabels = manager.GetAllLabels(useremail);
-                var alllabels = @object.GetAllLabels(useremail);
+                 var alllabels = manager.GetAllLabels(useremail);
                 {
                     return this.Ok(alllabels);
                 }
@@ -103,9 +99,9 @@
 
         [HttpPut]
         [Route("api/Labels/UpdateLabel")]
-        public IActionResult UpdateLabel([FromBody]string useremail, String newdetail, int id)
+        public IActionResult UpdateLabel([FromBody] String newdetail, int id)
         {
-          //  string useremail = this.User.Identity.Name;
+           string useremail = this.User.Identity.Name;
             if (useremail != null)
             {
                 // if (this.manager.UpdateLabel(useremail, id, newdetail))
