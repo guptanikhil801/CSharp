@@ -23,5 +23,6 @@
         bool DoTrash(string email, int noteid);
         IEnumerable<NotesModel> GetTrashNoteList(string email);
         bool DoRestore(string email, int noteid);
+        List<NotesModel> SearchNotes(string email, string searchquery);
     }
 }
