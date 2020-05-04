@@ -26,15 +26,18 @@ namespace FundooNotesXUnitTesting
                 ConfirmPassword = "bridge@123",
                 PhoneNumber = null
             };
-
+         
             var userManager = new Mock<UserManager<User>>();
+
+            userManager.Setup(option => option.CreateAsync(It.IsAny<User>(), It.IsAny<string>())).ReturnsAsync(IdentityResult.Success);
             var signInManager = new Mock<SignInManager<User>>();
             var manager = new Mock<IAccountManager>();
+            
             var controller = new AccountController(manager.Object, userManager.Object, signInManager.Object);
             ////Act
-            var result = await controller.Register(model);
-            ////Assert
-            Assert.IsAssignableFrom<IActionResult>(result);
+             var result = await controller.Register(model);
+            //// Assert
+              Assert.IsAssignableFrom<IActionResult>(result);
         }
 
         [Fact]
@@ -50,14 +53,16 @@ namespace FundooNotesXUnitTesting
             var signInManager = new Mock<SignInManager<User>>();
             var manager = new Mock<IAccountManager>();
             var userManager = new Mock<UserManager<User>>();
+            userManager.Setup(option => option.CreateAsync(It.IsAny<User>(), It.IsAny<string>())).ReturnsAsync(IdentityResult.Success);
             manager.Setup(repo => repo.DoLogin(model));
             var controller = new AccountController(manager.Object, userManager.Object, signInManager.Object);
 
             // Act
             var result =  controller.Login(model);
-           
-
-           // Assert.Equal(200, result.Status);
+            //// Assert
+            Assert.IsAssignableFrom<IActionResult>(result);
         }
+
+
     }
 }
