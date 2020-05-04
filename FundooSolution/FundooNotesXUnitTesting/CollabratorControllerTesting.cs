@@ -19,7 +19,7 @@
             var controller = new CollabratorController(service.Object);
 
             //// Act
-            var result = controller.AddCollabrator("newgmail801@gmail.com", "guptanikhil801@gmail.com", 01);
+            var result = controller.AddCollabrator("guptanikhil801@gmail.com", 01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -32,7 +32,7 @@
             var controller = new CollabratorController(service.Object);
 
             //// Act
-            var result = controller.GetAllCollabrators("newgmail801@gmail.com");
+            var result = controller.GetAllCollabrators();
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
@@ -45,7 +45,7 @@
             var controller = new CollabratorController(service.Object);
 
             //// Act
-            var result = controller.RemoveCollabrator("newgmail801@gmail.com", 01);
+            var result = controller.RemoveCollabrator(01);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
