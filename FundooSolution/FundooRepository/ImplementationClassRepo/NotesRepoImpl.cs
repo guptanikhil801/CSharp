@@ -264,5 +264,11 @@
 
             return false;
         }
+
+        public List<NotesModel> SearchNotes(string email, string searchquery)
+        {
+            var result = this.dbcontext.Notes.Where(option => option.Description.Contains(searchquery)).ToList();
+            return result;
+        }
     }
 }
