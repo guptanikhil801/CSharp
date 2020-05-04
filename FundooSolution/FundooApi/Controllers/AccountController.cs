@@ -202,6 +202,11 @@ namespace FundooApi.Controllers
             return this.BadRequest();
         }
 
+        /// <summary>
+        /// action for Social login.
+        /// </summary>
+        /// <param name="returnurl">The returnurl.</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [Route("api/Account/SocialLogin")]
@@ -213,5 +218,18 @@ namespace FundooApi.Controllers
             var properties = signinmanager.ConfigureExternalAuthenticationProperties(providerlist[0].DisplayName, redirecturl);
             return new ChallengeResult(providerlist[0].DisplayName, properties);
         }
+
+        /// <summary>
+        /// Logouts this instance.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/Account/Logout")]
+        public async Task<IActionResult> Logout()
+        {
+          await  signinmanager.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+
     }
 }
