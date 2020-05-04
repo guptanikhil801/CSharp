@@ -53,16 +53,64 @@ namespace FundooNotesXUnitTesting
             var signInManager = new Mock<SignInManager<User>>();
             var manager = new Mock<IAccountManager>();
             var userManager = new Mock<UserManager<User>>();
-            userManager.Setup(option => option.CreateAsync(It.IsAny<User>(), It.IsAny<string>())).ReturnsAsync(IdentityResult.Success);
             manager.Setup(repo => repo.DoLogin(model));
             var controller = new AccountController(manager.Object, userManager.Object, signInManager.Object);
-
             // Act
             var result =  controller.Login(model);
             //// Assert
             Assert.IsAssignableFrom<IActionResult>(result);
         }
 
+        [Fact]
+        public void ForgotPassword_ReturnsOkResult()
+        {
+
+            // Arrange
+            var signInManager = new Mock<SignInManager<User>>();
+            var manager = new Mock<IAccountManager>();
+            var userManager = new Mock<UserManager<User>>();
+            var controller = new AccountController(manager.Object, userManager.Object, signInManager.Object);
+            // Act
+            var result = controller.ForgotPassword("newgmail801@gmail.com");
+            //// Assert
+            Assert.IsAssignableFrom<IActionResult>(result);
+        }
+
+        [Fact]
+        public void ResetPassword_ReturnsOkResult()
+        {
+            var resetmodel = new ResetPassword
+            {
+                Email = "newgmail801@gmail.com",
+                Code = null,
+                NewPassword = "pass@456",
+                ConfirmPassword = "pass@456"
+            };
+            // Arrange
+            var signInManager = new Mock<SignInManager<User>>();
+            var manager = new Mock<IAccountManager>();
+            var userManager = new Mock<UserManager<User>>();
+            var controller = new AccountController(manager.Object, userManager.Object, signInManager.Object);
+            // Act
+            var result = controller.ResetPassword(resetmodel);
+            //// Assert
+            Assert.IsAssignableFrom<IActionResult>(result);
+        }
+
+        [Fact]
+        public void ProfilePicture_ReturnsOkResult()
+        {
+            
+            // Arrange
+            var signInManager = new Mock<SignInManager<User>>();
+            var manager = new Mock<IAccountManager>();
+            var userManager = new Mock<UserManager<User>>();
+            var controller = new AccountController(manager.Object, userManager.Object, signInManager.Object);
+            // Act
+            var result = controller.ProfilePicture("newgmail801@gmail.com", null);
+            //// Assert
+            Assert.IsAssignableFrom<IActionResult>(result);
+        }
 
     }
 }
