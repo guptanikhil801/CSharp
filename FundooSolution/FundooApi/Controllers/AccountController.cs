@@ -89,8 +89,7 @@ namespace FundooApi.Controllers
         public async Task<IActionResult> Register([FromBody] RegistrationModel model)
         {
 
-            //var result = await this.userManager.CreateAsync(this.manager.DoRegistration(model), model.Password);
-           var result = await this.object2.CreateAsync(this.@object1.DoRegistration(model), model.Password);
+            var result = await this.userManager.CreateAsync(this.manager.DoRegistration(model), model.Password);
             if (result.Succeeded)
             {
                 return this.Ok();
