@@ -1,4 +1,11 @@
-﻿namespace FundooRepository.ImplementationClassRepo
+﻿// -------------------------------------------------------------------------------------------------------
+// <copyright file="NotesRepoImpl.cs" company="Bridgelabz">
+//   Copyright © 2020 Company="BridgeLabz"
+// </copyright>
+// <creator name="Nikhil Gupta"/>
+// ------------------------------------------------------------------------------------------------------
+
+namespace FundooRepository.ImplementationClassRepo
 {
     using System;
     using System.Collections.Generic;
@@ -13,17 +20,40 @@
     using Microsoft.Extensions.Caching.Distributed;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// implementation class of INotesRepository
+    /// </summary>
+    /// <seealso cref="FundooRepository.InterfaceRepo.INotesRepository" />
     public class NotesRepoImpl : INotesRepository
     {
+        /// <summary>
+        /// The dbcontext
+        /// </summary>
         private readonly UserDBContext dbcontext;
+
+        /// <summary>
+        /// The distributedcache variable for radis cache
+        /// </summary>
         private readonly IDistributedCache distributedcache;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotesRepoImpl"/> class.
+        /// </summary>
+        /// <param name="dbcontext">The dbcontext.</param>
+        /// <param name="distributedcache">The distributedcache.</param>
         public NotesRepoImpl(UserDBContext dbcontext, IDistributedCache distributedcache)
         {
             this.dbcontext = dbcontext;
             this.distributedcache = distributedcache;
         }
 
+        /// <summary>
+        /// Does the add note.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="note">The note.</param>
+        /// <param name="file">The file.</param>
+        /// <returns>true or false</returns>
         public bool DoAddNote(string email, NewNote note, IFormFile file)
         {
             var imagelink = MakeCloudImage(file);
@@ -50,6 +80,12 @@
             return false;
         }
 
+        /// <summary>
+        /// Does the archive.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns>true or false</returns>
         public bool DoArchive(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
@@ -71,12 +107,22 @@
             return false;
         }
 
+        /// <summary>
+        /// Gets the archived note list.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>list of notes</returns>
         public IEnumerable<NotesModel> GetArchivedNoteList(string email)
         {
             var result = this.dbcontext.Notes.Where(option => option.Email == email && option.IsArchive == true);
             return result;
         }
 
+        /// <summary>
+        /// uploads a image to cloud.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <returns>cloud link</returns>
         public string MakeCloudImage(IFormFile file)
         {
             if (file == null)
@@ -95,6 +141,12 @@
             return uploadresult.Uri.ToString();
         }
 
+        /// <summary>
+        /// deletes a note.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="id">The id.</param>
+        /// <returns>true or false</returns>
         public bool DoDeleteNote(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
@@ -111,6 +163,11 @@
             return false;
         }
 
+        /// <summary>
+        /// gets all notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>all notes</returns>
         public IEnumerable<NotesModel> DoGetAllNotes(string email)
         {
             var cachestring = distributedcache.GetString("notelist");
@@ -126,6 +183,12 @@
             }
         }
 
+        /// <summary>
+        /// get note by id
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="id">The id.</param>
+        /// <returns>a note</returns>
         public NotesModel DoGetNote(string email, int id)
         {
             var cachestring = distributedcache.GetString("notelist");
@@ -143,6 +206,12 @@
             }
         }
 
+        /// <summary>
+        /// Does the pin.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns>true or false</returns>
         public bool DoPin(string email, int id)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
@@ -164,12 +233,22 @@
             return false;
         }
 
+        /// <summary>
+        /// Gets the pinned note list.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>list of notes</returns>
         public IEnumerable<NotesModel> GetPinnedNoteList(string email)
         {
             var pinnednotes = dbcontext.Notes.Where(option => option.Email == email && option.IsPin == true);
             return pinnednotes;
         }
 
+        /// <summary>
+        /// Does the put data to cache.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         public List<NotesModel> DoPutDataToCache(string email)
         {
             var options = new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(90));
@@ -179,6 +258,12 @@
             return data.ToList();
         }
 
+        /// <summary>
+        /// Does the restore.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="noteid">The noteid.</param>
+        /// <returns>true or false</returns>
         public bool DoRestore(string email, int noteid)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
@@ -196,12 +281,23 @@
             return false;
         }
 
+        /// <summary>
+        /// Does the retreive data from cache.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>list of notes</returns>
         public List<NotesModel> DoRetreiveDataFromCache(string key)
         {
             var CacheString = this.distributedcache.GetString(key);
             return JsonConvert.DeserializeObject<IEnumerable<NotesModel>>(CacheString).ToList();
         }
 
+        /// <summary>
+        /// Does the trash.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="noteid">The noteid.</param>
+        /// <returns>true or false</returns>
         public bool DoTrash(string email, int noteid)
         {
             var note = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == noteid);
@@ -220,11 +316,23 @@
             return false;
         }
 
+        /// <summary>
+        /// Gets the trash note list.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>list of trashed notes</returns>
         public IEnumerable<NotesModel> GetTrashNoteList(string email)
         {
             return dbcontext.Notes.Where(option => option.Email == email && option.IsTrash == true);
         }
 
+        /// <summary>
+        ///  updates a note.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="note">The note.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns>true or false</returns>
         public bool DoUpdateNote(string email, NewNote note, int id)
         {
             var record = dbcontext.Notes.FirstOrDefault(option => option.Email == email && option.NoteId == id);
@@ -247,6 +355,13 @@
             return false;
         }
 
+        /// <summary>
+        /// add or updates a note image.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="noteid">The noteid.</param>
+        /// <param name="imagefile">The imagefile.</param>
+        /// <returns>true or false</returns>
         public bool DoUpdateNoteImage(string email, int noteid, IFormFile imagefile)
         {
             var imagelink = MakeCloudImage(imagefile);
@@ -265,6 +380,12 @@
             return false;
         }
 
+        /// <summary>
+        /// Searches the notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="searchquery">The searchquery.</param>
+        /// <returns>list of notes</returns>
         public List<NotesModel> SearchNotes(string email, string searchquery)
         {
             var result = this.dbcontext.Notes.Where(option => option.Email == email && option.IsArchive == false && option.IsTrash == false && option.Description.Contains(searchquery)).ToList();
