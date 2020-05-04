@@ -267,7 +267,7 @@
 
         public List<NotesModel> SearchNotes(string email, string searchquery)
         {
-            var result = this.dbcontext.Notes.Where(option => option.Description.Contains(searchquery)).ToList();
+            var result = this.dbcontext.Notes.Where(option => option.Email == email && option.IsArchive == false && option.IsTrash == false && option.Description.Contains(searchquery)).ToList();
             return result;
         }
     }
