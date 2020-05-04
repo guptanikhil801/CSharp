@@ -242,5 +242,21 @@
 
             return this.BadRequest();
         }
+
+        [HttpGet]
+        [Route("api/Notes/Search")]
+        public IActionResult Search([FromBody] string searchquery)
+        {
+            string useremail = this.User.Identity.Name;
+            if (useremail != null)
+            {
+                var searchitem = manager.SearchNotes(useremail, searchquery);
+                {
+                    return this.Ok(searchitem);
+                }
+            }
+
+            return this.BadRequest();
+        }
     }
 }
