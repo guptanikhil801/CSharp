@@ -51,10 +51,9 @@ namespace FundooApi.Controllers
         /// </summary>
         private readonly IConfiguration configuration;
         private readonly UserDBContext dbcontext;
-        private IAccountManager @object;
+        private IAccountManager object1;
         private UserManager<User> object2;
         private SignInManager<User> object3;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -72,12 +71,13 @@ namespace FundooApi.Controllers
             this.dbcontext = dbcontext;
         }
 
-        public AccountController(IAccountManager @object, UserManager<User> object2, SignInManager<User> object3)
+        public AccountController(IAccountManager object1, UserManager<User> object2, SignInManager<User> object3)
         {
-            this.@object = @object;
+            this.object1 = object1;
             this.object2 = object2;
             this.object3 = object3;
         }
+
 
         /// <summary>
         /// Registers the specified New User.
@@ -89,7 +89,8 @@ namespace FundooApi.Controllers
         public async Task<IActionResult> Register([FromBody] RegistrationModel model)
         {
 
-            var result = await this.userManager.CreateAsync(this.manager.DoRegistration(model), model.Password);
+            //var result = await this.userManager.CreateAsync(this.manager.DoRegistration(model), model.Password);
+           var result = await this.object2.CreateAsync(this.@object1.DoRegistration(model), model.Password);
             if (result.Succeeded)
             {
                 return this.Ok();
