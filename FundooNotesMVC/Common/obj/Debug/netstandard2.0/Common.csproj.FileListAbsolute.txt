@@ -1,0 +1,9 @@
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\bin\Debug\netstandard2.0\Common.deps.json
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\bin\Debug\netstandard2.0\Common.dll
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\bin\Debug\netstandard2.0\Common.pdb
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\obj\Debug\netstandard2.0\Common.csprojAssemblyReference.cache
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\obj\Debug\netstandard2.0\Common.csproj.CoreCompileInputs.cache
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\obj\Debug\netstandard2.0\Common.AssemblyInfoInputs.cache
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\obj\Debug\netstandard2.0\Common.AssemblyInfo.cs
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\obj\Debug\netstandard2.0\Common.dll
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\Common\obj\Debug\netstandard2.0\Common.pdb
