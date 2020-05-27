@@ -7,6 +7,7 @@
 <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style type="text/css">
         .auto-style2 {
@@ -41,95 +42,63 @@
 <body>
     
       <div class="container p-3 my-3 bg-dark text-white" >
-  <h1 class=> &nbsp&nbsp&nbsp&nbsp Fundoo Notes</h1>
+  <h1 class="text-success" style="font-size:45px"> &nbsp&nbsp&nbsp&nbsp Fundoo Notes</h1>
     </div>
         <br />
-    <p class="text-success" style="font-size:45px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register</p>
+    <p class="text-success" style="font-size:45px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register</p>
     <div class="container">
- <form id="form1" runat="server">
-     
-        <table style="font-family:Arial">
-             <tr>  
-            <td class="auto-style6">  
-                <asp:Label ID="FirstNameLabel"  runat="server" Text="First Name"></asp:Label>
-            </td>  
-            <td class="auto-style4"></td>  
-            <td class="auto-style4">  
-                <asp:TextBox ID="FirstNameTextBox" class="form-control" runat="server"></asp:TextBox>
-            </td>  
-        </tr>  
-               <tr>  
-            <td class="auto-style6">  
-                <asp:Label ID="LastNameLabel"  runat="server" Text="Last Name"></asp:Label>
-            </td>  
-            <td class="auto-style4"></td>  
-            <td class="auto-style4">  
-                <asp:TextBox ID="LastNameTextBox" class="form-control" runat="server"></asp:TextBox>
-            </td>  
-        </tr> 
-                  <tr>  
-            <td class="auto-style6">  
-                <asp:Label ID="PhoneNumberLabel"  runat="server" Text="Phone Number"></asp:Label>
-            </td>  
-            <td class="auto-style4"></td>  
-            <td class="auto-style4">  
-                <asp:TextBox ID="PhoneNumberTextBox" class="form-control" runat="server"></asp:TextBox>
-            </td>  
-        </tr> 
-        <tr>  
-            <td class="auto-style6">  
-                <asp:Label ID="EmailLabel"  runat="server" Text="Email"></asp:Label>
-            </td>  
-            <td class="auto-style4"></td>  
-            <td class="auto-style4">  
-                <asp:TextBox ID="EmailTextBox" class="form-control" runat="server"></asp:TextBox>
-            </td>  
-        </tr>  
-        <tr>  
-            <td class="auto-style7"></td>  
-            <td class="auto-style5"></td>  
-            <td class="auto-style5"></td>  
-        </tr>
-            <tr>  
-            <td class="auto-style8">  
-                <asp:Label ID="PasswordLabel" runat="server" Text="Password"></asp:Label>
-            </td>  
-            <td class="auto-style3"> </td> 
-            <td class="auto-style3">  
-                <asp:TextBox ID="PasswordTextBox" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
-            </td>  
-           </tr> 
-
-              <tr>  
-            <td class="auto-style7"></td>  
-            <td class="auto-style5"></td>  
-            <td class="auto-style5"></td>  
-        </tr>
-
-            <tr>  
-            <td class="auto-style8">  
-                <asp:Label ID="ConfirmPasswordLabel" runat="server" Text=" Confirm Password"></asp:Label>
-            </td>  
-            <td class="auto-style3"> </td> 
-            <td class="auto-style3">  
-                <asp:TextBox ID="ConfirmPasswordTextBox" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
-            </td>  
-           </tr> 
-            
-        <tr>  
-            <td class="auto-style8"></td>  
-            <td class="auto-style3"></td>  
-            <td class="auto-style3"></td>  
-        </tr>
-
-         <tr>
-            <td class="auto-style9">  
-                <asp:Button class="btn btn-info" ID="RegisterButton" runat="server" Text="Register" CssClass="auto-style2" Height="40px" Width="110px"  />
-            </td> 
-         </tr>
-       
-        </table>
-    </form>
-  </div>
+  <form>
+    <div class="form-group">
+      <label for="name">First Name:</label>
+      <input type="text" class="form-control" id="fname" name="name"/>
+    </div>
+    <div class="form-group">
+      <label for="usr">Last Name :</label>
+      <input type="text" class="form-control" id="lname" name="lastname"/>
+    </div>
+        <div class="form-group">
+      <label for="usr">Phone Number :</label>
+      <input type="text" class="form-control" id="pnumber" name="phonenumber"/>
+    </div>
+    <div class="form-group">
+      <label for="usr">Email :</label>
+      <input type="text" class="form-control" id="email" name="email"/>
+    </div>
+        <div class="form-group">
+      <label for="usr">Password :</label>
+      <input type="password" class="form-control" id="password" name="password"/>
+    </div>
+    <div class="form-group">
+      <label for="usr"> Confirm Password :</label>
+      <input type="password" class="form-control" id="cpasword" name="cpassword"/>
+    </div>
+    <button type="submit" class="btn btn-primary" id="registerbtn">Register</button>
+  </form>
+</div>
+    <script type="text/javascript">
+        $('#registerbtn').click(function () {
+            var user = {};
+            user.FirstName = $('#fname').val();
+            user.LastName = $('#lname').val();
+            user.PhoneNumber = parseInt($('#pnumber').val());
+            user.Email = $('#email').val();
+            user.Password = $('#password').val();
+            console.log(JSON.stringify(user))
+            $.ajax({
+                type: "POST",
+                url: "https://localhost:44337/Account/Register",
+                data: JSON.stringify(user),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                processData: true,
+                success: function (data) {
+                    alert("Registration successfull" + data);
+                },
+                error: function (data) {
+                    alert("fill all details");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
