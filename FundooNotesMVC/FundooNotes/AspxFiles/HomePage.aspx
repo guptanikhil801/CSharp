@@ -5,8 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>HomePage Fundoo Notes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <style type="text/css">
         .auto-style2 {
@@ -61,66 +62,45 @@
   <h1 class=> &nbsp&nbsp&nbsp&nbsp Fundoo Notes</h1>
     </div>
         <br />
-    <div class="container">
- <form id="form1" runat="server">
-     
-        <table style="font-family:Arial">
-        <tr>  
-            <td class="auto-style6">  
-                <asp:Label ID="EmailLabel"  runat="server" Text="Email"></asp:Label>
-            </td>  
-            <td class="auto-style4"></td>  
-            <td class="auto-style4">  
-                <asp:TextBox ID="EmailTextBox" class="form-control" runat="server"></asp:TextBox>
-            </td>  
-        </tr>  
-        <tr>  
-            <td class="auto-style7"></td>  
-            <td class="auto-style5"></td>  
-            <td class="auto-style5"></td>  
-        </tr>
-            <tr>  
-            <td class="auto-style8">  
-                <asp:Label ID="PasswordLabel" runat="server" Text="Password"></asp:Label>
-            </td>  
-            <td class="auto-style3"> </td> 
-            <td class="auto-style3">  
-                <asp:TextBox ID="PasswordTextBox" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
-            </td>  
-           </tr>  
-        <tr>  
-            <td class="auto-style8"></td>  
-            <td class="auto-style3"></td>  
-            <td class="auto-style3"></td>  
-        </tr>
-         <tr>
-            <td class="auto-style9">  
-                <asp:Button class="btn btn-info" ID="LoginButton" runat="server" Text="Login" CssClass="auto-style2" Height="40px" Width="110px"  />
-            </td> 
-             
-         </tr>
-            <tr>  
-            <td class="auto-style12"></td>
-               
-            <td class="auto-style13"></td>  
-            <td class="auto-style13"></td>  
-        </tr>  
-        <tr>  
-            <td class="auto-style14"></td>  
-            <td class="auto-style15">  
-                <asp:Label ID="ResponseLabel" runat="server"></asp:Label></td>  
-            <td class="auto-style15"></td>
-            </tr>
-            <tr>
-               <td>  
-               <p style="font-size:20px" ><a href="https://localhost:44337/AspxFiles/ForgotPassword.aspx">Forgot Password</a></p></td>
-            <td></td>
-                <td>  
-               <p style="font-size:20px" ><a href="https://localhost:44337/AspxFiles/Register.aspx">Register</a></p></td>
-            </tr>
-        </table>
+         <div class="container">
+      <form class="px-4 py-3">
+        <div class="form-group w-50">
+            <label for="email">&nbsp&nbsp&nbsp Email :</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email"/>
+        </div>
+        <div class="form-group w-50">
+            <label for="pwd">&nbsp&nbsp&nbsp Password :</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password"/>
+        </div>&nbsp&nbsp&nbsp;
+        <button type="submit" class="btn btn-info" id="loginbtn">Login</button>
+      </form>
+         <br />
          
-    </form>
-  </div>
+<p style="font-size:20px" ><a href="https://localhost:44337/AspxFiles/ForgotPassword.aspx"> Forgot Password</a></p>
+<p style="font-size:20px" ><a href="https://localhost:44337/AspxFiles/Register.aspx">Register</a></p>
+    </div>
+       <script type="text/javascript">
+           $('#loginbtn').click(function () {
+               var login = {};
+               login.Email = $('#email').val();
+               login.Password = $('#pwd').val();
+               console.log(JSON.stringify(login))
+               $.ajax({
+                   type: "POST",
+                   url: "https://localhost:44337/Account/Login",
+                   data: JSON.stringify(login),
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "json",
+                   processData: true,
+                   success: function (data) {
+                       alert("login Successfull" + data);
+                       window.location.href = "DashBoard.aspx";
+                   },
+                   error: function (data) {
+                       alert("incorrect email and password combination");
+                   }
+               });
+           });
+    </script>
 </body>
 </html>
