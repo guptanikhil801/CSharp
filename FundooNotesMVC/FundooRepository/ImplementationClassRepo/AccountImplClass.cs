@@ -18,9 +18,6 @@ namespace FundooRepository.ImplementationClassRepo
     using System.Data.SqlClient;
     using Common.UserModel;
     using FundooRepository.Utility;
-
-    // using Experimental.System.Messaging;
-    //  using FundooRepository.Context;
     using FundooRepository.InterfaceRepo;
     using Experimental.System.Messaging;
 
@@ -154,9 +151,9 @@ namespace FundooRepository.ImplementationClassRepo
               mailmessage.Body = message;
               smtp.Port = 587;
               smtp.Host = "smtp.gmail.com";
-              smtp.EnableSsl = true;
               smtp.Credentials = new NetworkCredential("guptanikhil20007@gmail.com", "nikhil20007");
-              smtp.Send(mailmessage);
+             smtp.EnableSsl = true;
+            smtp.Send(mailmessage);
               return true;
           }
 
