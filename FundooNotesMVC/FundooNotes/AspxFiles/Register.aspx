@@ -42,38 +42,39 @@
 <body>
     
       <div class="container p-3 my-3 bg-dark text-white" >
-  <h1 class="text-success" style="font-size:45px"> &nbsp&nbsp&nbsp&nbsp Fundoo Notes</h1>
+  <h1 style="font-size:45px"> &nbsp&nbsp&nbsp&nbsp Fundoo Notes</h1>
     </div>
         <br />
-    <p class="text-success" style="font-size:45px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register</p>
+    <p class="text-success text-center" style="font-size:55px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Register</p>
     <div class="container">
   <form>
-    <div class="form-group">
+    <div class="form-group w-50">
       <label for="name">First Name:</label>
       <input type="text" class="form-control" id="fname" name="name"/>
     </div>
-    <div class="form-group">
+    <div class="form-group w-50">
       <label for="usr">Last Name :</label>
       <input type="text" class="form-control" id="lname" name="lastname"/>
     </div>
-        <div class="form-group">
+        <div class="form-group w-50">
       <label for="usr">Phone Number :</label>
       <input type="text" class="form-control" id="pnumber" name="phonenumber"/>
     </div>
-    <div class="form-group">
+    <div class="form-group w-50">
       <label for="usr">Email :</label>
       <input type="text" class="form-control" id="email" name="email"/>
     </div>
-        <div class="form-group">
+        <div class="form-group w-50">
       <label for="usr">Password :</label>
       <input type="password" class="form-control" id="password" name="password"/>
     </div>
-    <div class="form-group">
+    <div class="form-group w-50">
       <label for="usr"> Confirm Password :</label>
       <input type="password" class="form-control" id="cpasword" name="cpassword"/>
     </div>
     <button type="submit" class="btn btn-primary" id="registerbtn">Register</button>
   </form>
+        <br />
 </div>
     <script type="text/javascript">
         $('#registerbtn').click(function () {
