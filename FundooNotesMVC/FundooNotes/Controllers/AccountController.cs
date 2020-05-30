@@ -2,6 +2,7 @@
 using FundooManager.ImplementationClassManager;
 using FundooManager.InterfaceManager;
 using FundooRepository.ImplementationClassRepo;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,15 @@ namespace FundooNotes.Controllers
             var checklogin = this.manager.Login(model);
             if (checklogin)
             {
-                return Json(HttpStatusCode.OK);
+                return Json(new { HttpStatusCode.OK,model });
+               
             }
-            return Json(HttpStatusCode.BadRequest);
+            var error = "Invalid Email or Password";
+            return Json(new { HttpStatusCode.BadRequest, error });
         }
 
         [HttpPost]
+        [Route("Account/Register")]
         public ActionResult Register(RegistrationModel  newuser)
         {
                 this.manager.Registration(newuser);
@@ -41,11 +45,12 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPost]
-        [Route("api/Account/ForgotPassword")]
+        [Route("Account/ForgotPassword")]
         public ActionResult ForgotPassword(ForgotPassword model)
         {
-                var resetlink = Url.Action("ResetPassword", "Account", new { email = model.Email });
-                if (this.manager.ForgotPasswordUser(model, resetlink))
+            // var resetlink = Url.Action()//("ResetPassword", "Account", new { email = model.Email });
+            string link = "https://localhost:44337/Account/ResetPassword";
+                if (this.manager.ForgotPasswordUser(model, link))
                 {
                     return Json("A link has been sent to your email to reset your password");
                 }
