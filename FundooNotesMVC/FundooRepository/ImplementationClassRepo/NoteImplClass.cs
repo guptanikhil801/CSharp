@@ -1,4 +1,5 @@
-﻿using FundooRepository.InterfaceRepo;
+﻿using Common.NotesModels;
+using FundooRepository.InterfaceRepo;
 using FundooRepository.Utility;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,44 @@ namespace FundooRepository.ImplementationClassRepo
     public class NoteImplClass : INote
     {
         private string connectionString = ConnectionString.CName;
+
+        public bool AddNote(AddNoteModel note)
+        {
+            if (note.Description != null && note.Email!=null && note.Title!=null)
+            {
+                using (SqlConnection con = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmdn = new SqlCommand("spAddNotes", con);
+                    cmdn.CommandType = CommandType.StoredProcedure;
+                    cmdn.Parameters.AddWithValue("@Email", note.Email);
+                    cmdn.Parameters.AddWithValue("@Title", note.Title);
+                    cmdn.Parameters.AddWithValue("@Description", note.Description);
+                    if(note.Color==null)
+                    {
+                        cmdn.Parameters.AddWithValue("@Colour", "white");
+                    }
+                    if(note.Color!=null)
+                    {
+                        cmdn.Parameters.AddWithValue("@Colour",note.Color);
+                    }
+                    if (note.Reminder == null)
+                    {
+                        cmdn.Parameters.AddWithValue("@Colour", "none");
+                    }
+                    if (note.Reminder != null)
+                    {
+                        cmdn.Parameters.AddWithValue("@Colour", note.Reminder);
+                    }
+                    con.Open();
+                    cmdn.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool Archive(int NoteId)
         {
             using (SqlConnection con = new SqlConnection(this.connectionString))
@@ -140,5 +179,7 @@ namespace FundooRepository.ImplementationClassRepo
             }
 
         }
+
+
     }
 }
