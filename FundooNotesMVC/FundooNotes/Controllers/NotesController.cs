@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using Common.NotesModels;
 
 namespace FundooNotes.Controllers
 {
@@ -17,6 +18,18 @@ namespace FundooNotes.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdddNote(AddNoteModel note)
+        {
+            string msg = "Note Created";
+            if (this.manager.AddNote(note))
+            {
+                return Json(new { HttpStatusCode.OK, msg });
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [HttpPut]
