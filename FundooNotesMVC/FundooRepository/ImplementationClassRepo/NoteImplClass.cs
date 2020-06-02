@@ -34,11 +34,11 @@ namespace FundooRepository.ImplementationClassRepo
                     }
                     if (note.Reminder == null)
                     {
-                        cmdn.Parameters.AddWithValue("@Colour", "none");
+                        cmdn.Parameters.AddWithValue("@Reminder", "none");
                     }
                     if (note.Reminder != null)
                     {
-                        cmdn.Parameters.AddWithValue("@Colour", note.Reminder);
+                        cmdn.Parameters.AddWithValue("@Reminder", note.Reminder);
                     }
                     con.Open();
                     cmdn.ExecuteNonQuery();
