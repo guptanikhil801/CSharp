@@ -21,7 +21,7 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPost]
-        public ActionResult AdddNote(AddNoteModel note)
+        public ActionResult AddNote(AddNoteModel note)
         {
             string msg = "Note Created";
             if (this.manager.AddNote(note))
@@ -40,6 +40,18 @@ namespace FundooNotes.Controllers
                   return Json(new { HttpStatusCode.OK, NoteId });
               }
             
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpDelete]
+        public ActionResult DeleteForever(int NoteId)
+        {
+            string msg = "Note Deleted permanently";
+            if (this.manager.DeleteNote(NoteId))
+            {
+                return Json(new { HttpStatusCode.OK, msg });
+            }
+
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
