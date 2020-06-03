@@ -156,9 +156,5 @@ namespace FundooRepository.ImplementationClassRepo
             smtp.Send(mailmessage);
               return true;
           }
-
-
-
-
     }
 }
