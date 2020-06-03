@@ -8,6 +8,7 @@ namespace FundooRepository.InterfaceRepo
     {
         bool AddNote(AddNoteModel note);
         bool Archive(int Noteid);
+        bool DeleteNote(int NoteId);
         bool TrashAndUnTrash(int NoteId);
         bool NoteImage(int NoteId, string Imageurl);
         bool ProfilePicture(string Email, string Imageurl);      
