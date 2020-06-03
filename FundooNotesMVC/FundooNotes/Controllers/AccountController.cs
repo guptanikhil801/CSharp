@@ -25,8 +25,9 @@ namespace FundooNotes.Controllers
                 return Json(new { HttpStatusCode.OK,model });
                
             }
-            var error = "Invalid Email or Password";
-            return Json(new { HttpStatusCode.BadRequest, error });
+            // var error = "Invalid Email or Password";
+            // return Json(new { HttpStatusCode.BadRequest, error });
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [HttpPost]
