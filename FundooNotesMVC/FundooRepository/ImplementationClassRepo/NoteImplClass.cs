@@ -75,6 +75,21 @@ namespace FundooRepository.ImplementationClassRepo
             }         
         }
 
+        public bool DeleteNote(int NoteId)
+        {
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmdn = new SqlCommand("spDeleteNote", con);
+                cmdn.CommandType = CommandType.StoredProcedure;
+                cmdn.Parameters.AddWithValue("@NoteId", NoteId);
+                con.Open();
+                cmdn.ExecuteNonQuery();
+                con.Close();
+            }
+
+            return true;
+        }
+
         public bool TrashAndUnTrash(int NoteId)
         {
             using (SqlConnection con = new SqlConnection(this.connectionString))
