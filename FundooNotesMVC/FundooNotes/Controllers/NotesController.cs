@@ -55,6 +55,23 @@ namespace FundooNotes.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
+        [HttpGet]
+        [Route("/Notes/GetAllNotes/{id}")]
+        public ActionResult GetAllNotes(string id)
+        {
+            var allnotes = this.manager.GetAllNotes(id);
+                return Json(new { HttpStatusCode.OK,  allnotes },JsonRequestBehavior.AllowGet);
+        }
+
+
+     /*   [HttpGet]
+        //[Route("/Notes/AllNotes/{Email}")]
+        public ActionResult AllNotes()
+        {
+            var allnotes = this.manager.AllNotes();
+            return Json(new { HttpStatusCode.OK, allnotes }, JsonRequestBehavior.AllowGet);
+        }*/
+
         [HttpPut]
         public ActionResult TrashAndRestore(int NoteId)
         {

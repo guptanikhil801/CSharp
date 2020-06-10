@@ -13,6 +13,38 @@ namespace FundooRepository.ImplementationClassRepo
     {
         private string connectionString = ConnectionString.CName;
 
+        public IEnumerable<Note> AllNotes()
+        {
+            List<Note> lstnote = new List<Note>();
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spAllNotes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Note note = new Note();
+                    note.NoteId = Convert.ToInt32(rdr["NoteId"]);
+                    note.Title = rdr["Title"].ToString();
+                    note.Colour = rdr["Colour"].ToString();
+                    note.Email = rdr["Email"].ToString();
+                    note.Description = rdr["Description"].ToString();
+                    note.Image = rdr["Image"].ToString();
+                    note.IsPin = Convert.ToBoolean(rdr["IsPin"]);
+                    note.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
+                    note.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                    note.IsArchive = Convert.ToBoolean(rdr["IsArchive"]);
+                    note.IsTrash = Convert.ToBoolean(rdr["IsTrash"]);
+                    note.Reminder = rdr["Reminder"].ToString();
+                    lstnote.Add(note);
+                }
+                con.Close();
+            }
+
+            return lstnote;
+        }
+
         public bool AddNote(AddNoteModel note)
         {
             if (note.Description != null && note.Email!=null && note.Title!=null)
@@ -88,6 +120,40 @@ namespace FundooRepository.ImplementationClassRepo
             }
 
             return true;
+        }
+
+        public IEnumerable<Note> GetAllNotes(string Email)
+        {
+            List<Note> lstnote = new List<Note>();
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetAllNotes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", Email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Note note = new Note();
+                    note.NoteId = Convert.ToInt32(rdr["NoteId"]);
+                    note.Title = rdr["Title"].ToString();
+                    note.Colour = rdr["Colour"].ToString();
+                    note.Email = rdr["Email"].ToString();
+                    note.Description = rdr["Description"].ToString();
+                    note.Image = rdr["Image"].ToString();
+                    note.IsPin = Convert.ToBoolean(rdr["IsPin"]);
+                    note.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
+                    note.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                    note.IsArchive = Convert.ToBoolean(rdr["IsArchive"]);
+                    note.IsTrash = Convert.ToBoolean(rdr["IsTrash"]);
+                    note.Reminder = rdr["Reminder"].ToString();
+                    lstnote.Add(note);
+                }
+
+                con.Close();
+            }
+
+            return lstnote;
         }
 
         public bool TrashAndUnTrash(int NoteId)

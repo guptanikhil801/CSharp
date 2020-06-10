@@ -94,6 +94,7 @@
                    processData: true,
                    success: function (data) {
                        alert("login Successfull" + data);
+                       localStorage.setItem("UserEmail", login.Email);
                        window.location.href = "https://localhost:44337/Webform/DashBoard.aspx";
                    },
                    error: function (data) {
