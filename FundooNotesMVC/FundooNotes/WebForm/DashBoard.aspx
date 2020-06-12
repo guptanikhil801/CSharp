@@ -48,10 +48,10 @@
     width: 50%;
 }
 .carddesign {
-    width: 240px;
+    min-width: 240px;
     margin-right: 15px;
     margin-top: 25px;
-    height: 122px;
+    min-height: 122px;
     border-radius: 10px;
 }
 
@@ -63,6 +63,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.listviewcl {
+    width:590px;
+    margin-left:100px;
 }
     </style>
     <script>
@@ -104,6 +108,13 @@
             localStorage.removeItem("UserEmail");
             window.location.href = "https://localhost:44337/Webform/Homepage.aspx";
         }
+        function collabnoteidfeed(id) {
+            document.getElementById('collab-save-btn').setAttribute("value", id)
+        }
+
+        function listview () {
+            $(".carddesign").toggleClass("listviewcl");
+        }
 </script>
 
 </head>
@@ -115,7 +126,7 @@
         &nbsp&nbsp&nbsp  Fundoo Notes</a>
     </div>       
     <input style=" margin-top:8px; width:500px; margin-left:30px; margin-right:30px" class="form-control mr-sm3" id="searchbar" type="text" placeholder="Search"/>
-    <a style="margin-right:30px" href="#"><img  src="Assets/listviewicon.png" /></a>
+    <button style="margin-right:30px"  onclick="listview()"><img  src="Assets/listviewicon.png" /></button>
     <a style="margin-right:30px"  data-toggle="collapse" href="#setting-menu" role="button" ><img  src="Assets/settingicon.png" /></a>
     <a style="margin-right:30px " href="#"><img  src="Assets/googleappicon.png" /></a>
      <a style="margin-right:30px" onclick="usermenuemail()" data-toggle="collapse" href="#user-menuid" role="button" ><img src="Assets/userimg.JPG" class="rounded-circle" alt="" width="47" height="47" /></a>
@@ -158,17 +169,16 @@
         </div>
     </div>
 
- <section class="newnotebody"  >
+ <section  class="newnotebody"  >
         <div class="note-container" id="newnotebody" >
             <div class="pin-title">
                 <input type="text" class="no-outline fontbold"  id="newtitle" placeholder="Title."/> <input type="image" title="Pin Note" id="newpinnote" class="display" src="Assets/pin.svg" />
-
             </div>
             <input type="text" class="no-outline"  id="newdescription" placeholder="Take a Note..."/>
             <div class="button-icons display">
                 <div class="but-icons">
-                    <input type="image" class="img-icon" id="newremind" title="Remind me" alt="Reminder" src="Assets/reminder.svg" />
-                    <input type="image" class="img-icon" id="newcollab" title="Collaborator" alt="Collaborator"src="Assets/colab.svg" />
+                    <input type="image" class="img-icon"  id="newremind" title="Remind me" alt="Reminder" src="Assets/reminder.svg" />
+                    <input type="image" class="img-icon"  id="newcollab" title="Collaborator" alt="Collaborator"src="Assets/colab.svg" />
                     <input type="image" class="img-icon" id="newchangecolor" title="Change color" alt="Change color" src="Assets/colorpaletteicon.png" onmouseover="show('colorbox')"  />
                     <input type="image" class="img-icon" id="newimage" title="Add image" alt="Add image" src="Assets/uploadicon.png" />
                     <input type="image" class="img-icon" id="newarchive" title="Archive" alt="Archive" src="Assets/archiveicon.png" onmouseover="hide('colorbox')"/>
@@ -202,22 +212,38 @@
             <div style="margin-left:220px; margin-top:60px; margin-bottom:60px" id="allnotesrow" class="row">
                 <div style="background-color:antiquewhite" class="card carddesign">
                     <div class="card-body">
-                        <h5 class="card-title">hello</h5>
-                        <p class="card-text">new description</p>
+                        <h5 class='card-title'> title  </h5 >
+                        <p class="card-text"> description</p>
                        <div class="anicon display">
-                            <input type="image"  id="all-note-remind" title="Remind me" height="18" width="18" alt="Reminder" src="Assets/reminder.svg" />                            
-                            <input type="image"  id="all-note-collab" title="Collaborator" height="18" width="18" alt="Collaborator" src="Assets/colab.svg" />
+                            <input type="image"  id="all-note-remind"  title="Remind me" height="18" width="18" alt="Reminder" src="Assets/reminder.svg" />                            
+                            <input type="image"  id="all-note-collab"  data-toggle="modal" data-target="#AddCollabModal" title="Collaborator" height="18" width="18" alt="Collaborator" src="Assets/colab.svg" />
                             <input type="image"  id="all-note-changecolor" title="Change color" height="14" width="14" alt="Change color" src="Assets/colorpaletteicon.png" />
                             <input type="image"  id="all-note-image" title="Add image" height="16" width="16" alt="Add image" src="Assets/uploadicon.png" />
                             <input type="image"  id="all-note-archive" title="Archive" height="13" width="13" alt="Archive" src="Assets/archiveicon.png"  />
                             <input type="image"  id="all-note-more" title="More" height="18" width="18" alt="More" src="Assets/more.svg" />
-                        </div>
+                       </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+        <div class="modal fade" id="AddCollabModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">              
+                <div style="display:flex; flex-direction:column;" class="modal-header">                 
+                    <h5 style="margin-bottom:8px" class="modal-title" id="exampleModalLongTitle">Collaborator</h5>
+                    guptanikhil801@gmail.com
+                    <input style=" margin-top:10px; width:80%; border:none;  outline:none" id="collabinpbtn" type="text"  placeholder="Person or email to share with" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="collab-save-btn" class="btn btn-primary" >save</button>
+                </div>
+            </div>
+        </div>
+    </div>
         <script type="text/javascript">
+           
             $(document).ready(function () {
                 $.ajax({
                     type: "GET",
@@ -231,49 +257,98 @@
                         var title = el.Title
                         var description = el.Description;
                         var color = el.Colour;
+                        var  NoteId = el.NoteId;
                         $("<div style='background-color: "+color+"' class= 'card carddesign'>" +
                             "<div class= 'card-body'>" +
                             "<h5 class='card-title'>" + title + "</h5 >" +
                             "<p class='card-text'>" + description + "</p>" +
                             "<div class='anicon display'>"+
-                            "<input style='background-color: " + color +"' type='image' id='all-note-remind' title='Remind me' height='18' width='18' alt='Reminder' src='Assets/reminder.svg' />"+
-                            "<input style='background-color: " + color +"' type='image' id='all-note-collab' title='Collaborator' height='18' width='18' alt='Collaborator' src='Assets/colab.svg' />" +
-                            "<input style='background-color: " + color +"' type='image' id='all-note-changecolor' title='Change color' height='14' width='14' alt='Change color' src='Assets/colorpaletteicon.png' />"+
-                            "<input style='background-color: " + color +"' type='image' id='all-note-image' title='Add image' height='16' width='16' alt='Add image' src='Assets/uploadicon.png' />"+
-                            "<input style='background-color: " + color +"' type='image' id='all-note-archive' title='Archive' height='13' width='13' alt='Archive' src='Assets/archiveicon.png' />"+
-                            "<input style='background-color: " + color +"' type='image' id='all-note-more' title='More' height='18' width='18' alt='More' src='Assets/more.svg' />"+
+                            "<input style='background-color: " + color +"' type='image'  title='Remind me' height='18' width='18' alt='Reminder' src='Assets/reminder.svg' />"+
+                            "<input style='background-color: " + color +"' type='image' onclick='collabnoteidfeed(" + NoteId + ")'  data-toggle='modal' data-target='#AddCollabModal' title='Collaborator' height='18' width='18' alt='Collaborator' src='Assets/colab.svg' />" +
+                            "<input style='background-color: " + color +"' type='image'  title='Change color' height='14' width='14' alt='Change color' src='Assets/colorpaletteicon.png' />"+
+                            "<input style='background-color: " + color +"' type='image'  title='Add image' height='16' width='16' alt='Add image' src='Assets/uploadicon.png' />"+
+                            "<input style='background-color: " + color + "' type='image' onclick='ArchiveUnArchive(" + NoteId + ")' title='Archive' height='13' width='13' alt='Archive' src='Assets/archiveicon.png' />"+
+                            "<input style='background-color: " + color +"' type='image'  title='More' height='18' width='18' alt='More' src='Assets/more.svg' />"+
                             "</div>"+
                             "</div>"
                         ).appendTo($('#allnotesrow'));                     
                     })
                 })
             });
-    </script>
+           
+        </script>
             <script type="text/javascript">
-                $('#closenotebtn').click(function () {
-                    var note = {};
-                    note.Email = localStorage.getItem("UserEmail");
-                    note.Title = $('#newtitle').val();
-                    note.Description = $('#newdescription').val();
-                    note.color = $('#colorhid').val();
-                    console.log(JSON.stringify(note))
+                $('#collab-save-btn').click(function () {
+                    var collab = {};
+                    collab.UserEmail = localStorage.getItem("UserEmail");
+                    collab.CollabratorEmail = $('#collabinpbtn').val();
+                    collab.NoteId = parseInt($('#collab-save-btn').val());
+                    console.log(JSON.stringify(collab))
                     $.ajax({
                         type: "POST",
-                        url: "https://localhost:44337/Notes/AddNote",
-                        data: JSON.stringify(note),
+                        url: "https://localhost:44337/Collabrator/AddCollabrator",
+                        data: JSON.stringify(collab),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         processData: true,
                         success: function (data) {
                             location.reload();
-                            alert("note created" + data);                          
+                            alert("collabrator added successfully" + data);                          
                         },
                         error: function (data) {
-                            alert("Title and description should not be empty");
+                            alert("collabrator email should not be null");
                         }
                     });
                     return false;
                 });
     </script>
+     <script type="text/javascript">
+         $('#closenotebtn').click(function () {
+             var note = {};
+             note.Email = localStorage.getItem("UserEmail");
+             note.Title = $('#newtitle').val();
+             note.Description = $('#newdescription').val();
+             note.color = $('#colorhid').val();
+             console.log(JSON.stringify(note))
+             $.ajax({
+                 type: "POST",
+                 url: "https://localhost:44337/Notes/AddNote",
+                 data: JSON.stringify(note),
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 processData: true,
+                 success: function (data) {
+                     location.reload();
+                     alert("note created" + data);
+                 },
+                 error: function (data) {
+                     alert("Title and description should not be empty");
+                 }
+             });
+             return false;
+         });
+    </script>
+                <script type="text/javascript">
+                    function ArchiveUnArchive(noteid)
+                    {
+                        var x = parseInt(noteid);
+                        console.log(JSON.stringify(x))
+                        $.ajax({
+                            type: "PUT",
+                            url: "https://localhost:44337/Notes/Archive/" + x,
+                            dataType: "json",
+                            success: function (data)
+                                {
+                                location.reload();
+                                alert(" note archived/unarchived" + data);
+                                 },
+                            error: function () {
+                                alert("error");
+                                               }
+                        });
+                        return false;                  
+                     }
+                </script>
+
 </body>
 </html>
