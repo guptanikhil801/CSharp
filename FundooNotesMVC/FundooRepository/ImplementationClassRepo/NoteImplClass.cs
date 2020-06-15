@@ -261,6 +261,93 @@ namespace FundooRepository.ImplementationClassRepo
 
         }
 
+        public bool UpdateNote(int noteid, string title, string description)
+        {
+            if (description != null  && title != null)
+            {
+                using (SqlConnection con = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmdn = new SqlCommand("spUpdateNote", con);
+                    cmdn.CommandType = CommandType.StoredProcedure;
+                    cmdn.Parameters.AddWithValue("@NoteId", noteid);
+                    cmdn.Parameters.AddWithValue("@Title", title);
+                    cmdn.Parameters.AddWithValue("@Description", description);
+                    con.Open();
+                    cmdn.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
 
+            return false;
+        }
+
+        public IEnumerable<Note> GetAllArchivedNotes(string Email)
+        {
+            List<Note> lstnote = new List<Note>();
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetAllArchivedNotes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", Email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Note note = new Note();
+                    note.NoteId = Convert.ToInt32(rdr["NoteId"]);
+                    note.Title = rdr["Title"].ToString();
+                    note.Colour = rdr["Colour"].ToString();
+                    note.Email = rdr["Email"].ToString();
+                    note.Description = rdr["Description"].ToString();
+                    note.Image = rdr["Image"].ToString();
+                    note.IsPin = Convert.ToBoolean(rdr["IsPin"]);
+                    note.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
+                    note.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                    note.IsArchive = Convert.ToBoolean(rdr["IsArchive"]);
+                    note.IsTrash = Convert.ToBoolean(rdr["IsTrash"]);
+                    note.Reminder = rdr["Reminder"].ToString();
+                    lstnote.Add(note);
+                }
+
+                con.Close();
+            }
+
+            return lstnote;
+        }
+
+        public IEnumerable<Note> GetAllTrashedNotes(string Email)
+        {
+            List<Note> lstnote = new List<Note>();
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetAllTrashedNotes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", Email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Note note = new Note();
+                    note.NoteId = Convert.ToInt32(rdr["NoteId"]);
+                    note.Title = rdr["Title"].ToString();
+                    note.Colour = rdr["Colour"].ToString();
+                    note.Email = rdr["Email"].ToString();
+                    note.Description = rdr["Description"].ToString();
+                    note.Image = rdr["Image"].ToString();
+                    note.IsPin = Convert.ToBoolean(rdr["IsPin"]);
+                    note.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
+                    note.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                    note.IsArchive = Convert.ToBoolean(rdr["IsArchive"]);
+                    note.IsTrash = Convert.ToBoolean(rdr["IsTrash"]);
+                    note.Reminder = rdr["Reminder"].ToString();
+                    lstnote.Add(note);
+                }
+
+                con.Close();
+            }
+
+            return lstnote;
+        }
     }
 }

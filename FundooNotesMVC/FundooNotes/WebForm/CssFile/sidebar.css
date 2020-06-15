@@ -1,0 +1,49 @@
+﻿#sidepanel {
+    width: 240px;
+    position: fixed;
+    height: 100%;
+    left: -240px;
+    background: #111;
+    transition: all 400ms linear;
+    border-radius: 11px;
+    margin-top:2px;
+    margin-left:1px;
+}
+
+    #sidepanel.active {
+        left: 0px;
+    }
+
+    #sidepanel ul li {
+        padding: 15px 5px;
+        list-style: none;
+        font-size: 25px;
+        color: transparent;
+    }
+
+        #sidepanel ul li a {
+            color: white;
+        }
+        #sidepanel ul li button {
+            outline: none;
+            background-color:transparent;
+            color:white;
+            border:none;
+        }
+
+        #sidepanel ul li button:hover {
+            color: #f1f1f1;
+        }
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+    .openbtn:hover {
+        background-color: #444;
+    }
