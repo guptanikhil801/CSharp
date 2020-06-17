@@ -40,7 +40,8 @@ namespace FundooRepository.InterfaceRepo
         /// <returns>boolean value</returns>
         void ResetPassword(ResetPasswordModel model);
 
-         bool ForgotPasswordUser(ForgotPassword model, string url);
+        bool ForgotPasswordUser(ForgotPassword model, string url);
+        string GetProfilePic(string email);
    
     }
 }

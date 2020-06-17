@@ -73,6 +73,14 @@
     border: none;
     background-color: transparent
 }
+.badgetran{
+    background-color:transparent;
+    border: solid  1.5px;
+    border-color:#404040;
+    margin-right:3px;
+    
+
+}
 
     </style>
 
@@ -94,6 +102,14 @@
         function mmtoggle(id) {
             $("#" + id).toggleClass("mmshow");
         }
+
+        function hello() {
+            alert("hello")
+        }
+        function ppicfun() {
+            var email = localStorage.getItem("UserEmail");
+            document.getElementById('ppemail').setAttribute("value", email);
+        }
     </script>
 </head>
 <body>
@@ -108,7 +124,7 @@
     <button style="margin-right:30px"  onclick="listview()"><img  src="Assets/listviewicon.png" /></button>
     <a style="margin-right:30px"  data-toggle="collapse" href="#setting-menu" role="button" ><img  src="Assets/settingicon.png" /></a>
     <a style="margin-right:30px " href="#"><img  src="Assets/googleappicon.png" /></a>
-    <a style="margin-right:30px" onclick="usermenuemail()" data-toggle="collapse" href="#user-menuid" role="button" ><img src="Assets/userimg.JPG" class="rounded-circle" alt="" width="47" height="47" /></a>
+    <a style="margin-right:30px" onclick="usermenuemail()" data-toggle="collapse" href="#user-menuid" role="button" ><img id="userpic" src="" class="rounded-circle" alt="" width="47" height="47" /></a>
 </nav>
 
 <div id="sidepanel">
@@ -136,7 +152,9 @@
 
         <div id="user-menuid" class="collapse card user-menu-design ">
         <div class="card-body ">
-            <img style="margin-left:120px" src="Assets/userimg.JPG" class="rounded-circle" alt="" width="80" height="80"/>
+            <img style="margin-left:120px" src="" id="userpicbody" class="rounded-circle" alt="" width="80" height="80"/>
+            
+           <input type="image" style="margin-left: 160px; margin-top: -12px" title="upload a pic" onclick="ppicfun()" src="Assets/cameracircle.png" alt="" width="32" height="32" data-toggle="modal" data-target="#profilepicModal" /> 
             <h5 id="show-email" style="margin-top:40px; margin-left:15px" class="card-title"></h5>          
         </div>
         <div class="card-footer ">
@@ -185,13 +203,14 @@
 
         <section id="allnotesection">
         <div class="container">
-            <div style="margin-left:200px; margin-top:60px; margin-bottom:60px" id="allnotesrow" class="row">
+            <div style="margin-left:220px; margin-top:60px; margin-bottom:60px" id="allnotesrow" class="row">
                 <div style="background-color:antiquewhite" class="card carddesign">
                     <div class="card-body">
-                        <h5 class='card-title'> title  </h5 >
-                        <p class="card-text"> description</p>
-                        <span class="badge badge-pill badge-secondary"></span>
-                       <div class="anicon display">
+                        <h5 class='card-title'> manually created </h5 >
+                        <p class="card-text"> note</p>
+                        <span class="badge badge-pill badge-secondary badgetran">remindercheck</span>
+                        <span class="badge badge-pill badge-secondary" ></span>
+                      <div class="anicon display">
                             <input type="image"  id="all-note-remind"  title="Remind me" height="18" width="18" alt="Reminder" src="Assets/reminder.svg" />                            
                             <input type="image"  id="all-note-collab"  data-toggle="modal" data-target="#AddCollabModal" title="Collaborator" height="18" width="18" alt="Collaborator" src="Assets/colab.svg" />
                             <input type="image"  id="all-note-changecolor" title="Change color" height="14" width="14" alt="Change color" src="Assets/colorpaletteicon.png" />
@@ -242,7 +261,7 @@
             <div class="modal-content">              
                 <div style="display:flex; flex-direction:column;" class="modal-header">                 
                     <h5 style="margin-bottom:8px" class="modal-title" id="exampleModalLongTitler">Reminder</h5>
-        <p style=" margin-top:6px; width:80%" >Take a Reminder</p>
+                     <p style=" margin-top:6px; width:80%" >Take a Reminder</p>
                       <input type="datetime-local" id="remindertime" name="choosetime"/>
                 </div>
                 <div class="modal-footer">
@@ -253,7 +272,7 @@
         </div>
     </div>
 
-          <div  class="modal fade" id="updatenotemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+     <div  class="modal fade" id="updatenotemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div  class="modal-dialog modal-dialog-centered" role="document">
             <div style="width:540px; height:180px; background-color:white" id="updatenotebox" class="modal-content">              
                 <div style="display:flex; flex-direction:column;" class="modal-header">                 
@@ -262,6 +281,35 @@
                 </div>
                     <button type="button" id="updatenoteclose" style="border:none; background:none;  margin-left:80%; margin-top:25px;"  data-dismiss="modal" value="">Close</button>
                 </div>
+        </div>
+    </div>
+
+     <div  class="modal fade" id="addlabelmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div  class="modal-dialog modal-dialog-centered" role="document">
+            <div style="width:340px; height:150px; background-color:white" id="addlabelbox" class="modal-content">              
+                <div style="display:flex; flex-direction:column;" class="modal-header">                 
+                    <input type="text" style=" margin-top:10px; width:80%; border:none; background-color:white; outline:none" placeholder="label details" id="labeldetails" />
+                </div>
+                    <button type="button" id="addlabelclose" style="border:none; background:none;  margin-left:80%; margin-top:10px;"  data-dismiss="modal" value="">Close</button>
+                </div>
+        </div>
+    </div>
+
+        <div class="modal fade" id="profilepicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload a Profile Picture</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="profilepicdata" method="put">
+                        <input type="hidden" id="ppemail" name="Email" value="" />
+                        <label for="File">Choose a Picture :</label>
+                        <input name="File" type="file" />
+                        <button class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -329,7 +377,6 @@
                 dataType: "json",
                 success: function (data) {
                     location.reload();
-                    alert(" note archived/unarchived" + data);
                 },
                 error: function () {
                     alert("error");
@@ -486,6 +533,49 @@
             })
         });
 
+    </script>
+
+     <script type="text/javascript">
+         $('#addlabelclose').click(function () {
+             var nlabel = {};
+             nlabel.Details = $('#labeldetails').val();
+             nlabel.NoteId = parseInt($('#addlabelclose').val());
+             console.log(JSON.stringify(nlabel))
+             $.ajax({
+                 type: "POST",
+                 url: "https://localhost:44337/Label/AddLabel",
+                 data: JSON.stringify(nlabel),
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 processData: true,
+                 success: function (data) {
+                     location.reload();
+                     alert("Label added successfully" + data);
+                 },
+                 error: function (data) {
+                     alert("details should not be null");
+                 }
+             });
+             return false;
+         });
+     </script>
+
+    <script>
+        $("form#profilepicdata").submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "https://localhost:44337/Notes/ProfilePicture",
+                type: 'PUT',
+                data: formData,
+                success: function (data) {
+                    window.location.reload();
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
     </script>
 
 </body>

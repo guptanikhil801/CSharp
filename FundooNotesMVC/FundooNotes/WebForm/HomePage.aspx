@@ -54,12 +54,15 @@
         .auto-style16 {
             width: 121px;
         }
+        .brad{
+            border-radius:9px
+        }
         </style>
 </head>
 <body>
     
-      <div class="container p-3 my-3 bg-dark text-white" >
-  <h1 class=> &nbsp&nbsp&nbsp&nbsp Fundoo Notes</h1>
+      <div class="container p-3 my-3 bg-dark text-white brad" >
+  <h1 style="text-align:center"> Fundoo Notes</h1>
     </div>
         <br />
          <div class="container">

@@ -66,7 +66,7 @@ namespace FundooRepository.ImplementationClassRepo
                     }
                     if (note.Reminder == null)
                     {
-                        cmdn.Parameters.AddWithValue("@Reminder", "none");
+                        cmdn.Parameters.AddWithValue("@Reminder", "");
                     }
                     if (note.Reminder != null)
                     {

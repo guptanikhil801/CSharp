@@ -13,15 +13,15 @@ namespace FundooRepository.ImplementationClassRepo
     {
         private string connectionString = ConnectionString.CName;
 
-        public bool AddLabel(string Email, string Details)
+        public bool AddLabel(int NoteId, string Details)
         {
-            if (Email != null && Details != null )
+            if (Details != null )
             {
                 using (SqlConnection con = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmdn = new SqlCommand("spAddLabel", con);
                     cmdn.CommandType = CommandType.StoredProcedure;
-                    cmdn.Parameters.AddWithValue("@Email", Email);
+                    cmdn.Parameters.AddWithValue("@NoteId", NoteId);
                     cmdn.Parameters.AddWithValue("@Details", Details);
                     con.Open();
                     cmdn.ExecuteNonQuery();
@@ -32,65 +32,67 @@ namespace FundooRepository.ImplementationClassRepo
             return false;
         }
 
-        public bool DeleteLabel(string Email, int LabelId)
+        public Label GetLabelByNoteId(int NotelId)
         {
+            Label label = new Label();
             using (SqlConnection con = new SqlConnection(this.connectionString))
             {
-                SqlCommand cmdn = new SqlCommand("spDeleteLabel", con);
-                cmdn.CommandType = CommandType.StoredProcedure;
-                cmdn.Parameters.AddWithValue("@Email", Email);
-                cmdn.Parameters.AddWithValue("@LabelId", LabelId);
-                con.Open();
-                cmdn.ExecuteNonQuery();
-                con.Close();
-            }
 
-            return true;
-        }
-
-        public IEnumerable<Label> GetAllLabels(string Email, int LabelId)
-        {
-            List<Label> lstlabel = new List<Label>();
-            using (SqlConnection con = new SqlConnection(this.connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("spGetAllLabels", con);
+                SqlCommand cmd = new SqlCommand("spGetLabelByNoteId", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Email", Email);
+                cmd.Parameters.AddWithValue("@NoteId", NotelId);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    Label label = new Label();
                     label.LabelId = Convert.ToInt32(rdr["LabelId"]);
-                    label.Email = rdr["Email"].ToString();
+                    label.NoteId = Convert.ToInt32(rdr["NoteId"]);
                     label.Details = rdr["Details"].ToString();
                 }
 
                 con.Close();
             }
 
-            return lstlabel;
+            return label;
         }
 
-        public bool UpdateLabel(int LabelId, string Email, string Details)
-        {
-            if (Details != null )
-            {
-                using (SqlConnection con = new SqlConnection(this.connectionString))
-                {
-                    SqlCommand cmdn = new SqlCommand("spUpdateLabel", con);
-                    cmdn.CommandType = CommandType.StoredProcedure;
-                    cmdn.Parameters.AddWithValue("@LabelId", LabelId);
-                    cmdn.Parameters.AddWithValue("@Emaile", Email);
-                    cmdn.Parameters.AddWithValue("@Details", Details);
-                    con.Open();
-                    cmdn.ExecuteNonQuery();
-                    con.Close();
-                    return true;
-                }
-            }
+        /* public bool DeleteLabel(string Email, int LabelId)
+         {
+             using (SqlConnection con = new SqlConnection(this.connectionString))
+             {
+                 SqlCommand cmdn = new SqlCommand("spDeleteLabel", con);
+                 cmdn.CommandType = CommandType.StoredProcedure;
+                 cmdn.Parameters.AddWithValue("@Email", Email);
+                 cmdn.Parameters.AddWithValue("@LabelId", LabelId);
+                 con.Open();
+                 cmdn.ExecuteNonQuery();
+                 con.Close();
+             }
 
-            return false;
-        }
+             return true;
+         }*/
+
+
+
+        /*  public bool UpdateLabel(int LabelId, string Email, string Details)
+          {
+              if (Details != null )
+              {
+                  using (SqlConnection con = new SqlConnection(this.connectionString))
+                  {
+                      SqlCommand cmdn = new SqlCommand("spUpdateLabel", con);
+                      cmdn.CommandType = CommandType.StoredProcedure;
+                      cmdn.Parameters.AddWithValue("@LabelId", LabelId);
+                      cmdn.Parameters.AddWithValue("@Emaile", Email);
+                      cmdn.Parameters.AddWithValue("@Details", Details);
+                      con.Open();
+                      cmdn.ExecuteNonQuery();
+                      con.Close();
+                      return true;
+                  }
+              }
+
+              return false;
+          }*/
     }
 }

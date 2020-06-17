@@ -156,5 +156,26 @@ namespace FundooRepository.ImplementationClassRepo
             smtp.Send(mailmessage);
               return true;
           }
+
+        public string GetProfilePic(string email)
+        {
+            string profilepic = string.Empty;
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+
+                SqlCommand cmd = new SqlCommand("spGetProfilePic", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    profilepic = rdr["ProfilePicture"].ToString();
+                }
+
+                con.Close();
+            }
+            return profilepic;
+        }
     }
 }

@@ -7,55 +7,50 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-    <style>
-        .mmhidden{
-            visibility:hidden;
-        }
-        .show{
-            visibility:visible;
-        }
-    </style>
-    <script>
-
-        function listview(id) {
-            $("#"+id).toggleClass("show");
-        }
-
-       
-
-            
-                
-                    $('#loginButton').click(function () {
-                        var formData = new FormData();
-                        var file = $('#FileUpload1')[0].file[0];
-                        var Email = $('#loginButton').val();
-                        formData.append("File", file);
-                        formData.append("Email", Email);
-
-                        $.ajax({
-                            type: "PUT",
-                            url: 'https://localhost:44337/Notes/ProfilePicture',
-                            data: formData,
-                            contentType: false,
-                            processData: false,
-                            success: function (result) {
-                                alert(result);
-                            },
-
-                        });
-                    });
-     </script>
 </head>
 <body>
 
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profilepicModal">
+        Launch demo modal
+    </button>
 
-    <div class="form-group">
-
-        <!-- Example file element -->
-        <input type="file" name="FileUpload1" id="FileUpload1" />
-        <button id="loginButton" value="guptanikhil801@gmail.com">login</button>
+    <!-- Modal -->
+    <div class="modal fade" id="profilepicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload a Profile Picture</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="profilepicdata" method="put">
+                        <input type="hidden" id="ppemail" name="Email" value="" />
+                        <label for="File">Choose a Picture :</label>
+                        <input name="File" type="file" />
+                        <button class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script>
+        $("form#profilepicdata").submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "https://localhost:44337/Notes/ProfilePicture",
+                type: 'PUT',
+                data: formData,
+                success: function (data) {
+                    window.location.reload();
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+    </script>
 </body>
 </html>

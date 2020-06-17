@@ -1,1 +1,36 @@
-﻿
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <form id="data" method="put">
+        <input type="hidden" name="Email" value="guptanikhil801@gmail.com" />
+        <input name="File" type="file" />
+        <button>Submit</button>
+    </form>
+    <script>
+        $("form#data").submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "https://localhost:44337/Notes/ProfilePicture",
+                type: 'PUT',
+                data: formData,
+                success: function (data) {
+                    alert(data)
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+    </script>
+</body>
+</html>
+;

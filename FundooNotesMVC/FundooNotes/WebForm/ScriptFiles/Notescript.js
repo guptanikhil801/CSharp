@@ -1,4 +1,4 @@
-﻿
+﻿var tempNoteId;
 $(document).ready(function () {
     $('#archivednotesrow').hide();
     $('#trashednotesrow').hide();
@@ -16,30 +16,40 @@ $(document).ready(function () {
             var description = el.Description;
             var color = el.Colour;
             var NoteId = el.NoteId;
+            var reminder = el.Reminder;
+
+            var lnoteid = "l" + NoteId;
+             tempNoteId = NoteId;
+            
+
             $("<div style='background-color: " + color + "' class= 'card carddesign'>" +
                 "<div class= 'card-body'>" +
                 "<h5 class='card-title' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ")' > " + title + "</h5 > " +
                 "<p class='card-text' data-toggle='modal' data-target='#updatenotemodal'onclick='updateidfeed(" + NoteId + ")' >" + description + "</p>" +
+                "<span  class='badge badge-pill badge-light badgetran'>" + reminder + "</span>" +
+                "<span id = '" + lnoteid + "'  class='badge badge-pill badge-light badgetran'>" + "</span>" +             
                 "<div class='anicon display'>" +
                 "<input style='background-color: " + color + "' type='image'  title='Remind me' height='18' width='18' alt='Reminder' src='Assets/reminder.svg' />" +
                 "<input style='background-color: " + color + "' type='image' onclick='collabnoteidfeed(" + NoteId + ")'  data-toggle='modal' data-target='#AddCollabModal' title='Collaborator' height='18' width='18' alt='Collaborator' src='Assets/colab.svg' />" +
                 "<input style='background-color: " + color + "' type='image'  title='Change color' height='14' width='14' alt='Change color' src='Assets/colorpaletteicon.png' />" +
                 "<input style='background-color: " + color + "' type='image'  title='Add image' height='16' width='16' alt='Add image' src='Assets/uploadicon.png' />" +
                 "<input style='background-color: " + color + "' type='image' onclick='ArchiveUnArchive(" + NoteId + ")' title='Archive' height='13' width='13' alt='Archive' src='Assets/archiveicon.png' />" +
-                "<input style='background-color: " + color + "' type='image' onclick='mmtoggle(" + NoteId +")' title='More' height='18' width='18' alt='More' src='Assets/more.svg' />" +
+                "<input style='background-color: " + color + "' type='image' onclick='mmtoggle(" + NoteId + ")' title='More' height='18' width='18' alt='More' src='Assets/more.svg' />" +
                 "</div>" +
                 "</div>" +
-
-                "<div id = '" + NoteId + "' class= 'card mmhidden'>"+
-                "<div class='card-body mmbody'>"+
-                "<button class='mmbutton' onclick='TrashAndRestore(" + NoteId + ")' >"+ "Delete Note" +"</button>"+
-                    "<button class='mmbutton'>" + "Add Label "+"</button>"+
-                "</div>"+
-    "</div >"
+                "<div id = '" + NoteId + "' class= 'card mmhidden'>" +
+                "<div class='card-body mmbody'>" +
+                "<button class='mmbutton' onclick='TrashAndRestore(" + NoteId + ")' >" + "Delete Note" + "</button>" +
+                "<button  onclick='addlabelfeed(" + NoteId + ")' data-toggle='modal' data-target='#addlabelmodal' class='mmbutton' > " + "Add Label " + "</button > " +
+                "</div>" + 
+                "</div >", showlabel(NoteId)
             ).appendTo($('#allnotesrow'));
         })
     })
+
 });
+
+
 
 function show(id) {
     document.getElementById(id).style.visibility = "visible";
@@ -95,4 +105,45 @@ function togglebar() {
 function updateidfeed(id) {
         document.getElementById('updatenoteclose').setAttribute("value", id);    
 }
+
+function addlabelfeed(id) {
+    document.getElementById('addlabelclose').setAttribute("value", id)
+    ce();
+}
+
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:44337/Account/GetProfilePic",
+        data: { id: localStorage.getItem("UserEmail") },
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            var pic = data.profilepic;
+            $("#userpic").attr("src", pic);
+            $("#userpicbody").attr("src", pic);
+        }
+    })
+});
+
+    function showlabel(ge) {
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:44337/Label/GetLabelByNoteId",
+            data: { id: ge },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var noteid = data.label.NoteId;
+                var labelid = data.label.LabelId;
+                var details = data.label.Details;
+                $("#l" + ge).text(details);
+            }
+        })
+     }
+
+    
+
 

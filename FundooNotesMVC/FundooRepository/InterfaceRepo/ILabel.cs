@@ -7,9 +7,10 @@ namespace FundooRepository.InterfaceRepo
 {
    public interface ILabel
     {
-        bool AddLabel(string Email, string Details);
-        bool DeleteLabel(string Email, int LabelId);
-        IEnumerable<Label> GetAllLabels(string Email, int LabelId);
-        bool UpdateLabel(int LabelId, string Email, string Details);
+        bool AddLabel(int NoteId, string Details);
+        Label GetLabelByNoteId(int NoteId);
+        
+        //bool DeleteLabel(int LabelId);      
+        // bool UpdateLabel(int LabelId, string Email, string Details);
     }
 }
