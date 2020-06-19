@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="ScriptFiles/Notescript.js"></script>
+    <script src="ScriptFiles/Pinscript.js"></script>
     <style>
 
         .card:hover .display {
@@ -77,12 +78,15 @@
     background-color:transparent;
     border: solid  1.5px;
     border-color:#404040;
-    margin-right:3px;
-    
+    margin-right:3px;   
+}
+.noteimgsize{
+width: inherit;
+height:250px;
 
 }
 
-    </style>
+  </style>
 
     <script type="text/javascript">
         function ce() {
@@ -114,7 +118,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar  navbar-dark bg-dark">
     <div class="navbar-header">
 <button class="openbtn" id="openside" onclick="togglebar()" >☰</button> 
       <button class="navbar-brand" style="font-size:32px; background-color:transparent; border:none">
@@ -122,7 +126,7 @@
     </div>       
     <input style=" margin-top:8px; width:40%; margin-left:30px; margin-right:30px" class="form-control mr-sm3" id="searchbar" type="text" placeholder="Search"/>
     <button style="margin-right:30px"  onclick="listview()"><img  src="Assets/listviewicon.png" /></button>
-    <a style="margin-right:30px"  data-toggle="collapse" href="#setting-menu" role="button" ><img  src="Assets/settingicon.png" /></a>
+    <a style="margin-right:30px"  data-toggle="collapse" href="#setting-menu" role="button" ><img  src="Assets/settingiconupdated.png" style="background-color:#343a40" height="38" width="38"/></a>
     <a style="margin-right:30px " href="#"><img  src="Assets/googleappicon.png" /></a>
     <a style="margin-right:30px" onclick="usermenuemail()" data-toggle="collapse" href="#user-menuid" role="button" ><img id="userpic" src="" class="rounded-circle" alt="" width="47" height="47" /></a>
 </nav>
@@ -202,24 +206,16 @@
     </section>
 
         <section id="allnotesection">
+            <div class="container">              
+                <h4  style="margin-top:80px; margin-left:240px; margin-bottom:-20px" class="card-title">Pinned</h4> 
+            <div style="margin-left:220px; margin-bottom:30px" id="allPinnednotesrow" class="row">          
+            </div>          
+        </div>
+
         <div class="container">
-            <div style="margin-left:220px; margin-top:60px; margin-bottom:60px" id="allnotesrow" class="row">
-                <div style="background-color:antiquewhite" class="card carddesign">
-                    <div class="card-body">
-                        <h5 class='card-title'> manually created </h5 >
-                        <p class="card-text"> note</p>
-                        <span class="badge badge-pill badge-secondary badgetran">remindercheck</span>
-                        <span class="badge badge-pill badge-secondary" ></span>
-                      <div class="anicon display">
-                            <input type="image"  id="all-note-remind"  title="Remind me" height="18" width="18" alt="Reminder" src="Assets/reminder.svg" />                            
-                            <input type="image"  id="all-note-collab"  data-toggle="modal" data-target="#AddCollabModal" title="Collaborator" height="18" width="18" alt="Collaborator" src="Assets/colab.svg" />
-                            <input type="image"  id="all-note-changecolor" title="Change color" height="14" width="14" alt="Change color" src="Assets/colorpaletteicon.png" />
-                            <input type="image"  id="all-note-image" title="Add image" height="16" width="16" alt="Add image" src="Assets/uploadicon.png" />
-                            <input type="image"  id="all-note-archive" title="Archive" height="13" width="13" alt="Archive" src="Assets/archiveicon.png"  />
-                            <input type="image"  id="all-note-more"  title="More" height="18" width="18" alt="More" src="Assets/more.svg" />                       
-                       </div>
-                    </div>                     
-                </div> 
+            <h4  style="margin-top:40px; margin-left:240px; margin-bottom:-40px" class="card-title">Others</h4>
+            <div style="margin-left:220px; margin-top:30px; margin-bottom:60px" id="allnotesrow" class="row">
+               
             </div>          
         </div>
     </section>
@@ -313,6 +309,24 @@
         </div>
     </div>
 
+    <div class="modal fade" id="NoteImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="NoteImageModallLabel">Upload an Image For Note</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="noteimagedata" method="put">
+                        <input type="hidden" id="noteimageid" name="NoteId" value="" />
+                        <label for="File">Choose an image :</label>
+                        <input name="File" type="file" />
+                        <button class="btn btn-primary">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
             <script type="text/javascript">
                 $('#collab-save-btn').click(function () {
                     var collab = {};
@@ -357,7 +371,6 @@
             processData: true,
             success: function (data) {
                 location.reload();
-                alert("note created" + data);
             },
             error: function (data) {
                 alert("Title and description should not be empty");
@@ -387,6 +400,25 @@
     </script>
 
     <script type="text/javascript" >
+        function PinUnPinfun(noteid) {
+            var pin = parseInt(noteid);
+            console.log(JSON.stringify(pin))
+            $.ajax({
+                type: "PUT",
+                url: "https://localhost:44337/Notes/PinUnPin/" + pin,
+                dataType: "json",
+                success: function (data) {
+                    location.reload();
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+            return false;
+        }
+    </script>
+
+    <script type="text/javascript" >
         function TrashAndRestore(noteid) {
             var x = parseInt(noteid);
             console.log(JSON.stringify(x))
@@ -395,7 +427,7 @@
                 url: "https://localhost:44337/Notes/TrashAndRestore/" + x,
                 dataType: "json",
                 success: function (data) {
-                    alert(" note trashed/untrashed" + data);
+                    window.location.reload();
                 },
                 error: function () {
                     alert("error");
@@ -415,7 +447,6 @@
                 dataType: "json",
                 success: function (data) {
                     location.reload();
-                    alert(" note deleted parmanently" + data);
                 },
                 error: function () {
                     alert("error");
@@ -441,7 +472,6 @@
                 dataType: "json",
                 processData: true,
                 success: function () {
-                    alert("note updated");
                     window.location.reload();
                 },
                 error: function () {
@@ -550,7 +580,6 @@
                  processData: true,
                  success: function (data) {
                      location.reload();
-                     alert("Label added successfully" + data);
                  },
                  error: function (data) {
                      alert("details should not be null");
@@ -577,6 +606,23 @@
             });
         });
     </script>
+    <script>
+        $("form#noteimagedata").submit(function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "https://localhost:44337/Notes/NoteImage",
+                type: 'PUT',
+                data: formData,
+                success: function (data) {
+                    window.location.reload();
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });   
 
+    </script>
 </body>
 </html>

@@ -17,13 +17,16 @@ $(document).ready(function () {
             var color = el.Colour;
             var NoteId = el.NoteId;
             var reminder = el.Reminder;
-
+            var image = el.Image;
             var lnoteid = "l" + NoteId;
              tempNoteId = NoteId;
             
 
             $("<div style='background-color: " + color + "' class= 'card carddesign'>" +
-                "<div class= 'card-body'>" +
+                "<input type='image' style='background-color:transparent' onclick='PinUnPinfun(" + NoteId + ")' title='Pin Note' class='display' src='Assets/pin.svg' />" +
+                " <img src='" + image + "' class='card-img-top noteimgsize' alt=''>" +
+                "<div class= 'card-body'>" +  
+                
                 "<h5 class='card-title' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ")' > " + title + "</h5 > " +
                 "<p class='card-text' data-toggle='modal' data-target='#updatenotemodal'onclick='updateidfeed(" + NoteId + ")' >" + description + "</p>" +
                 "<span  class='badge badge-pill badge-light badgetran'>" + reminder + "</span>" +
@@ -32,7 +35,7 @@ $(document).ready(function () {
                 "<input style='background-color: " + color + "' type='image'  title='Remind me' height='18' width='18' alt='Reminder' src='Assets/reminder.svg' />" +
                 "<input style='background-color: " + color + "' type='image' onclick='collabnoteidfeed(" + NoteId + ")'  data-toggle='modal' data-target='#AddCollabModal' title='Collaborator' height='18' width='18' alt='Collaborator' src='Assets/colab.svg' />" +
                 "<input style='background-color: " + color + "' type='image'  title='Change color' height='14' width='14' alt='Change color' src='Assets/colorpaletteicon.png' />" +
-                "<input style='background-color: " + color + "' type='image'  title='Add image' height='16' width='16' alt='Add image' src='Assets/uploadicon.png' />" +
+                "<input style='background-color: " + color + "' type='image'  onclick='NoteImageFun(" + NoteId + ")' title='Add image' height='16' width='16' alt='Add image' src='Assets/uploadicon.png' data-toggle='modal' data-target='#NoteImageModal' />" +
                 "<input style='background-color: " + color + "' type='image' onclick='ArchiveUnArchive(" + NoteId + ")' title='Archive' height='13' width='13' alt='Archive' src='Assets/archiveicon.png' />" +
                 "<input style='background-color: " + color + "' type='image' onclick='mmtoggle(" + NoteId + ")' title='More' height='18' width='18' alt='More' src='Assets/more.svg' />" +
                 "</div>" +
@@ -142,8 +145,11 @@ $(document).ready(function () {
                 $("#l" + ge).text(details);
             }
         })
-     }
+    }
 
-    
+function NoteImageFun(noteid) {
+    document.getElementById('noteimageid').setAttribute("value", noteid);
+}
+
 
 

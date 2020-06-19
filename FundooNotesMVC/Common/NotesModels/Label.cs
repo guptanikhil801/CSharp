@@ -6,8 +6,8 @@ namespace Common.NotesModels
 {
    public class Label
     {
-        public string Email { get; set; }
         public int LabelId { get; set; }
+        public int NoteId { get; set; }
         public string Details { get; set; }
     }
 }

@@ -349,5 +349,90 @@ namespace FundooRepository.ImplementationClassRepo
 
             return lstnote;
         }
+
+        public bool PinUnPin(int NoteId)
+        {
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                string sqlQuery = "SELECT * FROM Notes WHERE IsPin=0 and NoteId =" + NoteId;
+                SqlCommand cmd = new SqlCommand(sqlQuery, con);
+                con.Open();
+                using (SqlDataReader sdr = cmd.ExecuteReader())
+                {
+                    if (sdr.HasRows)
+                    {
+                        Pin(NoteId);
+                        con.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        UnPin(NoteId);
+                        con.Close();
+                        return true;
+                    }
+                }
+            }
+        }
+
+        private void Pin(int NoteId)
+        {
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmdn = new SqlCommand("spPinANote", con);
+                cmdn.CommandType = CommandType.StoredProcedure;
+                cmdn.Parameters.AddWithValue("@NoteId", NoteId);
+                con.Open();
+                cmdn.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        private void UnPin(int NoteId)
+        {
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmdn = new SqlCommand("spUnPinANote", con);
+                cmdn.CommandType = CommandType.StoredProcedure;
+                cmdn.Parameters.AddWithValue("@NoteId", NoteId);
+                con.Open();
+                cmdn.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        public IEnumerable<Note> GetAllPinnedNotes(string Email)
+        {
+            List<Note> lstnote = new List<Note>();
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetAllPinnedNotes", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", Email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Note note = new Note();
+                    note.NoteId = Convert.ToInt32(rdr["NoteId"]);
+                    note.Title = rdr["Title"].ToString();
+                    note.Colour = rdr["Colour"].ToString();
+                    note.Email = rdr["Email"].ToString();
+                    note.Description = rdr["Description"].ToString();
+                    note.Image = rdr["Image"].ToString();
+                    note.IsPin = Convert.ToBoolean(rdr["IsPin"]);
+                    note.CreatedDate = Convert.ToDateTime(rdr["CreatedDate"]);
+                    note.ModifiedDate = Convert.ToDateTime(rdr["ModifiedDate"]);
+                    note.IsArchive = Convert.ToBoolean(rdr["IsArchive"]);
+                    note.IsTrash = Convert.ToBoolean(rdr["IsTrash"]);
+                    note.Reminder = rdr["Reminder"].ToString();
+                    lstnote.Add(note);
+                }
+
+                con.Close();
+            }
+
+            return lstnote;
+        }
     }
 }

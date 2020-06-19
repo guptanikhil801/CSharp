@@ -25,8 +25,7 @@ namespace FundooNotes.Controllers
                 return Json(new { HttpStatusCode.OK,model });
                
             }
-            // var error = "Invalid Email or Password";
-            // return Json(new { HttpStatusCode.BadRequest, error });
+
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
@@ -49,13 +48,20 @@ namespace FundooNotes.Controllers
         [Route("Account/ForgotPassword")]
         public ActionResult ForgotPassword(ForgotPassword model)
         {
-            // var resetlink = Url.Action()//("ResetPassword", "Account", new { email = model.Email });
             string link = "https://localhost:44337/Account/ResetPassword";
                 if (this.manager.ForgotPasswordUser(model, link))
                 {
                     return Json("A link has been sent to your email to reset your password");
                 }
             return Json(HttpStatusCode.BadRequest);
+        }
+
+        [HttpGet]
+      //  [Route("/Account/GetProfilePic/{id}")]
+        public ActionResult GetProfilePic(string id)
+        {
+            var profilepic = this.manager.GetProfilePic(id);
+            return Json(new { HttpStatusCode.OK, profilepic }, JsonRequestBehavior.AllowGet);
         }
     }
 }

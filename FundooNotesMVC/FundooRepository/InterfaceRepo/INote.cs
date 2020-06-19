@@ -13,9 +13,11 @@ namespace FundooRepository.InterfaceRepo
         bool DeleteNote(int NoteId);
         IEnumerable<Note> GetAllNotes(string Email);
         IEnumerable<Note> GetAllArchivedNotes(string Email);
+        IEnumerable<Note> GetAllPinnedNotes(string Email);
         IEnumerable<Note> GetAllTrashedNotes(string Email);
         bool TrashAndUnTrash(int NoteId);
         bool NoteImage(int NoteId, string Imageurl);
-        bool ProfilePicture(string Email, string Imageurl);      
+        bool ProfilePicture(string Email, string Imageurl);
+        bool PinUnPin(int NoteId);
     }
 }

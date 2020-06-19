@@ -33,26 +33,45 @@ namespace FundooNotes.Controllers
         }
 
         [HttpPut]
-        public ActionResult Archive( int NoteId)
+        public ActionResult UpdateNote(int noteid, string title, string description)
         {
-           if (this.manager.Archive( NoteId))
+            if (this.manager.UpdateNote(noteid,title,description))
+            {
+                return Json(new { HttpStatusCode.OK });
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPut]
+        public ActionResult Archive(int id)
+        {
+           if (this.manager.Archive( id))
               {
-                  return Json(new { HttpStatusCode.OK, NoteId });
+                  return Json(new { HttpStatusCode.OK });
               }
             
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         [HttpDelete]
-        public ActionResult DeleteForever(int NoteId)
+        public ActionResult DeleteForever(int id)
         {
             string msg = "Note Deleted permanently";
-            if (this.manager.DeleteNote(NoteId))
+            if (this.manager.DeleteNote(id))
             {
                 return Json(new { HttpStatusCode.OK, msg });
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpGet]
+        [Route("/Notes/GetAllArchivedNotes/{id}")]
+        public ActionResult GetAllArchivedNotes(string id)
+        {
+            var allarchivednotes = this.manager.GetAllArchivedNotes(id);
+            return Json(new { HttpStatusCode.OK, allarchivednotes }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -63,19 +82,26 @@ namespace FundooNotes.Controllers
                 return Json(new { HttpStatusCode.OK,  allnotes },JsonRequestBehavior.AllowGet);
         }
 
-
-     /*   [HttpGet]
-        //[Route("/Notes/AllNotes/{Email}")]
-        public ActionResult AllNotes()
+        [HttpGet]
+        [Route("/Notes/GetAllPinnedNotes/{id}")]
+        public ActionResult GetAllPinnedNotes(string id)
         {
-            var allnotes = this.manager.AllNotes();
-            return Json(new { HttpStatusCode.OK, allnotes }, JsonRequestBehavior.AllowGet);
-        }*/
+            var allpinnednotes = this.manager.GetAllPinnedNotes(id);
+            return Json(new { HttpStatusCode.OK, allpinnednotes }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Route("/Notes/GetAllTrashedNotes/{id}")]
+        public ActionResult GetAllTrashedNotes(string id)
+        {
+            var alltrashednotes = this.manager.GetAllTrashedNotes(id);
+            return Json(new { HttpStatusCode.OK, alltrashednotes }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPut]
-        public ActionResult TrashAndRestore(int NoteId)
+        public ActionResult TrashAndRestore(int id)
         {
-            if (this.manager.TrashAndUnTrash(NoteId))
+            if (this.manager.TrashAndUnTrash(id))
             {
                 return Json(new { HttpStatusCode.OK });
             }
@@ -91,6 +117,17 @@ namespace FundooNotes.Controllers
             {
                 return Json(new { HttpStatusCode.OK, msg });
             }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPut]
+        public ActionResult PinUnPin(int id)
+        {
+            if (this.manager.PinUnPin(id))
+            {
+                return Json(new { HttpStatusCode.OK });
+            }
+
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
