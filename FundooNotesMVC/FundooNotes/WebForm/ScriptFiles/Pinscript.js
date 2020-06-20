@@ -21,7 +21,7 @@
 
 
             $("<div style='background-color: " + color + "' class= 'card carddesign'>" +
-                "<input type='image' style='background-color:transparent; margin-left:50%' onclick='PinUnPinfun(" + NoteId + ")' title='UnPin Note' height='22' width='22'  class='display' src='Assets/pinicongrey.png' />" +
+                "<input type='image' style='background-color:transparent; margin-left:80%; margin-top:5px' onclick='PinUnPinfun(" + NoteId + ")' title='UnPin Note' height='22' width='22'  class='display' src='Assets/pinicongrey.png' />" +
                 " <img src='" + image + "' class='card-img-top noteimgsize' alt=''>" +
                 "<div class= 'card-body'>" +
 

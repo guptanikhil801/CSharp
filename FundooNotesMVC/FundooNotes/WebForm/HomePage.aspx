@@ -55,7 +55,7 @@
             width: 121px;
         }
         .brad{
-            border-radius:9px
+            border-radius:9px;
         }
         </style>
 </head>

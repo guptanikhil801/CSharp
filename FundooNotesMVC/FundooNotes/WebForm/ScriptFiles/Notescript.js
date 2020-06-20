@@ -21,16 +21,55 @@ $(document).ready(function () {
             var lnoteid = "l" + NoteId;
              tempNoteId = NoteId;
             
+            $("#searchbar").change(function () {
+                $("#allnotesrow").hide();
+                $('#allPinnednotesrow').hide();
+                $('#Pinnedh4').hide();
+                $('#Othersh4').hide();
+                $('#searchedh4').text("search result");
+                var v = $("#searchbar").val();
+                var t = title.search(v);
+                var d = description.search(v);
+                if (t >= 0 || d >= 0) {
+                    $("<div style='background-color: " + color + "' class= 'card carddesign'>" +
+                        "<input type='image' style='background-color:transparent; position:absolute; margin-left:80%; margin-top:5px' onclick='PinUnPinfun(" + NoteId + ")' title='Pin Note' class='display' src='Assets/pin.svg' />" +
+                        " <img src='" + image + "' class='card-img-top noteimgsize' alt=''>" +
+                        "<div class= 'card-body'>" +
+
+                        "<h5 class='card-title' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ")' > " + title + "</h5 > " +
+                        "<p class='card-text' data-toggle='modal' data-target='#updatenotemodal'onclick='updateidfeed(" + NoteId + ")' >" + description + "</p>" +
+                        "<span  class='badge badge-pill badge-light badgetran'>" + reminder + "</span>" +
+                        "<span id = '" + lnoteid + "'  class='badge badge-pill badge-light badgetran'>" + "</span>" +
+                        "<div class='anicon display'>" +
+                        "<input style='background-color: " + color + "' type='image'  title='Remind me' height='18' width='18' alt='Reminder' src='Assets/reminder.svg' />" +
+                        "<input style='background-color: " + color + "' type='image' onclick='collabnoteidfeed(" + NoteId + ")'  data-toggle='modal' data-target='#AddCollabModal' title='Collaborator' height='18' width='18' alt='Collaborator' src='Assets/colab.svg' />" +
+                        "<input style='background-color: " + color + "' type='image'  title='Change color' height='14' width='14' alt='Change color' src='Assets/colorpaletteicon.png' />" +
+                        "<input style='background-color: " + color + "' type='image'  onclick='NoteImageFun(" + NoteId + ")' title='Add image' height='16' width='16' alt='Add image' src='Assets/uploadicon.png' data-toggle='modal' data-target='#NoteImageModal' />" +
+                        "<input style='background-color: " + color + "' type='image' onclick='ArchiveUnArchive(" + NoteId + ")' title='Archive' height='13' width='13' alt='Archive' src='Assets/archiveicon.png' />" +
+                        "<input style='background-color: " + color + "' type='image' onclick='mmtoggle(" + NoteId + ")' title='More' height='18' width='18' alt='More' src='Assets/more.svg' />" +
+                        "</div>" +
+                        "</div>" +
+                        "<div id = '" + NoteId + "' class= 'card mmhidden'>" +
+                        "<div class='card-body mmbody'>" +
+                        "<button class='mmbutton' onclick='TrashAndRestore(" + NoteId + ")' >" + "Delete Note" + "</button>" +
+                        "<button  onclick='addlabelfeed(" + NoteId + ")' data-toggle='modal' data-target='#addlabelmodal' class='mmbutton' > " + "Add Label " + "</button > " +
+                        "</div>" +
+                        "</div >", showlabel(NoteId)
+                    ).appendTo($('#searchednotesrow'));
+
+                }
+
+            })
 
             $("<div style='background-color: " + color + "' class= 'card carddesign'>" +
-                "<input type='image' style='background-color:transparent' onclick='PinUnPinfun(" + NoteId + ")' title='Pin Note' class='display' src='Assets/pin.svg' />" +
+                "<input type='image' style='background-color:transparent; margin-left:80%; position:absolute; margin-top:5px' onclick='PinUnPinfun(" + NoteId + ")' title='Pin Note' class='display' src='Assets/pin.svg' />" +
                 " <img src='" + image + "' class='card-img-top noteimgsize' alt=''>" +
-                "<div class= 'card-body'>" +  
-                
+                "<div class= 'card-body'>" +
+
                 "<h5 class='card-title' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ")' > " + title + "</h5 > " +
                 "<p class='card-text' data-toggle='modal' data-target='#updatenotemodal'onclick='updateidfeed(" + NoteId + ")' >" + description + "</p>" +
                 "<span  class='badge badge-pill badge-light badgetran'>" + reminder + "</span>" +
-                "<span id = '" + lnoteid + "'  class='badge badge-pill badge-light badgetran'>" + "</span>" +             
+                "<span id = '" + lnoteid + "'  class='badge badge-pill badge-light badgetran'>" + "</span>" +
                 "<div class='anicon display'>" +
                 "<input style='background-color: " + color + "' type='image'  title='Remind me' height='18' width='18' alt='Reminder' src='Assets/reminder.svg' />" +
                 "<input style='background-color: " + color + "' type='image' onclick='collabnoteidfeed(" + NoteId + ")'  data-toggle='modal' data-target='#AddCollabModal' title='Collaborator' height='18' width='18' alt='Collaborator' src='Assets/colab.svg' />" +
@@ -44,9 +83,12 @@ $(document).ready(function () {
                 "<div class='card-body mmbody'>" +
                 "<button class='mmbutton' onclick='TrashAndRestore(" + NoteId + ")' >" + "Delete Note" + "</button>" +
                 "<button  onclick='addlabelfeed(" + NoteId + ")' data-toggle='modal' data-target='#addlabelmodal' class='mmbutton' > " + "Add Label " + "</button > " +
-                "</div>" + 
+                "</div>" +
                 "</div >", showlabel(NoteId)
             ).appendTo($('#allnotesrow'));
+
+
+
         })
     })
 
@@ -106,7 +148,7 @@ function togglebar() {
 }
 
 function updateidfeed(id) {
-        document.getElementById('updatenoteclose').setAttribute("value", id);    
+    document.getElementById('updatenoteclose').setAttribute("value", id);
 }
 
 function addlabelfeed(id) {
@@ -143,13 +185,23 @@ $(document).ready(function () {
                 var labelid = data.label.LabelId;
                 var details = data.label.Details;
                 $("#l" + ge).text(details);
+                if (details != null) {
+                    $("#reminderlisb").after("<li>" + "<img style='margin-top:-10px; margin-left:-17px'  src='Assets/newlabel.png' height='25' width='25' />" + "<button type='button' style='margin-left:25px' >" + details + "</button >" + "</li >");
+
+                    $("<div style='display:flex;flex-direction:row; justify-content: space-between'>" +
+                        "<input type='image' title='Label' height='15' width='20' alt='label' src='Assets/labelicongrey.png'>" +
+                        "<input type='text' style='outline:none; border:none' value= '" + details + "' >" +
+                        "<input type='image' title='Delete Label' height='15' width='20' alt='Delete label' src='Assets/deleteforever.png'>" +
+                        "</div>").appendTo($('#editlabellist'));
+                }
             }
-        })
+            });
     }
 
 function NoteImageFun(noteid) {
     document.getElementById('noteimageid').setAttribute("value", noteid);
 }
+
 
 
 

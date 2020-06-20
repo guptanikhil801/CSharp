@@ -85,6 +85,14 @@ width: inherit;
 height:250px;
 
 }
+#setting-menu{
+  position: absolute;
+  z-index: 1;
+}
+#user-menuid{
+  position: absolute;
+  z-index: 1;
+}
 
   </style>
 
@@ -133,9 +141,9 @@ height:250px;
 
 <div id="sidepanel">
    <ul>
- <li> <img style="margin-top:-10px; margin-left:-20px" src="Assets/notesicon.jpg" height="35" width="34" /><button type="button" onclick="Refresh()"  style="margin-left:25px" >Notes</button></li> 
- <li> <img style="margin-top:-10px; margin-left:-17px" src="Assets/belliconsb.jpg" height="35" width="34" /><button type="button" style="margin-left:25px" >Reminder</button></li>
- <li> <img style="margin-top:-10px; margin-left:-17px" src="Assets/labelicon.png" height="31" width="31" /><button type="button" style="margin-left:25px" >Label</button></li>
+ <li> <img style="margin-top:-10px; margin-left:-17px" src="Assets/notesicon.jpg" height="35" width="34" /><button type="button" onclick="Refresh()"  style="margin-left:25px" >Notes</button></li> 
+ <li id="reminderlisb"> <img style="margin-top:-10px; margin-left:-17px" src="Assets/belliconsb.jpg" height="35" width="34" /><button type="button" style="margin-left:25px" >Reminder</button></li>
+ <li> <img style="margin-top:-10px; margin-left:-17px" src="Assets/labelicon.png" height="31" width="31" /><button type="button" data-toggle='modal' data-target='#EditLabelmodal' style="margin-left:25px" >Edit Label</button></li>
  <li> <img style="margin-top:-10px; margin-left:-17px" src="Assets/archiveiconsb.png" height="31" width="31" /><button type="button" id="showarchivednotes" style="margin-left:25px" >Archive</button></li>
  <li> <img style="margin-top:-10px; margin-left:-17px" src="Assets/biniconsb.jpg" height="31" width="31" /><button type="button" id="showtrashednotes" style="margin-left:25px" >Bin</button></li>
   </ul>
@@ -207,22 +215,26 @@ height:250px;
 
         <section id="allnotesection">
             <div class="container">              
-                <h4  style="margin-top:80px; margin-left:240px; margin-bottom:-20px" class="card-title">Pinned</h4> 
+                <h4  id="searchedh4" style="margin-top:70px; margin-left:240px; margin-bottom:-20px" class="card-title"></h4> 
+            <div style="margin-left:220px; margin-bottom:30px" id="searchednotesrow" class="row">          
+            </div> 
+                </div>
+
+            <div class="container">              
+                <h4  id="Pinnedh4" style="margin-top:20px; margin-left:240px; margin-bottom:-20px" class="card-title">Pinned</h4> 
             <div style="margin-left:220px; margin-bottom:30px" id="allPinnednotesrow" class="row">          
             </div>          
         </div>
-
         <div class="container">
-            <h4  style="margin-top:40px; margin-left:240px; margin-bottom:-40px" class="card-title">Others</h4>
-            <div style="margin-left:220px; margin-top:30px; margin-bottom:60px" id="allnotesrow" class="row">
-               
+            <h4 id="Othersh4" style="margin-top:40px; margin-left:240px; margin-bottom:-40px" class="card-title">Others</h4>
+            <div style="margin-left:220px; margin-top:30px; margin-bottom:60px" id="allnotesrow" class="row">               
             </div>          
         </div>
     </section>
 
      <section id="archivednotesection">
         <div class="container">
-                         <h1 style="margin-left:40%" id="anheading" class='card-title'> </h1>
+             <h1 style="margin-left:40%" id="anheading" class='card-title'> </h1>
             <div style="margin-left:220px; margin-top:60px; margin-bottom:60px" id="archivednotesrow" class="row">
             </div>
         </div>
@@ -270,7 +282,7 @@ height:250px;
 
      <div  class="modal fade" id="updatenotemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div  class="modal-dialog modal-dialog-centered" role="document">
-            <div style="width:540px; height:180px; background-color:white" id="updatenotebox" class="modal-content">              
+            <div style="width:540px; height:180px; background-color:white" id="updatenotebox" class="modal-content">  
                 <div style="display:flex; flex-direction:column;" class="modal-header">                 
                     <input type="text" style=" margin-top:10px; width:80%; border:none; background-color:white; outline:none" placeholder="new title" id="updatetitle" />
                     <input type="text" style=" margin-top:10px; width:80%; border:none; background-color:white; outline:none" placeholder="new description" id="updatedescription" />
@@ -323,6 +335,20 @@ height:250px;
                         <button class="btn btn-primary">Upload</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="modal fade" id="EditLabelmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div style="width:300px; height:390px; background-color:white" id="editlabelbox" class="modal-content">
+                <div  class="modal-header">
+                    <h5 style="margin-left:25%" class="modal-title">Edit Label</h5>
+                </div>
+                <div class="modal-body" id="editlabellist">
+                    
+                </div>
+                <button type="button"  style="border:none; background:none; position:absolute; margin-top:100%; margin-left:76%;" data-dismiss="modal">Done</button>
             </div>
         </div>
     </div>
@@ -487,6 +513,9 @@ height:250px;
             $("#allnotesrow").hide();
             $('#archivednotesrow').show();
             $('#newnotebody').hide();
+            $('#Pinnedh4').hide();
+            $('#Othersh4').hide();
+            $('#allPinnednotesrow').hide();
             $('#trashednotesrow').hide();
             var x = localStorage.getItem("UserEmail");
             $.ajax({
@@ -532,6 +561,9 @@ height:250px;
     <script>
         $('#showtrashednotes').click(function () {
             $("#allnotesrow").hide();
+            $('#allPinnednotesrow').hide();
+            $('#Pinnedh4').hide();
+            $('#Othersh4').hide();
             $('#archivednotesrow').hide();
             $('#trashednotesrow').show();
             $('#newnotebody').hide();
