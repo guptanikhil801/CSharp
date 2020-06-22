@@ -191,7 +191,7 @@ $(document).ready(function () {
                     $("<div style='display:flex;flex-direction:row; justify-content: space-between'>" +
                         "<input type='image' title='Label' height='15' width='20' alt='label' src='Assets/labelicongrey.png'>" +
                         "<input type='text' style='outline:none; border:none' value= '" + details + "' >" +
-                        "<input type='image' title='Delete Label' height='15' width='20' alt='Delete label' src='Assets/deleteforever.png'>" +
+                        "<input type='image' title='Delete Label' height='15' width='20' onclick='DeleteLabelFun(" + labelid + ")' alt='Delete label' src='Assets/deleteforever.png'>" +
                         "</div>").appendTo($('#editlabellist'));
                 }
             }
@@ -202,6 +202,30 @@ function NoteImageFun(noteid) {
     document.getElementById('noteimageid').setAttribute("value", noteid);
 }
 
+function EditLabelIdFeed(labelid) {
+    document.getElementById('editlabelidhid').setAttribute("value", labelid);
+}
 
-
+function UpdateLabelFun (newdetails) {
+    var x = parseInt($('#editlabelidhid').val());
+    var ulabel = {};
+    ulabel.labelid = x;
+    ulabel.details = newdetails.val();
+    console.log(JSON.stringify(ulabel))
+    $.ajax({
+        type: "PUT",
+        url: "https://localhost:44337/Label/UpdateLabel",
+        data: JSON.stringify(ulabel),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        processData: true,
+        success: function () {
+            window.location.reload();
+        },
+        error: function () {
+            alert("some error occured");
+        }
+    });
+    return false;
+}
 

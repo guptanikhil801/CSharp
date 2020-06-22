@@ -38,6 +38,28 @@ namespace FundooNotes.Controllers
             return Json(new { HttpStatusCode.OK, label }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpDelete]
+        public ActionResult DeleteLabel(int id)
+        {
+            string msg = "Label Deleted permanently";
+            if (this.manager.DeleteLabel(id))
+            {
+                return Json(new { HttpStatusCode.OK, msg });
+            }
 
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        [HttpPut]
+        public ActionResult UpdateLabel(int labelid, string details)
+        {
+            if (this.manager.UpdateLabel(labelid, details))
+            {
+                return Json(new { HttpStatusCode.OK });
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+    
     }
 }

@@ -9,3 +9,4 @@ C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\net
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CopyComplete
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.pdb
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CoreCompileInputs.cache

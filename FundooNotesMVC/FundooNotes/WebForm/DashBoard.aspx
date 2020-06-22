@@ -348,6 +348,7 @@ height:250px;
                 <div class="modal-body" id="editlabellist">
                     
                 </div>
+                <input type="hidden" id="editlabelidhid" value="" />
                 <button type="button"  style="border:none; background:none; position:absolute; margin-top:100%; margin-left:76%;" data-dismiss="modal">Done</button>
             </div>
         </div>
@@ -656,5 +657,25 @@ height:250px;
         });   
 
     </script>
+
+        <script type="text/javascript" >
+            function DeleteLabelFun(labelid) {
+                var x = parseInt(labelid);
+                console.log(JSON.stringify(x))
+                $.ajax({
+                    type: "DELETE",
+                    url: "https://localhost:44337/Label/DeleteLabel/" + x,
+                    dataType: "json",
+                    success: function (data) {
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
+                return false;
+            }
+        </script>
+
 </body>
 </html>

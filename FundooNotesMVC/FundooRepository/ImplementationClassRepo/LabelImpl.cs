@@ -56,13 +56,12 @@ namespace FundooRepository.ImplementationClassRepo
             return label;
         }
 
-        /* public bool DeleteLabel(string Email, int LabelId)
+         public bool DeleteLabel(int LabelId)
          {
              using (SqlConnection con = new SqlConnection(this.connectionString))
              {
                  SqlCommand cmdn = new SqlCommand("spDeleteLabel", con);
                  cmdn.CommandType = CommandType.StoredProcedure;
-                 cmdn.Parameters.AddWithValue("@Email", Email);
                  cmdn.Parameters.AddWithValue("@LabelId", LabelId);
                  con.Open();
                  cmdn.ExecuteNonQuery();
@@ -70,11 +69,11 @@ namespace FundooRepository.ImplementationClassRepo
              }
 
              return true;
-         }*/
+         }
 
 
 
-        /*  public bool UpdateLabel(int LabelId, string Email, string Details)
+          public bool UpdateLabel(int LabelId, string Details)
           {
               if (Details != null )
               {
@@ -83,7 +82,6 @@ namespace FundooRepository.ImplementationClassRepo
                       SqlCommand cmdn = new SqlCommand("spUpdateLabel", con);
                       cmdn.CommandType = CommandType.StoredProcedure;
                       cmdn.Parameters.AddWithValue("@LabelId", LabelId);
-                      cmdn.Parameters.AddWithValue("@Emaile", Email);
                       cmdn.Parameters.AddWithValue("@Details", Details);
                       con.Open();
                       cmdn.ExecuteNonQuery();
@@ -93,6 +91,7 @@ namespace FundooRepository.ImplementationClassRepo
               }
 
               return false;
-          }*/
+          }
+
     }
 }

@@ -21,7 +21,7 @@ namespace FundooNotes
                     name: "Default",
                     url: "{controller}/{action}/{id}",
                     defaults: new { action = "Index", id = UrlParameter.Optional }
-                );  
+                );
         }
     }
 }

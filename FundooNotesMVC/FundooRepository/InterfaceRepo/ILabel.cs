@@ -9,8 +9,7 @@ namespace FundooRepository.InterfaceRepo
     {
         bool AddLabel(int NoteId, string Details);
         Label GetLabelByNoteId(int NoteId);
-        
-        //bool DeleteLabel(int LabelId);      
-        // bool UpdateLabel(int LabelId, string Email, string Details);
+        bool DeleteLabel(int LabelId);      
+        bool UpdateLabel(int LabelId, string Details);
     }
 }
