@@ -95,8 +95,7 @@
                    contentType: "application/json; charset=utf-8",
                    dataType: "json",
                    processData: true,
-                   success: function (data) {
-                       alert("login Successfull" + data);
+                   success: function (data) {         
                        localStorage.setItem("UserEmail", login.Email);
                        window.location.href = "https://localhost:44337/Webform/DashBoard.aspx";
                    },

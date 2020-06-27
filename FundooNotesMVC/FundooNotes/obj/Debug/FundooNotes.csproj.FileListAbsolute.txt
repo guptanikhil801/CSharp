@@ -85,10 +85,8 @@ C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\obj\Debug\FundooNo
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\obj\Debug\FundooNotes.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\obj\Debug\FundooNotes.pdb
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\FundooManager.dll
-C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\Common.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\FundooRepository.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\FundooManager.pdb
-C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\Common.pdb
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\FundooRepository.pdb
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\System.Data.SqlClient.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\System.Data.SqlClient.xml
@@ -125,3 +123,5 @@ C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\System.Web.Htt
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\System.Web.Http.WebHost.xml
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\CloudinaryDotNet.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\CloudinaryDotNet.xml
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\FundooModels.dll
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooNotes\bin\FundooModels.pdb

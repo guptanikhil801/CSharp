@@ -227,22 +227,22 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "FundooModels/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "compile": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/FundooModels.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/FundooModels.dll": {}
         }
       },
       "FundooRepository/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "Common": "1.0.0",
           "Experimental.System.Messaging": "1.1.0",
+          "FundooModels": "1.0.0",
           "System.Data.SqlClient": "4.8.1"
         },
         "compile": {
@@ -892,10 +892,10 @@
         "version.txt"
       ]
     },
-    "Common/1.0.0": {
+    "FundooModels/1.0.0": {
       "type": "project",
-      "path": "../Common/Common.csproj",
-      "msbuildProject": "../Common/Common.csproj"
+      "path": "../Common/FundooModels.csproj",
+      "msbuildProject": "../Common/FundooModels.csproj"
     },
     "FundooRepository/1.0.0": {
       "type": "project",

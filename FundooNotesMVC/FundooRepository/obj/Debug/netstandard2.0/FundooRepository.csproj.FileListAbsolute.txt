@@ -1,12 +1,12 @@
-C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\Common.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csprojAssemblyReference.cache
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.AssemblyInfoInputs.cache
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.AssemblyInfo.cs
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\FundooRepository.deps.json
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\FundooRepository.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\FundooRepository.pdb
-C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\Common.pdb
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CopyComplete
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.dll
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.pdb
 C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\obj\Debug\netstandard2.0\FundooRepository.csproj.CoreCompileInputs.cache
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\FundooModels.dll
+C:\Users\Nikhil Gupta\source\repos\FundooNotesMVC\FundooRepository\bin\Debug\netstandard2.0\FundooModels.pdb

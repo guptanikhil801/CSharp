@@ -280,9 +280,12 @@ height:250px;
         </div>
     </div>
 
+    
      <div  class="modal fade" id="updatenotemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div  class="modal-dialog modal-dialog-centered" role="document">
-            <div style="width:540px; height:180px; background-color:white" id="updatenotebox" class="modal-content">  
+         
+         <div  class="modal-dialog modal-dialog-centered" role="document">
+         <img style="position:absolute; margin-top:-188px; margin-left:1px; border-top-left-radius:3px; border-top-right-radius:3px; z-index:1" src="" id="unimg" alt="" width="498" height="250"/>
+             <div style="width:540px; height:180px; margin-top:50px; background-color:white" id="updatenotebox" class="modal-content">  
                 <div style="display:flex; flex-direction:column;" class="modal-header">                 
                     <input type="text" style=" margin-top:10px; width:80%; border:none; background-color:white; outline:none" placeholder="new title" id="updatetitle" />
                     <input type="text" style=" margin-top:10px; width:80%; border:none; background-color:white; outline:none" placeholder="new description" id="updatedescription" />

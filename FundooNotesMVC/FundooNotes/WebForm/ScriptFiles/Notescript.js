@@ -19,8 +19,8 @@ $(document).ready(function () {
             var reminder = el.Reminder;
             var image = el.Image;
             var lnoteid = "l" + NoteId;
-             tempNoteId = NoteId;
-            
+            tempNoteId = NoteId;
+            var timg = image;
             $("#searchbar").change(function () {
                 $("#allnotesrow").hide();
                 $('#allPinnednotesrow').hide();
@@ -66,8 +66,8 @@ $(document).ready(function () {
                 " <img src='" + image + "' class='card-img-top noteimgsize' alt=''>" +
                 "<div class= 'card-body'>" +
 
-                "<h5 class='card-title' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ")' > " + title + "</h5 > " +
-                "<p class='card-text' data-toggle='modal' data-target='#updatenotemodal'onclick='updateidfeed(" + NoteId + ")' >" + description + "</p>" +
+                "<h5 class='card-title' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ",\"" + image + "\")'> " + title + "</h5 > " +
+                "<p class='card-text' data-toggle='modal' data-target='#updatenotemodal' onclick='updateidfeed(" + NoteId + ",\"" + image + "\")' >" + description + "</p>" +
                 "<span  class='badge badge-pill badge-light badgetran'>" + reminder + "</span>" +
                 "<span id = '" + lnoteid + "'  class='badge badge-pill badge-light badgetran'>" + "</span>" +
                 "<div class='anicon display'>" +
@@ -147,8 +147,17 @@ function togglebar() {
     $("#sidepanel").toggleClass("active");
 }
 
-function updateidfeed(id) {
+function updateidfeed(id, pic) {
+    console.log(id);
+    console.log("picture" + pic);
     document.getElementById('updatenoteclose').setAttribute("value", id);
+    $("#unimg").attr("src", pic);
+}
+
+function updateimgfeed(event, pic) {
+    console.log(event.currentTarget, "dhhuj");
+    $("#unimg").attr("src", pic);
+
 }
 
 function addlabelfeed(id) {

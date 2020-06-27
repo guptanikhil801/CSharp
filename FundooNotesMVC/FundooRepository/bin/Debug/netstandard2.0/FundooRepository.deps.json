@@ -9,8 +9,8 @@
     ".NETStandard,Version=v2.0/": {
       "FundooRepository/1.0.0": {
         "dependencies": {
-          "Common": "1.0.0",
           "Experimental.System.Messaging": "1.1.0",
+          "FundooModels": "1.0.0",
           "NETStandard.Library": "2.0.3",
           "System.Data.SqlClient": "4.8.1"
         },
@@ -151,9 +151,9 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "FundooModels/1.0.0": {
         "runtime": {
-          "Common.dll": {}
+          "FundooModels.dll": {}
         }
       }
     }
@@ -283,7 +283,7 @@
       "path": "system.text.encoding.codepages/4.7.0",
       "hashPath": "system.text.encoding.codepages.4.7.0.nupkg.sha512"
     },
-    "Common/1.0.0": {
+    "FundooModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

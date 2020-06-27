@@ -227,14 +227,14 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "FundooModels/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "compile": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/FundooModels.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/FundooModels.dll": {}
         }
       }
     }
@@ -877,16 +877,16 @@
         "version.txt"
       ]
     },
-    "Common/1.0.0": {
+    "FundooModels/1.0.0": {
       "type": "project",
-      "path": "../Common/Common.csproj",
-      "msbuildProject": "../Common/Common.csproj"
+      "path": "../Common/FundooModels.csproj",
+      "msbuildProject": "../Common/FundooModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Common >= 1.0.0",
       "Experimental.System.Messaging >= 1.1.0",
+      "FundooModels >= 1.0.0",
       "NETStandard.Library >= 2.0.3",
       "System.Data.SqlClient >= 4.8.1"
     ]
@@ -917,8 +917,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj"
+            "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj": {
+              "projectPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj"
             }
           }
         }

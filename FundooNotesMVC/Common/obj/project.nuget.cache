@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HWTEDHXYg0q2/uE/jsWne+3ts5I1p8e7zRk4oblm+kTILw+5SQgqDZJ39EGNN0NOiUsHu++dKuispQUd0BQokQ==",
+  "dgSpecHash": "uLKjFoIWORF2jpMuMVKRTbP+82XB7cW6lKAAV1VfVtMYWHGsZ1ztflu/7/7p6+JhvXNWr16vfHinZCwyLD/FHg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj",
+  "projectFilePath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nikhil Gupta\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Nikhil Gupta\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

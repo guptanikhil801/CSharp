@@ -403,9 +403,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\FundooModels.csproj">
       <Project>{84AF53C8-EB77-4416-BDD0-025386B13833}</Project>
-      <Name>Common</Name>
+      <Name>FundooModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\FundooManager\FundooManager.csproj">
       <Project>{bbd09220-6b72-435c-a3b5-4fff2b6bf6fa}</Project>

@@ -4,12 +4,12 @@
     "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\FundooManager\\FundooManager.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj": {
+    "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj",
-        "projectName": "Common",
-        "projectPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj",
+        "projectName": "FundooModels",
+        "projectPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj",
         "packagesPath": "C:\\Users\\Nikhil Gupta\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\obj\\",
         "projectStyle": "PackageReference",
@@ -141,8 +141,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\Common.csproj"
+              "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj": {
+                "projectPath": "C:\\Users\\Nikhil Gupta\\source\\repos\\FundooNotesMVC\\Common\\FundooModels.csproj"
               }
             }
           }
