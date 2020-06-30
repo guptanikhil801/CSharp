@@ -1,0 +1,11 @@
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreManager.dll
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreManager.pdb
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\obj\Debug\BookStoreManager.csproj.CoreCompileInputs.cache
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\obj\Debug\BookStoreManager.dll
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\obj\Debug\BookStoreManager.pdb
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\obj\Debug\BookStoreManager.csprojAssemblyReference.cache
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreModal.dll
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreRepository.dll
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreModal.pdb
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreRepository.pdb
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\obj\Debug\BookStoreManager.csproj.CopyComplete
