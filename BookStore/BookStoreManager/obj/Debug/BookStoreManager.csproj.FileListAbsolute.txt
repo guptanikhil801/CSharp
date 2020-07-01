@@ -9,3 +9,5 @@ C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStor
 C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreModal.pdb
 C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\BookStoreRepository.pdb
 C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\obj\Debug\BookStoreManager.csproj.CopyComplete
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\Experimental.System.Messaging.dll
+C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreManager\bin\Debug\Experimental.System.Messaging.xml

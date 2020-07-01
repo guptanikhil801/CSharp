@@ -19,5 +19,7 @@ namespace BookStoreManager.InterfaceManager
         bool Registration(RegistrationModal modal);
 
         bool ResetPassword(string Email, string Password);
+
+        bool ForgotPassword(string Email);
     }
 }
