@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="BookStoreApp.WebForms.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AdminLogin.aspx.cs" Inherits="BookStoreApp.WebForms.AdminLogin" %>
 
 <!DOCTYPE html>
 
@@ -7,49 +7,51 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-    <title>Login To BookStore</title>
+    <title>Admin Login</title>
     <style>
-        #bookiconimg {
-            margin-top: -47px;
-            margin-bottom: -12px;
-            margin-left: 210%;
-            border-radius: 6px;
-        }
-
-        #bookstorelabel {
-            font-size: 45px;
-            margin-top: -57px;
-            margin-bottom: -23px;
-            margin-left: 230%;
-            margin-right: 45%
-        }
-
-        #navbarst {
+        #navtop {
             margin-top: 2px;
             margin-left: 2px;
             margin-right: 2px;
             border-radius: 5px
         }
 
-        #navfooter {
+        #bookiconimg {
+            margin-top: -45px;
+            margin-bottom: -20px;
+            margin-left: 210%;
+            border-radius: 6px
+        }
+
+        #bookheadingh1 {
+            font-size: 45px;
+            margin-top: -55px;
+            margin-bottom: -20px;
+            margin-left: 230%;
+            margin-right: 45%
+        }
+
+        #footerp {
             margin-left: 40%;
-            margin-bottom: -3px
+            margin-bottom: -3px;
         }
     </style>
 </head>
 <body style="background-color: lightgrey">
     <form id="form1" runat="server">
-        <nav id="navbarst" style="" class="navbar navbar-dark bg-danger">
+        <nav id="navtop" class="navbar navbar-dark bg-danger">
+
             <div class=" p-3 my-3  text-white">
                 <img id="bookiconimg" src="Assets/bookicon.png" height="40" width="40" />
-                <h1 id="bookstorelabel">BookStore</h1>
+                <h1 id="bookheadingh1" style="">BookStore</h1>
             </div>
         </nav>
         <div class="container">
-            <p class="text-Danger text-left" style="font-size: 60px">Login</p>
+            <p class="text-Danger text-left" style="font-size: 60px">Admin Login</p>
+
             <div style="margin-top: 10px" class="input-group mb-3 w-50">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">&nbsp&nbsp Email &nbsp&nbsp</span>
+                    <span class="input-group-text">Email</span>
                 </div>
                 <asp:TextBox class="form-control" ID="EmailTextBox" runat="server" placeholder="Enter Email"></asp:TextBox>
             </div>
@@ -57,13 +59,13 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Password</span>
                 </div>
-                <asp:TextBox class="form-control" TextMode="Password" ID="PasswordTextBox" runat="server" placeholder="Enter Password"></asp:TextBox>
+                <asp:TextBox class="form-control" ID="PasswordTextBox" TextMode="Password" runat="server" placeholder="Enter Password"></asp:TextBox>
             </div>
-            <asp:Button CssClass="btn btn-outline-danger" runat="server" Text="Login" OnClick="Login_Button" />
-            <a class="text-left text-primary ml-5" href="ForgotPassword.aspx">Forgotten account?</a>
+            <asp:Button CssClass="btn btn-outline-danger" runat="server" Text="Log In" OnClick="Login_Button" />
+
         </div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
-            <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
+            <p id="footerp" class="text-white text-center">Copyright @ BookStore Private Limited</p>
         </nav>
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

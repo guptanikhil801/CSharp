@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ImplManager\AdminMgr.cs" />
     <Compile Include="ImplManager\CustomerMgr.cs" />
+    <Compile Include="InterfaceManager\IAdminMgr.cs" />
     <Compile Include="InterfaceManager\ICustomerMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

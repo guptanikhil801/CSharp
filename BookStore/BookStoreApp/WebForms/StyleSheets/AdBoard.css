@@ -1,0 +1,77 @@
+﻿#bookiconimg {
+    margin-left: 30%;
+    border-radius: 4px;
+    margin-bottom: 3px
+}
+
+#bookstorelabel {
+    font-size: 25px;
+    margin-top: -32px;
+    margin-left: 55%;
+    margin-bottom: -1px;
+}
+
+#adlabel {
+    font-size: 25px;
+    margin-left: 15%;
+}
+
+#navbarst {
+    margin-top: 2px;
+    border-radius: 5px
+}
+
+#navfooter {
+    margin-left: 40%;
+    margin-bottom: -3px
+}
+
+#searchbar {
+    margin-left: 25%;
+    margin-right: 8%
+}
+
+#wishlist {
+    margin-right: 7%;
+}
+
+.oprow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.addbookbtn {
+    margin-top: -75px;
+    margin-left: 90%;
+}
+
+.ratingdiv {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -17px
+}
+
+.pricediv {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -20px
+}
+
+.availablestockdiv {
+    display: inline-flex;
+    margin-top: -20px;
+}
+
+.updatedeletediv {
+    margin-top: -12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+
+.authorp {
+    font-size: 12px;
+    margin-top: -20px
+}

@@ -38,27 +38,28 @@
         }
 
         #wishlist {
-            margin-right: 5%;
+            margin-right: 7%;
         }
     </style>
 </head>
 <body style="background-color: lightgrey">
     <form id="form1" runat="server">
-        <div class="container">
-            <nav id="navbarst" class="navbar navbar-expand-sm bg-danger ">
-                <div class=" text-white">
-                    <img id="bookiconimg" src="Assets/bookicon.png" height="25" width="25" />
-                    <h1 id="bookstorelabel">BookStore</h1>
-                </div>
-                <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server"></asp:TextBox>
-                <img id="wishlist" src="Assets/wishlisticon.png" height="30" width="30" title="Wishlist" />
-                <img id="cart" src="Assets/carticon.png" height="40" width="40" title="Cart" />
-            </nav>
+        <%--NavBar-Top--%>
+        <nav id="navbarst" class="navbar navbar-expand-sm bg-danger fixed-top ">
+            <div class=" text-white">
+                <img id="bookiconimg" src="Assets/bookicon.png" height="25" width="25" />
+                <h1 id="bookstorelabel">BookStore</h1>
+            </div>
+            <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server"></asp:TextBox>
+            <img id="wishlist" src="Assets/wishlisticon.png" height="30" width="30" title="Wishlist" />
+            <img id="cart" src="Assets/carticon.png" height="40" width="40" title="Cart" />
+        </nav>
 
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
-                <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
-            </nav>
-        </div>
+        <%--NavBar-Bottom--%>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+            <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
+        </nav>
+
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

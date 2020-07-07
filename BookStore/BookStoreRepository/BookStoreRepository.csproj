@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ImplementationRepo\AdminRepo.cs" />
     <Compile Include="ImplementationRepo\CustomerRepoImpl.cs" />
+    <Compile Include="InterfacesRepo\IAdminRepo.cs" />
     <Compile Include="InterfacesRepo\ICustomerRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ConnectionString.cs" />
