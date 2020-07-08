@@ -47,6 +47,20 @@
     margin-left: 90%;
 }
 
+.updatebookbtn {
+    margin-top: -25px;
+    margin-left: 77%;
+    visibility: hidden;
+}
+
+.deletebookbtn {
+    position: absolute;
+    margin-top: -85px;
+    margin-left: 50%;
+    visibility: hidden;
+}
+
+
 .ratingdiv {
     display: flex;
     flex-direction: row;

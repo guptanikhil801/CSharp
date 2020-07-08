@@ -9,15 +9,6 @@
     <link rel="stylesheet" type="text/css" href="StyleSheets/AdBoard.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
     <title>Admin DashBoard</title>
-    <style>
-        bookcard {
-            width: 16rem;
-            margin-right: 2px
-        }
-
-        bookimgst {
-        }
-    </style>
 </head>
 <body style="background-color: lightgrey">
     <form id="form1" runat="server">
@@ -32,11 +23,14 @@
             <asp:TextBox ID="searchbar" CssClass="form-control w-25" placeholder="Search" runat="server"></asp:TextBox>
         </nav>
 
-        <%-- Add Book Section --%>
+        <%-- Add and Update Book Section --%>
         <div style="margin-top: 70px;" class="container">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Add a New Book</h5>
+                    <h5 id="updateaddheading" class="card-title">Add a New Book</h5>
+
+                    <%--Hidden Field for storing Bookid--%>
+                    <asp:HiddenField ID="bookid" Value="" runat="server" />
                     <div class="oprow">
                         <label for="AddBookNameTextBox" class=" col-form-label ">Name</label>
                         <asp:TextBox CssClass="form-control w-25" ID="AddBookNameTextBox" runat="server"></asp:TextBox>
@@ -56,12 +50,13 @@
                     <div>
                         <label for="AddBookImage" class="col-form-label ">Book Image Link</label>
                         <asp:TextBox CssClass="form-control w-50" ID="AddBookImageTextBox" runat="server"></asp:TextBox>
+                        <asp:Button ID="updatebookbtn" CssClass="btn btn-outline-danger updatebookbtn" runat="server" Text="Update Book" OnClick="Update_Book_By_Admin_Btn" />
                         <asp:Button ID="addbookbtn" CssClass="btn btn-outline-danger addbookbtn" runat="server" Text="Add Book" OnClick="Add_Book_By_Admin_Btn" />
                     </div>
                 </div>
             </div>
             <asp:Label ID="ResponseLabel" CssClass="text-Danger text-left" Style="font-size: 40px; margin-top: 20px" runat="server"></asp:Label>
-            <%--  <button type="button" onclick="ab()" class="btn btn-danger" title='Delete'>de</button>--%>
+            <asp:Button ID="hiddendeletebutton" CssClass="btn btn-outline-danger deletebookbtn " runat="server" Text="delete" OnClick="Delete_Book_By_Admin" />
 
             <%-- All Books Display Section--%>
             <div class="container">
@@ -69,6 +64,7 @@
                 </div>
             </div>
         </div>
+
         <%--NavBar-Bottom--%>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
             <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
@@ -79,8 +75,18 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script>
-        function ab() {
-            $("#addbookbtn").click();
+        function deletefun(id) {
+            document.getElementById('bookid').setAttribute("value", id);
+            deleteclick();
+        }
+        function deleteclick() {
+            $("#hiddendeletebutton").click();
+        }
+        function updatefun(id) {
+            document.getElementById('bookid').setAttribute("value", id);
+            $("#updateaddheading").text("Update Book");
+            document.getElementById('addbookbtn').style.visibility = "hidden";
+            document.getElementById('updatebookbtn').style.visibility = "visible";
         }
     </script>
 </body>

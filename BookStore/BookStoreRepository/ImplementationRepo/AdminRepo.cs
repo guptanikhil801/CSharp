@@ -121,5 +121,31 @@ namespace BookStoreRepository.ImplementationRepo
 
             return lstBook;
         }
+
+        public bool UpdateBookByAdmin(Book book)
+        {
+            if (book.Description != null && book.Author != null && book.Name != null && book.Description != null)
+            {
+                using (SqlConnection con = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmdn = new SqlCommand("spUpdateBookByAdmin", con);
+                    cmdn.CommandType = CommandType.StoredProcedure;
+                    cmdn.Parameters.AddWithValue("@BookId", book.BookId);
+                    cmdn.Parameters.AddWithValue("@Name", book.Name);
+                    cmdn.Parameters.AddWithValue("@Author", book.Author);
+                    cmdn.Parameters.AddWithValue("@Description", book.Description);
+                    cmdn.Parameters.AddWithValue("@Image", book.Image);
+                    cmdn.Parameters.AddWithValue("@Price", book.Price);
+                    cmdn.Parameters.AddWithValue("@AvailableStock", book.AvailableStock);
+                    cmdn.Parameters.AddWithValue("@Rating", book.Rating);
+                    con.Open();
+                    cmdn.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

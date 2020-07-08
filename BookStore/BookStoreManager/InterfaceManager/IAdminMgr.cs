@@ -19,8 +19,25 @@ namespace BookStoreManager.InterfaceManager
         /// <returns>new user</returns>
         bool AdminRegistration(string Email, string Password);
 
+        /// <summary>
+        /// Adds the book by admin.
+        /// </summary>
+        /// <param name="book">The book.</param>
+        /// <returns></returns>
         bool AddBookByAdmin(Book book);
+
+        /// <summary>
+        /// Deletes the book by admin.
+        /// </summary>
+        /// <param name="BookId">The book identifier.</param>
+        /// <returns></returns>
         bool DeleteBookByAdmin(int BookId);
+
+        bool UpdateBookByAdmin(Book book);
+        /// <summary>
+        /// Gets all books.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<Book> GetAllBooks();
     }
 }

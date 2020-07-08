@@ -29,5 +29,7 @@ namespace BookStoreRepository.InterfacesRepo
         bool DeleteBookByAdmin(int BookId);
 
         IEnumerable<Book> GetAllBooks();
+
+        bool UpdateBookByAdmin(Book book);
     }
 }

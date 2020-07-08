@@ -33,5 +33,10 @@ namespace BookStoreManager.ImplManager
         {
             return repo.GetAllBooks();
         }
+
+        public bool UpdateBookByAdmin(Book book)
+        {
+            return repo.UpdateBookByAdmin(book);
+        }
     }
 }
