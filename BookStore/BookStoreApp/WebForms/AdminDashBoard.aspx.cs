@@ -58,6 +58,7 @@ namespace BookStoreApp.WebForms
             allbookrow.InnerHtml = bdata;
         }
 
+
         protected void Add_Book_By_Admin_Btn(object sender, EventArgs e)
         {
 

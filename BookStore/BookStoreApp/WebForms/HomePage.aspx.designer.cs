@@ -15,6 +15,15 @@ namespace BookStoreApp.WebForms
     {
 
         /// <summary>
+        /// pagetitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTitle pagetitle;
+
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,41 @@ namespace BookStoreApp.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox searchbar;
+
+        /// <summary>
+        /// allbookrow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl allbookrow;
+
+        /// <summary>
+        /// page1btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button page1btn;
+
+        /// <summary>
+        /// page2btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button page2btn;
+
+        /// <summary>
+        /// page3btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button page3btn;
     }
 }

@@ -79,9 +79,11 @@
             document.getElementById('bookid').setAttribute("value", id);
             deleteclick();
         }
+
         function deleteclick() {
             $("#hiddendeletebutton").click();
         }
+
         function updatefun(id) {
             document.getElementById('bookid').setAttribute("value", id);
             $("#updateaddheading").text("Update Book");

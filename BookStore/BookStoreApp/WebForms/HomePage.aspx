@@ -6,41 +6,9 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" type="text/css" href="StyleSheets/HomePageStyle.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-    <title>Welcome to BookStore</title>
-    <style>
-        #bookiconimg {
-            margin-left: 30%;
-            border-radius: 4px;
-            margin-bottom: 3px
-        }
-
-        #bookstorelabel {
-            font-size: 25px;
-            margin-top: -32px;
-            margin-left: 55%;
-            margin-bottom: -1px;
-        }
-
-        #navbarst {
-            margin-top: 2px;
-            border-radius: 5px
-        }
-
-        #navfooter {
-            margin-left: 40%;
-            margin-bottom: -3px
-        }
-
-        #searchbar {
-            margin-left: 15%;
-            margin-right: 8%
-        }
-
-        #wishlist {
-            margin-right: 7%;
-        }
-    </style>
+    <title id="pagetitle" runat="server">Welcome to BookStore</title>
 </head>
 <body style="background-color: lightgrey">
     <form id="form1" runat="server">
@@ -53,6 +21,30 @@
             <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server"></asp:TextBox>
             <img id="wishlist" src="Assets/wishlisticon.png" height="30" width="30" title="Wishlist" />
             <img id="cart" src="Assets/carticon.png" height="40" width="40" title="Cart" />
+        </nav>
+
+        <%-- All Books Display Section--%>
+        <div class="container">
+            <div class=" row" id="allbookrow" runat="server" style="margin-top: 100px; margin-left: 30px; margin-bottom: 10px;">
+            </div>
+        </div>
+
+        <%--Pagination Section--%>
+        <nav style="margin-bottom: 50px">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item">
+                    <asp:Button ID="page1btn" CssClass="btn btn-light" runat="server" Text="1" /></li>
+                <li class="page-item">
+                    <asp:Button ID="page2btn" CssClass="btn btn-light" runat="server" Text="2" OnClick="Page_2_Btn" /></li>
+                <li class="page-item">
+                    <asp:Button ID="page3btn" CssClass="btn btn-light" runat="server" Text="3" OnClick="Page_3_Btn" /></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
         </nav>
 
         <%--NavBar-Bottom--%>
