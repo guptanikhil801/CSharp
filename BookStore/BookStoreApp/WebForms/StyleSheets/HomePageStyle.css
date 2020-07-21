@@ -26,8 +26,8 @@
     margin-right: 8%
 }
 
-#wishlist {
-    margin-right: 7%;
+wishlistimgnavbar {
+    margin-right: 17%;
 }
 
 .ratingdiv {
@@ -63,7 +63,7 @@
 .wlmaindiv {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .mt10 {
