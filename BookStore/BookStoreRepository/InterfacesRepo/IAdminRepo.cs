@@ -26,6 +26,11 @@ namespace BookStoreRepository.InterfacesRepo
         /// <returns></returns>
         bool AddBookByAdmin(Book book);
 
+        /// <summary>
+        /// Deletes a book
+        /// </summary>
+        /// <param name="BookId"></param>
+        /// <returns></returns>
         bool DeleteBookByAdmin(int BookId);
 
         IEnumerable<Book> GetAllBooks();
