@@ -60,6 +60,7 @@ namespace BookStoreRepository.ImplementationRepo
             {
                 SqlCommand cmd = new SqlCommand("spGetAllBooksFromWishLists", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", Email);
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
