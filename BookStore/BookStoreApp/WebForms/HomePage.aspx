@@ -38,16 +38,6 @@
             </div>
         </div>
 
-        <%--        <div>
-            <h1 class="text-primary text-center font-italic">Login or Register to See your wishlists</h1>
-            <a href="Login.aspx">
-                <p class="text-black-50  text-lg-center " style="font-size: 22px">Login Here</p>
-            </a>
-            <a href="Registration.aspx">
-                <p class="text-black-50  text-lg-center " style="font-size: 22px">Register Here</p>
-            </a>
-        </div>--%>
-
         <%--Pagination Section--%>
         <nav style="margin-bottom: 50px" id="paginationsection" runat="server">
             <ul class="pagination justify-content-center">
@@ -70,28 +60,8 @@
 
         <%--WishList Display Section--%>
         <div class="container" style="margin-bottom: 50px">
-            <h1 class="badge badge-secondary" id="yourwishlistsh1" style="font-size: 35px"></h1>
-            <div id="wishlistsection" class="bg-white">
-                <div class="wlmaindiv mb-1">
-                    <img src="https://www.amazon.in/images/I/41FFzKkk+UL._SX326_BO1,204,203,200_.jpg" width="45" height="55" />
-                    <p class="text-primary mt10">You are the Best Wife</p>
-                    <div class="wlmaindiv mt10">
-                        <p style="margin-right: 8px">Author : </p>
-                        <p class="text-dark">Ajay K Pandey</p>
-                    </div>
-                    <div class="wlmaindiv mt10">
-                        <img src='https://png.pngtree.com/png-clipart/20190614/original/pngtree-star-vector-icon-png-image_3725282.jpg' alt='' height='22' width='22' title='Rating' />
-                        <p class="ml-2">4.6</p>
-                    </div>
-                    <div class="wlmaindiv mt10">
-                        <p>
-                            ₹
-                        </p>
-                        <p class="text-dark ml-1">499</p>
-                    </div>
-                    <img class="mt-2" src='Assets/addtocartbtn.png' alt='' height="36" width="95" title='Add to cart' />
-                    <img class="mt-3" src='Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From WishList' />
-                </div>
+            <h1 class="badge badge-secondary  font-italic" id="yourwishlistsh1" runat="server" style="font-size: 35px; margin-top: 40px"></h1>
+            <div id="wishlistsection" class="bg-white" runat="server">
             </div>
         </div>
 
@@ -105,9 +75,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
     <script>
-        function wlfun(bookid) {
+        $(document).ready(function () {
             var em = localStorage.getItem("useremail");
-            document.getElementById('emailid').setAttribute("value", em);
+            if (em != null) {
+                document.getElementById('emailid').setAttribute("value", em);
+            }
+        });
+
+        function wlfun(bookid) {
             document.getElementById('bookid').setAttribute("value", bookid);
             //$("#yourwishlistsh1").text("Your WishLists");
             addtowlbtnclick();
@@ -115,6 +90,7 @@
         function addtowlbtnclick() {
             $("#addtowlbtn").click();
         }
+
     </script>
 </body>
 </html>
