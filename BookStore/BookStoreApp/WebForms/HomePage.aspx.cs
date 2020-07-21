@@ -265,5 +265,26 @@ namespace BookStoreApp.WebForms
                 ResponseLabel.Text = "something went wrong";
             }
         }
+
+        protected void wishlistdisplay(object sender, EventArgs e)
+        {
+            var email = emailid.Value.ToString();
+            string loginorregister =
+        "<div style='margin-top:60px'>" +
+            "<h1 class='text-primary text-center font-italic'>Login or Register to See your wishlists</h1>" +
+            "<a href='Login.aspx'>" +
+                "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Login Here</p>" +
+            "</a>" +
+            "<a href = 'Registration.aspx'>" +
+                 "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
+            "</a>" +
+        "</div>";
+
+            if (email == null || email == string.Empty)
+            {
+                bookdisplaydiv.InnerHtml = loginorregister;
+                paginationsection.InnerHtml = string.Empty;
+            }
+        }
     }
 }

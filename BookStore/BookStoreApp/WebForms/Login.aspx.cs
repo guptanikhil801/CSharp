@@ -14,12 +14,14 @@ namespace BookStoreApp.WebForms
 
         protected void Login_Button(object sender, EventArgs e)
         {
+
             LoginModal login = new LoginModal();
             login.Email = EmailTextBox.Text.ToString();
             login.Password = PasswordTextBox.Text.ToString();
             if (this.mgr.Login(login))
             {
-                Server.Transfer("Registration.aspx");
+                Response.Write("<script language=javascript> function setemail(email){ localStorage.setItem('useremail',email);} setemail('" + login.Email + "');</script>");
+                Server.Transfer("HomePage.aspx");
             }
             else
             {
