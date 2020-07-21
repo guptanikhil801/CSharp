@@ -42,6 +42,33 @@ namespace BookStoreApp.WebForms
         protected global::System.Web.UI.WebControls.TextBox searchbar;
 
         /// <summary>
+        /// emailid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField emailid;
+
+        /// <summary>
+        /// bookid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField bookid;
+
+        /// <summary>
+        /// ResponseLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ResponseLabel;
+
+        /// <summary>
         /// allbookrow control.
         /// </summary>
         /// <remarks>
@@ -76,5 +103,14 @@ namespace BookStoreApp.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button page3btn;
+
+        /// <summary>
+        /// addtowlbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button addtowlbtn;
     }
 }
