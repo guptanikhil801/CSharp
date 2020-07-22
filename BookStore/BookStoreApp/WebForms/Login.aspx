@@ -35,6 +35,10 @@
             margin-left: 40%;
             margin-bottom: -3px
         }
+
+        .marl23 {
+            margin-left: 23%
+        }
     </style>
 </head>
 <body style="background-color: lightgrey">
@@ -46,21 +50,22 @@
             </div>
         </nav>
         <div class="container">
-            <p class="text-Danger text-left" style="font-size: 60px">Login</p>
-            <div style="margin-top: 10px" class="input-group mb-3 w-50">
+            <p class="text-Danger text-center" style="font-size: 60px">Login</p>
+            <div style="margin-top: 10px; margin-left: 23%" class="input-group mb-3 w-50 ">
                 <div class="input-group-prepend">
                     <span class="input-group-text">&nbsp&nbsp Email &nbsp&nbsp</span>
                 </div>
                 <asp:TextBox class="form-control" ID="EmailTextBox" runat="server" placeholder="Enter Email"></asp:TextBox>
             </div>
-            <div style="margin-top: 7px" class="input-group mb-3 w-50">
+            <div style="margin-top: 7px; margin-left: 23%" class="input-group mb-3 w-50">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Password</span>
                 </div>
                 <asp:TextBox class="form-control" TextMode="Password" ID="PasswordTextBox" runat="server" placeholder="Enter Password"></asp:TextBox>
             </div>
-            <asp:Button CssClass="btn btn-outline-danger" runat="server" Text="Login" OnClick="Login_Button" />
+            <asp:Button CssClass="btn btn-outline-danger marl23" runat="server" Text="Login" OnClick="Login_Button" />
             <a class="text-left text-primary ml-5" href="ForgotPassword.aspx">Forgotten account?</a>
+            <span><a class="text-left text-primary ml-5" href="Registration.aspx">Register Here</a></span>
         </div>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
             <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
