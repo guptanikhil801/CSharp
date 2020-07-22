@@ -297,6 +297,21 @@ namespace BookStoreApp.WebForms
 
         }
 
+        protected void Delete_Book_From_WishList(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(wishlistid.Value.ToString());
+            if (WishListMgr.DeleteBookFromWishList(id))
+            {
+                ResponseLabel.Text = "Book Deleted From WishList";
+            }
+
+            else
+            {
+                ResponseLabel.Text = "Something went wrong ";
+            }
+
+        }
+
         private string wishliststring(string email)
         {
             IEnumerable<WishList> allwishlists = WishListMgr.GetallWishLists(email);
@@ -329,7 +344,7 @@ namespace BookStoreApp.WebForms
                        "<p class='text-dark ml-1'>" + price + "</p>" +
                     "</div>" +
                  "<img class='mt-2' src='Assets/addtocartbtn.png' alt='' height='36' width='95' title='Add to cart' />" +
-                 "<img class='mt-3' src='Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From WishList' />" +
+                 "<img class='mt-3' src='Assets/deleteforever.png' alt='' onclick='deletewishlistfun(" + wishlistid + ")' height='26' width='26' title='Delete From WishList' />" +
              "</div>";
                 allwishlistsstring = allwishlistsstring + singlewishlist;
             }

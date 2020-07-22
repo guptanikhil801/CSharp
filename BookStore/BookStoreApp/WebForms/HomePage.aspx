@@ -28,6 +28,8 @@
         <%--Hidden Fields--%>
         <asp:HiddenField ID="emailid" Value="" runat="server" />
         <asp:HiddenField ID="bookid" Value="" runat="server" />
+        <asp:HiddenField ID="wishlistid" Value="" runat="server" />
+        <asp:Button ID="wishlistdeletebutton" CssClass="btn btn-outline-danger hbtn " runat="server" Text="deletewislist" OnClick="Delete_Book_From_WishList" />
 
         <%--Response Label--%>
         <asp:Label ID="ResponseLabel" CssClass="text-Danger text-left" Style="font-size: 40px; margin-top: 20px" runat="server"></asp:Label>
@@ -91,6 +93,14 @@
             $("#addtowlbtn").click();
         }
 
+        function deletewishlistfun(id) {
+            document.getElementById('wishlistid').setAttribute("value", id);
+            deletewishlistclick();
+        }
+
+        function deletewishlistclick() {
+            $("#wishlistdeletebutton").click();
+        }
     </script>
 </body>
 </html>
