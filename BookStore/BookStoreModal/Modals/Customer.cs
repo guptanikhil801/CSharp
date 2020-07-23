@@ -59,5 +59,13 @@ namespace BookStoreModal.Modals
         /// The profile picture.
         /// </value>
         public string ProfilePicture { get; set; }
+
+        public string Address { get; set; }
+
+        public string City { get; set; }
+
+        public int PinCode { get; set; }
+
+
     }
 }
