@@ -9,7 +9,7 @@ namespace BookStoreApp.WebForms
     {
         protected AdminMgr mgr = new AdminMgr();
         protected WishListMgr WishListMgr = new WishListMgr();
-
+        protected CartMgr CartMgr = new CartMgr();
         protected void Page_Load(object sender, EventArgs e)
         {
             IEnumerable<Book> allbooks = mgr.GetAllBooks();
@@ -38,7 +38,7 @@ namespace BookStoreApp.WebForms
                 }
                 else
                 {
-                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt=''  title='Add to cart'  />" +
+                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")'  title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
                     outofstockdisp = string.Empty;
                 }
@@ -308,6 +308,38 @@ namespace BookStoreApp.WebForms
             else
             {
                 ResponseLabel.Text = "Something went wrong ";
+            }
+
+        }
+
+        protected void Add_To_Cart(object sender, EventArgs e)
+        {
+            string email = emailid.Value.ToString();
+            int id = Convert.ToInt32(bookid.Value.ToString());
+            string loginorregister =
+    "<div style='margin-top:100px'>" +
+      "<h1 class='text-primary text-center font-italic'>Login or Register to Add Book To Cart</h1>" +
+      "<a href='Login.aspx'>" +
+         "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Login Here</p>" +
+      "</a>" +
+      "<a href = 'Registration.aspx'>" +
+         "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
+      "</a>" +
+    "</div>";
+
+            if (email == null || email == string.Empty)
+            {
+                bookdisplaydiv.InnerHtml = loginorregister;
+                paginationsection.InnerHtml = string.Empty;
+            }
+            else if (CartMgr.AddBookToCart(email, id))
+            {
+                Response.Write("<script language=javascript> alert('Book added To Cart');</script>");
+            }
+
+            else
+            {
+                Response.Write("<script language=javascript> alert('Something went wrong');</script>");
             }
 
         }

@@ -20,16 +20,17 @@
                 <h1 id="bookstorelabel">BookStore</h1>
             </div>
             <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server" OnTextChanged="Search_Button_Click"></asp:TextBox>
-            <%--<img id="wishlist" src="Assets/wishlisticon.png" height="30" width="30" title="Wishlist" />--%>
             <asp:ImageButton ImageUrl="Assets/wishlisticon.png" Height="30" Width="30" runat="server" OnClick="wishlistdisplay" />
             <img id="cart" style="margin-left: 7%" src="Assets/carticon.png" height="40" width="40" title="Cart" />
         </nav>
 
-        <%--Hidden Fields--%>
+        <%--  Hidden Fields  --%>
         <asp:HiddenField ID="emailid" Value="" runat="server" />
         <asp:HiddenField ID="bookid" Value="" runat="server" />
         <asp:HiddenField ID="wishlistid" Value="" runat="server" />
-        <asp:Button ID="wishlistdeletebutton" CssClass="btn btn-outline-danger hbtn " runat="server" Text="deletewislist" OnClick="Delete_Book_From_WishList" />
+        <asp:Button ID="addtowlbtn" CssClass="hbtn" runat="server" OnClick="Add_To_WishList" Text="awl" />
+        <asp:Button ID="wishlistdeletebutton" CssClass="hbtn " runat="server" Text="deletewislist" OnClick="Delete_Book_From_WishList" />
+        <asp:Button ID="AddToCartButton" CssClass="hbtn" runat="server" OnClick="Add_To_Cart" Text="atc" />
 
         <%--Response Label--%>
         <asp:Label ID="ResponseLabel" CssClass="text-Danger text-left" Style="font-size: 40px; margin-top: 20px" runat="server"></asp:Label>
@@ -47,18 +48,19 @@
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                 </li>
                 <li class="page-item">
-                    <asp:Button ID="page1btn" CssClass="btn btn-light" runat="server" Text="1" /></li>
+                    <asp:Button ID="page1btn" CssClass="btn btn-light" runat="server" Text="1" />
+                </li>
                 <li class="page-item">
-                    <asp:Button ID="page2btn" CssClass="btn btn-light" runat="server" Text="2" OnClick="Page_2_Btn" /></li>
+                    <asp:Button ID="page2btn" CssClass="btn btn-light" runat="server" Text="2" OnClick="Page_2_Btn" />
+                </li>
                 <li class="page-item">
-                    <asp:Button ID="page3btn" CssClass="btn btn-light" runat="server" Text="3" OnClick="Page_3_Btn" /></li>
+                    <asp:Button ID="page3btn" CssClass="btn btn-light" runat="server" Text="3" OnClick="Page_3_Btn" />
+                </li>
                 <li class="page-item">
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
         </nav>
-
-        <asp:Button ID="addtowlbtn" CssClass="hbtn" runat="server" OnClick="Add_To_WishList" Text="awl" />
 
         <%--WishList Display Section--%>
         <div class="container" style="margin-bottom: 50px">
@@ -86,7 +88,6 @@
 
         function wlfun(bookid) {
             document.getElementById('bookid').setAttribute("value", bookid);
-            //$("#yourwishlistsh1").text("Your WishLists");
             addtowlbtnclick();
         }
         function addtowlbtnclick() {
@@ -101,6 +102,16 @@
         function deletewishlistclick() {
             $("#wishlistdeletebutton").click();
         }
+
+        function AddToCartfun(id) {
+            document.getElementById('bookid').setAttribute("value", id);
+            AddToCartClick();
+        }
+
+        function AddToCartClick() {
+            $("#AddToCartButton").click();
+        }
+
     </script>
 </body>
 </html>
