@@ -18,7 +18,7 @@ namespace BookStoreManager.ImplManager
             return repo.DeleteBookFromCart(CartId);
         }
 
-        public IEnumerable<Cart> GetallBooksOfCart(string Email)
+        public IEnumerable<BookInCart> GetallBooksOfCart(string Email)
         {
             return repo.GetallBooksOfCart(Email);
         }
