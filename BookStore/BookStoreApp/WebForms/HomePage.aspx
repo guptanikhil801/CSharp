@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" type="text/css" href="StyleSheets/HomePageStyle.css" />
+    <link rel="stylesheet" type="text/css" href="StyleSheets/CartStyle.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
     <title id="pagetitle" runat="server">Welcome to BookStore</title>
 </head>
@@ -21,7 +22,8 @@
             </div>
             <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server" OnTextChanged="Search_Button_Click"></asp:TextBox>
             <asp:ImageButton ImageUrl="Assets/wishlisticon.png" Height="30" Width="30" runat="server" OnClick="wishlistdisplay" />
-            <img id="cart" style="margin-left: 7%" src="Assets/carticon.png" height="40" width="40" title="Cart" />
+            <asp:ImageButton ImageUrl="Assets/carticon.png" Height="40" Width="40" runat="server" CssClass="ml7" OnClick="Cartdisplay" />
+            <%--<img id="cart" style="margin-left: 7%" src="Assets/carticon.png" height="40" width="40" title="Cart" />--%>
         </nav>
 
         <%--  Hidden Fields  --%>
@@ -66,6 +68,13 @@
         <div class="container" style="margin-bottom: 50px">
             <h1 class="badge badge-secondary  font-italic" id="yourwishlistsh1" runat="server" style="font-size: 35px; margin-top: 40px"></h1>
             <div id="wishlistsection" class="bg-white" runat="server">
+            </div>
+        </div>
+
+        <%--Cart section--%>
+        <div class="bg-white cartmaindiv">
+            <h4 class="ml-5 mt-2" id="MYCartHeading" runat="server"></h4>
+            <div id="MyCartDispDiv" runat="server">
             </div>
         </div>
 

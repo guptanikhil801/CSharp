@@ -99,7 +99,7 @@ namespace BookStoreApp.WebForms
                 }
                 else
                 {
-                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt=''  title='Add to cart'  />" +
+                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")' title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
                     outofstockdisp = string.Empty;
                 }
@@ -160,7 +160,7 @@ namespace BookStoreApp.WebForms
                 }
                 else
                 {
-                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt=''  title='Add to cart'  />" +
+                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")'  title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
                     outofstockdisp = string.Empty;
                 }
@@ -220,7 +220,7 @@ namespace BookStoreApp.WebForms
                 }
                 else
                 {
-                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt=''  title='Add to cart'  />" +
+                    cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")' title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
                     outofstockdisp = string.Empty;
                 }
@@ -344,6 +344,40 @@ namespace BookStoreApp.WebForms
 
         }
 
+        protected void Cartdisplay(object sender, EventArgs e)
+        {
+            var email = emailid.Value.ToString();
+            string loginorregister =
+        "<div style='margin-top:100px'>" +
+            "<h1 class='text-primary text-center font-italic'>Login or Register to See your Cart</h1>" +
+            "<a href='Login.aspx'>" +
+                "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Login Here</p>" +
+            "</a>" +
+            "<a href = 'Registration.aspx'>" +
+                 "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
+            "</a>" +
+        "</div>";
+
+
+            if (email == null || email == string.Empty)
+            {
+                bookdisplaydiv.InnerHtml = loginorregister;
+                paginationsection.InnerHtml = string.Empty;
+            }
+            else
+            {
+                bookdisplaydiv.InnerHtml = string.Empty;
+                paginationsection.InnerHtml = string.Empty;
+                string cartdata = AllCart(email);
+                MYCartHeading.InnerText = "My Cart";
+                MyCartDispDiv.InnerHtml = cartdata;
+                //string wishlists = wishliststring(email);
+                //yourwishlistsh1.InnerText = "Your WishLists";
+                //wishlistsection.InnerHtml = wishlists;
+            }
+
+        }
+
         private string wishliststring(string email)
         {
             IEnumerable<WishList> allwishlists = WishListMgr.GetallWishLists(email);
@@ -407,5 +441,53 @@ namespace BookStoreApp.WebForms
 
             return book;
         }
+
+        private string singlecart(BookInCart cart)
+        {
+            string cartstr =
+    "<div class='card' style='display: flex; flex-direction: row;'>" +
+        "<img src = '" + cart.Image + "' class='card-img-top cartbookimg' alt='' style='width: 72px; height: 90px; margin-left: 2%; margin-top: 10px;' />" +
+              "<div style='display: flex; flex-direction: column'>" +
+                     "<p class='text-primary cartbooknamest'>" + cart.Name + "</p>" +
+                     "<p class='cartbookauthorst'>" + cart.Author + "</p>" +
+                    "<div>" +
+                        "<p class='cartrupeesignst'>₹</p>" +
+                        "<p class='cartpricest'>" + cart.Price + "</p>" +
+                        "<p class='cartquantitypst'>Quantity :</p>" +
+                        "<p class='cartquantitydatast'>" + cart.BookQuantity + "</p>" +
+                        "<p class='ChangeQuantitypst'>Change Quantity:</p>" +
+                        "<input type = 'text' id= '' onchange= '' class='cartinputst' />" +
+                        "<img src = 'Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From Cart' class='cartdeletest' />" +
+                    "</div>" +
+              "</div>" +
+    "</div>";
+
+            return cartstr;
+        }
+
+        private string AllCart(string email)
+        {
+            IEnumerable<BookInCart> allcarts = CartMgr.GetallBooksOfCart(email);
+            List<BookInCart>.Enumerator allcartdata = (List<BookInCart>.Enumerator)allcarts.GetEnumerator();
+            string allcartstr = "";
+            while (allcartdata.MoveNext())
+            {
+                BookInCart cart = new BookInCart()
+                {
+                    Author = allcartdata.Current.Author,
+                    BookId = allcartdata.Current.BookId,
+                    BookQuantity = allcartdata.Current.BookQuantity,
+                    CartId = allcartdata.Current.CartId,
+                    Image = allcartdata.Current.Image,
+                    Name = allcartdata.Current.Name,
+                    Price = allcartdata.Current.Price
+
+                };
+                string singlecartstr = singlecart(cart);
+                allcartstr = allcartstr + singlecartstr;
+            }
+            return allcartstr;
+        }
+
     }
 }
