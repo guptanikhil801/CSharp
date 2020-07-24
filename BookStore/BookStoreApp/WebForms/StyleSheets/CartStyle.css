@@ -1,0 +1,62 @@
+﻿
+.cartbooknamest {
+    margin-top: 10px;
+    margin-left: 35px
+}
+
+.cartbookauthorst {
+    margin-left: 35px;
+    font-size: 13px;
+    margin-top: -20px
+}
+
+.cartrupeesignst {
+    margin-top: -17px;
+    margin-left: 35px
+}
+
+.cartpricest {
+    margin-top: -40px;
+    margin-left: 50px
+}
+
+.cartquantitypst {
+    margin-top: -19px;
+    margin-left: 33px
+}
+
+.cartquantitydatast {
+    margin-top: -40px;
+    margin-left: 105px
+}
+
+.ChangeQuantitypst {
+    margin-top: -40px;
+    margin-left: 153px
+}
+
+.cartinputst {
+    margin-top: -40px;
+    margin-left: 280px;
+    position: absolute;
+    width: 25px;
+    height: 25px
+}
+
+.cartdeletest {
+    position: absolute;
+    margin-top: -43px;
+    margin-left: 50%
+}
+
+.cartmaindiv {
+    margin-bottom: 40px;
+    margin-top: 60px;
+    border: solid 1px black;
+    margin-left: 20%;
+    margin-right: 20%
+}
+
+.ml7 {
+    margin-left: 7%;
+}
