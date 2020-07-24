@@ -1,9 +1,5 @@
 ﻿using BookStoreModal.Modals;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStoreRepository.InterfacesRepo
 {
@@ -12,6 +8,6 @@ namespace BookStoreRepository.InterfacesRepo
         bool AddBookCart(string Email, int BookId);
         bool UpdateCart(int CartId, int BookQuantity);
         bool DeleteBookFromCart(int CartId);
-        IEnumerable<Cart> GetallBooksOfCart(string Email);
+        IEnumerable<BookInCart> GetallBooksOfCart(string Email);
     }
 }
