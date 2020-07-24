@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStoreRepository.ImplementationRepo
 {
@@ -56,12 +53,12 @@ namespace BookStoreRepository.ImplementationRepo
             return false;
         }
 
-        public IEnumerable<Cart> GetallBooksOfCart(string Email)
+        public IEnumerable<BookInCart> GetallBooksOfCart(string Email)
         {
-            List<Cart> lstCart = new List<Cart>();
+            List<BookInCart> lstCart = new List<BookInCart>();
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spGetAllBooksFromCarts", con)
+                SqlCommand cmd = new SqlCommand("spGetallCarts", con)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -70,13 +67,18 @@ namespace BookStoreRepository.ImplementationRepo
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    Cart cart = new Cart();
-                    cart.BookId = Convert.ToInt32(rdr["BookId"]);
-                    cart.CartId = Convert.ToInt32(rdr["CartId"]);
-                    cart.Email = rdr["Email"].ToString();
+                    BookInCart cart = new BookInCart
+                    {
+                        BookId = Convert.ToInt32(rdr["BookId"]),
+                        CartId = Convert.ToInt32(rdr["CartId"]),
+                        Name = rdr["Name"].ToString(),
+                        Author = rdr["Author"].ToString(),
+                        BookQuantity = Convert.ToInt32(rdr["BookQuantity"]),
+                        Price = Convert.ToDouble(rdr["Price"]),
+                        Image = rdr["Image"].ToString()
+                    };
                     lstCart.Add(cart);
                 }
-
                 con.Close();
             }
 
