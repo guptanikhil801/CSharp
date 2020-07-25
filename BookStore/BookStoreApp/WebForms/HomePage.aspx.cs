@@ -393,6 +393,22 @@ namespace BookStoreApp.WebForms
             }
         }
 
+        protected void Change_Quantity(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(cartid.Value.ToString());
+            int bookquantity = Convert.ToInt32(changequantityinp.Text.ToString());
+            if (CartMgr.UpdateCart(id, bookquantity))
+            {
+                Response.Redirect(Request.RawUrl);
+            }
+
+            else
+            {
+                Response.Write("<script language=javascript> alert('something went wrong');</script>");
+            }
+
+        }
+
         private string wishliststring(string email)
         {
             IEnumerable<WishList> allwishlists = WishListMgr.GetallWishLists(email);
@@ -460,7 +476,7 @@ namespace BookStoreApp.WebForms
         private string singlecart(BookInCart cart)
         {
             string cartstr =
-    "<div class='card' style='display: flex; flex-direction: row;'>" +
+        "<div class='card' style='display: flex; flex-direction: row;'>" +
         "<img src = '" + cart.Image + "' class='card-img-top cartbookimg' alt='' style='width: 72px; height: 90px; margin-left: 2%; margin-top: 10px;' />" +
               "<div style='display: flex; flex-direction: column'>" +
                      "<p class='text-primary cartbooknamest'>" + cart.Name + "</p>" +
@@ -471,11 +487,11 @@ namespace BookStoreApp.WebForms
                         "<p class='cartquantitypst'>Quantity :</p>" +
                         "<p class='cartquantitydatast'>" + cart.BookQuantity + "</p>" +
                         "<p class='ChangeQuantitypst'>Change Quantity:</p>" +
-                        "<input type = 'text' id= '' onchange= '' class='cartinputst' />" +
+                        "<input type = 'text' data-toggle='modal' data-target='#changequantitymodal'onclick='changequantityfun(" + cart.CartId + ")' class='cartinputst' />" +
                         "<img src = 'Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From Cart' onclick='cartbookdelete( " + cart.CartId + ")' class='cartdeletest' />" +
                     "</div>" +
               "</div>" +
-    "</div>";
+        "</div>";
 
             return cartstr;
         }

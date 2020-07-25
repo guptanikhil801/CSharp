@@ -49,27 +49,31 @@
                 <h1 id="bookstorelabel">BookStore</h1>
             </div>
         </nav>
-        <div class="container">
-            <p class="text-Danger text-center" style="font-size: 60px">Login</p>
-            <div style="margin-top: 10px; margin-left: 23%" class="input-group mb-3 w-50 ">
+        <%--<div class="container">--%>
+        <div class="card" style="margin-left: 30%; margin-right: 33%; margin-top: 5%; border: solid 1px black">
+            <p class="text-Danger text-center font-italic" style="font-size: 50px">Login</p>
+            <div style="margin-top: 10px;" class="input-group mb-3 w-75 ml-5">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">&nbsp&nbsp Email &nbsp&nbsp</span>
+                    <span class="input-group-text">Email &nbsp&nbsp</span>
                 </div>
                 <asp:TextBox class="form-control" ID="EmailTextBox" runat="server" placeholder="Enter Email"></asp:TextBox>
             </div>
-            <div style="margin-top: 7px; margin-left: 23%" class="input-group mb-3 w-50">
+            <div style="margin-top: 7px;" class="input-group mb-3 w-75 ml-5">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Password</span>
                 </div>
                 <asp:TextBox class="form-control" TextMode="Password" ID="PasswordTextBox" runat="server" placeholder="Enter Password"></asp:TextBox>
             </div>
-            <asp:Button CssClass="btn btn-outline-danger marl23" runat="server" Text="Login" OnClick="Login_Button" />
-            <a class="text-left text-primary ml-5" href="ForgotPassword.aspx">Forgotten account?</a>
-            <span><a class="text-left text-primary ml-5" href="Registration.aspx">Register Here</a></span>
+            <div class="ml-5 m-md-3">
+                <asp:Button CssClass="btn btn-outline-danger mr-4 ml-4" runat="server" Text="Login" OnClick="Login_Button" />
+                <a class="text-left text-primary ml-2" href="ForgotPassword.aspx">Forgotten account?</a>
+                <span><a class="text-left text-primary ml-2" href="Registration.aspx">Register Here</a></span>
+            </div>
         </div>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+        <%-- </div>--%>
+        <%--        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
             <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
-        </nav>
+        </nav>--%>
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

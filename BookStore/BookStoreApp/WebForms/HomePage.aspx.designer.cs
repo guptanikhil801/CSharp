@@ -42,6 +42,15 @@ namespace BookStoreApp.WebForms
         protected global::System.Web.UI.WebControls.TextBox searchbar;
 
         /// <summary>
+        /// cartbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton cartbtn;
+
+        /// <summary>
         /// emailid control.
         /// </summary>
         /// <remarks>
@@ -211,5 +220,14 @@ namespace BookStoreApp.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MyCartDispDiv;
+
+        /// <summary>
+        /// changequantityinp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox changequantityinp;
     }
 }

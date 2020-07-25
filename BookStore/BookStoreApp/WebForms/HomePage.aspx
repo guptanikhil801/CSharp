@@ -22,7 +22,7 @@
             </div>
             <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server" OnTextChanged="Search_Button_Click"></asp:TextBox>
             <asp:ImageButton ImageUrl="Assets/wishlisticon.png" Height="30" Width="30" runat="server" OnClick="wishlistdisplay" />
-            <asp:ImageButton ImageUrl="Assets/carticon.png" Height="40" Width="40" runat="server" CssClass="ml7" OnClick="Cartdisplay" />
+            <asp:ImageButton ID="cartbtn" ImageUrl="Assets/carticon.png" Height="40" Width="40" runat="server" CssClass="ml7" OnClick="Cartdisplay" />
         </nav>
 
         <%--  Hidden Fields  --%>
@@ -43,6 +43,7 @@
             <div class=" row" id="allbookrow" runat="server" style="margin-top: 100px; margin-left: 30px; margin-bottom: 10px;">
             </div>
         </div>
+
 
         <%--Pagination Section--%>
         <nav style="margin-bottom: 50px" id="paginationsection" runat="server">
@@ -76,6 +77,18 @@
         <div class="bg-white cartmaindiv">
             <h4 class="ml-5 mt-2" id="MYCartHeading" runat="server"></h4>
             <div id="MyCartDispDiv" runat="server">
+            </div>
+        </div>
+
+        <%--change quantity--%>
+        <div class="modal fade" id="changequantitymodal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <asp:TextBox ID="changequantityinp" CssClass="form-control" runat="server" placeholder="Enter quantity of books" OnTextChanged="Change_Quantity" />
+                    </div>
+                    <button type="button" class=" btn-primary w-50" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
 
@@ -126,8 +139,14 @@
             document.getElementById('cartid').setAttribute("value", id);
             deletecartclick();
         }
+
         function deletecartclick() {
             $('#cartbookdeletebutton').click();
+        }
+
+        function changequantityfun(id) {
+            document.getElementById('cartid').setAttribute("value", id);
+
         }
     </script>
 </body>
