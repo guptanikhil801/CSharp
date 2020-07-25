@@ -23,16 +23,17 @@
             <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server" OnTextChanged="Search_Button_Click"></asp:TextBox>
             <asp:ImageButton ImageUrl="Assets/wishlisticon.png" Height="30" Width="30" runat="server" OnClick="wishlistdisplay" />
             <asp:ImageButton ImageUrl="Assets/carticon.png" Height="40" Width="40" runat="server" CssClass="ml7" OnClick="Cartdisplay" />
-            <%--<img id="cart" style="margin-left: 7%" src="Assets/carticon.png" height="40" width="40" title="Cart" />--%>
         </nav>
 
         <%--  Hidden Fields  --%>
         <asp:HiddenField ID="emailid" Value="" runat="server" />
         <asp:HiddenField ID="bookid" Value="" runat="server" />
         <asp:HiddenField ID="wishlistid" Value="" runat="server" />
+        <asp:HiddenField ID="cartid" Value="" runat="server" />
         <asp:Button ID="addtowlbtn" CssClass="hbtn" runat="server" OnClick="Add_To_WishList" Text="awl" />
         <asp:Button ID="wishlistdeletebutton" CssClass="hbtn " runat="server" Text="deletewislist" OnClick="Delete_Book_From_WishList" />
         <asp:Button ID="AddToCartButton" CssClass="hbtn" runat="server" OnClick="Add_To_Cart" Text="atc" />
+        <asp:Button ID="cartbookdeletebutton" CssClass="hbtn" runat="server" OnClick="Cart_Delete" />
 
         <%--Response Label--%>
         <asp:Label ID="ResponseLabel" CssClass="text-Danger text-left" Style="font-size: 40px; margin-top: 20px" runat="server"></asp:Label>
@@ -121,6 +122,13 @@
             $("#AddToCartButton").click();
         }
 
+        function cartbookdelete(id) {
+            document.getElementById('cartid').setAttribute("value", id);
+            deletecartclick();
+        }
+        function deletecartclick() {
+            $('#cartbookdeletebutton').click();
+        }
     </script>
 </body>
 </html>

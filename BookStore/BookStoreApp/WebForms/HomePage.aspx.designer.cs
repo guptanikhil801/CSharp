@@ -69,6 +69,15 @@ namespace BookStoreApp.WebForms
         protected global::System.Web.UI.WebControls.HiddenField wishlistid;
 
         /// <summary>
+        /// cartid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField cartid;
+
+        /// <summary>
         /// addtowlbtn control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace BookStoreApp.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddToCartButton;
+
+        /// <summary>
+        /// cartbookdeletebutton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cartbookdeletebutton;
 
         /// <summary>
         /// ResponseLabel control.

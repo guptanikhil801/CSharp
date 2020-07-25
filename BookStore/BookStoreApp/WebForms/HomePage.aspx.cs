@@ -290,9 +290,12 @@ namespace BookStoreApp.WebForms
             {
                 bookdisplaydiv.InnerHtml = string.Empty;
                 paginationsection.InnerHtml = string.Empty;
+                MyCartDispDiv.InnerHtml = string.Empty;
+                MYCartHeading.InnerText = string.Empty;
                 string wishlists = wishliststring(email);
                 yourwishlistsh1.InnerText = "Your WishLists";
                 wishlistsection.InnerHtml = wishlists;
+
             }
 
         }
@@ -368,14 +371,26 @@ namespace BookStoreApp.WebForms
             {
                 bookdisplaydiv.InnerHtml = string.Empty;
                 paginationsection.InnerHtml = string.Empty;
+                wishlistsection.InnerHtml = string.Empty;
+                yourwishlistsh1.InnerText = string.Empty;
                 string cartdata = AllCart(email);
                 MYCartHeading.InnerText = "My Cart";
                 MyCartDispDiv.InnerHtml = cartdata;
-                //string wishlists = wishliststring(email);
-                //yourwishlistsh1.InnerText = "Your WishLists";
-                //wishlistsection.InnerHtml = wishlists;
             }
 
+        }
+
+        protected void Cart_Delete(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(cartid.Value.ToString());
+            if (CartMgr.DeleteBookFromCart(id))
+            {
+                Response.Write("<script language=javascript> alert('Book Deleted From Cart');</script>");
+            }
+            else
+            {
+                Response.Write("<script language=javascript> alert('Book cannot be removed');</script>");
+            }
         }
 
         private string wishliststring(string email)
@@ -457,7 +472,7 @@ namespace BookStoreApp.WebForms
                         "<p class='cartquantitydatast'>" + cart.BookQuantity + "</p>" +
                         "<p class='ChangeQuantitypst'>Change Quantity:</p>" +
                         "<input type = 'text' id= '' onchange= '' class='cartinputst' />" +
-                        "<img src = 'Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From Cart' class='cartdeletest' />" +
+                        "<img src = 'Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From Cart' onclick='cartbookdelete( " + cart.CartId + ")' class='cartdeletest' />" +
                     "</div>" +
               "</div>" +
     "</div>";
