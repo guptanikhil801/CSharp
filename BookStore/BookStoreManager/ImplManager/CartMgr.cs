@@ -25,7 +25,7 @@ namespace BookStoreManager.ImplManager
 
         public bool UpdateCart(int CartId, int BookQuantity)
         {
-            return UpdateCart(CartId, BookQuantity);
+            return repo.UpdateCart(CartId, BookQuantity);
         }
     }
 }
