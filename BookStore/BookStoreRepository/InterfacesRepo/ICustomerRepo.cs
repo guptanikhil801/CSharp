@@ -22,5 +22,6 @@ namespace BookStoreRepository.InterfacesRepo
 
         bool ForgotPassword(string Email);
 
+        Customer CustomerDeails(string Email);
     }
 }
