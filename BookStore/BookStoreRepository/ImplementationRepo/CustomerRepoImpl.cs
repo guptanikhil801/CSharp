@@ -2,6 +2,7 @@
 using BookStoreRepository.InterfacesRepo;
 using BookStoreRepository.Utility;
 using Experimental.System.Messaging;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -12,6 +13,34 @@ namespace BookStoreRepository.ImplementationRepo
     public class CustomerRepoImpl : ICustomerRepo
     {
         private string connectionString = ConnectionString.CName;
+
+        public Customer CustomerDeails(string Email)
+        {
+            Customer customer = new Customer();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spCustomerDetails", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Email", Email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+
+                    customer.FirstName = rdr["FirstName"].ToString();
+                    customer.LastName = rdr["LastName"].ToString();
+                    customer.PhoneNumber = Convert.ToInt64(rdr["PhoneNumber"]);
+                    customer.Address = rdr["Address"].ToString();
+                    customer.City = rdr["City"].ToString();
+                    customer.PinCode = Convert.ToInt32(rdr["PinCode"]);
+                }
+                con.Close();
+            }
+
+            return customer;
+        }
 
         public bool ForgotPassword(string Email)
         {
