@@ -92,6 +92,38 @@
             </div>
         </div>
 
+        <%--Address Details--%>
+        <div runat="server" style="display: none" id="addresssection">
+            <div class="bg-white cartmaindiv mt-n4 ">
+                <h5 class="ml-5 mt-2">Customer Details</h5>
+                <div class="form-row mt-4">
+                    <div class="form-group col  ml-3">
+                        <label>Name</label>
+                        <input id="CustomerName" type="text" class="form-control w90" value="" runat="server" disabled="disabled" />
+                    </div>
+                    <div class="form-group col">
+                        <label>Phone Number</label>
+                        <input type="text" id="CustomerPhone" class="form-control w90" style="width: 90%" value="" runat="server" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="form-group ml-3">
+                    <label>Address</label>
+                    <input type="text" class="form-control" id="CustomerAddress" value="" runat="server" style="width: 95%" disabled="disabled" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 ml-3">
+                        <label for="inputCity">City</label>
+                        <input type="text" id="CustomerCity" class="form-control w90" value="" runat="server" disabled="disabled" />
+                    </div>
+
+                    <div class="form-group col mb-4">
+                        <label for="inputZip">Pin Code</label>
+                        <input type="text" id="CustomerPin" class="form-control" value="" runat="server" style="width: 90%" disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <%--NavBar-Bottom--%>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
             <p id="navfooter" class="text-white text-center">Copyright @ BookStore Private Limited</p>
@@ -146,8 +178,8 @@
 
         function changequantityfun(id) {
             document.getElementById('cartid').setAttribute("value", id);
-
         }
+
     </script>
 </body>
 </html>

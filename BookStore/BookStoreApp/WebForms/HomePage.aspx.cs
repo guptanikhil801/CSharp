@@ -10,6 +10,8 @@ namespace BookStoreApp.WebForms
         protected AdminMgr mgr = new AdminMgr();
         protected WishListMgr WishListMgr = new WishListMgr();
         protected CartMgr CartMgr = new CartMgr();
+        protected CustomerMgr customerManager = new CustomerMgr();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             IEnumerable<Book> allbooks = mgr.GetAllBooks();
@@ -376,6 +378,8 @@ namespace BookStoreApp.WebForms
                 string cartdata = AllCart(email);
                 MYCartHeading.InnerText = "My Cart";
                 MyCartDispDiv.InnerHtml = cartdata;
+                AddressDetails();
+                addresssection.Attributes.CssStyle.Clear();
             }
 
         }
@@ -409,8 +413,23 @@ namespace BookStoreApp.WebForms
 
         }
 
+        private void AddressDetails()
+        {
+            string email = emailid.Value.ToString();
+            var customer = customerManager.CustomerDetails(email);
+            var fullname = customer.FirstName + " " + customer.LastName;
+            var pin = customer.PinCode;
+            CustomerName.Value = fullname;
+            CustomerPhone.Value = customer.PhoneNumber.ToString();
+            CustomerAddress.Value = customer.Address;
+            CustomerCity.Value = customer.City;
+            CustomerPin.Value = customer.PinCode.ToString();
+
+        }
+
         private string wishliststring(string email)
         {
+
             IEnumerable<WishList> allwishlists = WishListMgr.GetallWishLists(email);
             List<WishList>.Enumerator allwishlistdata = (List<WishList>.Enumerator)allwishlists.GetEnumerator();
             var allwishlistsstring = "";
