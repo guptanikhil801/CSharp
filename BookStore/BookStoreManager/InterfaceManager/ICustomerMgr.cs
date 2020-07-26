@@ -21,5 +21,6 @@ namespace BookStoreManager.InterfaceManager
         bool ResetPassword(string Email, string Password);
 
         bool ForgotPassword(string Email);
+        Customer CustomerDetails(string Email);
     }
 }
