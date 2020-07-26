@@ -8,6 +8,11 @@ namespace BookStoreManager.ImplManager
     {
         private CustomerRepoImpl repo = new CustomerRepoImpl();
 
+        public Customer CustomerDetails(string Email)
+        {
+            return repo.CustomerDeails(Email);
+        }
+
         public bool ForgotPassword(string Email)
         {
             return this.repo.ForgotPassword(Email);
@@ -15,18 +20,20 @@ namespace BookStoreManager.ImplManager
 
         public bool Login(LoginModal login)
         {
-            return this.repo.Login(login);
+            return repo.Login(login);
         }
 
         public bool Registration(RegistrationModal modal)
         {
-            return this.repo.Registration(modal);
+            return repo.Registration(modal);
         }
 
         public bool ResetPassword(string Email, string Password)
         {
-            return this.repo.ResetPassword(Email, Password);
+            return repo.ResetPassword(Email, Password);
         }
+
+
 
     }
 }
