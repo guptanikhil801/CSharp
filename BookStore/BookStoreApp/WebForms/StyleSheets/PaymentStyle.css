@@ -1,0 +1,58 @@
+﻿#bookiconimg {
+    margin-left: 30%;
+    border-radius: 4px;
+    margin-bottom: 3px
+}
+
+#bookstorelabel {
+    font-size: 25px;
+    margin-top: -32px;
+    margin-left: 55%;
+    margin-bottom: -1px;
+}
+
+#navbarst {
+    margin-top: 1px;
+    border-radius: 5px;
+}
+
+.selectpaymentdiv {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 80px;
+}
+
+.addcarddiv {
+    display: inline-flex;
+}
+
+.expyst {
+    margin-left: -15%;
+    margin-right: -5%;
+}
+
+.paynowbtn {
+    height: 80%;
+    margin-top: 32px;
+    margin-right: 8%;
+}
+
+.addcardmar {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.netbankingdiv {
+    margin-left: 15px;
+}
+
+.upipaynowbtn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.otherupidiv {
+    margin-left: 15px;
+    margin-top: 25px;
+}
