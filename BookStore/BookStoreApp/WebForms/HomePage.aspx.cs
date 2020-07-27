@@ -256,15 +256,34 @@ namespace BookStoreApp.WebForms
 
         protected void Add_To_WishList(object sender, EventArgs e)
         {
+            string loginorregister =
+"<div style='margin-top:100px'>" +
+"<h1 class='text-primary text-center font-italic'>Login or Register to add book to wishlists</h1>" +
+"<a href='Login.aspx'>" +
+    "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Login Here</p>" +
+"</a>" +
+"<a href = 'Registration.aspx'>" +
+     "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
+"</a>" +
+"</div>";
             int bid = Convert.ToInt32(bookid.Value.ToString());
             string email = emailid.Value.ToString();
-            if (WishListMgr.AddBookToWishList(email, bid))
+            if (email != null)
             {
-                ResponseLabel.Text = "Book added to wishlist";
+
+                if (WishListMgr.AddBookToWishList(email, bid))
+                {
+                    ResponseLabel.Text = "Book added to wishlist";
+                }
+                else
+                {
+                    ResponseLabel.Text = "something went wrong";
+                }
             }
             else
             {
-                ResponseLabel.Text = "something went wrong";
+                bookdisplaydiv.InnerHtml = loginorregister;
+                paginationsection.InnerHtml = string.Empty;
             }
         }
 
@@ -380,6 +399,7 @@ namespace BookStoreApp.WebForms
                 MyCartDispDiv.InnerHtml = cartdata;
                 AddressDetails();
                 addresssection.Attributes.CssStyle.Clear();
+                TotalAmountCalc();
             }
 
         }
@@ -413,12 +433,16 @@ namespace BookStoreApp.WebForms
 
         }
 
+        protected void Go_To_Payment(object sender, EventArgs e)
+        {
+            Server.Transfer("PaymentPage.aspx");
+        }
+
         private void AddressDetails()
         {
             string email = emailid.Value.ToString();
             var customer = customerManager.CustomerDetails(email);
             var fullname = customer.FirstName + " " + customer.LastName;
-            var pin = customer.PinCode;
             CustomerName.Value = fullname;
             CustomerPhone.Value = customer.PhoneNumber.ToString();
             CustomerAddress.Value = customer.Address;
@@ -537,6 +561,36 @@ namespace BookStoreApp.WebForms
                 allcartstr = allcartstr + singlecartstr;
             }
             return allcartstr;
+        }
+
+        private void TotalAmountCalc()
+        {
+            string email = emailid.Value.ToString();
+            double totalamountinrs = 0;
+            if (email != null)
+            {
+                IEnumerable<BookInCart> allcarts = CartMgr.GetallBooksOfCart(email);
+                List<BookInCart>.Enumerator allcartdata = (List<BookInCart>.Enumerator)allcarts.GetEnumerator();
+                while (allcartdata.MoveNext())
+                {
+                    BookInCart cart = new BookInCart()
+                    {
+                        Author = allcartdata.Current.Author,
+                        BookId = allcartdata.Current.BookId,
+                        BookQuantity = allcartdata.Current.BookQuantity,
+                        CartId = allcartdata.Current.CartId,
+                        Image = allcartdata.Current.Image,
+                        Name = allcartdata.Current.Name,
+                        Price = allcartdata.Current.Price
+                    };
+                    double amount = allcartdata.Current.Price * allcartdata.Current.BookQuantity;
+                    totalamountinrs = totalamountinrs + amount;
+
+                }
+
+                Response.Write("<script language=javascript> function settotalamount(amount){ localStorage.setItem('totalamount',amount);} settotalamount('" + totalamountinrs + "');</script>");
+            }
+
         }
 
     }

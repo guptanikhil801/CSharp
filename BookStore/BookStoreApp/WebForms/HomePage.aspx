@@ -23,6 +23,9 @@
             <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server" OnTextChanged="Search_Button_Click"></asp:TextBox>
             <asp:ImageButton ImageUrl="Assets/wishlisticon.png" Height="30" Width="30" runat="server" OnClick="wishlistdisplay" />
             <asp:ImageButton ID="cartbtn" ImageUrl="Assets/carticon.png" Height="40" Width="40" runat="server" CssClass="ml7" OnClick="Cartdisplay" />
+            <button onclick="signout()" style="outline: none; border: none; background: none; margin-left: 20px">
+                <h4 id="logoutbtn" class=" text-lg text-white font-italic"></h4>
+            </button>
         </nav>
 
         <%--  Hidden Fields  --%>
@@ -112,15 +115,16 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6 ml-3">
-                        <label for="inputCity">City</label>
+                        <label>City</label>
                         <input type="text" id="CustomerCity" class="form-control w90" value="" runat="server" disabled="disabled" />
                     </div>
 
                     <div class="form-group col mb-4">
-                        <label for="inputZip">Pin Code</label>
+                        <label>Pin Code</label>
                         <input type="text" id="CustomerPin" class="form-control" value="" runat="server" style="width: 90%" disabled="disabled" />
                     </div>
                 </div>
+                <asp:Button runat="server" CssClass=" btn-outline-danger" Text="Continue to Payment" OnClick="Go_To_Payment" />
             </div>
         </div>
 
@@ -138,6 +142,7 @@
             var em = localStorage.getItem("useremail");
             if (em != null) {
                 document.getElementById('emailid').setAttribute("value", em);
+                $('#logoutbtn').text("Logout");
             }
         });
 
@@ -180,6 +185,11 @@
             document.getElementById('cartid').setAttribute("value", id);
         }
 
+        function signout() {
+            localStorage.removeItem('useremail');
+            localStorage.removeItem('totalamount');
+            window.location.reload();
+        }
     </script>
 </body>
 </html>
