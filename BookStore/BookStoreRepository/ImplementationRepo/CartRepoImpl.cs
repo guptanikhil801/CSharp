@@ -53,6 +53,25 @@ namespace BookStoreRepository.ImplementationRepo
             return false;
         }
 
+        public bool DeleteCartRecord(string Email)
+        {
+            if (Email != null)
+            {
+                using (SqlConnection con = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmdn = new SqlCommand("spDeleteCartRecord", con);
+                    cmdn.CommandType = CommandType.StoredProcedure;
+                    cmdn.Parameters.AddWithValue("@Email", Email);
+                    con.Open();
+                    cmdn.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public IEnumerable<BookInCart> GetallBooksOfCart(string Email)
         {
             List<BookInCart> lstCart = new List<BookInCart>();
