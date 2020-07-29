@@ -11,7 +11,7 @@ namespace BookStoreApp.WebForms
 {
 
 
-    public partial class PaymentPage
+    public partial class WishListSection
     {
 
         /// <summary>
@@ -24,93 +24,66 @@ namespace BookStoreApp.WebForms
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// emailid control.
+        /// emailhidden control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField emailid;
+        protected global::System.Web.UI.WebControls.HiddenField emailhidden;
 
         /// <summary>
-        /// addbtn control.
+        /// searchbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addbtn;
+        protected global::System.Web.UI.WebControls.TextBox searchbar;
 
         /// <summary>
-        /// addresssection control.
+        /// cartbtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl addresssection;
+        protected global::System.Web.UI.WebControls.ImageButton cartbtn;
 
         /// <summary>
-        /// CustomerName control.
+        /// showbtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CustomerName;
+        protected global::System.Web.UI.WebControls.Button showbtn;
 
         /// <summary>
-        /// CustomerPhone control.
+        /// wildiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CustomerPhone;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl wildiv;
 
         /// <summary>
-        /// CustomerAddress control.
+        /// yourwishlistsh1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CustomerAddress;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl yourwishlistsh1;
 
         /// <summary>
-        /// CustomerCity control.
+        /// wishlistsection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CustomerCity;
-
-        /// <summary>
-        /// CustomerPin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText CustomerPin;
-
-        /// <summary>
-        /// homeaddradio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton homeaddradio;
-
-        /// <summary>
-        /// maindiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl maindiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl wishlistsection;
     }
 }

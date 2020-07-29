@@ -252,6 +252,10 @@ namespace BookStoreApp.WebForms
             }
 
             allbookrow.InnerHtml = bdata;
+            paginationsection.InnerHtml = string.Empty;
+            cartdiv.InnerHtml = string.Empty;
+            // wildiv.InnerHtml = string.Empty;
+
         }
 
         protected void Add_To_WishList(object sender, EventArgs e)
@@ -289,6 +293,8 @@ namespace BookStoreApp.WebForms
 
         protected void wishlistdisplay(object sender, EventArgs e)
         {
+            Server.Transfer("WishListSection.aspx");
+            /*
             var email = emailid.Value.ToString();
             string loginorregister =
         "<div style='margin-top:100px'>" +
@@ -318,7 +324,7 @@ namespace BookStoreApp.WebForms
                 wishlistsection.InnerHtml = wishlists;
 
             }
-
+            */
         }
 
         protected void Delete_Book_From_WishList(object sender, EventArgs e)
@@ -358,7 +364,7 @@ namespace BookStoreApp.WebForms
             }
             else if (CartMgr.AddBookToCart(email, id))
             {
-                Response.Write("<script language=javascript> alert('Book added To Cart');</script>");
+                Response.Write("<script language=javascript> alert('Book Added to cart') ;</script>");
             }
 
             else
@@ -392,13 +398,12 @@ namespace BookStoreApp.WebForms
             {
                 bookdisplaydiv.InnerHtml = string.Empty;
                 paginationsection.InnerHtml = string.Empty;
-                wishlistsection.InnerHtml = string.Empty;
-                yourwishlistsh1.InnerText = string.Empty;
+                // wildiv.InnerHtml = string.Empty;
+                //wishlistsection.InnerHtml = string.Empty;
+                // yourwishlistsh1.InnerText = string.Empty;
                 string cartdata = AllCart(email);
                 MYCartHeading.InnerText = "My Cart";
                 MyCartDispDiv.InnerHtml = cartdata;
-                AddressDetails();
-                addresssection.Attributes.CssStyle.Clear();
                 TotalAmountCalc();
             }
 
@@ -409,7 +414,7 @@ namespace BookStoreApp.WebForms
             int id = Convert.ToInt32(cartid.Value.ToString());
             if (CartMgr.DeleteBookFromCart(id))
             {
-                Response.Write("<script language=javascript> alert('Book Deleted From Cart');</script>");
+                Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
             }
             else
             {
@@ -419,16 +424,25 @@ namespace BookStoreApp.WebForms
 
         protected void Change_Quantity(object sender, EventArgs e)
         {
+            int bid = Convert.ToInt32(bookid.Value.ToString());
             int id = Convert.ToInt32(cartid.Value.ToString());
             int bookquantity = Convert.ToInt32(changequantityinp.Text.ToString());
-            if (CartMgr.UpdateCart(id, bookquantity))
+            if (CheckStock(bid, bookquantity))
             {
-                Response.Redirect(Request.RawUrl);
+                if (CartMgr.UpdateCart(id, bookquantity))
+                {
+                    Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
+                }
+
+                else
+                {
+                    Response.Write("<script language=javascript> alert('something went wrong');</script>");
+                }
             }
 
             else
             {
-                Response.Write("<script language=javascript> alert('something went wrong');</script>");
+                Response.Write("<script language=javascript> alert('That Much Stock Not Available, please order in less amount');</script>");
             }
 
         }
@@ -438,83 +452,71 @@ namespace BookStoreApp.WebForms
             Server.Transfer("PaymentPage.aspx");
         }
 
-        private void AddressDetails()
-        {
-            string email = emailid.Value.ToString();
-            var customer = customerManager.CustomerDetails(email);
-            var fullname = customer.FirstName + " " + customer.LastName;
-            CustomerName.Value = fullname;
-            CustomerPhone.Value = customer.PhoneNumber.ToString();
-            CustomerAddress.Value = customer.Address;
-            CustomerCity.Value = customer.City;
-            CustomerPin.Value = customer.PinCode.ToString();
 
-        }
+        //private string wishliststring(string email)
+        //{
 
-        private string wishliststring(string email)
-        {
+        //    IEnumerable<WishList> allwishlists = WishListMgr.GetallWishLists(email);
+        //    List<WishList>.Enumerator allwishlistdata = (List<WishList>.Enumerator)allwishlists.GetEnumerator();
+        //    var allwishlistsstring = "";
+        //    while (allwishlistdata.MoveNext())
+        //    {
+        //        var wishlistid = allwishlistdata.Current.WishListId;
+        //        var bookid = allwishlistdata.Current.BookId;
+        //        var book = bookdetail(bookid);
+        //        var name = book.Name;
+        //        var author = book.Author;
+        //        var price = book.Price;
+        //        var rating = book.Rating;
+        //        var image = book.Image;
+        //        var singlewishlist =
+        //     "<div class='wlmaindiv mb-1'>" +
+        //        "<img src = ' " + image + " ' width='45' height='55' />" +
+        //        "<p class='text-primary mt10'>" + name + "</p>" +
+        //           "<div class='wlmaindiv mt10'>" +
+        //                "<p style = 'margin-right: 8px' > Author : </ p >" +
+        //                "<p class='text-dark'>" + author + "</p>" +
+        //           "</div>" +
+        //           "<div class='wlmaindiv mt10'>" +
+        //             "<img src = 'https://png.pngtree.com/png-clipart/20190614/original/pngtree-star-vector-icon-png-image_3725282.jpg' alt='' height='22' width='22' title='Rating' />" +
+        //               "<p class='ml-2'>" + rating + "</p>" +
+        //            "</div>" +
+        //            "<div class='wlmaindiv mt10'>" +
+        //              "<p>₹</p>" +
+        //               "<p class='text-dark ml-1'>" + price + "</p>" +
+        //            "</div>" +
+        //         "<img class='mt-2' src='Assets/addtocartbtn.png' alt='' height='36' width='95' title='Add to cart' />" +
+        //         "<img class='mt-3' src='Assets/deleteforever.png' alt='' onclick='deletewishlistfun(" + wishlistid + ")' height='26' width='26' title='Delete From WishList' />" +
+        //     "</div>";
+        //        allwishlistsstring = allwishlistsstring + singlewishlist;
+        //    }
 
-            IEnumerable<WishList> allwishlists = WishListMgr.GetallWishLists(email);
-            List<WishList>.Enumerator allwishlistdata = (List<WishList>.Enumerator)allwishlists.GetEnumerator();
-            var allwishlistsstring = "";
-            while (allwishlistdata.MoveNext())
-            {
-                var wishlistid = allwishlistdata.Current.WishListId;
-                var bookid = allwishlistdata.Current.BookId;
-                var book = bookdetail(bookid);
-                var name = book.Name;
-                var author = book.Author;
-                var price = book.Price;
-                var rating = book.Rating;
-                var image = book.Image;
-                var singlewishlist =
-             "<div class='wlmaindiv mb-1'>" +
-                "<img src = ' " + image + " ' width='45' height='55' />" +
-                "<p class='text-primary mt10'>" + name + "</p>" +
-                   "<div class='wlmaindiv mt10'>" +
-                        "<p style = 'margin-right: 8px' > Author : </ p >" +
-                        "<p class='text-dark'>" + author + "</p>" +
-                   "</div>" +
-                   "<div class='wlmaindiv mt10'>" +
-                     "<img src = 'https://png.pngtree.com/png-clipart/20190614/original/pngtree-star-vector-icon-png-image_3725282.jpg' alt='' height='22' width='22' title='Rating' />" +
-                       "<p class='ml-2'>" + rating + "</p>" +
-                    "</div>" +
-                    "<div class='wlmaindiv mt10'>" +
-                      "<p>₹</p>" +
-                       "<p class='text-dark ml-1'>" + price + "</p>" +
-                    "</div>" +
-                 "<img class='mt-2' src='Assets/addtocartbtn.png' alt='' height='36' width='95' title='Add to cart' />" +
-                 "<img class='mt-3' src='Assets/deleteforever.png' alt='' onclick='deletewishlistfun(" + wishlistid + ")' height='26' width='26' title='Delete From WishList' />" +
-             "</div>";
-                allwishlistsstring = allwishlistsstring + singlewishlist;
-            }
+        //    return allwishlistsstring;
+        //}
 
-            return allwishlistsstring;
-        }
+        //private Book bookdetail(int bookid)
+        //{
+        //    Book book = new Book();
+        //    IEnumerable<Book> allbooks = mgr.GetAllBooks();
+        //    List<Book>.Enumerator allbookdata = (List<Book>.Enumerator)allbooks.GetEnumerator();
+        //    while (allbookdata.MoveNext())
+        //    {
+        //        if (allbookdata.Current.BookId == bookid)
+        //        {
+        //            book.BookId = allbookdata.Current.BookId;
+        //            book.Name = allbookdata.Current.Name;
+        //            book.Author = allbookdata.Current.Author;
+        //            book.Description = allbookdata.Current.Description;
+        //            book.Price = allbookdata.Current.Price;
+        //            book.Image = allbookdata.Current.Image;
+        //            book.Rating = allbookdata.Current.Rating;
+        //            book.AvailableStock = allbookdata.Current.AvailableStock;
+        //            book.Review = allbookdata.Current.Review;
+        //        }
+        //    }
 
-        private Book bookdetail(int bookid)
-        {
-            Book book = new Book();
-            IEnumerable<Book> allbooks = mgr.GetAllBooks();
-            List<Book>.Enumerator allbookdata = (List<Book>.Enumerator)allbooks.GetEnumerator();
-            while (allbookdata.MoveNext())
-            {
-                if (allbookdata.Current.BookId == bookid)
-                {
-                    book.BookId = allbookdata.Current.BookId;
-                    book.Name = allbookdata.Current.Name;
-                    book.Author = allbookdata.Current.Author;
-                    book.Description = allbookdata.Current.Description;
-                    book.Price = allbookdata.Current.Price;
-                    book.Image = allbookdata.Current.Image;
-                    book.Rating = allbookdata.Current.Rating;
-                    book.AvailableStock = allbookdata.Current.AvailableStock;
-                    book.Review = allbookdata.Current.Review;
-                }
-            }
-
-            return book;
-        }
+        //    return book;
+        //}
 
         private string singlecart(BookInCart cart)
         {
@@ -530,7 +532,7 @@ namespace BookStoreApp.WebForms
                         "<p class='cartquantitypst'>Quantity :</p>" +
                         "<p class='cartquantitydatast'>" + cart.BookQuantity + "</p>" +
                         "<p class='ChangeQuantitypst'>Change Quantity:</p>" +
-                        "<input type = 'text' data-toggle='modal' data-target='#changequantitymodal'onclick='changequantityfun(" + cart.CartId + ")' class='cartinputst' />" +
+                        "<input type = 'text' data-toggle='modal' data-target='#changequantitymodal'onclick='changequantityfun(" + cart.CartId + ",\"" + cart.BookId + "\")' class='cartinputst' />" +
                         "<img src = 'Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From Cart' onclick='cartbookdelete( " + cart.CartId + ")' class='cartdeletest' />" +
                     "</div>" +
               "</div>" +
@@ -587,10 +589,28 @@ namespace BookStoreApp.WebForms
                     totalamountinrs = totalamountinrs + amount;
 
                 }
-
-                Response.Write("<script language=javascript> function settotalamount(amount){ localStorage.setItem('totalamount',amount);} settotalamount('" + totalamountinrs + "');</script>");
+                double amountwd = totalamountinrs + 50;
+                Response.Write("<script language=javascript> function settotalamount(amount){ localStorage.setItem('totalamount',amount);} settotalamount('" + amountwd + "');</script>");
             }
 
+        }
+
+        private bool CheckStock(int bookid, int bq)
+        {
+            Book book = new Book();
+            IEnumerable<Book> allbooks = mgr.GetAllBooks();
+            List<Book>.Enumerator allbookdata = (List<Book>.Enumerator)allbooks.GetEnumerator();
+            while (allbookdata.MoveNext())
+            {
+                if (allbookdata.Current.BookId == bookid)
+                {
+                    if (allbookdata.Current.AvailableStock < bq)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
     }

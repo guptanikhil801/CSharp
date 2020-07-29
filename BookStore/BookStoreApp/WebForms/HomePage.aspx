@@ -69,18 +69,12 @@
             </ul>
         </nav>
 
-        <%--WishList Display Section--%>
-        <div class="container" style="margin-bottom: 50px">
-            <h1 class="badge badge-secondary  font-italic" id="yourwishlistsh1" runat="server" style="font-size: 35px; margin-top: 40px"></h1>
-            <div id="wishlistsection" class="bg-white" runat="server">
-            </div>
-        </div>
-
         <%--Cart section--%>
-        <div class="bg-white cartmaindiv">
+        <div class="bg-white cartmaindiv" runat="server" id="cartdiv">
             <h4 class="ml-5 mt-2" id="MYCartHeading" runat="server"></h4>
-            <div id="MyCartDispDiv" runat="server">
+            <div id="MyCartDispDiv" class=" m-md-2" runat="server">
             </div>
+            <asp:Button runat="server" CssClass=" btn-outline-danger ml-3 m-md-3" Text="Continue to Payment" OnClick="Go_To_Payment" />
         </div>
 
         <%--change quantity--%>
@@ -92,39 +86,6 @@
                     </div>
                     <button type="button" class=" btn-primary w-50" data-dismiss="modal">Close</button>
                 </div>
-            </div>
-        </div>
-
-        <%--Address Details--%>
-        <div runat="server" style="display: none" id="addresssection">
-            <div class="bg-white cartmaindiv mt-n4 ">
-                <h5 class="ml-5 mt-2">Customer Details</h5>
-                <div class="form-row mt-4">
-                    <div class="form-group col  ml-3">
-                        <label>Name</label>
-                        <input id="CustomerName" type="text" class="form-control w90" value="" runat="server" disabled="disabled" />
-                    </div>
-                    <div class="form-group col">
-                        <label>Phone Number</label>
-                        <input type="text" id="CustomerPhone" class="form-control w90" style="width: 90%" value="" runat="server" disabled="disabled" />
-                    </div>
-                </div>
-                <div class="form-group ml-3">
-                    <label>Address</label>
-                    <input type="text" class="form-control" id="CustomerAddress" value="" runat="server" style="width: 95%" disabled="disabled" />
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6 ml-3">
-                        <label>City</label>
-                        <input type="text" id="CustomerCity" class="form-control w90" value="" runat="server" disabled="disabled" />
-                    </div>
-
-                    <div class="form-group col mb-4">
-                        <label>Pin Code</label>
-                        <input type="text" id="CustomerPin" class="form-control" value="" runat="server" style="width: 90%" disabled="disabled" />
-                    </div>
-                </div>
-                <asp:Button runat="server" CssClass=" btn-outline-danger" Text="Continue to Payment" OnClick="Go_To_Payment" />
             </div>
         </div>
 
@@ -150,6 +111,7 @@
             document.getElementById('bookid').setAttribute("value", bookid);
             addtowlbtnclick();
         }
+
         function addtowlbtnclick() {
             $("#addtowlbtn").click();
         }
@@ -181,8 +143,9 @@
             $('#cartbookdeletebutton').click();
         }
 
-        function changequantityfun(id) {
+        function changequantityfun(id, bookid) {
             document.getElementById('cartid').setAttribute("value", id);
+            document.getElementById('bookid').setAttribute("value", bookid);
         }
 
         function signout() {
