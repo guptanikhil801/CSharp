@@ -8,6 +8,7 @@ namespace BookStoreManager.InterfaceManager
         bool AddBookToCart(string Email, int BookId);
         bool UpdateCart(int CartId, int BookQuantity);
         bool DeleteBookFromCart(int CartId);
+        bool DeleteCartRecord(string Email);
         IEnumerable<BookInCart> GetallBooksOfCart(string Email);
     }
 }
