@@ -20,7 +20,8 @@
                 <img id="bookiconimg" src="Assets/bookicon.png" height="25" width="25" />
                 <h1 id="bookstorelabel">BookStore</h1>
             </div>
-            <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server" OnTextChanged="Search_Button_Click"></asp:TextBox>
+            <asp:TextBox ID="searchbar" CssClass="form-control w-50" placeholder="Search" runat="server"></asp:TextBox>
+            <asp:Button runat="server" CssClass=" btn-light rounded-pill mr-5" Text="Search" OnClick="Search_Button_Click" />
             <asp:ImageButton ImageUrl="Assets/wishlisticon.png" Height="30" Width="30" runat="server" OnClick="wishlistdisplay" />
             <asp:ImageButton ID="cartbtn" ImageUrl="Assets/carticon.png" Height="40" Width="40" runat="server" CssClass="ml7" OnClick="Cartdisplay" />
             <button onclick="signout()" style="outline: none; border: none; background: none; margin-left: 20px">
@@ -46,7 +47,7 @@
             <div class=" row" id="allbookrow" runat="server" style="margin-top: 100px; margin-left: 30px; margin-bottom: 10px;">
             </div>
         </div>
-
+        <button class="btn-block btn-danger rounded">Buy Now</button>
 
         <%--Pagination Section--%>
         <nav style="margin-bottom: 50px" id="paginationsection" runat="server">
@@ -74,7 +75,7 @@
             <h4 class="ml-5 mt-2" id="MYCartHeading" runat="server"></h4>
             <div id="MyCartDispDiv" class=" m-md-2" runat="server">
             </div>
-            <asp:Button runat="server" CssClass=" btn-outline-danger ml-3 m-md-3" Text="Continue to Payment" OnClick="Go_To_Payment" />
+            <asp:Button runat="server" ID="gtpbtn" CssClass=" btn-outline-danger ml-3 m-md-3" Text="Continue to Payment" OnClick="Go_To_Payment" />
         </div>
 
         <%--change quantity--%>
@@ -82,9 +83,12 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <asp:TextBox ID="changequantityinp" CssClass="form-control" runat="server" placeholder="Enter quantity of books" OnTextChanged="Change_Quantity" />
+                        <asp:TextBox ID="changequantityinp" CssClass="form-control" runat="server" placeholder="Enter quantity of books" />
                     </div>
-                    <button type="button" class=" btn-primary w-50" data-dismiss="modal">Close</button>
+                    <div style="display: inline-flex; margin-left: 25%; margin-bottom: 2%; margin-top: 2%">
+                        <button type="button" class=" btn-info w-25 mr-2 " data-dismiss="modal">Close</button>
+                        <asp:Button runat="server" CssClass=" btn-info w-25" Text="Change" OnClick="Change_Quantity" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,6 +147,13 @@
             $('#cartbookdeletebutton').click();
         }
 
+        function bnamtsetfun(price) {
+            var a = parseFloat(price) + 50;
+            localStorage.setItem('totalamount', a);
+            $('#gtpbtn').click();
+
+
+        }
         function changequantityfun(id, bookid) {
             document.getElementById('cartid').setAttribute("value", id);
             document.getElementById('bookid').setAttribute("value", bookid);

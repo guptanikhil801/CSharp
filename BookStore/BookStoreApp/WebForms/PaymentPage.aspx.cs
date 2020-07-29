@@ -6,6 +6,7 @@ namespace BookStoreApp.WebForms
     public partial class PaymentPage : System.Web.UI.Page
     {
         private CustomerMgr customerManager = new CustomerMgr();
+        private CartMgr cartmanager = new CartMgr();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +46,9 @@ namespace BookStoreApp.WebForms
 
         protected void PayDetails(object sender, EventArgs e)
         {
+            string email = emailid.Value.ToString();
             addresssection.InnerHtml = string.Empty;
+            Response.Write("<script language=javascript> function removeamount(){ localStorage.removeitem('totalamount');} removeamount();</script>");
             maindiv.Attributes.CssStyle.Clear();
         }
     }
