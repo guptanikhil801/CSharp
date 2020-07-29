@@ -18,6 +18,11 @@ namespace BookStoreManager.ImplManager
             return repo.DeleteBookFromCart(CartId);
         }
 
+        public bool DeleteCartRecord(string Email)
+        {
+            return repo.DeleteCartRecord(Email);
+        }
+
         public IEnumerable<BookInCart> GetallBooksOfCart(string Email)
         {
             return repo.GetallBooksOfCart(Email);
