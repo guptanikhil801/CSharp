@@ -122,6 +122,26 @@ namespace BookStoreRepository.ImplementationRepo
             return lstBook;
         }
 
+        public bool UpdateAvailableStock(int BookId, int PurchaseQuantity)
+        {
+            if (BookId > 0)
+            {
+                using (SqlConnection con = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmdn = new SqlCommand("spUpdateAvailableStock", con);
+                    cmdn.CommandType = CommandType.StoredProcedure;
+                    cmdn.Parameters.AddWithValue("@BookId", BookId);
+                    cmdn.Parameters.AddWithValue("@PurchaseQuantity", PurchaseQuantity);
+                    con.Open();
+                    cmdn.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool UpdateBookByAdmin(Book book)
         {
             if (book.Description != null && book.Author != null && book.Name != null && book.Description != null)
