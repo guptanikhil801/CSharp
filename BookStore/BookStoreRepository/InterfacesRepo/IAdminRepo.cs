@@ -36,5 +36,7 @@ namespace BookStoreRepository.InterfacesRepo
         IEnumerable<Book> GetAllBooks();
 
         bool UpdateBookByAdmin(Book book);
+
+        bool UpdateAvailableStock(int BookId, int PurchaseQuantity);
     }
 }
