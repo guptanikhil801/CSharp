@@ -1,12 +1,15 @@
 ﻿using BookStoreManager.ImplManager;
+using BookStoreModal.Modals;
 using System;
+using System.Collections.Generic;
 
 namespace BookStoreApp.WebForms
 {
     public partial class PaymentPage : System.Web.UI.Page
     {
+        private AdminMgr adminmanager = new AdminMgr();
         private CustomerMgr customerManager = new CustomerMgr();
-        private CartMgr cartmanager = new CartMgr();
+        protected CartMgr cartmanager = new CartMgr();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -14,6 +17,9 @@ namespace BookStoreApp.WebForms
 
         protected void Success_Message(object sender, EventArgs e)
         {
+            string email = emailid.Value.ToString();
+            ChangeStock();
+            cartmanager.DeleteCartRecord(email);
             Random _random = new Random();
             var randomnumber = _random.Next(10000, 99999);
             string msg =
@@ -51,5 +57,28 @@ namespace BookStoreApp.WebForms
             Response.Write("<script language=javascript> function removeamount(){ localStorage.removeitem('totalamount');} removeamount();</script>");
             maindiv.Attributes.CssStyle.Clear();
         }
+
+        private void ChangeStock()
+        {
+            string Email = emailid.Value.ToString();
+            IEnumerable<BookInCart> allbookdata = cartmanager.GetallBooksOfCart(Email);
+            List<BookInCart>.Enumerator allbookenum = (List<BookInCart>.Enumerator)allbookdata.GetEnumerator();
+            while (allbookenum.MoveNext())
+            {
+                BookInCart cart = new BookInCart()
+                {
+                    Author = allbookenum.Current.Author,
+                    BookId = allbookenum.Current.BookId,
+                    BookQuantity = allbookenum.Current.BookQuantity,
+                    CartId = allbookenum.Current.CartId,
+                    Image = allbookenum.Current.Image,
+                    Name = allbookenum.Current.Name,
+                    Price = allbookenum.Current.Price
+                };
+
+                adminmanager.UpdateAvailableStock(cart.BookId, cart.BookQuantity);
+            }
+        }
+
     }
 }

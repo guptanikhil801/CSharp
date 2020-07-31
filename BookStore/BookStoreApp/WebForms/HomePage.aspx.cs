@@ -332,15 +332,11 @@ namespace BookStoreApp.WebForms
                 bookdisplaydiv.InnerHtml = loginorregister;
                 paginationsection.InnerHtml = string.Empty;
             }
-            else if (CartMgr.AddBookToCart(email, id))
-            {
-                Response.Write("<script language=javascript> alert('Book Added to cart') ;</script>");
-            }
-
             else
             {
-                Response.Write("<script language=javascript> alert('Something went wrong');</script>");
+                CartMgr.AddBookToCart(email, id);
             }
+
 
         }
 
@@ -366,12 +362,22 @@ namespace BookStoreApp.WebForms
             }
             else
             {
+                cartdiv.Attributes.CssStyle.Clear();
                 bookdisplaydiv.InnerHtml = string.Empty;
                 paginationsection.InnerHtml = string.Empty;
                 string cartdata = AllCart(email);
-                MYCartHeading.InnerText = "My Cart";
                 MyCartDispDiv.InnerHtml = cartdata;
                 TotalAmountCalc();
+                if (cartdata != string.Empty)
+                {
+                    MYCartHeading.InnerText = "My Cart";
+                }
+                else
+                {
+                    MYCartHeading.InnerText = "My Cart(Empty)";
+                    ctpdiv.InnerHtml = string.Empty;
+                }
+
             }
 
         }
@@ -383,10 +389,7 @@ namespace BookStoreApp.WebForms
             {
                 Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
             }
-            else
-            {
-                Response.Write("<script language=javascript> alert('Book cannot be removed');</script>");
-            }
+
         }
 
         protected void Change_Quantity(object sender, EventArgs e)
@@ -398,7 +401,8 @@ namespace BookStoreApp.WebForms
             {
                 if (CartMgr.UpdateCart(id, bookquantity))
                 {
-                    Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
+                    System.Threading.Thread.Sleep(5000);
+                    Response.Write("<script language=javascript>$('#cartbtn').click();</script>");
                 }
 
                 else
@@ -517,6 +521,8 @@ namespace BookStoreApp.WebForms
             }
             return true;
         }
+
+
 
     }
 }

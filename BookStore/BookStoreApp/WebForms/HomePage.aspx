@@ -47,7 +47,6 @@
             <div class=" row" id="allbookrow" runat="server" style="margin-top: 100px; margin-left: 30px; margin-bottom: 10px;">
             </div>
         </div>
-        <button class="btn-block btn-danger rounded">Buy Now</button>
 
         <%--Pagination Section--%>
         <nav style="margin-bottom: 50px" id="paginationsection" runat="server">
@@ -71,11 +70,13 @@
         </nav>
 
         <%--Cart section--%>
-        <div class="bg-white cartmaindiv" runat="server" id="cartdiv">
+        <div class="bg-white cartmaindiv" runat="server" id="cartdiv" style="display: none">
             <h4 class="ml-5 mt-2" id="MYCartHeading" runat="server"></h4>
             <div id="MyCartDispDiv" class=" m-md-2" runat="server">
             </div>
-            <asp:Button runat="server" ID="gtpbtn" CssClass=" btn-outline-danger ml-3 m-md-3" Text="Continue to Payment" OnClick="Go_To_Payment" />
+            <div runat="server" id="ctpdiv">
+                <asp:Button runat="server" ID="gtpbtn" CssClass=" btn-outline-danger ml-3 m-md-3" Text="Continue to Payment" OnClick="Go_To_Payment" />
+            </div>
         </div>
 
         <%--change quantity--%>
@@ -162,7 +163,7 @@
         function signout() {
             localStorage.removeItem('useremail');
             localStorage.removeItem('totalamount');
-            window.location.reload();
+            window.URL("https://localhost:44334/WebForms/HomePage");
         }
     </script>
 </body>
