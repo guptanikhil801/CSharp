@@ -34,6 +34,11 @@ namespace BookStoreManager.ImplManager
             return repo.GetAllBooks();
         }
 
+        public bool UpdateAvailableStock(int BookId, int PurchaseQuantity)
+        {
+            return repo.UpdateAvailableStock(BookId, PurchaseQuantity);
+        }
+
         public bool UpdateBookByAdmin(Book book)
         {
             return repo.UpdateBookByAdmin(book);
