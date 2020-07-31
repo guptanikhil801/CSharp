@@ -39,5 +39,7 @@ namespace BookStoreManager.InterfaceManager
         /// </summary>
         /// <returns></returns>
         IEnumerable<Book> GetAllBooks();
+
+        bool UpdateAvailableStock(int BookId, int PurchaseQuantity);
     }
 }
