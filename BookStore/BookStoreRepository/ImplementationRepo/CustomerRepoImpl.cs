@@ -143,7 +143,7 @@ namespace BookStoreRepository.ImplementationRepo
 
         private bool Sendmail(string email, string message)
         {
-
+            string Password = ReturnPassword("guptanikhil20007@gmail.com");
             MailMessage mailmessage = new MailMessage();
             SmtpClient smtp = new SmtpClient();
             mailmessage.From = new MailAddress("guptanikhil20007@gmail.com");
@@ -153,10 +153,34 @@ namespace BookStoreRepository.ImplementationRepo
             mailmessage.Body = message;
             smtp.Port = 587;
             smtp.Host = "smtp.gmail.com";
-            smtp.Credentials = new NetworkCredential("guptanikhil20007@gmail.com", "nikhil20007");
+            smtp.Credentials = new NetworkCredential("guptanikhil20007@gmail.com", Password);
             smtp.EnableSsl = true;
             smtp.Send(mailmessage);
             return true;
+        }
+
+        private string ReturnPassword(string Email)
+        {
+            string Password = string.Empty;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spReturnPassword", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Email", Email);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+
+                    Password = rdr["ReturnPassword"].ToString();
+
+                }
+                con.Close();
+            }
+
+            return Password;
         }
     }
 }
