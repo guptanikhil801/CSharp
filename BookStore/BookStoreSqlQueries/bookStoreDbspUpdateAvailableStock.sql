@@ -1,12 +1,12 @@
-﻿Create procedure    spUpdateAvailableStock                                         -- to update Book details
+﻿CREATE procedure    spUpdateAvailableStock                                         -- to update Book details
 @BookId int,
-@UpdatedAvailableStock int
+@PurchaseQuantity int
 
 as  
 BEGIN TRY                     
    Update books            
    set 
-   AvailableStock=@UpdatedAvailableStock
+   AvailableStock=AvailableStock-@PurchaseQuantity
    where BookId=@BookId 
 END TRY 
 BEGIN CATCH 
