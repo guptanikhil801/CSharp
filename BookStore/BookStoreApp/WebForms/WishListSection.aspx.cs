@@ -2,10 +2,6 @@
 using BookStoreModal.Modals;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace BookStoreApp.WebForms
 {
@@ -13,10 +9,11 @@ namespace BookStoreApp.WebForms
     {
         private WishListMgr WishListMgr = new WishListMgr();
         private AdminMgr mgr = new AdminMgr();
+        private CartMgr cartmanager = new CartMgr();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write("<script language=javascript>$('#showbtn').click();</script>");
+
         }
 
         protected void Show_WishList(object sender, EventArgs e)
@@ -43,30 +40,39 @@ namespace BookStoreApp.WebForms
                 var rating = book.Rating;
                 var image = book.Image;
                 var singlewishlist =
-             "<div class='wlmaindiv mb-1'>" +
-                "<img src = ' " + image + " ' width='45' height='55' />" +
-                "<p class='text-primary mt10'>" + name + "</p>" +
-                   "<div class='wlmaindiv mt10'>" +
-                        "<p style = 'margin-right: 8px' > Author : </ p >" +
-                        "<p class='text-dark'>" + author + "</p>" +
-                   "</div>" +
-                   "<div class='wlmaindiv mt10'>" +
-                     "<img src = 'https://png.pngtree.com/png-clipart/20190614/original/pngtree-star-vector-icon-png-image_3725282.jpg' alt='' height='22' width='22' title='Rating' />" +
-                       "<p class='ml-2'>" + rating + "</p>" +
-                    "</div>" +
-                    "<div class='wlmaindiv mt10'>" +
-                      "<p>₹</p>" +
-                       "<p class='text-dark ml-1'>" + price + "</p>" +
-                    "</div>" +
-                 "<img class='mt-2' src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")' height='36' width='95' title='Add to cart' />" +
-                 "<img class='mt-3' src='Assets/deleteforever.png' alt='' onclick='deletewishlistfun(" + wishlistid + ")' height='26' width='26' title='Delete From WishList' />" +
-             "</div>";
+                        "<div class='card' style='width: 48%; margin-right: 1%'>" +
+                                "<img src = '" + image + "' class='ml-2 mt-2' width='80' height='105' />" +
+                                "<p class='text-primary' style='margin-top: -20%; margin-left: 18%'>" + name + "</p>" +
+                                "<p class='authorp' style='margin-left: 18%'>By : </p>" +
+                                "<p class='text-dark authorp' style='margin-left: 23%; margin-top: -34px'>" + author + "</p>" +
+                                "<p style = 'margin-left: 18%; margin-top: -3%' >₹</p>" +
+                                "<p class='text-dark' style='margin-left: 21%; margin-top: -7%'>" + price + "</p>" +
+                                "<img src = 'https://png.pngtree.com/png-clipart/20190614/original/pngtree-star-vector-icon-png-image_3725282.jpg' alt='' height='22' width='22' style='margin-left: 80%; margin-top: -8%' />" +
+                                "<p class='' style='margin-left: 87%; margin-top: -4%'>" + rating + "</p>" +
+                                "<img class='' src='Assets/addtocartbtn.png' alt='' height='36' width='95' title='Add to cart' onclick='AddToCartfun(" + bookid + ")' style='margin-left: 20%; margin-top: -2%' />" +
+                                "<img class='' src='Assets/deleteforever.png' alt='' height='26' width='26' title='Delete From WishList' onclick='deletewishlistfun(" + wishlistid + ")' style='margin-left: 80%; margin-top: -6%; margin-bottom: 3%' />" +
+                         "</div>";
+
                 allwishlistsstring = allwishlistsstring + singlewishlist;
             }
 
             return allwishlistsstring;
         }
 
+        protected void Delete_Book_From_WishList(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(wishlistid.Value.ToString());
+            WishListMgr.DeleteBookFromWishList(id);
+
+
+        }
+
+        protected void Add_To_Cart(object sender, EventArgs e)
+        {
+            string email = emailhidden.Value.ToString();
+            int id = Convert.ToInt32(bookid.Value.ToString());
+            cartmanager.AddBookToCart(email, id);
+        }
 
         private Book bookdetail(int bookid)
         {

@@ -13,8 +13,14 @@
 </head>
 <body style="background-color: lightgrey">
     <form id="form1" runat="server">
+
         <%--hidden fields--%>
         <asp:HiddenField ID="emailhidden" runat="server" Value="" />
+        <asp:HiddenField ID="wishlistid" Value="" runat="server" />
+        <asp:HiddenField ID="bookid" Value="" runat="server" />
+        <asp:Button ID="wishlistdeletebutton" CssClass="hbtn " runat="server" Text="deletewislist" OnClick="Delete_Book_From_WishList" />
+        <asp:Button ID="AddToCartButton" CssClass="hbtn" runat="server" OnClick="Add_To_Cart" Text="atc" />
+        <asp:Button runat="server" Text="pressme" ID="showbtn" OnClick="Show_WishList" />
 
         <%--NavBar-Top--%>
         <nav id="navbarst" class="navbar navbar-expand-sm bg-danger fixed-top " style="margin-bottom: 80px">
@@ -28,12 +34,12 @@
                 <h4 id="logoutbtn" class=" text-lg text-white font-italic"></h4>
             </button>
         </nav>
-        <asp:Button runat="server" Text="pressme" ID="showbtn" OnClick="Show_WishList" />
+
 
         <%--WishList Display Section--%>
         <div class="container" style="margin-bottom: 50px" id="wildiv" runat="server">
             <h1 class="badge badge-secondary  font-italic" id="yourwishlistsh1" runat="server" style="font-size: 35px; margin-top: 40px"></h1>
-            <div id="wishlistsection" class="bg-white" runat="server">
+            <div class=" row" id="wishlistsection" runat="server">
             </div>
         </div>
 
@@ -46,15 +52,15 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
+        function Pageready() {
             var em = localStorage.getItem("useremail");
             if (em != null) {
                 document.getElementById('emailhidden').setAttribute("value", em);
                 $('#logoutbtn').text("Logout");
-                $('#showbtn').click();
             }
-        });
-
+            $('#showbtn').click();
+        }
+        Pageready();
         function signout() {
             localStorage.removeItem('useremail');
             localStorage.removeItem('totalamount');
@@ -68,6 +74,15 @@
 
         function deletewishlistclick() {
             $("#wishlistdeletebutton").click();
+        }
+
+        function AddToCartfun(id) {
+            document.getElementById('bookid').setAttribute("value", id);
+            AddToCartClick();
+        }
+
+        function AddToCartClick() {
+            $("#AddToCartButton").click();
         }
 
     </script>

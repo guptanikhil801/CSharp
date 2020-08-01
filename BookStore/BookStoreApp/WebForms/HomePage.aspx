@@ -35,7 +35,6 @@
         <asp:HiddenField ID="wishlistid" Value="" runat="server" />
         <asp:HiddenField ID="cartid" Value="" runat="server" />
         <asp:Button ID="addtowlbtn" CssClass="hbtn" runat="server" OnClick="Add_To_WishList" Text="awl" />
-        <asp:Button ID="wishlistdeletebutton" CssClass="hbtn " runat="server" Text="deletewislist" OnClick="Delete_Book_From_WishList" />
         <asp:Button ID="AddToCartButton" CssClass="hbtn" runat="server" OnClick="Add_To_Cart" Text="atc" />
         <asp:Button ID="cartbookdeletebutton" CssClass="hbtn" runat="server" OnClick="Cart_Delete" />
 
@@ -121,15 +120,6 @@
             $("#addtowlbtn").click();
         }
 
-        function deletewishlistfun(id) {
-            document.getElementById('wishlistid').setAttribute("value", id);
-            deletewishlistclick();
-        }
-
-        function deletewishlistclick() {
-            $("#wishlistdeletebutton").click();
-        }
-
         function AddToCartfun(id) {
             document.getElementById('bookid').setAttribute("value", id);
             AddToCartClick();
@@ -152,9 +142,8 @@
             var a = parseFloat(price) + 50;
             localStorage.setItem('totalamount', a);
             $('#gtpbtn').click();
-
-
         }
+
         function changequantityfun(id, bookid) {
             document.getElementById('cartid').setAttribute("value", id);
             document.getElementById('bookid').setAttribute("value", bookid);

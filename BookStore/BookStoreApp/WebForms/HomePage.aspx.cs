@@ -96,6 +96,8 @@ namespace BookStoreApp.WebForms
 
                 string cartwishdiv = string.Empty;
                 string outofstockdisp = string.Empty;
+                string bn = string.Empty;
+
                 if (availablestock == 0)
                 {
                     cartwishdiv = "<img src='Assets/wishlistbtnlg.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
@@ -106,6 +108,7 @@ namespace BookStoreApp.WebForms
                     cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")' title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
                     outofstockdisp = string.Empty;
+                    bn = "<img src='Assets/buynowbtn.png' alt='' onclick='bnamtsetfun(" + price + ")' />";
                 }
                 if (i > 12 && i < 25)
                 {
@@ -125,7 +128,7 @@ namespace BookStoreApp.WebForms
                  "</div>" +
                  "<div class='cartwishlistdiv'>" +
                    cartwishdiv +
-                 "</div>" +
+                 "</div>" + bn +
              "</div>" +
          "</div>";
                     bdata = bdata + data;
@@ -157,6 +160,8 @@ namespace BookStoreApp.WebForms
 
                 string cartwishdiv = string.Empty;
                 string outofstockdisp = string.Empty;
+                string bn = string.Empty;
+
                 if (availablestock == 0)
                 {
                     cartwishdiv = "<img src='Assets/wishlistbtnlg.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
@@ -166,6 +171,7 @@ namespace BookStoreApp.WebForms
                 {
                     cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")'  title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
+                    bn = "<img src='Assets/buynowbtn.png' alt='' onclick='bnamtsetfun(" + price + ")' />";
                     outofstockdisp = string.Empty;
                 }
                 if (i > 24)
@@ -186,7 +192,7 @@ namespace BookStoreApp.WebForms
                  "</div>" +
                  "<div class='cartwishlistdiv'>" +
                    cartwishdiv +
-                 "</div>" +
+                 "</div>" + bn +
              "</div>" +
          "</div>";
                     bdata = bdata + data;
@@ -217,6 +223,8 @@ namespace BookStoreApp.WebForms
 
                 string cartwishdiv = string.Empty;
                 string outofstockdisp = string.Empty;
+                string bn = string.Empty;
+
                 if (availablestock == 0)
                 {
                     cartwishdiv = "<img src='Assets/wishlistbtnlg.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
@@ -226,6 +234,7 @@ namespace BookStoreApp.WebForms
                 {
                     cartwishdiv = "<img src='Assets/addtocartbtn.png' alt='' onclick='AddToCartfun(" + bookid + ")' title='Add to cart'  />" +
                  "<img src='Assets/wishlistbtnsm.png' alt='' onclick='wlfun(" + bookid + ")' title='Add to wishlist'  />";
+                    bn = "<img src='Assets/buynowbtn.png' alt='' onclick='bnamtsetfun(" + price + ")' />";
                     outofstockdisp = string.Empty;
                 }
                 if (name.Contains(si) || author.Contains(si))
@@ -246,7 +255,7 @@ namespace BookStoreApp.WebForms
                  "</div>" +
                  "<div class='cartwishlistdiv'>" +
                    cartwishdiv +
-                 "</div>" +
+                 "</div>" + bn +
              "</div>" +
          "</div>";
                     bdata = bdata + data;
@@ -256,7 +265,6 @@ namespace BookStoreApp.WebForms
             allbookrow.InnerHtml = bdata;
             paginationsection.InnerHtml = string.Empty;
             cartdiv.InnerHtml = string.Empty;
-
         }
 
         protected void Add_To_WishList(object sender, EventArgs e)
@@ -297,21 +305,6 @@ namespace BookStoreApp.WebForms
             Server.Transfer("WishListSection.aspx");
         }
 
-        protected void Delete_Book_From_WishList(object sender, EventArgs e)
-        {
-            int id = Convert.ToInt32(wishlistid.Value.ToString());
-            if (WishListMgr.DeleteBookFromWishList(id))
-            {
-                ResponseLabel.Text = "Book Deleted From WishList";
-            }
-
-            else
-            {
-                ResponseLabel.Text = "Something went wrong ";
-            }
-
-        }
-
         protected void Add_To_Cart(object sender, EventArgs e)
         {
             string email = emailid.Value.ToString();
@@ -336,8 +329,6 @@ namespace BookStoreApp.WebForms
             {
                 CartMgr.AddBookToCart(email, id);
             }
-
-
         }
 
         protected void Cartdisplay(object sender, EventArgs e)
@@ -353,7 +344,6 @@ namespace BookStoreApp.WebForms
                  "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
             "</a>" +
         "</div>";
-
 
             if (email == null || email == string.Empty)
             {
@@ -377,9 +367,7 @@ namespace BookStoreApp.WebForms
                     MYCartHeading.InnerText = "My Cart(Empty)";
                     ctpdiv.InnerHtml = string.Empty;
                 }
-
             }
-
         }
 
         protected void Cart_Delete(object sender, EventArgs e)
@@ -389,7 +377,6 @@ namespace BookStoreApp.WebForms
             {
                 Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
             }
-
         }
 
         protected void Change_Quantity(object sender, EventArgs e)
@@ -401,8 +388,8 @@ namespace BookStoreApp.WebForms
             {
                 if (CartMgr.UpdateCart(id, bookquantity))
                 {
-                    System.Threading.Thread.Sleep(5000);
-                    Response.Write("<script language=javascript>$('#cartbtn').click();</script>");
+                    System.Threading.Thread.Sleep(2000);
+                    Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
                 }
 
                 else
@@ -415,7 +402,6 @@ namespace BookStoreApp.WebForms
             {
                 Response.Write("<script language=javascript> alert('That Much Stock Not Available, please order in less amount');</script>");
             }
-
         }
 
         protected void Go_To_Payment(object sender, EventArgs e)
@@ -499,9 +485,7 @@ namespace BookStoreApp.WebForms
                 {
                     Response.Write("<script language=javascript> function settotalamount(amount){ localStorage.setItem('totalamount',amount);} settotalamount('" + amountwd + "');</script>");
                 }
-
             }
-
         }
 
         private bool CheckStock(int bookid, int bq)
@@ -521,8 +505,5 @@ namespace BookStoreApp.WebForms
             }
             return true;
         }
-
-
-
     }
 }

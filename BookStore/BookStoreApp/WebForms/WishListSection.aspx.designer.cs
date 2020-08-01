@@ -33,6 +33,51 @@ namespace BookStoreApp.WebForms
         protected global::System.Web.UI.WebControls.HiddenField emailhidden;
 
         /// <summary>
+        /// wishlistid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField wishlistid;
+
+        /// <summary>
+        /// bookid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField bookid;
+
+        /// <summary>
+        /// wishlistdeletebutton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button wishlistdeletebutton;
+
+        /// <summary>
+        /// AddToCartButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddToCartButton;
+
+        /// <summary>
+        /// showbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button showbtn;
+
+        /// <summary>
         /// searchbar control.
         /// </summary>
         /// <remarks>
@@ -49,15 +94,6 @@ namespace BookStoreApp.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton cartbtn;
-
-        /// <summary>
-        /// showbtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button showbtn;
 
         /// <summary>
         /// wildiv control.
