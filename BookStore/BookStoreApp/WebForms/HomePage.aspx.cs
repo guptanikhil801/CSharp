@@ -110,6 +110,7 @@ namespace BookStoreApp.WebForms
                     outofstockdisp = string.Empty;
                     bn = "<img src='Assets/buynowbtn.png' alt='' onclick='bnamtsetfun(" + price + ")' />";
                 }
+
                 if (i > 12 && i < 25)
                 {
                     string data =
@@ -174,6 +175,7 @@ namespace BookStoreApp.WebForms
                     bn = "<img src='Assets/buynowbtn.png' alt='' onclick='bnamtsetfun(" + price + ")' />";
                     outofstockdisp = string.Empty;
                 }
+
                 if (i > 24)
                 {
                     string data =
@@ -220,7 +222,6 @@ namespace BookStoreApp.WebForms
                 var rating = allbookdata.Current.Rating;
                 var availablestock = allbookdata.Current.AvailableStock;
                 var review = allbookdata.Current.Review;
-
                 string cartwishdiv = string.Empty;
                 string outofstockdisp = string.Empty;
                 string bn = string.Empty;
@@ -334,40 +335,7 @@ namespace BookStoreApp.WebForms
         protected void Cartdisplay(object sender, EventArgs e)
         {
             var email = emailid.Value.ToString();
-            string loginorregister =
-        "<div style='margin-top:100px'>" +
-            "<h1 class='text-primary text-center font-italic'>Login or Register to See your Cart</h1>" +
-            "<a href='Login.aspx'>" +
-                "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Login Here</p>" +
-            "</a>" +
-            "<a href = 'Registration.aspx'>" +
-                 "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
-            "</a>" +
-        "</div>";
-
-            if (email == null || email == string.Empty)
-            {
-                bookdisplaydiv.InnerHtml = loginorregister;
-                paginationsection.InnerHtml = string.Empty;
-            }
-            else
-            {
-                cartdiv.Attributes.CssStyle.Clear();
-                bookdisplaydiv.InnerHtml = string.Empty;
-                paginationsection.InnerHtml = string.Empty;
-                string cartdata = AllCart(email);
-                MyCartDispDiv.InnerHtml = cartdata;
-                TotalAmountCalc();
-                if (cartdata != string.Empty)
-                {
-                    MYCartHeading.InnerText = "My Cart";
-                }
-                else
-                {
-                    MYCartHeading.InnerText = "My Cart(Empty)";
-                    ctpdiv.InnerHtml = string.Empty;
-                }
-            }
+            ShowCart(email);
         }
 
         protected void Cart_Delete(object sender, EventArgs e)
@@ -381,21 +349,15 @@ namespace BookStoreApp.WebForms
 
         protected void Change_Quantity(object sender, EventArgs e)
         {
+            var email = emailid.Value.ToString();
             int bid = Convert.ToInt32(bookid.Value.ToString());
             int id = Convert.ToInt32(cartid.Value.ToString());
             int bookquantity = Convert.ToInt32(changequantityinp.Text.ToString());
             if (CheckStock(bid, bookquantity))
             {
-                if (CartMgr.UpdateCart(id, bookquantity))
-                {
-                    System.Threading.Thread.Sleep(2000);
-                    Response.Write("<script language=javascript>($('#cartbtn').click();</script>");
-                }
-
-                else
-                {
-                    Response.Write("<script language=javascript> alert('something went wrong');</script>");
-                }
+                CartMgr.UpdateCart(id, bookquantity);
+                System.Threading.Thread.Sleep(2000);
+                ShowCart(email);
             }
 
             else
@@ -504,6 +466,44 @@ namespace BookStoreApp.WebForms
                 }
             }
             return true;
+        }
+
+        private void ShowCart(string email)
+        {
+            string loginorregister =
+       "<div style='margin-top:100px'>" +
+           "<h1 class='text-primary text-center font-italic'>Login or Register to See your Cart</h1>" +
+           "<a href='Login.aspx'>" +
+               "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Login Here</p>" +
+           "</a>" +
+           "<a href = 'Registration.aspx'>" +
+                "<p class='text-black-50  text-lg-center' style='font-size: 22px'>Register Here</p>" +
+           "</a>" +
+       "</div>";
+
+            if (email == null || email == string.Empty)
+            {
+                bookdisplaydiv.InnerHtml = loginorregister;
+                paginationsection.InnerHtml = string.Empty;
+            }
+            else
+            {
+                cartdiv.Attributes.CssStyle.Clear();
+                bookdisplaydiv.InnerHtml = string.Empty;
+                paginationsection.InnerHtml = string.Empty;
+                string cartdata = AllCart(email);
+                MyCartDispDiv.InnerHtml = cartdata;
+                TotalAmountCalc();
+                if (cartdata != string.Empty)
+                {
+                    MYCartHeading.InnerText = "My Cart";
+                }
+                else
+                {
+                    MYCartHeading.InnerText = "My Cart(Empty)";
+                    ctpdiv.InnerHtml = string.Empty;
+                }
+            }
         }
     }
 }
