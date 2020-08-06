@@ -46,9 +46,13 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ImplementationRepo\AdminRepo.cs" />
+    <Compile Include="ImplementationRepo\CartRepoImpl.cs" />
     <Compile Include="ImplementationRepo\CustomerRepoImpl.cs" />
+    <Compile Include="ImplementationRepo\WishListRepoImpl.cs" />
     <Compile Include="InterfacesRepo\IAdminRepo.cs" />
+    <Compile Include="InterfacesRepo\ICartRepo.cs" />
     <Compile Include="InterfacesRepo\ICustomerRepo.cs" />
+    <Compile Include="InterfacesRepo\IWishListRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ConnectionString.cs" />
   </ItemGroup>
