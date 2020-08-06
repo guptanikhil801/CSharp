@@ -21,11 +21,12 @@
             </div>
             <h1 id="adlabel" class="text-white">Admin DashBoard</h1>
             <asp:TextBox ID="searchbar" CssClass="form-control w-25" placeholder="Search" runat="server"></asp:TextBox>
+            <asp:Button CssClass=" btn-light rounded" runat="server" Text="Search" OnClick="Search" />
         </nav>
 
         <%-- Add and Update Book Section --%>
         <div style="margin-top: 70px;" class="container">
-            <div class="card">
+            <div class="card" runat="server" id="addupdiv">
                 <div class="card-body">
                     <h5 id="updateaddheading" class="card-title">Add a New Book</h5>
 
