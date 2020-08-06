@@ -127,17 +127,26 @@
     <Content Include="WebForms\AdminDashBoard.aspx" />
     <Content Include="WebForms\AdminLogin.aspx" />
     <Content Include="WebForms\AdminRegister.aspx" />
+    <Content Include="WebForms\Assets\addtocartbtn.png" />
     <Content Include="WebForms\Assets\bookicon.png" />
+    <Content Include="WebForms\Assets\buynowbtn.png" />
+    <Content Include="WebForms\Assets\cardtype.png" />
     <Content Include="WebForms\Assets\carticon.png" />
     <Content Include="WebForms\Assets\deleteforever.png" />
+    <Content Include="WebForms\StyleSheets\PaymentStyle.css" />
+    <Content Include="WebForms\Assets\wishlistbtnlg.png" />
+    <Content Include="WebForms\Assets\wishlistbtnsm.png" />
     <Content Include="WebForms\Assets\wishlisticon.png" />
     <Content Include="WebForms\Assets\wishlisticonnew.png" />
     <Content Include="WebForms\ForgotPassword.aspx" />
     <Content Include="WebForms\HomePage.aspx" />
     <Content Include="WebForms\Login.aspx" />
+    <Content Include="WebForms\PaymentPage.aspx" />
     <Content Include="WebForms\Registration.aspx" />
     <Content Include="WebForms\ResetPassword.aspx" />
     <Content Include="WebForms\StyleSheets\AdBoard.css" />
+    <Content Include="WebForms\StyleSheets\CartStyle.css" />
+    <Content Include="WebForms\WishListSection.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -210,12 +219,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -262,6 +273,13 @@
     <Compile Include="WebForms\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\PaymentPage.aspx.cs">
+      <DependentUpon>PaymentPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\PaymentPage.aspx.designer.cs">
+      <DependentUpon>PaymentPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +293,13 @@
     </Compile>
     <Compile Include="WebForms\ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\WishListSection.aspx.cs">
+      <DependentUpon>WishListSection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\WishListSection.aspx.designer.cs">
+      <DependentUpon>WishListSection.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
