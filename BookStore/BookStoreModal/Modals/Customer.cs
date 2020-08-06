@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookStoreModal.Modals
+﻿namespace BookStoreModal.Modals
 {
     /// <summary>
     /// class to deine Customer

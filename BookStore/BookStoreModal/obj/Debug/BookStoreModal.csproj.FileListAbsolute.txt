@@ -4,3 +4,9 @@ C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreM
 C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.csproj.CoreCompileInputs.cache
 C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.dll
 C:\Users\Nikhil Gupta\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.pdb
+C:\Users\admin\source\repos\BookStore\BookStoreModal\bin\Debug\BookStoreModal.dll
+C:\Users\admin\source\repos\BookStore\BookStoreModal\bin\Debug\BookStoreModal.pdb
+C:\Users\admin\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.dll
+C:\Users\admin\source\repos\BookStore\BookStoreModal\obj\Debug\BookStoreModal.pdb
