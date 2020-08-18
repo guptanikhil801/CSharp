@@ -2,11 +2,14 @@
 using BookStoreRepository.InterfacesRepo;
 using BookStoreRepository.Utility;
 using Experimental.System.Messaging;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 
 namespace BookStoreRepository.ImplementationRepo
 {
@@ -46,34 +49,37 @@ namespace BookStoreRepository.ImplementationRepo
         {
             string url = "https://localhost:44334/WebForms/ResetPassword.aspx";
             //// for sending message in MSMQ
-            MessageQueue msgqueue;
-            if (MessageQueue.Exists(@".\Private$\MyQueue"))
-            {
-                msgqueue = new MessageQueue(@".\Private$\MyQueue");
-            }
-            else
-            {
-                msgqueue = MessageQueue.Create(@".\Private$\MyQueue");
-            }
+            /* MessageQueue msgqueue;
+             if (MessageQueue.Exists(@".\Private$\MyQueue"))
+             {
+                 msgqueue = new MessageQueue(@".\Private$\MyQueue");
+             }
+             else
+             {
+                 msgqueue = MessageQueue.Create(@".\Private$\MyQueue");
+             }
 
-            Message message = new Message();
+             Message message = new Message();
 
-            message.Formatter = new BinaryMessageFormatter();
-            message.Body = url;
-            msgqueue.Label = "url link";
-            msgqueue.Send(message);
+             message.Formatter = new BinaryMessageFormatter();
+             message.Body = url;
+             msgqueue.Label = "url link";
+             msgqueue.Send(message);
 
-            //// for reading message from MSMQ
-            var receivequeue = new MessageQueue(@".\Private$\MyQueue");
-            var receivemsg = receivequeue.Receive();
-            receivemsg.Formatter = new BinaryMessageFormatter();
+             //// for reading message from MSMQ
+             var receivequeue = new MessageQueue(@".\Private$\MyQueue");
+             var receivemsg = receivequeue.Receive();
+             receivemsg.Formatter = new BinaryMessageFormatter();
+            string linktobesend = receivemsg.Body.ToString();*/
 
-            string linktobesend = receivemsg.Body.ToString();
+            MesssagePublishRabbit(url);
+            string linktobesend = MessageConsumeRabbit();
             if (Sendmail(Email, linktobesend))
             {
                 return true;
             }
             return false;
+
         }
 
         public bool Login(LoginModal login)
@@ -181,6 +187,55 @@ namespace BookStoreRepository.ImplementationRepo
             }
 
             return Password;
+        }
+
+        private void MesssagePublishRabbit(string Message)
+        {
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                channel.QueueDeclare(queue: "bsqueue",
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                var body = Encoding.UTF8.GetBytes(Message);
+
+                channel.BasicPublish(exchange: "",
+                                     routingKey: "bsqueue",
+                                     basicProperties: null,
+                                     body: body);
+            }
+        }
+
+        private string MessageConsumeRabbit()
+        {
+            string x = string.Empty;
+            var factory = new ConnectionFactory() { HostName = "localhost" };
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
+                channel.QueueDeclare(queue: "bsqueue",
+                                     durable: false,
+                                     exclusive: false,
+                                     autoDelete: false,
+                                     arguments: null);
+
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += (model, ea) =>
+                {
+                    var body = ea.Body.ToArray();
+                    var message = Encoding.UTF8.GetString(body);
+                    x = x + message;
+                };
+                channel.BasicConsume(queue: "bsqueue",
+                                     autoAck: true,
+                                     consumer: consumer);
+            }
+
+            return x;
         }
     }
 }
